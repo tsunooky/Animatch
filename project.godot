@@ -1,0 +1,34 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="Animatch"
+config/version="v0.1"
+config/features=PackedStringArray("4.2", "Mobile")
+config/icon="res://assets/icon/icon.png"
+
+[display]
+
+window/size/mode=3
+
+[dotnet]
+
+project/assembly_name="Animatch"
+
+[editor]
+
+movie_writer/fps=144
+
+[rendering]
+
+renderer/rendering_method="mobile"
+anti_aliasing/quality/msaa_2d=1
+anti_aliasing/quality/screen_space_aa=1

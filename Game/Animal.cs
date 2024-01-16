@@ -5,6 +5,15 @@ public class Animal : Node2D
 {
     private PackedScene GrenadeScene = GD.Load<PackedScene>("res://Grenade.tscn");
 
+<<<<<<< Updated upstream
+=======
+<<<<<<< Updated upstream
+	// Called every frame. 'delta' is the elapsed time since the previous frame.
+	public override void _Process(double delta)
+	{
+	}
+=======
+>>>>>>> Stashed changes
     private int jump = 0;
     private int jumpDir = 0;
 
@@ -20,7 +29,11 @@ public class Animal : Node2D
         }
     }
 
+<<<<<<< Updated upstream
     public override void _PhysicsProcess(float delta)
+=======
+    public void _PhysicsProcess(float delta)
+>>>>>>> Stashed changes
     {
         if (jump > 0)
         {
@@ -74,4 +87,8 @@ public class Animal : Node2D
 
         Position = validPosWalk;
     }
+<<<<<<< Updated upstream
+=======
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
 }

@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://cxugpljwds7xh"]
+
+[ext_resource type="Texture2D" uid="uid://do5h5l0iueyey" path="res://assets/maps/goat.jpg" id="1_bicmc"]
+[ext_resource type="Script" path="res://Game/Collision.cs" id="2_bkx3q"]
+
+[node name="Map" type="Node2D"]
+
+[node name="BG" type="Sprite2D" parent="."]
+modulate = Color(0.4, 0.4, 0.4, 1)
+position = Vector2(650, 585)
+texture = ExtResource("1_bicmc")
+
+[node name="FG" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(650, 585)
+texture = ExtResource("1_bicmc")
+
+[node name="Collision" type="Node" parent="."]
+script = ExtResource("2_bkx3q")

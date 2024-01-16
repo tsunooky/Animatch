@@ -12,7 +12,12 @@ config_version=5
 
 config/name="Animatch"
 config/version="v0.1"
+<<<<<<< Updated upstream
 config/features=PackedStringArray("4.2", "Mobile")
+=======
+run/main_scene="res://Main.tscn"
+config/features=PackedStringArray("4.2", "C#", "Mobile")
+>>>>>>> Stashed changes
 config/icon="res://assets/icon/icon.png"
 
 [display]

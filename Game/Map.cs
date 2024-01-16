@@ -1,5 +1,3 @@
-namespace Animatch.Game;
-
 using Godot;
 using System;
 

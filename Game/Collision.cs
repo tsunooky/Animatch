@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public class MapCollision : Node
+public class Collision : Node
 {
     private const int WIDTH = 1024;
     private const int HEIGHT = 600;
@@ -13,18 +13,9 @@ public class MapCollision : Node
 
         for (int x = 0; x < WIDTH; x++)
         {
-            collision.Append(new bool[HEIGHT]);
-
             for (int y = 0; y < HEIGHT; y++)
             {
-                if ((float)line[x] > y)
-                {
-                    collision[x, y] = false;
-                }
-                else
-                {
-                    collision[x, y] = true;
-                }
+                collision[x, y] = ((float)line[x] > y) ? false : true;
             }
         }
     }

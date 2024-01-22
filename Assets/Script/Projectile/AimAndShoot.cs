@@ -17,7 +17,7 @@ public class AimAndShoot : MonoBehaviour
     private void Start()
     {
         // Appeler la fonction GetMouseCoordinates() chaque seconde (1f seconde)
-        InvokeRepeating("Aim", 0f, 1f / 30f);
+        InvokeRepeating("Aim", 0f, 1f / 60f);
     }
 
     private void Update()

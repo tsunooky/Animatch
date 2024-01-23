@@ -2,18 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AnimalBehaviour : MonoBehaviour
+public abstract class AnimalBehaviour : MonoBehaviour
 {
     public AnimalData animalData;
-
-    public AnimalBehaviour(AnimalData animaldata)
+    
+    // ReSharper disable Unity.PerformanceAnalysis
+    public void AnimalVisible()
     {
-        animalData = animaldata;
+        gameObject.AddComponent<Rigidbody2D>();
+        SpriteRenderer spriteRenderer = gameObject.AddComponent<SpriteRenderer>();
+        spriteRenderer.sortingOrder = 1;
+        spriteRenderer.sprite = animalData.sprite;
+        spriteRenderer.transform.localScale = new Vector3(0.2f, 0.2f, 1.0f);
+        gameObject.AddComponent<CircleCollider2D>();
+        gameObject.AddComponent<CameraManager>();
     }
     
-    public virtual void LancerPouvoir(GameObject gameObject)
-    {
-        Debug.Log($"{animalData.nom} est en : ({gameObject.transform.position.x}," +
-                  $"{gameObject.transform.position.y})");
-    }
+    public abstract void LancerPouvoir(GameObject gameObject);
 }

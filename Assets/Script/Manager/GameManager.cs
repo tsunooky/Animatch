@@ -4,15 +4,14 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    private bool spawn = true;
-    void Start()
-    {
-    }
+    private int spawn = 6;
+
+    private AnimalData data;
 
     // Update is called once per frame
     void Update()
     {
-        if (spawn)
+        if (spawn > 0)
         {
             // Vérifie si le joueur a cliqué et si le délai de spawn est écoulé
             if (Input.GetMouseButtonDown(0))
@@ -21,18 +20,21 @@ public class GameManager : MonoBehaviour
                 Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
                 // Instanciez l'animal à la position du clic
-                creer_animal(mousePosition.x,10f);
-                spawn = false;
+                spawn = creer_animal(spawn, mousePosition.x, 10f);
             }
         }
     }
 
-    void creer_animal(float x, float y)
+    // ReSharper disable Unity.PerformanceAnalysis
+    int creer_animal(int spawn ,float x, float y)
     {
         // Création d'un GameObject
-        GameObject Animal1 = new GameObject("Animal1");
-        Animal1.AddComponent<AnimalController>();
-        Animal1.transform.position = new Vector2(x, y);;
+        GameObject newAnimal = new GameObject("Animal"+x);
+        TortueBehaviour animalBehaviour = newAnimal.AddComponent<TortueBehaviour>();
+        newAnimal.AddComponent<AimAndShoot>();
+        newAnimal.transform.position = new Vector2(x, y);
+        animalBehaviour.AnimalVisible();
+        return spawn - 1;
     }
     
 }

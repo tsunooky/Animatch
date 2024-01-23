@@ -32,6 +32,7 @@ public class AimAndShoot : MonoBehaviour
         
         gun = new GameObject("Pistol");
         SpriteRenderer gunRenderer = gun.AddComponent<SpriteRenderer>();
+        gun.AddComponent<CameraManager>();
         gunRenderer.sortingOrder = 2;
         gunRenderer.sprite = spriteGun;
         InvokeRepeating("Aim", 0f, 1f / 60f);
@@ -50,8 +51,8 @@ public class AimAndShoot : MonoBehaviour
 
         // Convertir les coordonnées de la souris de pixels à des coordonnées dans l'espace du monde
         Vector2 mousePositionWorld = Camera.main.ScreenToWorldPoint(mousePositionPixels);
-        
         direction = (mousePositionWorld - (Vector2)gun.transform.position).normalized;
+        
         gun.transform.right = direction;
     }
 
@@ -59,7 +60,7 @@ public class AimAndShoot : MonoBehaviour
     {
         if (Mouse.current.leftButton.wasPressedThisFrame)
         {
-            bulletInst = Instantiate(bullet, gun.transform.position, gameObject.transform.rotation);
+            bulletInst = Instantiate(bullet, gun.transform.position, gun.transform.rotation);
         }
     }
     

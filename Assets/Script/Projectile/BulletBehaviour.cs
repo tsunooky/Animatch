@@ -8,6 +8,7 @@ public class BulletBehaviour : MonoBehaviour
     [SerializeField] private float speed = 5f;
 
     private Rigidbody2D rb;
+    public GameObject Prefab;
 
     // Start is called before the first frame update
     void Start()
@@ -20,5 +21,11 @@ public class BulletBehaviour : MonoBehaviour
     private void SetStraightVelocity()
     {
         rb.velocity = transform.right * speed;
+    }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        var clone = Instantiate(Prefab, transform.position, transform.rotation);
+        clone.SetActive(true);
     }
 }

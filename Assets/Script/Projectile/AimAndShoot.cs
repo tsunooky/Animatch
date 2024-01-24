@@ -45,15 +45,18 @@ public class AimAndShoot : MonoBehaviour
 
     private void Aim()
     {
-        gun.transform.position = gameObject.transform.position;
-        // Récupérer les coordonnées de la souris en pixels
-        Vector2 mousePositionPixels = Mouse.current.position.ReadValue();
+        if (gun != null)
+        {
+            gun.transform.position = gameObject.transform.position;
+            // Récupérer les coordonnées de la souris en pixels
+            Vector2 mousePositionPixels = Mouse.current.position.ReadValue();
 
-        // Convertir les coordonnées de la souris de pixels à des coordonnées dans l'espace du monde
-        Vector2 mousePositionWorld = Camera.main.ScreenToWorldPoint(mousePositionPixels);
-        direction = (mousePositionWorld - (Vector2)gun.transform.position).normalized;
-        
-        gun.transform.right = direction;
+            // Convertir les coordonnées de la souris de pixels à des coordonnées dans l'espace du monde
+            Vector2 mousePositionWorld = Camera.main.ScreenToWorldPoint(mousePositionPixels);
+            direction = (mousePositionWorld - (Vector2)gun.transform.position).normalized;
+
+            gun.transform.right = direction;
+        }
     }
 
     private void Shoot()

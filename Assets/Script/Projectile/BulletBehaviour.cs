@@ -27,5 +27,6 @@ public class BulletBehaviour : MonoBehaviour
     {
         var clone = Instantiate(Prefab, transform.position, transform.rotation);
         clone.SetActive(true);
+        Destroy(gameObject);
     }
 }

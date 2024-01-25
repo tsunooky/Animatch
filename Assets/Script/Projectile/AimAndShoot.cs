@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks.Sources;
+using Script.Manager;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -37,7 +38,7 @@ public class AimAndShoot : MonoBehaviour
         gunRenderer.sprite = spriteGun;
         InvokeRepeating("Aim", 0f, 1f / 60f);
     }
-
+    
     private void Update()
     {
         Shoot();

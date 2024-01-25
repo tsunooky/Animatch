@@ -7,9 +7,8 @@ public class TortueBehaviour : AnimalBehaviour
 {
     public void Awake()
     {
-        animalData = Resources.Load<AnimalData>("Data/Tortue");
+        LoadData("Tortue");
     }
-
 
     public override void LancerPouvoir(GameObject gameObject)
     {

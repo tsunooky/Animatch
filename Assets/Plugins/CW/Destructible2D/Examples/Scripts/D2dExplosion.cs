@@ -11,7 +11,7 @@ namespace Destructible2D.Examples
 	{
 		/// <summary>The layers the explosion should work on.</summary>
 		public LayerMask Mask = -1;
-
+		
 		/// <summary>Should the explosion stamp a shape?</summary>
 		public bool Stamp = true;
 
@@ -61,6 +61,16 @@ namespace Destructible2D.Examples
 				StartCoroutine(DelayForce());
 			}
 		}
+        
+        // Méthode appelée lorsqu'un autre objet entre en collision avec l'explosion
+        void OnTriggerEnter2D(Collider2D collider)
+        {
+	        // Vérifiez si la collision concerne un animal
+	        if (collider.gameObject.CompareTag("Animal"))
+	        {
+		        Debug.Log("aa");
+	        }
+        }
 #if UNITY_EDITOR
 		protected virtual void OnDrawGizmosSelected()
 		{

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Script.Manager;
@@ -9,7 +10,12 @@ public abstract class AnimalBehaviour : MonoBehaviour
     public int pv;
     public float poids;
     public int vitesse;
-    
+
+    private void Start()
+    {
+        gameObject.tag = "Animal";
+    }
+
     protected void LoadData(string nom_animal)
     {
         animalData = Resources.Load<AnimalData>("Data/" + nom_animal);

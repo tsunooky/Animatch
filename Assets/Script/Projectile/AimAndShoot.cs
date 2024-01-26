@@ -9,8 +9,6 @@ using UnityEngine.InputSystem;
 
 public class AimAndShoot : MonoBehaviour
 {
-    [SerializeField] private GameObject bullet;
-    [SerializeField] private Transform bulletSpawnPoint;
 
     private GameObject bulletInst;
     
@@ -21,10 +19,12 @@ public class AimAndShoot : MonoBehaviour
 
     private GameObject gun;
 
+    private float spawnDistance = 0.65f;
+
     void Awake()
     {
         spriteGun = Resources.Load<Sprite>("Sprites/Projectiles/Gun");
-        bullet = Resources.Load<GameObject>("Prefabs/Circle");
+        bulletInst = Resources.Load<GameObject>("Prefabs/Circle");
     }
     
     private void Start()
@@ -62,9 +62,17 @@ public class AimAndShoot : MonoBehaviour
 
     private void Shoot()
     {
-        if (Mouse.current.leftButton.wasPressedThisFrame)
+        if (gun != null)
         {
-            bulletInst = Instantiate(bullet, gun.transform.position, gun.transform.rotation);
+            if (Mouse.current.leftButton.wasPressedThisFrame)
+            {
+                Vector3 direction = gun.transform.right;
+
+                // Calculer la nouvelle position en ajoutant la direction multipliée par la distance
+                Vector3 newPosition = gun.transform.position + direction * spawnDistance;
+
+                Instantiate(bulletInst, newPosition, gun.transform.rotation);
+            }
         }
     }
     

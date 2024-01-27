@@ -11,6 +11,7 @@ public abstract class AnimalBehaviour : MonoBehaviour
     public int pv;
     public float poids;
     public int vitesse;
+    
 
     protected void LoadData(string nom_animal)
     {
@@ -27,18 +28,20 @@ public abstract class AnimalBehaviour : MonoBehaviour
         SpriteRenderer spriteRenderer = gameObject.AddComponent<SpriteRenderer>();
         spriteRenderer.sortingOrder = 1;
         spriteRenderer.sprite = animalData.sprite;
-        spriteRenderer.transform.localScale = new Vector3(0.2f, 0.2f, 1.0f);
         gameObject.AddComponent<CircleCollider2D>();
-        gameObject.AddComponent<CameraManager>();
+        gameObject.AddComponent<DespawnManager>();
     }
     
-    public abstract void LancerPouvoir(GameObject gameObject);
+    public abstract void LancerPouvoir();
 
     protected void Degat(int damage)
     {
         pv -= damage;
-        if (pv < 0)
+        if (pv <= 0)
+        {
             pv = 0;
+            kill();
+        }
     }
 
     protected void Soin(int heal)
@@ -55,5 +58,15 @@ public abstract class AnimalBehaviour : MonoBehaviour
             D2dExplosion explosion = collison2D.gameObject.GetComponent<D2dExplosion>();
             Degat(explosion.degat);
         }
+    }
+
+    void kill()
+    {
+        
+    }
+    
+    private void OnBecameInvisible()
+    {
+        Destroy(gameObject);
     }
 }

@@ -33,7 +33,7 @@ public class AimAndShoot : MonoBehaviour
         
         gun = new GameObject("Pistol");
         SpriteRenderer gunRenderer = gun.AddComponent<SpriteRenderer>();
-        gun.AddComponent<CameraManager>();
+        gun.AddComponent<DespawnManager>();
         gunRenderer.sortingOrder = 2;
         gunRenderer.sprite = spriteGun;
         InvokeRepeating("Aim", 0f, 1f / 60f);
@@ -70,10 +70,19 @@ public class AimAndShoot : MonoBehaviour
 
                 // Calculer la nouvelle position en ajoutant la direction multipliée par la distance
                 Vector3 newPosition = gun.transform.position + direction * spawnDistance;
-
+                
+                BulletBehaviour.OnBulletDestroyed += OnDestroy;
                 Instantiate(bulletInst, newPosition, gun.transform.rotation);
             }
         }
+    }
+    
+    private void OnDestroy()
+    {
+        // Désabonner l'événement lors de la destruction du script
+        BulletBehaviour.OnBulletDestroyed -= OnDestroy;
+        Destroy(gun);
+        Destroy(this);
     }
     
 }

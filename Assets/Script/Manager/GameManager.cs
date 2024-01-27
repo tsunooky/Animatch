@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 namespace Script.Manager
@@ -10,6 +12,13 @@ namespace Script.Manager
         static GameManager Instance;
 
         public int tour;
+
+        private Dictionary<string, Type> animalTypes = new Dictionary<string, Type>
+        {
+            { "turtle", typeof(TurtleBehaviour) },
+            { "panda", typeof(PandaBehaviour) },
+            { "dog", typeof(DogBehaviour) }
+        };
 
         private void Awake()
         {
@@ -33,7 +42,7 @@ namespace Script.Manager
                     Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
                     // Instanciez l'animal à la position du clic en x et y = hauteur
-                    creer_animal(mousePosition.x, hauteurSpawn);
+                    creer_animal(mousePosition.x, hauteurSpawn,"turtle");
                     spawn = false;
                 }
             }
@@ -41,14 +50,22 @@ namespace Script.Manager
     
     
         // ReSharper disable Unity.PerformanceAnalysis
-        void creer_animal(float x, float y)
+        void creer_animal(float x, float y,string animal)
         {
-            // Création d'un GameObject
-            GameObject newAnimal = new GameObject("Animal"+x);
-            TortueBehaviour animalBehaviour = newAnimal.AddComponent<TortueBehaviour>();
-            newAnimal.AddComponent<AimAndShoot>();
-            newAnimal.transform.position = new Vector2(x, y);
-            animalBehaviour.AnimalVisible();
+            if (animalTypes.ContainsKey(animal))
+            {
+                // Création d'un GameObject
+                GameObject newAnimal = new GameObject(animal + x);
+                Type typeAnimal = animalTypes[animal];
+                AnimalBehaviour animalBehaviour = (AnimalBehaviour)(newAnimal.AddComponent(typeAnimal));
+                animalBehaviour.LancerPouvoir();
+                newAnimal.transform.position = new Vector2(x, y);
+                animalBehaviour.AnimalVisible();
+            }
+            else
+            {
+                Debug.Log("erreur ce type d'animal n'existe pas encore dans le jeu");
+            }
         }
     
     }

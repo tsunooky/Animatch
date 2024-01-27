@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Script.Manager;
 using UnityEngine;
+using Destructible2D.Examples;
 
 public abstract class AnimalBehaviour : MonoBehaviour
 {
@@ -10,11 +11,6 @@ public abstract class AnimalBehaviour : MonoBehaviour
     public int pv;
     public float poids;
     public int vitesse;
-
-    private void Start()
-    {
-        gameObject.tag = "Animal";
-    }
 
     protected void LoadData(string nom_animal)
     {
@@ -48,5 +44,16 @@ public abstract class AnimalBehaviour : MonoBehaviour
     protected void Soin(int heal)
     {
         pv += heal;
+    }
+    
+    // Méthode appelée lorsqu'un autre objet entre en collision avec l'explosion
+    void OnCollisionEnter2D(Collision2D collison2D)
+    {
+        // Vérifiez si la collision concerne un animal
+        if (collison2D.gameObject.CompareTag("Explosion"))
+        {
+            D2dExplosion explosion = collison2D.gameObject.GetComponent<D2dExplosion>();
+            Degat(explosion.degat);
+        }
     }
 }

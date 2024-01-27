@@ -64,7 +64,7 @@ public class AimAndShoot : MonoBehaviour
     {
         if (gun != null)
         {
-            if (Mouse.current.leftButton.wasPressedThisFrame)
+            if (Mouse.current.leftButton.wasReleasedThisFrame)
             {
                 Vector3 direction = gun.transform.right;
 

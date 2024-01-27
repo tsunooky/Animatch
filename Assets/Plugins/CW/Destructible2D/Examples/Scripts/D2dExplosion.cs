@@ -9,6 +9,8 @@ namespace Destructible2D.Examples
 	[AddComponentMenu(D2dCommon.ComponentMenuPrefix + "Explosion")]
 	public class D2dExplosion : MonoBehaviour
 	{
+		public int degat = 10;
+		
 		/// <summary>The layers the explosion should work on.</summary>
 		public LayerMask Mask = -1;
 		
@@ -48,6 +50,7 @@ namespace Destructible2D.Examples
 
 		protected virtual void Start()
 		{
+			tag = "Explosion";
 			if (Stamp == true)
 			{
 				var stampPosition = transform.position;
@@ -62,15 +65,6 @@ namespace Destructible2D.Examples
 			}
 		}
         
-        // Méthode appelée lorsqu'un autre objet entre en collision avec l'explosion
-        void OnTriggerEnter2D(Collider2D collider)
-        {
-	        // Vérifiez si la collision concerne un animal
-	        if (collider.gameObject.CompareTag("Animal"))
-	        {
-		        Debug.Log("aa");
-	        }
-        }
 #if UNITY_EDITOR
 		protected virtual void OnDrawGizmosSelected()
 		{

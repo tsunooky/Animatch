@@ -15,5 +15,5 @@ MonoBehaviour:
   nom: turtle
   sprite: {fileID: 21300000, guid: 827e3e7ae15c401428a46b28abbf3d3a, type: 3}
   Pv: 80
-  Poids: 0
-  Vitesse: 0
+  Poids: 20
+  Vitesse: 5

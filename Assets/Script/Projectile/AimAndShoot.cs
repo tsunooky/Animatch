@@ -9,8 +9,7 @@ using UnityEngine.InputSystem;
 
 public class AimAndShoot : MonoBehaviour
 {
-
-    private GameObject bulletInst;
+    public ProjectileData projectileData;
     
     private Vector2 worldPosition;
     private Vector2 direction;
@@ -24,7 +23,7 @@ public class AimAndShoot : MonoBehaviour
     void Awake()
     {
         spriteGun = Resources.Load<Sprite>("Sprites/Projectiles/Gun");
-        bulletInst = Resources.Load<GameObject>("Prefabs/Circle");
+        projectileData = Resources.Load<ProjectileData>("Data/Projectile/Tomate");
     }
     
     private void Start()
@@ -55,7 +54,6 @@ public class AimAndShoot : MonoBehaviour
             // Convertir les coordonnées de la souris de pixels à des coordonnées dans l'espace du monde
             Vector2 mousePositionWorld = Camera.main.ScreenToWorldPoint(mousePositionPixels);
             direction = (mousePositionWorld - (Vector2)gun.transform.position).normalized;
-
             gun.transform.right = direction;
         }
     }
@@ -72,7 +70,10 @@ public class AimAndShoot : MonoBehaviour
                 Vector3 newPosition = gun.transform.position + direction * spawnDistance;
                 
                 BulletBehaviour.OnBulletDestroyed += OnDestroy;
-                Instantiate(bulletInst, newPosition, gun.transform.rotation);
+                GameObject bullet = Instantiate(projectileData.Projectile, newPosition, gun.transform.rotation);
+                BulletBehaviour bulletBehaviour = bullet.GetComponent<BulletBehaviour>();
+                bulletBehaviour.projectileData = projectileData;
+                bulletBehaviour.SetPrefab(projectileData.Explosion);
             }
         }
     }

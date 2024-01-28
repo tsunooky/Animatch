@@ -9,7 +9,7 @@ namespace Destructible2D.Examples
 	[AddComponentMenu(D2dCommon.ComponentMenuPrefix + "Explosion")]
 	public class D2dExplosion : MonoBehaviour
 	{
-		public int degat = 10;
+		public int degat;
 		
 		/// <summary>The layers the explosion should work on.</summary>
 		public LayerMask Mask = -1;

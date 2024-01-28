@@ -6,7 +6,6 @@ namespace Script.Manager
 {
     public class GameManager : MonoBehaviour
     {
-        public float hauteurSpawn = 10f;
 
         static GameManager Instance;
 
@@ -36,8 +35,8 @@ namespace Script.Manager
             }
 
             Instance = this;
-            joueur = new PlayerManager();
-            bot = new PlayerManager();
+            joueur =  gameObject.AddComponent<PlayerManager>();
+            bot = gameObject.AddComponent<PlayerManager>();
         }
     
         void Update()
@@ -58,9 +57,18 @@ namespace Script.Manager
                     {
                         // Obtenez les coordonnées du clic de la souris
                         Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                        
+                        // Lancer un rayon depuis la position de la souris dans la direction (0, 0, 1)
+                        Collider2D collider = Physics2D.OverlapPoint(mousePosition);
 
+                        // Vérifier s'il y a eu une collision
+                        if (collider != null)
+                        {
+                            // Il y a eu une collision avec un collider
+                            Debug.Log("Collision détectée avec : " + collider.name);
+                        }
                         // Instanciez l'animal à la position du clic en x et y = hauteur
-                        x.animaux_vivant.Add(creerAnimal(mousePosition.x, hauteurSpawn, x.TemporaireEnAttendantProfil.Peek()));
+                        x.animaux_vivant.Add(creerAnimal(mousePosition.x, mousePosition.y, x.TemporaireEnAttendantProfil.Peek()));
                         x.TemporaireEnAttendantProfil.Pop();
                     }
                 }

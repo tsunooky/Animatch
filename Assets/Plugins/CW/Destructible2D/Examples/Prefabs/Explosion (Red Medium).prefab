@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 1529943587245828053}
   m_Layer: 0
   m_Name: Explosion (Red Medium)
-  m_TagString: Untagged
+  m_TagString: Explosion
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4865,6 +4865,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef2b21ed79dd7394689a94432ca9a131, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  degat: 10
   Mask:
     serializedVersion: 2
     m_Bits: 4294967295

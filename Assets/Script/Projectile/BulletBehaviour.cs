@@ -5,11 +5,11 @@ using Destructible2D.Examples;
 
 public class BulletBehaviour : MonoBehaviour
 {
-    [SerializeField] private float speed = 5f;
-
     private Rigidbody2D rb;
 
     public GameObject Prefab;
+
+    public ProjectileData projectileData;
     
     public delegate void BulletDestroyed();
     public static event BulletDestroyed OnBulletDestroyed;
@@ -20,7 +20,7 @@ public class BulletBehaviour : MonoBehaviour
         {       
             var clone = Instantiate(Prefab, transform.position, transform.rotation);
             clone.SetActive(true);
-            OnBulletDestroyed?.Invoke();
+            clone.GetComponent<D2dExplosion>().degat = projectileData.Degat;
             Destroy(gameObject);
         }
     }
@@ -29,11 +29,17 @@ public class BulletBehaviour : MonoBehaviour
     {
         rb = gameObject.GetComponent<Rigidbody2D>();
         SetStraightVelocity();
+        OnBulletDestroyed?.Invoke();
+    }
+
+    public void SetPrefab(GameObject prefab)
+    {
+        Prefab = prefab;
     }
 
     private void SetStraightVelocity()
     {
-        rb.velocity = transform.right * speed;
+        rb.velocity = transform.right * projectileData.Force;
     }
     
 }

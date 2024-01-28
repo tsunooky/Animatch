@@ -11,11 +11,16 @@ public abstract class AnimalBehaviour : MonoBehaviour
     public int pv;
     public float poids;
     public int vitesse;
+
+    private void Start()
+    {
+        tag = "Animal";
+    }
     
 
     protected void LoadData(string nom_animal)
     {
-        animalData = Resources.Load<AnimalData>("Data/" + nom_animal);
+        animalData = Resources.Load<AnimalData>("Data/Animaux/" + nom_animal);
         pv = animalData.Pv;
         poids = animalData.Poids;
         vitesse = animalData.Vitesse;
@@ -24,12 +29,14 @@ public abstract class AnimalBehaviour : MonoBehaviour
     // ReSharper disable Unity.PerformanceAnalysis
     public void AnimalVisible()
     {
-        gameObject.AddComponent<Rigidbody2D>();
+        Rigidbody2D animalRigidbody2D = gameObject.AddComponent<Rigidbody2D>();
+        animalRigidbody2D.mass = poids;
         SpriteRenderer spriteRenderer = gameObject.AddComponent<SpriteRenderer>();
         spriteRenderer.sortingOrder = 1;
         spriteRenderer.sprite = animalData.sprite;
         gameObject.AddComponent<CircleCollider2D>();
         gameObject.AddComponent<DespawnManager>();
+        LancerPouvoir();
     }
     
     public abstract void LancerPouvoir();

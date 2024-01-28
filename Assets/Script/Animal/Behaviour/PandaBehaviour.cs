@@ -11,6 +11,5 @@ public class PandaBehaviour : AnimalBehaviour
 
     public override void LancerPouvoir()
     {
-        gameObject.AddComponent<AimAndShoot>();
     }
 }

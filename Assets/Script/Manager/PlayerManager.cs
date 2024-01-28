@@ -11,7 +11,21 @@ public class PlayerManager : MonoBehaviour
     public Queue<CarteBehaviour> main;
     public int drops;
     public Dictionary<string, bool> passif_actifs;
+    public Stack<string> TemporaireEnAttendantProfil;
 
+
+    public PlayerManager()
+    {
+        animaux_vivant = new List<AnimalBehaviour>();
+        drops = 1;
+        //DEFINITION DE TOUT LES PASSIFS
+        passif_actifs = new Dictionary<string, bool>();
+        TemporaireEnAttendantProfil = new Stack<string>();
+        TemporaireEnAttendantProfil.Push("turtle");
+        TemporaireEnAttendantProfil.Push("panda");
+        TemporaireEnAttendantProfil.Push("dog");
+    }
+    
     public void TuerAnimal(AnimalBehaviour animalBehaviour)
     {
         Destroy(animalBehaviour.gameObject);

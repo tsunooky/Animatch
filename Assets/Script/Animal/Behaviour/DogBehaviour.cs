@@ -11,6 +11,5 @@ public class DogBehaviour : AnimalBehaviour
 
     public override void LancerPouvoir()
     {
-        gameObject.AddComponent<AimAndShoot>();
     }
 }

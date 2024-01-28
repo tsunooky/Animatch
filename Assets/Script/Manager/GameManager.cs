@@ -6,12 +6,19 @@ namespace Script.Manager
 {
     public class GameManager : MonoBehaviour
     {
-        private bool spawn = true;
         public float hauteurSpawn = 10f;
 
         static GameManager Instance;
 
         public int tour;
+
+        public PlayerManager joueur;
+
+        public PlayerManager bot;
+
+        private bool spawn = true;
+        
+        //gameObject.AddComponent<AimAndShoot>();
 
         private Dictionary<string, Type> animalTypes = new Dictionary<string, Type>
         {
@@ -29,28 +36,40 @@ namespace Script.Manager
             }
 
             Instance = this;
+            joueur = new PlayerManager();
+            bot = new PlayerManager();
         }
     
         void Update()
         {
             if (spawn)
             {
-                // Vérifie si le joueur a cliqué
-                if (Input.GetMouseButtonDown(0))
-                {
-                    // Obtenez les coordonnées du clic de la souris
-                    Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-
-                    // Instanciez l'animal à la position du clic en x et y = hauteur
-                    creer_animal(mousePosition.x, hauteurSpawn,"turtle");
+                if (joueur.TemporaireEnAttendantProfil.Count == 0 && bot.TemporaireEnAttendantProfil.Count == 0)
                     spawn = false;
+                else
+                {
+                    PlayerManager x;
+                    if (joueur.TemporaireEnAttendantProfil.Count > bot.TemporaireEnAttendantProfil.Count)
+                        x = joueur;
+                    else
+                        x = bot;
+                    // Vérifie si le joueur a cliqué
+                    if (Input.GetMouseButtonDown(0))
+                    {
+                        // Obtenez les coordonnées du clic de la souris
+                        Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
+                        // Instanciez l'animal à la position du clic en x et y = hauteur
+                        x.animaux_vivant.Add(creerAnimal(mousePosition.x, hauteurSpawn, x.TemporaireEnAttendantProfil.Peek()));
+                        x.TemporaireEnAttendantProfil.Pop();
+                    }
                 }
             }
         }
     
     
         // ReSharper disable Unity.PerformanceAnalysis
-        void creer_animal(float x, float y,string animal)
+        AnimalBehaviour creerAnimal(float x, float y,string animal)
         {
             if (animalTypes.ContainsKey(animal))
             {
@@ -58,15 +77,11 @@ namespace Script.Manager
                 GameObject newAnimal = new GameObject(animal + x);
                 Type typeAnimal = animalTypes[animal];
                 AnimalBehaviour animalBehaviour = (AnimalBehaviour)(newAnimal.AddComponent(typeAnimal));
-                animalBehaviour.LancerPouvoir();
                 newAnimal.transform.position = new Vector2(x, y);
                 animalBehaviour.AnimalVisible();
+                return animalBehaviour;
             }
-            else
-            {
-                Debug.Log("erreur ce type d'animal n'existe pas encore dans le jeu");
-            }
+            throw new Exception("Ce type d'animal n'existe pas ");
         }
-    
     }
 }

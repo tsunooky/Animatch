@@ -16,7 +16,8 @@ public class TurtleBehaviour : AnimalBehaviour
 
     public override void LancerPouvoir()
     {
-        gameObject.AddComponent<AimAndShoot>();
+        AimAndShoot aimAndShoot = gameObject.AddComponent<AimAndShoot>();
+        aimAndShoot.Initialize("Tomate");
     }
     
 }

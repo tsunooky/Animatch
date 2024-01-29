@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class DespawnManager : MonoBehaviour
 {
-    private void OnBecameInvisible()
+    private void Update()
     {
-        Destroy(gameObject);
+        if (gameObject.transform.position.y < -6)
+        {
+            Destroy(gameObject);
+        }
     }
 }

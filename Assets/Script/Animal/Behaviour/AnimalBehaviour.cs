@@ -71,9 +71,4 @@ public abstract class AnimalBehaviour : MonoBehaviour
     {
         
     }
-    
-    private void OnBecameInvisible()
-    {
-        Destroy(gameObject);
-    }
 }

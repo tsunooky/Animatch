@@ -17,8 +17,8 @@ namespace Script.Manager
 
         private bool spawn = true;
         
-        //gameObject.AddComponent<AimAndShoot>();
-
+        public LayerMask mapLayer;
+        
         private Dictionary<string, Type> animalTypes = new Dictionary<string, Type>
         {
             { "turtle", typeof(TurtleBehaviour) },
@@ -33,7 +33,8 @@ namespace Script.Manager
                 Debug.LogError("GameManager n'est plus un singleton car il viens d'être redéfinis une deuxième fois !");
                 return;
             }
-
+            
+            
             Instance = this;
             joueur =  gameObject.AddComponent<PlayerManager>();
             bot = gameObject.AddComponent<PlayerManager>();
@@ -44,7 +45,9 @@ namespace Script.Manager
             if (spawn)
             {
                 if (joueur.TemporaireEnAttendantProfil.Count == 0 && bot.TemporaireEnAttendantProfil.Count == 0)
+                {
                     spawn = false;
+                }
                 else
                 {
                     PlayerManager x;
@@ -57,19 +60,11 @@ namespace Script.Manager
                     {
                         // Obtenez les coordonnées du clic de la souris
                         Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                        
-                        // Lancer un rayon depuis la position de la souris dans la direction (0, 0, 1)
-                        Collider2D collider = Physics2D.OverlapPoint(mousePosition);
-
-                        // Vérifier s'il y a eu une collision
-                        if (collider != null)
-                        {
-                            // Il y a eu une collision avec un collider
-                            Debug.Log("Collision détectée avec : " + collider.name);
-                        }
                         // Instanciez l'animal à la position du clic en x et y = hauteur
-                        x.animaux_vivant.Add(creerAnimal(mousePosition.x, mousePosition.y, x.TemporaireEnAttendantProfil.Peek()));
+                        x.animaux_vivant.Add(creerAnimal(mousePosition.x, mousePosition.y, 
+                            x.TemporaireEnAttendantProfil.Peek()));
                         x.TemporaireEnAttendantProfil.Pop();
+                        
                     }
                 }
             }

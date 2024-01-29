@@ -19,11 +19,18 @@ public class AimAndShoot : MonoBehaviour
     private GameObject gun;
 
     private float spawnDistance = 0.65f;
+    
+    public delegate void ActivateEndTour(bool annule_action);
+    public static event ActivateEndTour EndTour;
+
+    public void Initialize(string nameProjectile)
+    {
+        projectileData = Resources.Load<ProjectileData>("Data/Projectile/" + nameProjectile);
+    }
 
     void Awake()
     {
         spriteGun = Resources.Load<Sprite>("Sprites/Projectiles/Gun");
-        projectileData = Resources.Load<ProjectileData>("Data/Projectile/Tomate");
     }
     
     private void Start()
@@ -58,6 +65,7 @@ public class AimAndShoot : MonoBehaviour
         }
     }
 
+    // ReSharper disable Unity.PerformanceAnalysis
     private void Shoot()
     {
         if (gun != null)
@@ -68,22 +76,19 @@ public class AimAndShoot : MonoBehaviour
 
                 // Calculer la nouvelle position en ajoutant la direction multipliée par la distance
                 Vector3 newPosition = gun.transform.position + direction * spawnDistance;
-                
-                BulletBehaviour.OnBulletDestroyed += OnDestroy;
                 GameObject bullet = Instantiate(projectileData.Projectile, newPosition, gun.transform.rotation);
-                BulletBehaviour bulletBehaviour = bullet.GetComponent<BulletBehaviour>();
+                ProjectileBehaviour bulletBehaviour = bullet.GetComponentsInChildren<ProjectileBehaviour>()[0];
+                projectileData.Lanceur = gameObject;
                 bulletBehaviour.projectileData = projectileData;
                 bulletBehaviour.SetPrefab(projectileData.Explosion);
+                Destroy(this);
             }
         }
     }
     
     private void OnDestroy()
     {
-        // Désabonner l'événement lors de la destruction du script
-        BulletBehaviour.OnBulletDestroyed -= OnDestroy;
         Destroy(gun);
-        Destroy(this);
     }
     
 }

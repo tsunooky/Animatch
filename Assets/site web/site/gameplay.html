@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+    <title>AniMatch - Gameplay</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <header>
+    <div class="container">
+        <nav>
+            <div class="logo-container">
+            <img src="fichiers_a_telecharger/logo.png" > <!-- Met ton image ici -->
+            </div>
+
+            
+                <ul>
+                    
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="cards.html">Cartes</a></li>
+                    <li><a href="gameplay.html"><b><u>Gameplay</u></b></a></li>
+                    <li><a href="learnmore.html">En savoir plus</a></li>
+
+                </ul>
+                <a href="fichiers_a_telecharger/logo_illusion.zip" download="logo_illusion.png" class="download-button">Download</a> 
+            </nav>
+        </div>
+    
+    </header>
+    <div class="pad">
+    <section>
+        <h1>Découvrez le gameplay d'AniMatch</h1>
+        <p><h2>Déroulement d’une partie</h2>
+<h3>Placement</h3>
+  <p>Les 6 animaux (chaque joueur en place 3) sont placés dans l’ordre décroissant de leur statistique de vitesse n’importe où sur une zone vide de l’écran. L’animal tombe ensuite jusqu’à toucher du terrain ou un autre animal.</p>
+
+
+
+<h3>Tirage des cartes</h3>
+  <p>Un joueur commence la partie avec 4 cartes choisies aléatoirement parmi les 8 cartes de son deck. 
+  Au début de son tour, le joueur pioche 2 cartes, jusqu'à une limite de 4 jouables.
+  Le joueur voit les deux prochaines cartes qu’il va piocher à gauche de ses cartes actuelles pour qu’il puisse adapter son style de jeu par rapport aux prochaines cartes qu’il va piocher.</p>
+
+
+
+<h3>Économie des drops</h3>
+  <p>Le joueur ayant la carte la plus rapide commence et joue ainsi son personnage le plus rapide. Il commencera avec 1 drops (un drops étant le mana/coût pour jouer une carte). Puis ce sera au seconde joueur de jouer avec son perso le plus rapide, il aura 2 drops. Puis c’est au tour du premier joueur de jouer avec son deuxième personnage le plus rapide il aura 3 drops. Ainsi de suite !</p>
+
+
+
+<h3>Fin d’une partie</h3>
+  <p>Une partie se finit lorsque l’un des deux joueurs (ou les deux) n’a plus d’animal en vie. Dans ce cas là l’adversaire gagne la partie (ou les deux)</p></p>
+
+</div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 AniMatch. Tous droits réservés.</p>
+    </footer>
+    <!-- ... Autres contenus de la page ... -->
+
+<script>
+    // Code jQuery pour animer les boutons
+    $(document).ready(function () {
+        // Animation au survol des liens dans la barre de navigation
+        $('nav a').hover(function () {
+            $(this).animate({ fontSize: '1.2em' }, 'fast');
+        }, function () {
+            $(this).animate({ fontSize: '1em' }, 'fast');
+        });
+
+        // Animation au clic sur les boutons
+        $('button').click(function () {
+            $(this).animate({ opacity: 0.5 }, 200, function () {
+                $(this).animate({ opacity: 1 }, 200);
+            });
+        });
+    });
+</script>
+</body>
+
+</body>
+
+</html>

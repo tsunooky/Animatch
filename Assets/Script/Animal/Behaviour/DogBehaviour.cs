@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class DogBehaviour : AnimalBehaviour
 {
+    
     public void Awake()
     {
         LoadData("Dog");
@@ -11,5 +12,7 @@ public class DogBehaviour : AnimalBehaviour
 
     public override void LancerPouvoir()
     {
+        AimAndShoot aimAndShoot = gameObject.AddComponent<AimAndShoot>();
+        aimAndShoot.Initialize("Tomate");
     }
 }

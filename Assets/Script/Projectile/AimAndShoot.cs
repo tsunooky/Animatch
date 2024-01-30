@@ -19,9 +19,6 @@ public class AimAndShoot : MonoBehaviour
     private GameObject gun;
 
     private float spawnDistance = 0.65f;
-    
-    public delegate void ActivateEndTour(bool annule_action);
-    public static event ActivateEndTour EndTour;
 
     public void Initialize(string nameProjectile)
     {
@@ -82,6 +79,7 @@ public class AimAndShoot : MonoBehaviour
                 bulletBehaviour.projectileData = projectileData;
                 bulletBehaviour.SetPrefab(projectileData.Explosion);
                 Destroy(this);
+                GameManager.Instance.tourActif = false;
             }
         }
     }
@@ -89,6 +87,7 @@ public class AimAndShoot : MonoBehaviour
     private void OnDestroy()
     {
         Destroy(gun);
+        GameManager.Instance.tourActif = false;
     }
     
 }

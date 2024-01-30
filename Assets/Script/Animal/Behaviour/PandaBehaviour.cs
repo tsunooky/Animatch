@@ -11,5 +11,7 @@ public class PandaBehaviour : AnimalBehaviour
 
     public override void LancerPouvoir()
     {
+        AimAndShoot aimAndShoot = gameObject.AddComponent<AimAndShoot>();
+        aimAndShoot.Initialize("Tomate");
     }
 }

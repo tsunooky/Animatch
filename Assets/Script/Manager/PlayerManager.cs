@@ -7,7 +7,7 @@ public class PlayerManager : MonoBehaviour
 {
     //Public Profil profil;
 
-    public List<AnimalBehaviour> animaux_vivant;
+    public Queue<AnimalBehaviour> animaux_vivant;
     public Queue<CarteBehaviour> main;
     public int drops;
     public Dictionary<string, bool> passif_actifs;
@@ -16,7 +16,7 @@ public class PlayerManager : MonoBehaviour
 
     public PlayerManager()
     {
-        animaux_vivant = new List<AnimalBehaviour>();
+        animaux_vivant = new Queue<AnimalBehaviour>();
         drops = 1;
         //DEFINITION DE TOUT LES PASSIFS
         passif_actifs = new Dictionary<string, bool>();

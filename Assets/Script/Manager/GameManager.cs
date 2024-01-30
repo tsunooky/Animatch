@@ -5,9 +5,8 @@ using UnityEngine;
 namespace Script.Manager
 {
     public class GameManager : MonoBehaviour
-    {
-
-        static GameManager Instance;
+    { 
+        public static GameManager Instance;
 
         public int tour;
 
@@ -16,8 +15,8 @@ namespace Script.Manager
         public PlayerManager bot;
 
         private bool spawn = true;
-        
-        public LayerMask mapLayer;
+
+        public bool tourActif = false;
         
         private Dictionary<string, Type> animalTypes = new Dictionary<string, Type>
         {
@@ -61,11 +60,34 @@ namespace Script.Manager
                         // Obtenez les coordonnées du clic de la souris
                         Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                         // Instanciez l'animal à la position du clic en x et y = hauteur
-                        x.animaux_vivant.Add(creerAnimal(mousePosition.x, mousePosition.y, 
-                            x.TemporaireEnAttendantProfil.Peek()));
+                        AnimalBehaviour newAnimal = creerAnimal(mousePosition.x, mousePosition.y,
+                            x.TemporaireEnAttendantProfil.Peek());
+                        x.animaux_vivant.Enqueue(newAnimal);
+                        newAnimal.player = x;
                         x.TemporaireEnAttendantProfil.Pop();
                         
                     }
+                }
+            }
+            else
+            {
+                if (!tourActif)
+                {
+                    if (tour % 2 == 0)
+                    {
+                        AnimalBehaviour animalActif = joueur.animaux_vivant.Dequeue();
+                        animalActif.LancerPouvoir();
+                        joueur.animaux_vivant.Enqueue(animalActif);
+                    }
+                    else
+                    {
+                        AnimalBehaviour animalActif = bot.animaux_vivant.Dequeue();
+                        animalActif.LancerPouvoir();
+                        bot.animaux_vivant.Enqueue(animalActif);
+                    }
+
+                    tourActif = true;
+                    tour += 1;
                 }
             }
         }

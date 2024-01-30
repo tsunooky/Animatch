@@ -5,8 +5,6 @@ using UnityEngine;
 
 public class TurtleBehaviour : AnimalBehaviour
 {
-
-    private AimAndShoot aimAndShoot;
     
     public void Awake()
     {

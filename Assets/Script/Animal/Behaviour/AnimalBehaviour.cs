@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Script.Manager;
 using UnityEngine;
 using Destructible2D.Examples;
+using Unity.VisualScripting;
 
 public abstract class AnimalBehaviour : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public abstract class AnimalBehaviour : MonoBehaviour
     public int pv;
     public float poids;
     public int vitesse;
+    public PlayerManager player;
 
     private void Start()
     {
@@ -36,7 +38,6 @@ public abstract class AnimalBehaviour : MonoBehaviour
         spriteRenderer.sprite = animalData.sprite;
         gameObject.AddComponent<CircleCollider2D>();
         gameObject.AddComponent<DespawnManager>();
-        LancerPouvoir();
     }
     
     public abstract void LancerPouvoir();
@@ -47,7 +48,7 @@ public abstract class AnimalBehaviour : MonoBehaviour
         if (pv <= 0)
         {
             pv = 0;
-            kill();
+            Destroy(gameObject);
         }
     }
 
@@ -67,8 +68,20 @@ public abstract class AnimalBehaviour : MonoBehaviour
         }
     }
 
-    void kill()
+    private void OnDestroy()
     {
-        
+        for (int i = 0; i < player.animaux_vivant.Count ; i++)
+        {
+            AnimalBehaviour animal = player.animaux_vivant.Dequeue();
+            if (animal != this)
+            {
+                player.animaux_vivant.Enqueue(animal);
+            }
+            else
+            {
+                Debug.Log("aaaaaa");
+            }
+                    
+        }
     }
 }

@@ -13,10 +13,15 @@ public abstract class AnimalBehaviour : MonoBehaviour
     public float poids;
     public int vitesse;
     public PlayerManager player;
+    public GameObject prefabBulletSpawn;
+    public GameObject bulletSpawn;
+    
 
     private void Start()
     {
         tag = "Animal";
+        bulletSpawn = Instantiate(prefabBulletSpawn);
+        bulletSpawn.GetComponent<bulletSpawnCheck>().animal = gameObject;
     }
     
 
@@ -77,11 +82,7 @@ public abstract class AnimalBehaviour : MonoBehaviour
             {
                 player.animaux_vivant.Enqueue(animal);
             }
-            else
-            {
-                Debug.Log("aaaaaa");
-            }
-                    
         }
+        Destroy(bulletSpawn);
     }
 }

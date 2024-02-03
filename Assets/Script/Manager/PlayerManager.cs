@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using Script.Carte;
 using UnityEngine;
 
 public class PlayerManager : MonoBehaviour
@@ -12,6 +11,7 @@ public class PlayerManager : MonoBehaviour
     public int drops;
     public Dictionary<string, bool> passif_actifs;
     public Stack<string> TemporaireEnAttendantProfil;
+    public bool tourActif = false;
 
 
     public PlayerManager()

@@ -8,7 +8,6 @@ public class TurtleBehaviour : AnimalBehaviour
     
     public void Awake()
     {
-        prefabBulletSpawn = Resources.Load<GameObject>("Prefabs/BulletSpawn");
         LoadData("Turtle");
     }
 

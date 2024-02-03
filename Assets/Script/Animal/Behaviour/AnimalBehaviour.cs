@@ -13,15 +13,13 @@ public abstract class AnimalBehaviour : MonoBehaviour
     public float poids;
     public int vitesse;
     public PlayerManager player;
-    public GameObject prefabBulletSpawn;
-    public GameObject bulletSpawn;
-    
 
+    public float timeSpawn;
+    
     private void Start()
     {
         tag = "Animal";
-        bulletSpawn = Instantiate(prefabBulletSpawn);
-        bulletSpawn.GetComponent<bulletSpawnCheck>().animal = gameObject;
+        timeSpawn = Time.time;
     }
     
 
@@ -71,11 +69,20 @@ public abstract class AnimalBehaviour : MonoBehaviour
             D2dExplosion explosion = collison2D.gameObject.GetComponent<D2dExplosion>();
             Degat(explosion.degat);
         }
+        if (collison2D.gameObject.tag == "Map")
+        {
+            if (Time.time  - timeSpawn < 0.4)
+            {
+                var vector3 = gameObject.transform.position;
+                vector3.y = 10f;
+                gameObject.transform.position = vector3;
+            }
+        }
     }
 
     private void OnDestroy()
     {
-        for (int i = 0; i < player.animaux_vivant.Count ; i++)
+        for (int i = 0; i < player.animaux_vivant.Count; i++)
         {
             AnimalBehaviour animal = player.animaux_vivant.Dequeue();
             if (animal != this)
@@ -83,6 +90,5 @@ public abstract class AnimalBehaviour : MonoBehaviour
                 player.animaux_vivant.Enqueue(animal);
             }
         }
-        Destroy(bulletSpawn);
     }
 }

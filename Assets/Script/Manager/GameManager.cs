@@ -75,14 +75,16 @@ namespace Script.Manager
                 {
                     if (tour % 2 == 0)
                     {
+                        bot.tourActif = false;
+                        joueur.tourActif = true;
                         AnimalBehaviour animalActif = joueur.animaux_vivant.Dequeue();
-                        animalActif.LancerPouvoir();
                         joueur.animaux_vivant.Enqueue(animalActif);
                     }
                     else
                     {
+                        joueur.tourActif = false;
+                        bot.tourActif = true;
                         AnimalBehaviour animalActif = bot.animaux_vivant.Dequeue();
-                        animalActif.LancerPouvoir();
                         bot.animaux_vivant.Enqueue(animalActif);
                     }
 

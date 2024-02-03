@@ -7,6 +7,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+
 public class AimAndShoot : MonoBehaviour
 {
     public ProjectileData projectileData;

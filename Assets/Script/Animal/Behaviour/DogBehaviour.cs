@@ -7,7 +7,6 @@ public class DogBehaviour : AnimalBehaviour
     
     public void Awake()
     {
-        prefabBulletSpawn = Resources.Load<GameObject>("Prefabs/BulletSpawn");
         LoadData("Dog");
     }
 

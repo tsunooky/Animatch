@@ -75,17 +75,38 @@ namespace Script.Manager
                 {
                     if (tour % 2 == 0)
                     {
+                        Debug.Log("C'est votre tour");
                         bot.tourActif = false;
                         joueur.tourActif = true;
-                        AnimalBehaviour animalActif = joueur.animaux_vivant.Dequeue();
-                        joueur.animaux_vivant.Enqueue(animalActif);
+                        if (joueur.animaux_vivant.Count == 0)
+                        {
+                            Win(bot);
+                        }
+                        else
+                        {
+                            AnimalBehaviour animalActif = joueur.animaux_vivant.Dequeue();
+                            joueur.animaux_vivant.Enqueue(animalActif);
+                            joueur.animalActif = animalActif;
+                        }
                     }
                     else
                     {
                         joueur.tourActif = false;
                         bot.tourActif = true;
-                        AnimalBehaviour animalActif = bot.animaux_vivant.Dequeue();
-                        bot.animaux_vivant.Enqueue(animalActif);
+                        if (bot.animaux_vivant.Count == 0)
+                        {
+                            Win(joueur);
+                        }
+                        else
+                        {
+                            AnimalBehaviour animalActif = bot.animaux_vivant.Dequeue();
+                            bot.animaux_vivant.Enqueue(animalActif);
+                            bot.animalActif = animalActif;
+                            AimAndShoot animalActifBot = animalActif.gameObject.AddComponent<AimAndShoot>();
+                            animalActifBot.Initialize("tomate");
+                            animalActifBot.ShootBOT(Vector3.up);
+                            Debug.Log("Tour du bot");
+                        }
                     }
 
                     tourActif = true;
@@ -109,6 +130,12 @@ namespace Script.Manager
                 return animalBehaviour;
             }
             throw new Exception("Ce type d'animal n'existe pas ");
+        }
+
+        private void Win(PlayerManager player)
+        {
+            Debug.Log("Victoire de " + player.name);
+            Application.Quit();
         }
     }
 }

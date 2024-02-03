@@ -5,6 +5,7 @@ using Script.Manager;
 using UnityEngine;
 using Destructible2D.Examples;
 using Unity.VisualScripting;
+using static Script.Manager.GameManager;
 
 public abstract class AnimalBehaviour : MonoBehaviour
 {
@@ -35,6 +36,7 @@ public abstract class AnimalBehaviour : MonoBehaviour
     public void AnimalVisible()
     {
         Rigidbody2D animalRigidbody2D = gameObject.AddComponent<Rigidbody2D>();
+        animalRigidbody2D.angularDrag = 45;
         animalRigidbody2D.mass = poids;
         SpriteRenderer spriteRenderer = gameObject.AddComponent<SpriteRenderer>();
         spriteRenderer.sortingOrder = 1;
@@ -69,7 +71,7 @@ public abstract class AnimalBehaviour : MonoBehaviour
             D2dExplosion explosion = collison2D.gameObject.GetComponent<D2dExplosion>();
             Degat(explosion.degat);
         }
-        if (collison2D.gameObject.tag == "Map")
+        /*if (collison2D.gameObject.tag == "Map")
         {
             if (Time.time  - timeSpawn < 0.4)
             {
@@ -77,7 +79,7 @@ public abstract class AnimalBehaviour : MonoBehaviour
                 vector3.y = 10f;
                 gameObject.transform.position = vector3;
             }
-        }
+        }*/
     }
 
     private void OnDestroy()
@@ -89,6 +91,11 @@ public abstract class AnimalBehaviour : MonoBehaviour
             {
                 player.animaux_vivant.Enqueue(animal);
             }
+        }
+
+        if (player.animalActif == this)
+        {
+            Instance.tourActif = false;
         }
     }
 }

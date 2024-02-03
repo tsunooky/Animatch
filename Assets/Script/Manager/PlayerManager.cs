@@ -12,6 +12,7 @@ public class PlayerManager : MonoBehaviour
     public Dictionary<string, bool> passif_actifs;
     public Stack<string> TemporaireEnAttendantProfil;
     public bool tourActif = false;
+    public AnimalBehaviour animalActif;
 
 
     public PlayerManager()

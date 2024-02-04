@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Destructible2D.Examples;
 
-public class TomateBehvaiour : ProjectileBehaviour
+public class ProjTomateBehaviour : ProjectileBehaviour
 {
 
     private void OnTriggerEnter2D(Collider2D other)

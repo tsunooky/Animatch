@@ -1,6 +1,8 @@
 using System.Collections.Generic;
 using System;
+using Script.Data;
 using UnityEngine;
+using Script.Manager;
 
 namespace Script.Manager
 {
@@ -17,13 +19,6 @@ namespace Script.Manager
         private bool spawn = true;
 
         public bool tourActif = false;
-        
-        private Dictionary<string, Type> animalTypes = new Dictionary<string, Type>
-        {
-            { "turtle", typeof(TurtleBehaviour) },
-            { "panda", typeof(PandaBehaviour) },
-            { "dog", typeof(DogBehaviour) }
-        };
 
         private void Awake()
         {
@@ -36,21 +31,24 @@ namespace Script.Manager
             
             Instance = this;
             joueur =  gameObject.AddComponent<PlayerManager>();
+            joueur.CreateProfil();
+            joueur.CreerMain();
             bot = gameObject.AddComponent<PlayerManager>();
+            bot.CreateProfil();
         }
     
         void Update()
         {
             if (spawn)
             {
-                if (joueur.TemporaireEnAttendantProfil.Count == 0 && bot.TemporaireEnAttendantProfil.Count == 0)
+                if (joueur.deckAnimal.Count == 0 && bot.deckAnimal.Count == 0)
                 {
                     spawn = false;
                 }
                 else
                 {
                     PlayerManager x;
-                    if (joueur.TemporaireEnAttendantProfil.Count > bot.TemporaireEnAttendantProfil.Count)
+                    if (joueur.deckAnimal.Count > bot.deckAnimal.Count)
                         x = joueur;
                     else
                         x = bot;
@@ -61,11 +59,9 @@ namespace Script.Manager
                         Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                         // Instanciez l'animal à la position du clic en x et y = hauteur
                         AnimalBehaviour newAnimal = creerAnimal(mousePosition.x, mousePosition.y,
-                            x.TemporaireEnAttendantProfil.Peek());
+                            x.deckAnimal.Dequeue());
                         x.animaux_vivant.Enqueue(newAnimal);
                         newAnimal.player = x;
-                        x.TemporaireEnAttendantProfil.Pop();
-                        
                     }
                 }
             }
@@ -75,15 +71,38 @@ namespace Script.Manager
                 {
                     if (tour % 2 == 0)
                     {
-                        AnimalBehaviour animalActif = joueur.animaux_vivant.Dequeue();
-                        animalActif.LancerPouvoir();
-                        joueur.animaux_vivant.Enqueue(animalActif);
+                        Debug.Log("C'est votre tour");
+                        bot.tourActif = false;
+                        joueur.tourActif = true;
+                        if (joueur.animaux_vivant.Count == 0)
+                        {
+                            Win(bot);
+                        }
+                        else
+                        {
+                            AnimalBehaviour animalActif = joueur.animaux_vivant.Dequeue();
+                            joueur.animaux_vivant.Enqueue(animalActif);
+                            joueur.animalActif = animalActif;
+                        }
                     }
                     else
                     {
-                        AnimalBehaviour animalActif = bot.animaux_vivant.Dequeue();
-                        animalActif.LancerPouvoir();
-                        bot.animaux_vivant.Enqueue(animalActif);
+                        joueur.tourActif = false;
+                        bot.tourActif = true;
+                        if (bot.animaux_vivant.Count == 0)
+                        {
+                            Win(joueur);
+                        }
+                        else
+                        {
+                            AnimalBehaviour animalActif = bot.animaux_vivant.Dequeue();
+                            bot.animaux_vivant.Enqueue(animalActif);
+                            bot.animalActif = animalActif;
+                            AimAndShoot animalActifBot = animalActif.gameObject.AddComponent<AimAndShoot>();
+                            animalActifBot.Initialize("tomate");
+                            animalActifBot.ShootBOT(Vector3.up);
+                            Debug.Log("Tour du bot");
+                        }
                     }
 
                     tourActif = true;
@@ -96,6 +115,7 @@ namespace Script.Manager
         // ReSharper disable Unity.PerformanceAnalysis
         AnimalBehaviour creerAnimal(float x, float y,string animal)
         {
+            var animalTypes = DataDico.animalTypes;
             if (animalTypes.ContainsKey(animal))
             {
                 // Création d'un GameObject
@@ -107,6 +127,12 @@ namespace Script.Manager
                 return animalBehaviour;
             }
             throw new Exception("Ce type d'animal n'existe pas ");
+        }
+
+        private void Win(PlayerManager player)
+        {
+            Debug.Log("Victoire de " + player.name);
+            Application.Quit();
         }
     }
 }

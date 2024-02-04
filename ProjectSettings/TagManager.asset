@@ -7,14 +7,15 @@ TagManager:
   - Explosion
   - Map
   - Animal
+  - Spawn
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Spawn
   - Water
   - UI
-  - 
+  - Animal
   - 
   - 
   - 

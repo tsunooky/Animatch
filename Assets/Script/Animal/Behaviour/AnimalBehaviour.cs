@@ -5,6 +5,7 @@ using Script.Manager;
 using UnityEngine;
 using Destructible2D.Examples;
 using Unity.VisualScripting;
+using static Script.Manager.GameManager;
 
 public abstract class AnimalBehaviour : MonoBehaviour
 {
@@ -14,9 +15,12 @@ public abstract class AnimalBehaviour : MonoBehaviour
     public int vitesse;
     public PlayerManager player;
 
+    public float timeSpawn;
+    
     private void Start()
     {
         tag = "Animal";
+        timeSpawn = Time.time;
     }
     
 
@@ -25,13 +29,15 @@ public abstract class AnimalBehaviour : MonoBehaviour
         animalData = Resources.Load<AnimalData>("Data/Animaux/" + nom_animal);
         pv = animalData.Pv;
         poids = animalData.Poids;
-        vitesse = animalData.Vitesse;
+        vitesse = animalData.Vitesse;   
     }
+    
     
     // ReSharper disable Unity.PerformanceAnalysis
     public void AnimalVisible()
     {
         Rigidbody2D animalRigidbody2D = gameObject.AddComponent<Rigidbody2D>();
+        animalRigidbody2D.angularDrag = 45;
         animalRigidbody2D.mass = poids;
         SpriteRenderer spriteRenderer = gameObject.AddComponent<SpriteRenderer>();
         spriteRenderer.sortingOrder = 1;
@@ -66,22 +72,31 @@ public abstract class AnimalBehaviour : MonoBehaviour
             D2dExplosion explosion = collison2D.gameObject.GetComponent<D2dExplosion>();
             Degat(explosion.degat);
         }
+        /*if (collison2D.gameObject.tag == "Map")
+        {
+            if (Time.time  - timeSpawn < 0.4)
+            {
+                var vector3 = gameObject.transform.position;
+                vector3.y = 10f;
+                gameObject.transform.position = vector3;
+            }
+        }*/
     }
 
     private void OnDestroy()
     {
-        for (int i = 0; i < player.animaux_vivant.Count ; i++)
+        for (int i = 0; i < player.animaux_vivant.Count; i++)
         {
             AnimalBehaviour animal = player.animaux_vivant.Dequeue();
             if (animal != this)
             {
                 player.animaux_vivant.Enqueue(animal);
             }
-            else
-            {
-                Debug.Log("aaaaaa");
-            }
-                    
+        }
+
+        if (player.animalActif == this)
+        {
+            Instance.tourActif = false;
         }
     }
 }

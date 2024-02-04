@@ -7,6 +7,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+
 public class AimAndShoot : MonoBehaviour
 {
     public ProjectileData projectileData;
@@ -75,7 +76,6 @@ public class AimAndShoot : MonoBehaviour
                 Vector3 newPosition = gun.transform.position + direction * spawnDistance;
                 GameObject bullet = Instantiate(projectileData.Projectile, newPosition, gun.transform.rotation);
                 ProjectileBehaviour bulletBehaviour = bullet.GetComponentsInChildren<ProjectileBehaviour>()[0];
-                projectileData.Lanceur = gameObject;
                 bulletBehaviour.projectileData = projectileData;
                 bulletBehaviour.SetPrefab(projectileData.Explosion);
                 Destroy(this);
@@ -87,6 +87,18 @@ public class AimAndShoot : MonoBehaviour
     private void OnDestroy()
     {
         Destroy(gun);
+        GameManager.Instance.tourActif = false;
+    }
+    
+    public void ShootBOT(Vector3 direction)
+    {
+        // Calculer la nouvelle position en ajoutant la direction multipliée par la distance
+        Vector3 newPosition = transform.position + direction * spawnDistance;
+        GameObject bullet = Instantiate(projectileData.Projectile, newPosition, transform.rotation);
+        ProjectileBehaviour bulletBehaviour = bullet.GetComponentsInChildren<ProjectileBehaviour>()[0];
+        bulletBehaviour.projectileData = projectileData;
+        bulletBehaviour.SetPrefab(projectileData.Explosion);
+        Destroy(this);
         GameManager.Instance.tourActif = false;
     }
     

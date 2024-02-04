@@ -29,8 +29,9 @@ public abstract class AnimalBehaviour : MonoBehaviour
         animalData = Resources.Load<AnimalData>("Data/Animaux/" + nom_animal);
         pv = animalData.Pv;
         poids = animalData.Poids;
-        vitesse = animalData.Vitesse;
+        vitesse = animalData.Vitesse;   
     }
+    
     
     // ReSharper disable Unity.PerformanceAnalysis
     public void AnimalVisible()

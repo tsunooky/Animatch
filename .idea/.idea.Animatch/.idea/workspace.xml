@@ -5,9 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9a7541ef-3c43-40c8-a489-2fd1bb5e11eb" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/Assets/Script/Animal/Behaviour/AnimalBehaviour.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/Animal/Behaviour/AnimalBehaviour.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Animatch/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Animatch/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Script/Manager/GameManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/Manager/GameManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Script/Manager/MainManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/Manager/MainManager.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Script/Manager/PlayerManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/Manager/PlayerManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -124,6 +126,8 @@
       <workItem from="1706956066772" duration="11863000" />
       <workItem from="1706978929956" duration="5595000" />
       <workItem from="1707039921058" duration="5473000" />
+      <workItem from="1707045596611" duration="338000" />
+      <workItem from="1707068152462" duration="1831000" />
     </task>
     <servers />
   </component>

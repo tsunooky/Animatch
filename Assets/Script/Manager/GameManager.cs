@@ -104,7 +104,7 @@ namespace Script.Manager
                             Debug.Log("Tour du bot");
                         }
                     }
-
+                    joueur.MettreAjourMain();
                     tourActif = true;
                     tour += 1;
                 }

@@ -8,6 +8,7 @@ TagManager:
   - Map
   - Animal
   - Spawn
+  - MainCarte
   layers:
   - Default
   - TransparentFX

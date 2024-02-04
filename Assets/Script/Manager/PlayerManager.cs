@@ -17,7 +17,12 @@ public class PlayerManager : MonoBehaviour
     public bool tourActif = false;
     public AnimalBehaviour animalActif;
     public ProfilManager profil = new ProfilManager("Joss","LePlusFort");
+    public GameObject[] mainManager;
 
+    public void Awake()
+    {
+        mainManager = GameObject.FindGameObjectsWithTag("MainCarte");
+    }
 
     public void CreateProfil()
     {
@@ -74,6 +79,21 @@ public class PlayerManager : MonoBehaviour
         for (int i = 0; i < 4; i++)
         {
             main.Enqueue(DataDico.carteTypes[profil.deckCartes[i]]);
+        }
+        MettreAjourMain();
+    }
+    
+    public void MettreAjourMain()
+    {
+        foreach (GameObject carte in mainManager)
+        {
+            var typeCarte = main.Dequeue();
+            var a = carte.GetComponent(typeCarte);
+            if (a == null)
+            {
+                carte.AddComponent(typeCarte);
+            }
+            main.Enqueue(typeCarte);
         }
     }
 }

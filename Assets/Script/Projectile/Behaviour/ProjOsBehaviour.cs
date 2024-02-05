@@ -1,18 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Destructible2D.Examples;
+using Script.Manager;
 
-public class ProjOsBehaviour : MonoBehaviour
+public class ProjOsBehaviour : ProjectileBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        if (!declanchement)
+        {
+            declanchement = true;
+            GameManager.Instance.animalActif.gameObject.transform.position = gameObject.transform.position;
+            Destroy(gameObject);
+        }
     }
 }

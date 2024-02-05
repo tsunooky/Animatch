@@ -15,7 +15,6 @@ public class PlayerManager : MonoBehaviour
     public int drops;
     public Dictionary<string, bool> passif_actifs;
     public bool tourActif = false;
-    public AnimalBehaviour animalActif;
     public ProfilManager profil = new ProfilManager("Joss","LePlusFort");
     public GameObject[] mainManager;
 

@@ -1,3 +1,4 @@
+using Script.Manager;
 using UnityEngine;
 
 public class TomateBehaviour : CarteBehaviour
@@ -9,7 +10,9 @@ public class TomateBehaviour : CarteBehaviour
 
     protected override void Spell()
     {
-        if (player.animalActif.gameObject != null)
-        {player.animalActif.gameObject.AddComponent<AimAndShoot>().Initialize("tomate");}
+        if (GameManager.Instance.animalActif != null)
+        {
+            GameManager.Instance.animalActif.gameObject.AddComponent<AimAndShoot>().Initialize("tomate");
+        }
     }
 }

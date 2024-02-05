@@ -11,9 +11,12 @@ public abstract class ProjectileBehaviour : MonoBehaviour
     public GameObject Prefab;
 
     public ProjectileData projectileData;
+
+    public bool declanchement;
     
     public void Start()
     {
+        declanchement = false;
         rb = gameObject.AddComponent<Rigidbody2D>();
         CircleCollider2D circle = gameObject.AddComponent<CircleCollider2D>();
         circle.isTrigger = true;

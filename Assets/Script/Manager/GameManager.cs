@@ -20,6 +20,7 @@ namespace Script.Manager
 
         public bool tourActif = false;
 
+        public AnimalBehaviour animalActif;
         private void Awake()
         {
             if (Instance != null)
@@ -82,7 +83,7 @@ namespace Script.Manager
                         {
                             AnimalBehaviour animalActif = joueur.animaux_vivant.Dequeue();
                             joueur.animaux_vivant.Enqueue(animalActif);
-                            joueur.animalActif = animalActif;
+                            this.animalActif = animalActif;
                         }
                     }
                     else
@@ -97,7 +98,7 @@ namespace Script.Manager
                         {
                             AnimalBehaviour animalActif = bot.animaux_vivant.Dequeue();
                             bot.animaux_vivant.Enqueue(animalActif);
-                            bot.animalActif = animalActif;
+                            this.animalActif = animalActif;
                             AimAndShoot animalActifBot = animalActif.gameObject.AddComponent<AimAndShoot>();
                             animalActifBot.Initialize("tomate");
                             animalActifBot.ShootBOT(Vector3.up);

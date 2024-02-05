@@ -46,7 +46,7 @@ public abstract class AnimalBehaviour : MonoBehaviour
         gameObject.AddComponent<DespawnManager>();
     }
     
-    public abstract void LancerPouvoir();
+    public abstract void Animax();
 
     protected void Degat(int damage)
     {
@@ -94,7 +94,7 @@ public abstract class AnimalBehaviour : MonoBehaviour
             }
         }
 
-        if (player.animalActif == this)
+        if (Instance.animalActif == this)
         {
             Instance.tourActif = false;
         }

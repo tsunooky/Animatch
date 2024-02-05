@@ -10,9 +10,9 @@ public class DogBehaviour : AnimalBehaviour
         LoadData("Dog");
     }
 
-    public override void LancerPouvoir()
+    public override void Animax()
     {
         AimAndShoot aimAndShoot = gameObject.AddComponent<AimAndShoot>();
-        aimAndShoot.Initialize("Tomate");
+        aimAndShoot.Initialize("os");
     }
 }

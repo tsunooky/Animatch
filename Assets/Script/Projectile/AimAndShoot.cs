@@ -21,6 +21,8 @@ public class AimAndShoot : MonoBehaviour
 
     private float spawnDistance = 0.65f;
 
+    private float delayBeforeShootBOT = 5f;
+
     public void Initialize(string nameProjectile)
     {
         projectileData = Resources.Load<ProjectileData>("Data/Projectile/" + nameProjectile);
@@ -90,17 +92,24 @@ public class AimAndShoot : MonoBehaviour
         GameManager.Instance.tourActif = false;
     }
     
-    public void ShootBOT(Vector3 direction)
+    public void Shoot(Vector3 direction)
     {
+        StartCoroutine(ShootCoroutine(direction));
+    }
+
+    private IEnumerator ShootCoroutine(Vector3 direction)
+    {
+        // Attendre pendant le délai spécifié
+        yield return new WaitForSeconds(delayBeforeShootBOT);
+
         // Calculer la nouvelle position en ajoutant la direction multipliée par la distance
         Vector3 newPosition = transform.position + direction * spawnDistance;
         GameObject bullet = Instantiate(projectileData.Projectile, newPosition, transform.rotation);
-        ProjectileBehaviour bulletBehaviour = bullet.GetComponentsInChildren<ProjectileBehaviour>()[0];
+        ProjectileBehaviour bulletBehaviour = bullet.GetComponent<ProjectileBehaviour>();
         bulletBehaviour.projectileData = projectileData;
         bulletBehaviour.SetPrefab(projectileData.Explosion);
         Destroy(this);
         GameManager.Instance.tourActif = false;
     }
-    
 }
 

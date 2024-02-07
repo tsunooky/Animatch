@@ -21,6 +21,7 @@ public abstract class AnimalBehaviour : MonoBehaviour
     {
         tag = "Animal";
         timeSpawn = Time.time;
+        gameObject.layer = 6;
     }
     
 
@@ -40,7 +41,7 @@ public abstract class AnimalBehaviour : MonoBehaviour
         animalRigidbody2D.angularDrag = 45;
         animalRigidbody2D.mass = poids;
         SpriteRenderer spriteRenderer = gameObject.AddComponent<SpriteRenderer>();
-        spriteRenderer.sortingOrder = 1;
+        spriteRenderer.sortingOrder = 5;
         spriteRenderer.sprite = animalData.sprite;
         gameObject.AddComponent<CircleCollider2D>();
         gameObject.AddComponent<DespawnManager>();
@@ -69,6 +70,7 @@ public abstract class AnimalBehaviour : MonoBehaviour
         // Vérifiez si la collision concerne un animal
         if (collison2D.gameObject.CompareTag("Explosion"))
         {
+            Debug.Log("aaaaaaaaa");
             D2dExplosion explosion = collison2D.gameObject.GetComponent<D2dExplosion>();
             Degat(explosion.degat);
         }

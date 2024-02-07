@@ -50,7 +50,9 @@ namespace Script.Manager
                 {
                     PlayerManager x;
                     if (joueur.deckAnimal.Count > bot.deckAnimal.Count)
+                    {
                         x = joueur;
+                    }
                     else
                         x = bot;
                     // Vérifie si le joueur a cliqué
@@ -70,6 +72,7 @@ namespace Script.Manager
             {
                 if (!tourActif)
                 {
+                    tourActif = true;
                     if (tour % 2 == 0)
                     {
                         Debug.Log("C'est votre tour");
@@ -81,6 +84,7 @@ namespace Script.Manager
                         }
                         else
                         {
+                            joueur.drops += 5;
                             AnimalBehaviour animalActif = joueur.animaux_vivant.Dequeue();
                             joueur.animaux_vivant.Enqueue(animalActif);
                             this.animalActif = animalActif;
@@ -96,17 +100,18 @@ namespace Script.Manager
                         }
                         else
                         {
+                            Debug.Log("Tour du bot");
                             AnimalBehaviour animalActif = bot.animaux_vivant.Dequeue();
                             bot.animaux_vivant.Enqueue(animalActif);
                             this.animalActif = animalActif;
                             AimAndShoot animalActifBot = animalActif.gameObject.AddComponent<AimAndShoot>();
                             animalActifBot.Initialize("tomate");
+                            animalActifBot.bot = true;
                             animalActifBot.Shoot(Vector3.up);
-                            Debug.Log("Tour du bot");
+                            FinfDuTour();
                         }
                     }
                     joueur.MettreAjourMain();
-                    tourActif = true;
                     tour += 1;
                 }
             }
@@ -128,6 +133,12 @@ namespace Script.Manager
                 return animalBehaviour;
             }
             throw new Exception("Ce type d'animal n'existe pas ");
+        }
+
+        public void FinfDuTour()
+        {
+            // regle le bug #01
+            tourActif = false;
         }
 
         private void Win(PlayerManager player)

@@ -70,7 +70,6 @@ public abstract class AnimalBehaviour : MonoBehaviour
         // Vérifiez si la collision concerne un animal
         if (collison2D.gameObject.CompareTag("Explosion"))
         {
-            Debug.Log("aaaaaaaaa");
             D2dExplosion explosion = collison2D.gameObject.GetComponent<D2dExplosion>();
             Degat(explosion.degat);
         }

@@ -27,7 +27,7 @@ public abstract class CarteBehaviour : MonoBehaviour
 
     private void OnMouseDown()
     {
-        if (player.tourActif)
+        if (player.tourActif && player.drops - carteData.drops >= 0)
         {
             Spell();
             player.drops -= carteData.drops;
@@ -44,9 +44,10 @@ public abstract class CarteBehaviour : MonoBehaviour
     private void OnMouseExit()
     {
         var vector3 = transform.position;
-        vector3.y -= 1f;
+        vector3.y =  -5f;
         transform.position = vector3;
     }
 
     protected abstract void Spell();
+    
 }

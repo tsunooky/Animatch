@@ -5,12 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9a7541ef-3c43-40c8-a489-2fd1bb5e11eb" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Animatch/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Animatch/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Plugins/CW/Destructible2D/Examples/Prefabs/Explosion (Red Medium).prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Plugins/CW/Destructible2D/Examples/Prefabs/Explosion (Red Medium).prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Data/Carte/Tomate.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Data/Carte/Tomate.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Main.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Main.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Script/Animal/Behaviour/AnimalBehaviour.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/Animal/Behaviour/AnimalBehaviour.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Script/Carte/CarteBehaviour.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/Carte/CarteBehaviour.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Script/Carte/TomateBehaviour.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/Carte/TomateBehaviour.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Script/Manager/BoutonAnimax.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Script/Manager/BoutonAnimax.cs.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Script/Manager/GameManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/Manager/GameManager.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Script/Projectile/AimAndShoot.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/Projectile/AimAndShoot.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/TimelineSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/TimelineSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Script/Projectile/Behaviour/ProjectileBehaviour.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/Projectile/Behaviour/ProjectileBehaviour.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -131,6 +135,7 @@
       <workItem from="1707068152462" duration="1831000" />
       <workItem from="1707135652614" duration="4994000" />
       <workItem from="1707292527999" duration="2480000" />
+      <workItem from="1707330359033" duration="6848000" />
     </task>
     <servers />
   </component>

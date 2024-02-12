@@ -13,5 +13,6 @@ public class PandaBehaviour : AnimalBehaviour
     {
         AimAndShoot aimAndShoot = gameObject.AddComponent<AimAndShoot>();
         aimAndShoot.Initialize("Tomate");
+        
     }
 }

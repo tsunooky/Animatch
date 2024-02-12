@@ -5,16 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9a7541ef-3c43-40c8-a489-2fd1bb5e11eb" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Data/Carte/Tomate.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Data/Carte/Tomate.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Main.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Main.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Animatch/.idea/indexLayout.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Script/Animal/Behaviour/AnimalBehaviour.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/Animal/Behaviour/AnimalBehaviour.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Script/Carte/CarteBehaviour.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/Carte/CarteBehaviour.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Script/Carte/TomateBehaviour.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/Carte/TomateBehaviour.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Script/Manager/BoutonAnimax.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Script/Manager/BoutonAnimax.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Script/Manager/GameManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/Manager/GameManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Script/Projectile/AimAndShoot.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/Projectile/AimAndShoot.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Script/Projectile/Behaviour/ProjectileBehaviour.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/Projectile/Behaviour/ProjectileBehaviour.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Script/Animal/Behaviour/PandaBehaviour.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/Animal/Behaviour/PandaBehaviour.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Script/Data/DataDico.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/Data/DataDico.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Script/Manager/ProfilManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/Manager/ProfilManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/manifest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/packages-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/packages-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/ProjectVersion.txt" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ProjectVersion.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,30 +34,31 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.sourceCode.C#&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "master",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.sourceCode.C#",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;rider.external.source.directories&quot;: [
-      &quot;C:\\Users\\josselin\\AppData\\Roaming\\JetBrains\\Rider2023.3\\resharper-host\\DecompilerCache&quot;,
-      &quot;C:\\Users\\josselin\\AppData\\Roaming\\JetBrains\\Rider2023.3\\resharper-host\\SourcesCache&quot;,
-      &quot;C:\\Users\\josselin\\AppData\\Local\\Symbols\\src&quot;
+  "keyToStringList": {
+    "rider.external.source.directories": [
+      "/Users/hector/Library/Application Support/JetBrains/Rider2023.2/resharper-host/DecompilerCache",
+      "/Users/hector/Library/Application Support/JetBrains/Rider2023.2/resharper-host/SourcesCache",
+      "/Users/hector/.local/share/Symbols/src"
     ]
   }
-}</component>
+}]]></component>
   <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
     <configuration name="Start Unity" type="RunUnityExe" factoryName="Unity Executable">
-      <option name="EXE_PATH" value="C:\Program Files\Unity\Hub\Editor\2022.3.17f1\Editor\Unity.exe" />
+      <option name="EXE_PATH" value="/Applications/Unity/Hub/Editor/2022.3.18f1/Unity.app/Contents/MacOS/Unity" />
       <option name="PROGRAM_PARAMETERS" value="-projectPath C:\Users\josselin\Desktop\Animatch -debugCodeOptimization" />
       <option name="WORKING_DIRECTORY" value="C:\Users\josselin\Desktop\Animatch" />
       <option name="PASS_PARENT_ENVS" value="1" />
@@ -67,7 +66,7 @@
       <method v="2" />
     </configuration>
     <configuration name="Unit Tests (batch mode)" type="RunUnityExe" factoryName="Unity Executable">
-      <option name="EXE_PATH" value="C:\Program Files\Unity\Hub\Editor\2022.3.17f1\Editor\Unity.exe" />
+      <option name="EXE_PATH" value="/Applications/Unity/Hub/Editor/2022.3.18f1/Unity.app/Contents/MacOS/Unity" />
       <option name="PROGRAM_PARAMETERS" value="-runTests -batchmode -projectPath C:\Users\josselin\Desktop\Animatch -testResults Logs/results.xml -testPlatform EditMode -debugCodeOptimization" />
       <option name="WORKING_DIRECTORY" value="C:\Users\josselin\Desktop\Animatch" />
       <option name="PASS_PARENT_ENVS" value="1" />
@@ -136,6 +135,7 @@
       <workItem from="1707135652614" duration="4994000" />
       <workItem from="1707292527999" duration="2480000" />
       <workItem from="1707330359033" duration="6848000" />
+      <workItem from="1707733290229" duration="207000" />
     </task>
     <servers />
   </component>

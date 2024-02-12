@@ -59,7 +59,7 @@ public abstract class AnimalBehaviour : MonoBehaviour
         }
     }
 
-    protected void Soin(int heal)
+    protected virtual void Soin(int heal)
     {
         pv += heal;
     }

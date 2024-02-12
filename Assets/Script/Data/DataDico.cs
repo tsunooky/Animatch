@@ -8,7 +8,8 @@ namespace Script.Data
         {
             { "turtle", typeof(TurtleBehaviour) },
             { "panda", typeof(PandaBehaviour) },
-            { "dog", typeof(DogBehaviour) }
+            { "dog", typeof(DogBehaviour) },
+            { "lion", typeof(LionBehaviour) }
         };
         
         public static Dictionary<string, Type> carteTypes = new Dictionary<string, Type>

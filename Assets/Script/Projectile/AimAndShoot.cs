@@ -52,13 +52,15 @@ public class AimAndShoot : MonoBehaviour
     
     private void Update()
     {
-        if (GameManager.Instance.tourActif == false)
+        if (GameManager.Instance.playerActif.enAction)
+        {
+            if (!bot)
+                Shoot();
+        }
+        else
         {
             Destroy(this);
-            Debug.Log("si vous voyez ce message c'est soit que je suis un génie soit c'est pas normal");
         }
-        if (!bot)
-            Shoot();
     }
 
     private void Aim()
@@ -81,7 +83,7 @@ public class AimAndShoot : MonoBehaviour
     {
         if (gun != null)
         {
-            if (Mouse.current.leftButton.wasReleasedThisFrame)
+            if (Mouse.current.leftButton.wasReleasedThisFrame && Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue()).y > 2.5)
             {
                 Vector3 direction = gun.transform.right;
 

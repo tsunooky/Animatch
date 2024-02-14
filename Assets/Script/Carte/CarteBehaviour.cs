@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Script.Manager;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Experimental.Rendering.RenderGraphModule;
 using static Script.Manager.GameManager;
 
 public abstract class CarteBehaviour : MonoBehaviour
@@ -27,10 +28,15 @@ public abstract class CarteBehaviour : MonoBehaviour
 
     private void OnMouseDown()
     {
-        if (player.tourActif && player.drops - carteData.drops >= 0)
-        {
+        if (Instance.playerActif == player && player.drops - carteData.drops >= 0 && !player.enAction)
+        { 
+            Instance.playerActif.enAction = true;
             Spell();
             player.drops -= carteData.drops;
+        }
+        else if (player.enAction)
+        {
+            Instance.playerActif.enAction = false;
         }
     }
 
@@ -49,5 +55,9 @@ public abstract class CarteBehaviour : MonoBehaviour
     }
 
     protected abstract void Spell();
-    
+
+    protected virtual void RemoveSpell()
+    {
+        Instance.playerActif.enAction = false;
+    }
 }

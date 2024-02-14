@@ -33,4 +33,9 @@ public abstract class ProjectileBehaviour : MonoBehaviour
     {
         rb.velocity =  gameObject.transform.right * projectileData.Force;
     }
+
+    protected void FinAction()
+    {
+        GameManager.Instance.playerActif.enAction = false;
+    }
 }

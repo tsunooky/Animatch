@@ -7,9 +7,9 @@ public class BoutonAnimax : MonoBehaviour
 {
     private void OnMouseDown()
     {
-        AnimalBehaviour animalActif = GameManager.Instance.animalActif;
+        AnimalBehaviour animalActif = GameManager.Instance.playerActif.animalActif;
         Debug.Log(animalActif != null);
-        if (GameManager.Instance.joueur.tourActif)
+        if (GameManager.Instance.playerActif == GameManager.Instance.joueur)
         {
             animalActif.Animax();
         }

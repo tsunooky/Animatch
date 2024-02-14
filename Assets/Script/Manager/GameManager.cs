@@ -20,7 +20,7 @@ namespace Script.Manager
 
         public bool tourActif = false;
 
-        public AnimalBehaviour animalActif;
+        public PlayerManager playerActif;
         private void Awake()
         {
             if (Instance != null)
@@ -76,8 +76,7 @@ namespace Script.Manager
                     if (tour % 2 == 0)
                     {
                         Debug.Log("C'est votre tour");
-                        bot.tourActif = false;
-                        joueur.tourActif = true;
+                        playerActif = joueur;
                         if (joueur.animaux_vivant.Count == 0)
                         {
                             Win(bot);
@@ -87,13 +86,12 @@ namespace Script.Manager
                             joueur.drops += 5;
                             AnimalBehaviour animalActif = joueur.animaux_vivant.Dequeue();
                             joueur.animaux_vivant.Enqueue(animalActif);
-                            this.animalActif = animalActif;
+                            playerActif.animalActif = animalActif;
                         }
                     }
                     else
                     {
-                        joueur.tourActif = false;
-                        bot.tourActif = true;
+                        playerActif = bot;
                         if (bot.animaux_vivant.Count == 0)
                         {
                             Win(joueur);
@@ -103,7 +101,7 @@ namespace Script.Manager
                             Debug.Log("Tour du bot");
                             AnimalBehaviour animalActif = bot.animaux_vivant.Dequeue();
                             bot.animaux_vivant.Enqueue(animalActif);
-                            this.animalActif = animalActif;
+                            playerActif.animalActif = animalActif;
                             AimAndShoot animalActifBot = animalActif.gameObject.AddComponent<AimAndShoot>();
                             animalActifBot.Initialize("tomate");
                             animalActifBot.bot = true;
@@ -111,6 +109,8 @@ namespace Script.Manager
                             FinfDuTour();
                         }
                     }
+
+                    Debug.Log("le joueur qui vient de jouer n'a plus que" + playerActif.drops+ " drops !");
                     joueur.MettreAjourMain();
                     tour += 1;
                 }

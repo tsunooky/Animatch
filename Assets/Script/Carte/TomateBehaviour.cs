@@ -10,6 +10,6 @@ public class TomateBehaviour : CarteBehaviour
 
     protected override void Spell()
     {
-        GameManager.Instance.animalActif.gameObject.AddComponent<AimAndShoot>().Initialize("tomate");
+        GameManager.Instance.playerActif.animalActif.gameObject.AddComponent<AimAndShoot>().Initialize("tomate");
     }
 }

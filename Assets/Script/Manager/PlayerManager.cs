@@ -14,12 +14,15 @@ public class PlayerManager : MonoBehaviour
     public Queue<Type> main = new Queue<Type>();
     public int drops;
     public Dictionary<string, bool> passif_actifs;
-    public bool tourActif = false;
     public ProfilManager profil = new ProfilManager("Joss","LePlusFort");
     public GameObject[] mainManager;
+    public AnimalBehaviour animalActif;
+    public bool enAction;
 
     public void Awake()
     {
+        enAction = false;
+        animalActif = null;
         mainManager = GameObject.FindGameObjectsWithTag("MainCarte");
     }
 

@@ -13,6 +13,7 @@ public class ProjTomateBehaviour : ProjectileBehaviour
             var clone = Instantiate(Prefab, transform.position, transform.rotation);
             clone.SetActive(true);
             clone.GetComponent<D2dExplosion>().degat = projectileData.Degat;
+            FinAction();
             Destroy(gameObject);
         }
     }

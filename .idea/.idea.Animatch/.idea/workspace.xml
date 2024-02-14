@@ -5,12 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9a7541ef-3c43-40c8-a489-2fd1bb5e11eb" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Animatch/.idea/indexLayout.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Animatch/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Animatch/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Script/Animal/Behaviour/AnimalBehaviour.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/Animal/Behaviour/AnimalBehaviour.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Script/Animal/Behaviour/PandaBehaviour.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/Animal/Behaviour/PandaBehaviour.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Script/Data/DataDico.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/Data/DataDico.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Script/Carte/CarteBehaviour.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/Carte/CarteBehaviour.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Script/Carte/TomateBehaviour.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/Carte/TomateBehaviour.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Script/Manager/GameManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/Manager/GameManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Script/Manager/PlayerManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/Manager/PlayerManager.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Script/Manager/ProfilManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/Manager/ProfilManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Packages/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/manifest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Script/Manager/UI/BoutonAnimax.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/Manager/UI/BoutonAnimax.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Script/Projectile/AimAndShoot.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/Projectile/AimAndShoot.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Script/Projectile/Behaviour/ProjOsBehaviour.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/Projectile/Behaviour/ProjOsBehaviour.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Script/Projectile/Behaviour/ProjTomateBehaviour.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/Projectile/Behaviour/ProjTomateBehaviour.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Script/Projectile/Behaviour/ProjectileBehaviour.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/Projectile/Behaviour/ProjectileBehaviour.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Packages/packages-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/packages-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ProjectSettings/ProjectVersion.txt" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ProjectVersion.txt" afterDir="false" />
     </list>
@@ -50,15 +56,15 @@
   },
   "keyToStringList": {
     "rider.external.source.directories": [
-      "/Users/hector/Library/Application Support/JetBrains/Rider2023.2/resharper-host/DecompilerCache",
-      "/Users/hector/Library/Application Support/JetBrains/Rider2023.2/resharper-host/SourcesCache",
-      "/Users/hector/.local/share/Symbols/src"
+      "C:\\Users\\josselin\\AppData\\Roaming\\JetBrains\\Rider2023.3\\resharper-host\\DecompilerCache",
+      "C:\\Users\\josselin\\AppData\\Roaming\\JetBrains\\Rider2023.3\\resharper-host\\SourcesCache",
+      "C:\\Users\\josselin\\AppData\\Local\\Symbols\\src"
     ]
   }
 }]]></component>
   <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
     <configuration name="Start Unity" type="RunUnityExe" factoryName="Unity Executable">
-      <option name="EXE_PATH" value="/Applications/Unity/Hub/Editor/2022.3.18f1/Unity.app/Contents/MacOS/Unity" />
+      <option name="EXE_PATH" value="C:\Program Files\Unity\Hub\Editor\2022.3.17f1\Editor\Unity.exe" />
       <option name="PROGRAM_PARAMETERS" value="-projectPath C:\Users\josselin\Desktop\Animatch -debugCodeOptimization" />
       <option name="WORKING_DIRECTORY" value="C:\Users\josselin\Desktop\Animatch" />
       <option name="PASS_PARENT_ENVS" value="1" />
@@ -66,7 +72,7 @@
       <method v="2" />
     </configuration>
     <configuration name="Unit Tests (batch mode)" type="RunUnityExe" factoryName="Unity Executable">
-      <option name="EXE_PATH" value="/Applications/Unity/Hub/Editor/2022.3.18f1/Unity.app/Contents/MacOS/Unity" />
+      <option name="EXE_PATH" value="C:\Program Files\Unity\Hub\Editor\2022.3.17f1\Editor\Unity.exe" />
       <option name="PROGRAM_PARAMETERS" value="-runTests -batchmode -projectPath C:\Users\josselin\Desktop\Animatch -testResults Logs/results.xml -testPlatform EditMode -debugCodeOptimization" />
       <option name="WORKING_DIRECTORY" value="C:\Users\josselin\Desktop\Animatch" />
       <option name="PASS_PARENT_ENVS" value="1" />
@@ -136,6 +142,7 @@
       <workItem from="1707292527999" duration="2480000" />
       <workItem from="1707330359033" duration="6848000" />
       <workItem from="1707733290229" duration="207000" />
+      <workItem from="1707903764555" duration="2017000" />
     </task>
     <servers />
   </component>

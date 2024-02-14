@@ -95,7 +95,7 @@ public abstract class AnimalBehaviour : MonoBehaviour
             }
         }
 
-        if (Instance.animalActif == this)
+        if (Instance.playerActif.animalActif == this)
         {
             Instance.tourActif = false;
         }

@@ -11,7 +11,8 @@ public class ProjOsBehaviour : ProjectileBehaviour
         if (!declanchement)
         {
             declanchement = true;
-            GameManager.Instance.animalActif.gameObject.transform.position = gameObject.transform.position;
+            GameManager.Instance.playerActif.animalActif.gameObject.transform.position = gameObject.transform.position;
+            FinAction();
             Destroy(gameObject);
         }
     }

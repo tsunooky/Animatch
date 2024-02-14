@@ -4,6 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
+<<<<<<< Updated upstream
     <list default="true" id="9a7541ef-3c43-40c8-a489-2fd1bb5e11eb" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Animatch/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Animatch/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Script/Animal/Behaviour/AnimalBehaviour.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/Animal/Behaviour/AnimalBehaviour.cs" afterDir="false" />
@@ -20,6 +21,9 @@
       <change beforePath="$PROJECT_DIR$/Packages/packages-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/packages-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ProjectSettings/ProjectVersion.txt" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ProjectVersion.txt" afterDir="false" />
     </list>
+=======
+    <list default="true" id="9a7541ef-3c43-40c8-a489-2fd1bb5e11eb" name="Changes" comment="" />
+>>>>>>> Stashed changes
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -141,8 +145,12 @@
       <workItem from="1707135652614" duration="4994000" />
       <workItem from="1707292527999" duration="2480000" />
       <workItem from="1707330359033" duration="6848000" />
+<<<<<<< Updated upstream
       <workItem from="1707733290229" duration="207000" />
       <workItem from="1707903764555" duration="2017000" />
+=======
+      <workItem from="1707571146171" duration="1168000" />
+>>>>>>> Stashed changes
     </task>
     <servers />
   </component>

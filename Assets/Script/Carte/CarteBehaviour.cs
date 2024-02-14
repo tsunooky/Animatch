@@ -29,6 +29,7 @@ public abstract class CarteBehaviour : MonoBehaviour
     private void OnMouseDown()
     {
         if (Instance.playerActif == player && player.drops - carteData.drops >= 0 && !player.enAction)
+<<<<<<< Updated upstream
         { 
             Instance.playerActif.enAction = true;
             Spell();
@@ -37,6 +38,17 @@ public abstract class CarteBehaviour : MonoBehaviour
         else if (player.enAction)
         {
             Instance.playerActif.enAction = false;
+=======
+        {
+            player.enAction = true;
+            Spell();
+            player.drops -= carteData.drops;
+        }
+
+        if (player.enAction)
+        {
+            player.enAction = false;
+>>>>>>> Stashed changes
         }
     }
 
@@ -58,6 +70,10 @@ public abstract class CarteBehaviour : MonoBehaviour
 
     protected virtual void RemoveSpell()
     {
+<<<<<<< Updated upstream
         Instance.playerActif.enAction = false;
+=======
+        player.enAction = false;
+>>>>>>> Stashed changes
     }
 }

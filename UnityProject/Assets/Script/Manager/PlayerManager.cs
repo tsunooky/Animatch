@@ -18,12 +18,15 @@ public class PlayerManager : MonoBehaviour
     public GameObject[] mainManager;
     public AnimalBehaviour animalActif;
     public bool enAction;
+    public bool enVisee;
+   
 
     public void Awake()
     {
         enAction = false;
         animalActif = null;
         mainManager = GameObject.FindGameObjectsWithTag("MainCarte");
+        enVisee = false;
     }
 
     public void CreateProfil()
@@ -46,7 +49,7 @@ public class PlayerManager : MonoBehaviour
     }*/
 
     public void PiocherMain()
-    {
+    { 
         /* 
             mécanique utlisant le deck de carte de Profil non implémenter pour le moment 
             main.Enqueue(carte);
@@ -57,7 +60,7 @@ public class PlayerManager : MonoBehaviour
     {
         main.Dequeue();
     }
-
+ 
     public void MiseAJourDrops(int tour)
     {
         /*

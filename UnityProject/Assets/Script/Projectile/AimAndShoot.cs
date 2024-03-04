@@ -6,6 +6,7 @@ using Script.Manager;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Script.Manager;
 
 
 public class AimAndShoot : MonoBehaviour
@@ -81,10 +82,11 @@ public class AimAndShoot : MonoBehaviour
     // ReSharper disable Unity.PerformanceAnalysis
     private void Shoot()
     {
-        if (gun != null)
+        if (gun != null && Mouse.current.leftButton.wasPressedThisFrame)
         {
-            if (Mouse.current.leftButton.wasReleasedThisFrame && Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue()).y > 2.5)
+            if (GameManager.Instance.playerActif.enVisee)
             {
+                GameManager.Instance.playerActif.enVisee = false;
                 Vector3 direction = gun.transform.right;
 
                 // Calculer la nouvelle position en ajoutant la direction multipliée par la distance

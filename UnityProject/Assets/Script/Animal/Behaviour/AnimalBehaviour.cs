@@ -100,4 +100,19 @@ public abstract class AnimalBehaviour : MonoBehaviour
             Instance.tourActif = false;
         }
     }
+
+    public void OnMouseDown()
+    {
+        if (player.animalActif == this)
+        {
+            StartCoroutine(UpdateVisee());
+        }
+    }
+
+    IEnumerator UpdateVisee()
+    {
+        yield return new WaitForSeconds(0.1f);
+        Debug.Log("A");
+        player.enVisee = !player.enVisee;
+    }
 }

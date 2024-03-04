@@ -45,6 +45,8 @@ public abstract class AnimalBehaviour : MonoBehaviour
         spriteRenderer.sprite = animalData.sprite;
         gameObject.AddComponent<CircleCollider2D>();
         gameObject.AddComponent<DespawnManager>();
+        gameObject.AddComponent<Photon.Pun.PhotonTransformView>();
+        gameObject.AddComponent<Photon.Pun.PhotonView>();
     }
     
     public abstract void Animax();

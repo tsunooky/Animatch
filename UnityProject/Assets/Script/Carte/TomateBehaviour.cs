@@ -1,7 +1,7 @@
 using Script.Manager;
 using UnityEngine;
 
-public class TomateBehaviour : ProjectilesBehaviour
+public class TomateBehaviour : CarteBehaviour
 {
     protected override void Awake()
     {

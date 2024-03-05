@@ -31,11 +31,13 @@ public abstract class CarteBehaviour : MonoBehaviour
         if (Instance.playerActif == player && player.drops - carteData.drops >= 0 && !player.enAction)
         { 
             Instance.playerActif.enAction = true;
+            Instance.playerActif.SetAura(true);
             Spell();
             player.drops -= carteData.drops;
         }
         else if (player.enAction)
         {
+            Instance.playerActif.SetAura(false);
             Instance.playerActif.enAction = false;
         }
     }

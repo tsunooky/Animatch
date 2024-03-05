@@ -19,10 +19,12 @@ public class PlayerManager : MonoBehaviour
     public AnimalBehaviour animalActif;
     public bool enAction;
     public bool enVisee;
+    private GameObject prefabAura;
    
 
     public void Awake()
     {
+        prefabAura = (GameObject)Resources.Load("Prefabs/Autre/Aura");
         enAction = false;
         animalActif = null;
         mainManager = GameObject.FindGameObjectsWithTag("MainCarte");
@@ -99,6 +101,19 @@ public class PlayerManager : MonoBehaviour
                 carte.AddComponent(typeCarte);
             }
             main.Enqueue(typeCarte);
+        }
+    }
+    
+    public void SetAura(bool aura)
+    {
+        if (aura)
+        {
+            animalActif.aura = Instantiate(prefabAura);
+        }
+
+        if (!aura)
+        {
+            Destroy(animalActif.aura);
         }
     }
 }

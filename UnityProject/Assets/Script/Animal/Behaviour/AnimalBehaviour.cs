@@ -14,6 +14,7 @@ public abstract class AnimalBehaviour : MonoBehaviour
     public float poids;
     public int vitesse;
     public PlayerManager player;
+    public GameObject aura;
 
     public float timeSpawn;
     
@@ -103,18 +104,25 @@ public abstract class AnimalBehaviour : MonoBehaviour
         }
     }
 
-    public void OnMouseDown()
+    public void OnMouseEnter()
     {
         if (player.animalActif == this)
         {
-            StartCoroutine(UpdateVisee());
+            player.enVisee = true;
         }
     }
 
-    IEnumerator UpdateVisee()
+    public void OnMouseExit()
     {
-        yield return new WaitForSeconds(0.1f);
-        Debug.Log("A");
-        player.enVisee = !player.enVisee;
+        player.enVisee = false;
+    }
+
+
+    public void Update()
+    {
+        if (aura != null)
+        {
+            aura.transform.position = gameObject.transform.position;
+        }
     }
 }

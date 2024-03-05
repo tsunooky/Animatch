@@ -20,19 +20,31 @@ public class AimAndShoot : MonoBehaviour
 
     private GameObject gun;
 
-    private float spawnDistance = 0.65f;
+    private float spawnDistance = 0.70f;
 
     private float delayBeforeShootBOT = 5f;
     public bool bot;
+    private bool isAiming;
+
+    [SerializeField] private LineRenderer lineRenderer;
+    [SerializeField] private float lauchForce;
+    [SerializeField] private float trajectoryTimeStep = 0.05f;
+    [SerializeField] private int trajectoryStepCount = 15;
+    private Vector2 startMousePos;
+    private Vector2 currentMousePos;
+    private Vector2 velocity;
 
     public void Initialize(string nameProjectile)
     {
+        isAiming = false;
         bot = false;
         projectileData = Resources.Load<ProjectileData>("Data/Projectile/" + nameProjectile);
+        lauchForce = projectileData.Force;
     }
 
     void Awake()
     {
+        setLineRenderer();
         spriteGun = Resources.Load<Sprite>("Sprites/Projectiles/Gun");
     }
     
@@ -53,17 +65,43 @@ public class AimAndShoot : MonoBehaviour
     
     private void Update()
     {
-        if (GameManager.Instance.playerActif.enAction)
+        if (!GameManager.Instance.playerActif.enAction)
+        {
+            Destroy(this);
+        }
+        if (Mouse.current.leftButton.wasPressedThisFrame && GameManager.Instance.playerActif.enVisee)
+        {
+            setAim(true,false);
+            startMousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        }
+
+        if (Mouse.current.leftButton.wasReleasedThisFrame && isAiming && !GameManager.Instance.playerActif.enVisee)
         {
             if (!bot)
                 Shoot();
         }
-        else
+        
+        if (Input.GetMouseButton(0) && isAiming)
         {
-            Destroy(this);
+            currentMousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            velocity = (startMousePos - currentMousePos) * lauchForce;
+            DrawTrajectory();
         }
     }
 
+    private void DrawTrajectory()
+    {
+        Vector3[] positions = new Vector3[trajectoryStepCount];
+        for (int i = 0; i < trajectoryStepCount; i++)
+        {
+            float t = i * trajectoryTimeStep;
+            Vector3 pos = gameObject.transform.position + (Vector3) velocity * t;
+            positions[i] = pos;
+        }
+        lineRenderer.SetPositions(positions);
+    }
+    
+    
     private void Aim()
     {
         if (gun != null && !bot)
@@ -82,26 +120,24 @@ public class AimAndShoot : MonoBehaviour
     // ReSharper disable Unity.PerformanceAnalysis
     private void Shoot()
     {
-        if (gun != null && Mouse.current.leftButton.wasPressedThisFrame)
+        if (gun != null)
         {
-            if (GameManager.Instance.playerActif.enVisee)
-            {
-                GameManager.Instance.playerActif.enVisee = false;
-                Vector3 direction = gun.transform.right;
+            setAim(false,false);
+            Vector3 direction = -gun.transform.right;
 
-                // Calculer la nouvelle position en ajoutant la direction multipliée par la distance
-                Vector3 newPosition = gun.transform.position + direction * spawnDistance;
-                GameObject bullet = Instantiate(projectileData.Projectile, newPosition, gun.transform.rotation);
-                ProjectileBehaviour bulletBehaviour = bullet.GetComponentsInChildren<ProjectileBehaviour>()[0];
-                bulletBehaviour.projectileData = projectileData;
-                bulletBehaviour.SetPrefab(projectileData.Explosion);
-                Destroy(this);
-            }
+            // Calculer la nouvelle position en ajoutant la direction multipliée par la distance
+            Vector3 newPosition = gun.transform.position + direction * spawnDistance;
+            GameObject bullet = Instantiate(projectileData.Projectile, newPosition, gun.transform.rotation * Quaternion.Euler(0f, 180f, 0f));
+            ProjectileBehaviour bulletBehaviour = bullet.GetComponentsInChildren<ProjectileBehaviour>()[0];
+            bulletBehaviour.projectileData = projectileData;
+            bulletBehaviour.SetPrefab(projectileData.Explosion);
+            Destroy(this);
         }
     }
     
     private void OnDestroy()
     {
+        Destroy(lineRenderer);
         Destroy(gun);
     }
     
@@ -121,6 +157,22 @@ public class AimAndShoot : MonoBehaviour
         bulletBehaviour.projectileData = projectileData;
         bulletBehaviour.SetPrefab(projectileData.Explosion);
         Destroy(this);
+    }
+
+    private void setAim(bool isAiming, bool aura)
+    {
+        GameManager.Instance.playerActif.SetAura(aura);
+        this.isAiming = isAiming;
+    }
+
+    private void setLineRenderer()
+    {
+        lineRenderer = gameObject.AddComponent<LineRenderer>();
+        lineRenderer.startColor = Color.green;
+        lineRenderer.endColor = Color.green;
+        lineRenderer.startWidth = 0.07f; // Largeur de début de la ligne
+        lineRenderer.endWidth = 0.07f; // Largeur de fin de la ligne
+        lineRenderer.sortingOrder = 100;
     }
 }
 

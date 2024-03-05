@@ -15,7 +15,8 @@ public abstract class AnimalBehaviour : MonoBehaviour
     public int vitesse;
     public PlayerManager player;
     public GameObject aura;
-
+    public HealthBar healthBar;
+    
     public float timeSpawn;
     
     private void Start()
@@ -30,6 +31,7 @@ public abstract class AnimalBehaviour : MonoBehaviour
     {
         animalData = Resources.Load<AnimalData>("Data/Animaux/" + nom_animal);
         pv = animalData.Pv;
+        healthBar.SetMaxHealth(pv);
         poids = animalData.Poids;
         vitesse = animalData.Vitesse;   
     }
@@ -58,13 +60,16 @@ public abstract class AnimalBehaviour : MonoBehaviour
         if (pv <= 0)
         {
             pv = 0;
+            healthBar.SetHealth(pv);
             Destroy(gameObject);
         }
+        healthBar.SetHealth(pv);
     }
 
     protected virtual void Soin(int heal)
     {
         pv += heal;
+        healthBar.SetHealth(pv);
     }
     
     // Méthode appelée lorsqu'un autre objet entre en collision avec l'explosion

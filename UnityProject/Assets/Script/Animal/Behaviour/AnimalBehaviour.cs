@@ -31,6 +31,7 @@ public abstract class AnimalBehaviour : MonoBehaviour
     {
         animalData = Resources.Load<AnimalData>("Data/Animaux/" + nom_animal);
         pv = animalData.Pv;
+        healthBar = Instantiate(Resources.Load<HealthBar>("Prefabs/Autre/HealthBar"));
         healthBar.SetMaxHealth(pv);
         poids = animalData.Poids;
         vitesse = animalData.Vitesse;   
@@ -125,6 +126,7 @@ public abstract class AnimalBehaviour : MonoBehaviour
 
     public void Update()
     {
+        healthBar.transform.position = new Vector3(gameObject.transform.position.x,gameObject.transform.position.y + 0.5f);
         if (aura != null)
         {
             aura.transform.position = gameObject.transform.position;

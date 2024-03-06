@@ -29,10 +29,12 @@ public class AimAndShoot : MonoBehaviour
     [SerializeField] private LineRenderer lineRenderer;
     [SerializeField] private float lauchForce;
     [SerializeField] private float trajectoryTimeStep = 0.05f;
-    [SerializeField] private int trajectoryStepCount = 15;
+    [SerializeField] private int trajectoryStepCount = 6;
     private Vector2 startMousePos;
     private Vector2 currentMousePos;
     private Vector2 velocity;
+    private GameObject pointilleVisee;
+    [SerializeField] private GameObject[] pointilles;
 
     public void Initialize(string nameProjectile)
     {
@@ -46,6 +48,8 @@ public class AimAndShoot : MonoBehaviour
     {
         setLineRenderer();
         spriteGun = Resources.Load<Sprite>("Sprites/Projectiles/Gun");
+        pointilleVisee = Resources.Load<GameObject>("Prefabs/Autre/Circle (2)");
+        pointilles = new GameObject[trajectoryStepCount];
     }
     
     private void Start()
@@ -79,6 +83,15 @@ public class AimAndShoot : MonoBehaviour
         {
             if (!bot)
                 Shoot();
+            foreach (GameObject obj in pointilles)
+            {
+                // Vérifier si l'objet est présent dans la scène
+                if (obj != null)
+                {
+                    // Détruire l'objet de la scène
+                    Destroy(obj);
+                }
+            }
         }
         
         if (Input.GetMouseButton(0) && isAiming)
@@ -92,13 +105,26 @@ public class AimAndShoot : MonoBehaviour
     private void DrawTrajectory()
     {
         Vector3[] positions = new Vector3[trajectoryStepCount];
-        for (int i = 0; i < trajectoryStepCount; i++)
+        foreach (GameObject obj in pointilles)
+        {
+            // Vérifier si l'objet est présent dans la scène
+            if (obj != null)
+            {
+                // Détruire l'objet de la scène
+                Destroy(obj);
+            }
+        }
+
+        float scale = 0.2f;
+        for (int i = 1; i < trajectoryStepCount; i++)
         {
             float t = i * trajectoryTimeStep;
-            Vector3 pos = gameObject.transform.position + (Vector3) velocity * t;
+            Vector3 pos = gameObject.transform.position + (Vector3) velocity * t  + 0.5f * Physics.gravity * t * t;
             positions[i] = pos;
+            pointilles[i] = Instantiate(pointilleVisee,positions[i],Quaternion.Euler(0f,0f,0f));
+            pointilles[i].transform.localScale = new Vector3(scale, scale, 1);
+            scale /= 1.2f;
         }
-        lineRenderer.SetPositions(positions);
     }
     
     

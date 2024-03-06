@@ -9,6 +9,7 @@ TagManager:
   - Animal
   - Spawn
   - MainCarte
+  - Canvas
   layers:
   - Default
   - TransparentFX

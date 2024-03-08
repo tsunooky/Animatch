@@ -14,24 +14,29 @@ public abstract class ProjectileBehaviour : MonoBehaviour
     public ProjectileData projectileData;
 
     public bool declanchement;
+
+    public float lauchForce;
     
     public void Start()
     {
         declanchement = false;
-        rb = gameObject.AddComponent<Rigidbody2D>();
+        rb = gameObject.GetComponent<Rigidbody2D>();
         CircleCollider2D circle = gameObject.AddComponent<CircleCollider2D>();
         circle.isTrigger = true;
-        SetStraightVelocity();
     }
 
-    public void SetPrefab(GameObject prefab)
+    public void Set(float LauchfForce, ProjectileData proj)
     {
-        Prefab = prefab;
+        projectileData = proj;
+        Prefab = proj.Explosion;
+        lauchForce = LauchfForce;
+        SetStraightVelocity();
     }
+    
     
     public void SetStraightVelocity()
     {
-        rb.velocity =  gameObject.transform.right * projectileData.Force;
+        rb.velocity = gameObject.transform.right * projectileData.Force * lauchForce * 0.2f;
     }
 
     protected void FinAction()

@@ -14,8 +14,7 @@ public class TurtleBehaviour : AnimalBehaviour
 
     public override void Animax()
     {
-        AimAndShoot aimAndShoot = gameObject.AddComponent<AimAndShoot>();
-        aimAndShoot.Initialize("Tomate");
+        Debug.Log("aaaaaaaaa");
     }
     
 }

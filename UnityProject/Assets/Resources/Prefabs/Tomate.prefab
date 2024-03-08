@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6421104744762219457}
   - component: {fileID: 2824016237437878319}
   - component: {fileID: -9211652400999898966}
+  - component: {fileID: 3157240997841850966}
   m_Layer: 0
   m_Name: Tomate
   m_TagString: Untagged
@@ -113,3 +114,31 @@ MonoBehaviour:
   Prefab: {fileID: 0}
   projectileData: {fileID: 11400000, guid: 2b80d60022feae948a54e9b8bd146e5f, type: 2}
   declanchement: 0
+  lauchForce: 0
+--- !u!50 &3157240997841850966
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4483138828243176656}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0

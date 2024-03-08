@@ -14,8 +14,6 @@ public class LionBehaviour : AnimalBehaviour
     
     public override void Animax()
     {
-        AimAndShoot aimAndShoot = gameObject.AddComponent<AimAndShoot>();
-        aimAndShoot.Initialize("Tomate");
 
         if (GameManager.Instance.joueur.animaux_vivant.Contains(gameObject.GetComponent<LionBehaviour>()))
         {

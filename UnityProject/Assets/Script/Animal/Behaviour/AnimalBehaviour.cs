@@ -18,6 +18,7 @@ public abstract class AnimalBehaviour : MonoBehaviour
     public HealthBar healthBar;
     public GameObject healthBarInstance;
     public float timeSpawn;
+    public ProjectileData potentielleprojDataAnimax;
     
     private void Start()
     {

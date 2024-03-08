@@ -11,8 +11,7 @@ public class RatBehaviour : AnimalBehaviour
 
     public override void Animax()
     {
-        AimAndShoot aimAndShoot = gameObject.AddComponent<AimAndShoot>();
-        aimAndShoot.Initialize("Tomate");
+        Debug.Log("aaaaaaaaaaaa");
     }
 }
 

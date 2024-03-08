@@ -8,11 +8,13 @@ public class DogBehaviour : AnimalBehaviour
     public void Awake()
     {
         LoadData("Dog");
+        potentielleprojDataAnimax = Resources.Load<ProjectileData>("Data/Projectile/Os");
     }
 
     public override void Animax()
     {
         AimAndShoot aimAndShoot = gameObject.AddComponent<AimAndShoot>();
-        aimAndShoot.Initialize("os");
+        aimAndShoot.Initialize(potentielleprojDataAnimax, 
+            potentielleprojDataAnimax.Projectile.GetComponent<Sprite>());
     }
 }

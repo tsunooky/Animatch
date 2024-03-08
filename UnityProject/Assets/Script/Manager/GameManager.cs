@@ -36,6 +36,10 @@ namespace Script.Manager
             joueur.CreerMain();
             bot = gameObject.AddComponent<PlayerManager>();
             bot.CreateProfil();
+            
+            
+            // Evité bug au lancement
+            playerActif = joueur;
         }
     
         void Update()

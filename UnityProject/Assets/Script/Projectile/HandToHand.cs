@@ -9,6 +9,7 @@ public class HandToHand : MonoBehaviour
     public ProjectileData projectileData;
     private Vector2 direction;
     private GameObject gun;
+    private GameObject _affichage;
     private Sprite spriteGun;
 
     private float spawnDistance = 0.70f;
@@ -23,17 +24,6 @@ public class HandToHand : MonoBehaviour
         bot = false;
         projectileData = ProjectileData;
         spriteGun = SpriteGun;
-    }
-
-    void Awake()
-    {
-        spriteGun = Resources.Load<Sprite>("Sprites/Projectiles/Gun");
-    }
-    
-    private void Start()
-    {
-        // Appeler la fonction GetMouseCoordinates() chaque seconde (1f seconde)
-
         if (!bot)
         {
             gun = new GameObject("Pistol");
@@ -44,6 +34,16 @@ public class HandToHand : MonoBehaviour
             InvokeRepeating("Aim", 0f, 1f / 60f);
         }
     }
+
+    void Awake()
+    {
+        _affichage = new GameObject("Trajectory_hand_tot_hand");
+        spriteGun = Resources.Load<Sprite>("Sprites/Projectiles/Gun");
+        var affich = _affichage.AddComponent<SpriteRenderer>();
+        affich.sprite = Resources.Load<Sprite>("Sprites/Autre/HandToHand_Affichage");
+        affich.enabled = false;
+    }
+    
     
     private void Update()
     {
@@ -58,12 +58,20 @@ public class HandToHand : MonoBehaviour
         if (Mouse.current.leftButton.wasReleasedThisFrame && isAiming && !GameManager.Instance.playerActif.enVisee)
         {
             if (!bot)
+            {
                 Shoot();
+            }
         }
-        
+
         if (Input.GetMouseButton(0) && isAiming)
         {
-            // ACtivation de la l'affichage de la visée
+             _affichage.transform.position = gun.transform.position;
+             _affichage.transform.right = gun.transform.right;
+             _affichage.GetComponent<SpriteRenderer>().enabled = true;
+        }
+        else
+        {
+            _affichage.GetComponent<SpriteRenderer>().enabled = false;
         }
     }
     
@@ -88,20 +96,14 @@ public class HandToHand : MonoBehaviour
         if (gun != null)
         {
             setAim(false,false);
-            Vector3 direction = -gun.transform.right;
-
-            // Calculer la nouvelle position en ajoutant la direction multipliée par la distance
-            Vector3 newPosition = gun.transform.position + direction * spawnDistance;
-            GameObject bullet = Instantiate(projectileData.Projectile, newPosition, gun.transform.rotation * Quaternion.Euler(0f, 180f, 0f));
-            ProjectileBehaviour bulletBehaviour = bullet.GetComponentsInChildren<ProjectileBehaviour>()[0];
-            //bulletBehaviour.Set(LauchfForce,projectileData);
+            _affichage.AddComponent<TouchExplosion>();
             Destroy(this);
         }
     }
     
     private void OnDestroy()
     {
-        //Destroy(affichage);
+        Destroy(_affichage);
         Destroy(gun);
     }
     

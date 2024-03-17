@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2114f2c8b1e04247a49342e24fa54ff3, type: 3}
   m_Name: Bat
   m_EditorClassIdentifier: 
-  projectileData: {fileID: 0}
-  Sprite: {fileID: 0}
-  drops: 0
-  type: 
+  projectileData: {fileID: 11400000, guid: c6595d98068aa484a95a0a559383966e, type: 2}
+  Sprite: {fileID: 21300000, guid: 4c804e3ae2ea3334c8dfa79199d7ab30, type: 3}
+  drops: 1
+  type: handToHand

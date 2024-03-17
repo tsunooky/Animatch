@@ -36,7 +36,8 @@ public abstract class ProjectileBehaviour : MonoBehaviour
     
     public void SetStraightVelocity()
     {
-        rb.velocity = gameObject.transform.right * projectileData.Force * lauchForce * 0.2f;
+        if (rb != null)
+            rb.velocity = gameObject.transform.right * projectileData.Force * lauchForce * 0.2f;
     }
 
     protected void FinAction()

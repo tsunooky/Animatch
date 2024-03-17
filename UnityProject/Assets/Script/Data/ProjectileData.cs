@@ -10,5 +10,6 @@ public class ProjectileData : ScriptableObject
     public int Degat;
     public GameObject Projectile ; 
     public GameObject Explosion;
+    public Sprite SpriteIfHandToHand;
 }
 

@@ -57,19 +57,6 @@ public class AimAndShoot : MonoBehaviour
         spriteGun = projectileData.Projectile.GetComponent<Sprite>();
         Rigidbody2D rigidbody2D = projectileData.Projectile.GetComponent<Rigidbody2D>();
         mass = rigidbody2D.mass;
-    }
-
-    void Awake()
-    {
-        setLineRenderer();
-        pointilleVisee = Resources.Load<GameObject>("Prefabs/Autre/Circle (2)");
-        pointilles = new GameObject[trajectoryStepCount];
-    }
-    
-    private void Start()
-    {
-        // Appeler la fonction GetMouseCoordinates() chaque seconde (1f seconde)
-
         if (!bot)
         {
             gun = new GameObject("Pistol");
@@ -79,6 +66,13 @@ public class AimAndShoot : MonoBehaviour
             gunRenderer.sprite = spriteGun;
             InvokeRepeating("Aim", 0f, 1f / 60f);
         }
+    }
+
+    void Awake()
+    {
+        setLineRenderer();
+        pointilleVisee = Resources.Load<GameObject>("Prefabs/Autre/Pointille");
+        pointilles = new GameObject[trajectoryStepCount];
     }
     
     private void Update()

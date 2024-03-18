@@ -32,7 +32,8 @@ public abstract class AnimalBehaviour : MonoBehaviour
     {
         animalData = Resources.Load<AnimalData>("Data/Animaux/" + nom_animal);
         pv = animalData.Pv;
-        healthBarInstance = Instantiate(Resources.Load<GameObject>("Prefabs/Autre/HealthBar"));
+        healthBarInstance = Instantiate(Resources.Load<GameObject>("Prefabs/Autre/HealthBar_blue"));
+        //healthBarInstance = Instantiate(Resources.Load<GameObject>("Prefabs/Autre/HealthBar_red"));
         healthBarInstance.transform.SetParent(GameObject.FindGameObjectWithTag("Canvas").transform);
         healthBar = healthBarInstance.GetComponent<HealthBar>();
         healthBar.SetMaxHealth(pv);
@@ -138,7 +139,7 @@ public abstract class AnimalBehaviour : MonoBehaviour
         if (healthBarInstance != null)
         {
             Vector3 screenPosition = Camera.main.WorldToScreenPoint(transform.position);
-            screenPosition.y += 30; // Adjust this value as needed
+            screenPosition.y += 50; // Adjust this value as needed
             healthBarInstance.transform.position = screenPosition;
         }
         if (aura != null)

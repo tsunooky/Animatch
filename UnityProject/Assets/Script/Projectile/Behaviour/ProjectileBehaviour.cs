@@ -6,8 +6,6 @@ using Script.Manager;
 
 public abstract class ProjectileBehaviour : MonoBehaviour
 {
-    
-    private Rigidbody2D rb;
 
     public GameObject Prefab;
 
@@ -20,7 +18,6 @@ public abstract class ProjectileBehaviour : MonoBehaviour
     public void Start()
     {
         declanchement = false;
-        rb = gameObject.GetComponent<Rigidbody2D>();
         CircleCollider2D circle = gameObject.AddComponent<CircleCollider2D>();
         circle.isTrigger = true;
     }
@@ -36,8 +33,7 @@ public abstract class ProjectileBehaviour : MonoBehaviour
     
     public void SetStraightVelocity()
     {
-        if (rb != null)
-            rb.velocity = gameObject.transform.right * projectileData.Force * lauchForce * 0.2f;
+        gameObject.GetComponent<Rigidbody2D>().velocity = gameObject.transform.right * projectileData.Force * lauchForce * 0.075f;
     }
 
     protected void FinAction()

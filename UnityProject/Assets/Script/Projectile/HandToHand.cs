@@ -38,6 +38,8 @@ public class HandToHand : MonoBehaviour
     void Awake()
     {
         _affichage = new GameObject("Trajectory_hand_tot_hand");
+        TouchExplosion a = _affichage.AddComponent<TouchExplosion>();
+        a.projectileData = projectileData;
         spriteGun = Resources.Load<Sprite>("Sprites/Projectiles/Gun");
         var affich = _affichage.AddComponent<SpriteRenderer>();
         affich.sprite = Resources.Load<Sprite>("Sprites/Autre/HandToHand_Affichage");
@@ -59,7 +61,7 @@ public class HandToHand : MonoBehaviour
         {
             if (!bot)
             {
-                Shoot();
+                StartCoroutine(Shoot());
             }
         }
 
@@ -91,12 +93,14 @@ public class HandToHand : MonoBehaviour
     }
 
     // ReSharper disable Unity.PerformanceAnalysis
-    private void Shoot()
+    private IEnumerator Shoot()
     {
         if (gun != null)
         {
-            setAim(false,false);
-            _affichage.AddComponent<TouchExplosion>();
+            setAim(false, false);
+            _affichage.GetComponent<TouchExplosion>().actif = true;
+            yield return new WaitForSeconds(0.5f);
+            //ANIMATION BAT ICI
             Destroy(this);
         }
     }

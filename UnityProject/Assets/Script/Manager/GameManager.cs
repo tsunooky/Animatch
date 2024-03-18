@@ -108,7 +108,6 @@ namespace Script.Manager
                             playerActif.animalActif = animalActif;
                             AimAndShoot animalActifBot = animalActif.gameObject.AddComponent<AimAndShoot>();
                             animalActifBot.Initialize("tomate");
-                            animalActifBot.bot = true;
                             animalActifBot.Shoot(Vector3.up);
                             FinfDuTour();
                         }

@@ -50,7 +50,8 @@ public abstract class AnimalBehaviour : MonoBehaviour
         SpriteRenderer spriteRenderer = gameObject.AddComponent<SpriteRenderer>();
         spriteRenderer.sortingOrder = 5;
         spriteRenderer.sprite = animalData.sprite;
-        gameObject.AddComponent<CircleCollider2D>();
+        CircleCollider2D a = gameObject.AddComponent<CircleCollider2D>();
+        a.radius *= 0.75f;
         gameObject.AddComponent<DespawnManager>();
         gameObject.AddComponent<Photon.Pun.PhotonTransformView>();
         gameObject.AddComponent<Photon.Pun.PhotonView>();

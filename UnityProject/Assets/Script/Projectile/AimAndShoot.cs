@@ -15,21 +15,18 @@ public class AimAndShoot : MonoBehaviour
     
     private Vector2 worldPosition;
     private Vector2 direction;
-
-    private Sprite spriteGun;
+    
 
     private GameObject gun;
 
-    private float spawnDistance = 0.70f;
+    private float spawnDistance = 0.90f;
 
     private float delayBeforeShootBOT = 5f;
-    public bool bot;
     private bool isAiming;
 
-    [SerializeField] private LineRenderer lineRenderer;
     [SerializeField] private float lauchForce;
     [SerializeField] private float trajectoryTimeStep = 0.05f;
-    [SerializeField] private int trajectoryStepCount = 15;
+    [SerializeField] private int trajectoryStepCount = 5;
     private Vector2 startMousePos;
     private Vector2 currentMousePos;
     private Vector2 velocity;
@@ -40,37 +37,37 @@ public class AimAndShoot : MonoBehaviour
     public void Initialize(ProjectileData ProjectileData, Sprite SpriteGun)
     {
         isAiming = false;
-        bot = false;
         projectileData = ProjectileData;
         lauchForce = projectileData.Force;
-        spriteGun = SpriteGun;
         Rigidbody2D rigidbody2D = projectileData.Projectile.GetComponent<Rigidbody2D>();
         mass = rigidbody2D.mass;
+        
+        gun = new GameObject("Pistol");
+        SpriteRenderer gunRenderer = gun.AddComponent<SpriteRenderer>();
+        gun.AddComponent<DespawnManager>();
+        gunRenderer.sortingOrder = 6;
+        gunRenderer.sprite = SpriteGun;
+        InvokeRepeating("Aim", 0f, 1f / 60f);
     }
     
     public void Initialize(string nameProjectile)
     {
         isAiming = false;
-        bot = false;
         projectileData = Resources.Load<ProjectileData>("Data/Projectile/" + nameProjectile);
         lauchForce = projectileData.Force;
-        spriteGun = projectileData.Projectile.GetComponent<Sprite>();
         Rigidbody2D rigidbody2D = projectileData.Projectile.GetComponent<Rigidbody2D>();
         mass = rigidbody2D.mass;
-        if (!bot)
-        {
-            gun = new GameObject("Pistol");
-            SpriteRenderer gunRenderer = gun.AddComponent<SpriteRenderer>();
-            gun.AddComponent<DespawnManager>();
-            gunRenderer.sortingOrder = 6;
-            gunRenderer.sprite = spriteGun;
-            InvokeRepeating("Aim", 0f, 1f / 60f);
-        }
+        
+        gun = new GameObject("Pistol");
+        SpriteRenderer gunRenderer = gun.AddComponent<SpriteRenderer>();
+        gun.AddComponent<DespawnManager>();
+        gunRenderer.sortingOrder = 6;
+        gunRenderer.sprite = projectileData.Projectile.GetComponent<Sprite>();;
+        InvokeRepeating("Aim", 0f, 1f / 60f);
     }
 
     void Awake()
     {
-        setLineRenderer();
         pointilleVisee = Resources.Load<GameObject>("Prefabs/Autre/Pointille");
         pointilles = new GameObject[trajectoryStepCount];
     }
@@ -89,23 +86,13 @@ public class AimAndShoot : MonoBehaviour
 
         if (Mouse.current.leftButton.wasReleasedThisFrame && isAiming && !GameManager.Instance.playerActif.enVisee)
         {
-            if (!bot)
-                Shoot();
-            foreach (GameObject obj in pointilles)
-            {
-                // Vérifier si l'objet est présent dans la scène
-                if (obj != null)
-                {
-                    // Détruire l'objet de la scène
-                    Destroy(obj);
-                }
-            }
+            Shoot();
         }
-        
+
         if (Input.GetMouseButton(0) && isAiming)
         {
             currentMousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            velocity = (startMousePos - currentMousePos) * lauchForce * projectileData.Force * 0.2f * mass;
+            velocity = (startMousePos - currentMousePos) * lauchForce * projectileData.Force * 0.075f * mass;
             DrawTrajectory();
         }
     }
@@ -138,17 +125,14 @@ public class AimAndShoot : MonoBehaviour
     
     private void Aim()
     {
-        if (gun != null && !bot)
-        {
-            gun.transform.position = gameObject.transform.position;
-            // Récupérer les coordonnées de la souris en pixels
-            Vector2 mousePositionPixels = Mouse.current.position.ReadValue();
+        gun.transform.position = gameObject.transform.position;
+        // Récupérer les coordonnées de la souris en pixels
+        Vector2 mousePositionPixels = Mouse.current.position.ReadValue();
 
-            // Convertir les coordonnées de la souris de pixels à des coordonnées dans l'espace du monde
-            Vector2 mousePositionWorld = Camera.main.ScreenToWorldPoint(mousePositionPixels);
-            direction = (mousePositionWorld - (Vector2)gun.transform.position).normalized;
-            gun.transform.right = direction;
-        }
+        // Convertir les coordonnées de la souris de pixels à des coordonnées dans l'espace du monde
+        Vector2 mousePositionWorld = Camera.main.ScreenToWorldPoint(mousePositionPixels);
+        direction = (mousePositionWorld - (Vector2)gun.transform.position).normalized;
+        gun.transform.right = direction;
     }
 
     // ReSharper disable Unity.PerformanceAnalysis
@@ -170,7 +154,13 @@ public class AimAndShoot : MonoBehaviour
     
     private void OnDestroy()
     {
-        Destroy(lineRenderer);
+        int len = pointilles.Length;
+        int i = 0;
+        while (i < len)
+        {
+            Destroy(pointilles[i]);
+            i++;
+        }
         Destroy(gun);
     }
     
@@ -196,15 +186,6 @@ public class AimAndShoot : MonoBehaviour
         GameManager.Instance.playerActif.SetAura(aura);
         this.isAiming = isAiming;
     }
-
-    private void setLineRenderer()
-    {
-        lineRenderer = gameObject.AddComponent<LineRenderer>();
-        lineRenderer.startColor = Color.green;
-        lineRenderer.endColor = Color.green;
-        lineRenderer.startWidth = 0.07f; // Largeur de début de la ligne
-        lineRenderer.endWidth = 0.07f; // Largeur de fin de la ligne
-        lineRenderer.sortingOrder = 100;
-    }
+    
 }
 

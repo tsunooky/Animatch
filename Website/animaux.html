@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+    <title>AniMatch - Cartes</title>
+   <link rel="stylesheet" href="styles.css">
+   <style>
+       .mid
+       {
+        text-align: center;
+       }
+           .imgmid  {
+  display: flex; /* Utilisation de Flexbox */
+            justify-content: center; /* Centrer horizontalement */
+            align-items: center; /* Centrer verticalement */
+            height: 100vh; /* Hauteur égale à la hauteur de la fenêtre */
+                max-width: 100%; /* Pour s'assurer que l'image ne dépasse pas de son conteneur */
+            height: auto; /* Pour conserver les proportions de l'image */
+        }
+
+   </style>
+</head>
+
+<body>
+      <header>
+    <div class="container">
+        <nav>
+            <div class="logo-container">
+            <a href="index.html"><img src="fichiers_a_telecharger/logo.png" ></a>
+            </div>
+
+            
+                <ul>
+                    
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="animaux.html"><b><u>Animaux</u></b></a></li>
+                    <li><a href="cards.html">Cartes</a></li>
+                    <li><a href="gameplay.html">Gameplay</a></li>
+                    <li><a href="sources.html">Sources</a></li>
+
+                </ul>
+                <a href="fichiers_a_telecharger/logo_illusion.zip" download="logo_illusion.png" class="download-button">Download</a> 
+            </nav>
+        </div>
+    
+    </header>
+
+    <section>
+        <div class="pad">
+            <section id="textalign">
+        <h2>Voici la liste de chaque animaux :</h2>
+        <h3>Chaque animaux disponibles dans le jeux ont chacune un attrait différent</h3>
+        <p>(cliquez pour accéder aux différentes caractéristiques)</p>
+    </section>
+            <br>
+        <div class="disp">
+            <div class="card">
+                <h4>Le Panda :</h4>
+                <a href="Panda.html" id="pandaLink"><img src="fichiers_a_telecharger/Panda/panda.png" id="pandaImage"></a>
+            </div>
+
+            <div class="card">
+                <h4>Le Chien :</h4>
+                <a href="Chien.html" id="chienLink"><img src="fichiers_a_telecharger/chien/chien.png" id="chienImage"></a>
+            </div>
+        
+            <div class="card">
+                <h4>La Tortue :</h4>
+                <a href="Tortue.html" id="tortueLink"><img src="fichiers_a_telecharger/tortue/tortue.png" id="tortueImage"></a>
+            </div>
+        </div>
+    </div>
+    </section>
+    <br>
+    <br>
+    <h3 class="mid">Voici tous les autres animaux non implémenté du jeu, qui le seront à la sortie d'AniMatch</h3>
+    <br>
+    <div class="imgmid">
+    <img src="fichiers_a_telecharger/animaux.png" height=5% width=5%>
+    <br>
+    <br>
+   <br>
+   <br>
+    <br>
+    <footer>
+        <p>&copy; 2024 AniMatch. Tous droits réservés.</p>
+    </footer>
+    <!-- ... Autres contenus de la page ... -->
+
+<script>
+    $(document).ready(function () {
+        // Animation de la taille au survol de chaque carte
+        $('.card').hover(function () {
+            $(this).find('img').animate({ width: '+=20px', height: '+=20px' }, 'fast');
+            $(this).find('h4').animate({ fontSize: '+=4px' }, 'fast');
+        }, function () {
+            $(this).find('img').animate({ width: '-=20px', height: '-=20px' }, 'fast');
+            $(this).find('h4').animate({ fontSize: '-=4px' }, 'fast');
+        });
+    });
+
+    // Liste des chemins d'accès aux images
+    var pandaImages = ["fichiers_a_telecharger/Panda/panda.png", "fichiers_a_telecharger/Panda/panda_2.png"];
+    var chienImages = ["fichiers_a_telecharger/chien/dog.png", "fichiers_a_telecharger/chien/dog_2.png"];
+    var tortueImages = ["fichiers_a_telecharger/tortue/turtle.png", "fichiers_a_telecharger/tortue/turtle_2.png"];
+    var pandaIndex = 0; // Index de l'image actuelle pour le panda
+    var chienIndex = 0; // Index de l'image actuelle pour le chien
+    var tortueIndex = 0; // Index de l'image actuelle pour la tortue
+
+    // Fonction pour changer l'image du panda
+    function changerImagePanda() {
+        $('#pandaImage').attr('src', pandaImages[pandaIndex]);
+        pandaIndex = (pandaIndex + 1) % pandaImages.length; // Incrémenter l'index et s'assurer qu'il reste dans les limites du tableau
+    }
+
+    // Fonction pour changer l'image du chien
+    function changerImageChien() {
+        $('#chienImage').attr('src', chienImages[chienIndex]);
+        chienIndex = (chienIndex + 1) % chienImages.length; // Incrémenter l'index et s'assurer qu'il reste dans les limites du tableau
+    }
+
+    // Fonction pour changer l'image de la tortue
+    function changerImageTortue() {
+        $('#tortueImage').attr('src', tortueImages[tortueIndex]);
+        tortueIndex = (tortueIndex + 1) % tortueImages.length; // Incrémenter l'index et s'assurer qu'il reste dans les limites du tableau
+    }
+
+    // Appeler la fonction changerImagePanda toutes les secondes pour le panda
+    setInterval(changerImagePanda, 1000); // 1000 millisecondes = 1 seconde
+
+    // Appeler la fonction changerImageChien toutes les secondes pour le chien
+    setInterval(changerImageChien, 970); // 1000 millisecondes = 1 seconde
+
+    // Appeler la fonction changerImageTortue toutes les secondes pour la tortue
+    setInterval(changerImageTortue, 1030); // 1000 millisecondes = 1 seconde
+</script>
+</body>
+
+</html>

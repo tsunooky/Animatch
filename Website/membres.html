@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+    <title>AniMatch - Personnages</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+       <header>
+    <div class="container">
+        <nav>
+            <div class="logo-container">
+            <a href="index.html"><img src="fichiers_a_telecharger/logo.png" ></a>
+            </div>
+
+            
+                <ul>
+                    
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="animaux.html">Animaux</a></li>
+                    <li><a href="cards.html">Cartes</a></li>
+                    <li><a href="gameplay.html">Gameplay</a></li>
+                    <li><a href="sources.html">Sources</a></li>
+
+                </ul>
+                <a href="fichiers_a_telecharger/logo_illusion.zip" download="logo_illusion.png" class="download-button">Download</a> 
+            </nav>
+        </div>
+    
+    </header>
+    <section>
+        <div class="pad">
+            <a href="index.html"><img src="fichiers_a_telecharger/fleche.png"height=5% width=5%></a>
+        
+        <section id="textalignmembre">
+            <h2>Découvrez les membres d'AniMatch</h2>
+
+                <section id="content">
+
+                    <h1>En savoir plus</h1>
+
+                    <div class="contributor-box">
+                        <h2>Adrien Coureau</h2>
+                        <p> adrien.coureau@epita.fr</p>
+
+                    <div class="tete">
+                        <img src="tete/adrien.png" height=10% width=10%></img>
+
+        
+                        
+                    </div>
+                </div>
+             
+
+
+
+
+            <div class="contributor-box">
+                <h2>Josselin Priet</h2>
+                <p> josselin.priet@epita.fr</p>
+                <div class="tete">
+                    <img src="tete/joss.png" height=10% width=10%></img>
+                    
+                    
+                </div>
+            </div>
+
+            <div class="contributor-box">
+                <h2>Hector Thubert</h2>
+                <p> hector.thubert@epita.fr</p>
+                
+                <div class="tete">
+                    <img src="tete/hector.png" height=10% width=10%></img>
+                    
+                </div>
+            </div>
+
+
+            <div class="contributor-box">
+                <h2>Guilhem Dardonville</h2>
+                <p> guilhem.Dardonville@epita.fr</p>
+                
+                <div class="tete">
+                    <img src="tete/guilhem.png" height=10% width=10%></img>
+                    
+                </div>
+            </div>
+            <div class="contributor-box">
+                <h2>Guillaume Rat</h2>
+                <p> guillaume.rat@epita.fr</p>
+                <div class="tete">
+                    <img src="tete/guillaume.png" height=10% width=10%></img>
+                    
+                </div>
+            </div>
+        
+        </div>
+    </section>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 AniMatch. Tous droits réservés.</p>
+    </footer>
+    <!-- ... Autres contenus de la page ... -->
+
+<script>
+    // Code jQuery pour animer les boutons
+    $(document).ready(function () {
+        // Animation au survol des liens dans la barre de navigation
+        $('nav a').hover(function () {
+            $(this).animate({ fontSize: '1.2em' }, 'fast');
+        }, function () {
+            $(this).animate({ fontSize: '1em' }, 'fast');
+        });
+
+        // Animation au clic sur les boutons
+        $('button').click(function () {
+            $(this).animate({ opacity: 0.5 }, 200, function () {
+                $(this).animate({ opacity: 1 }, 200);
+            });
+        });
+    });
+</script>
+</body>
+
+</body>
+
+</html>

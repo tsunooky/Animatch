@@ -366,7 +366,7 @@ namespace Photon.Pun
         ///
         /// Example: void OnCustomAuthenticationResponse(Dictionary&lt;string, object&gt; data) { ... }
         /// </remarks>
-        /// <see cref="https://doc.photonengine.com/en-us/realtime/current/reference/custom-authentication"/>
+        /// <see href="https://doc.photonengine.com/en-us/realtime/current/reference/custom-authentication"/>
         public virtual void OnCustomAuthenticationResponse(Dictionary<string, object> data)
         {
         }

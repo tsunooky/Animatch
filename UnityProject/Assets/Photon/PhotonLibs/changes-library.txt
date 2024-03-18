@@ -1,8 +1,11 @@
 
 Photon C# Client Library - Changelog
-Exit Games GmbH - www.photonengine.com - forum.photonengine.com
+www.photonengine.com  -  Join our Discord Server: https://dashboard.photonengine.com/account/profile
 
 
+
+Version 4.1.8.0 (31. January 2024 - rev7364)
+    No notable changes. The Realtime API has some breaking changes. Check that changelog.
 
 Version 4.1.7.4 (13. December 2023 - rev7284)
     Fixed: PhotonPeer.BytesOut internal counting.

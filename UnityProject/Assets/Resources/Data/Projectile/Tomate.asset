@@ -17,3 +17,4 @@ MonoBehaviour:
   Degat: 40
   Projectile: {fileID: 4483138828243176656, guid: 980e0c82de73e074580368a8205cfd50, type: 3}
   Explosion: {fileID: 100000, guid: d577b80a09a9d4e43b7f3ab84d2db974, type: 3}
+  SpriteIfHandToHand: {fileID: 0}

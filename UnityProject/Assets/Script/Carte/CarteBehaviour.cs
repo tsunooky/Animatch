@@ -52,7 +52,7 @@ public abstract class CarteBehaviour : MonoBehaviour
     private void OnMouseExit()
     {
         var vector3 = transform.position;
-        vector3.y =  -5f;
+        vector3.y =  -4f;
         transform.position = vector3;
     }
 

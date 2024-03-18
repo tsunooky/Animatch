@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+    <title>AniMatch - Cartes</title>
+   <link rel="stylesheet" href="styles.css">
+   <style>
+       .mid
+       {
+        text-align: center;
+       }
+           .imgmid  {
+  display: flex; /* Utilisation de Flexbox */
+            justify-content: center; /* Centrer horizontalement */
+            align-items: center; /* Centrer verticalement */
+            height: 100vh; /* Hauteur égale à la hauteur de la fenêtre */
+                max-width: 100%; /* Pour s'assurer que l'image ne dépasse pas de son conteneur */
+            height: auto; /* Pour conserver les proportions de l'image */
+        }
+
+   </style>
+</head>
+
+<body>
+      <header>
+    <div class="container">
+        <nav>
+            <div class="logo-container">
+            <a href="index.html"><img src="fichiers_a_telecharger/logo.png" ></a>
+            </div>
+
+            
+                <ul>
+                    
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="animaux.html">Animaux</a></li>
+                    <li><a href="cards.html"><b><u>Cartes</u></b></a></li>
+                    <li><a href="gameplay.html">Gameplay</a></li>
+                    <li><a href="sources.html">Sources</a></li>
+
+                </ul>
+                <a href="fichiers_a_telecharger/logo_illusion.zip" download="logo_illusion.png" class="download-button">Download</a> 
+            </nav>
+        </div>
+    
+    </header>
+
+    <section>
+        <div class="pad">
+            <section id="textalign">
+        <h2>Voici la liste de chaque cartes :</h2>
+        <h3>Chaque cartes disponibles dans le jeux ont chacune un attrait différent dans le jeu</h3>
+        <p>(cliquez pour accéder aux différentes caractéristiques)</p>
+    </section>
+            <br>
+        <div class="disp">
+            <div class="card">
+                <h4>La Tomate :</h4>
+                <a href="Tomato.html"><img src="fichiers_a_telecharger/tomate.png"></a>
+            </div>
+
+        <div class="card">
+            <h4>Le jet de couteaux :</h4>
+            <a href="couteau.html"><img src="fichiers_a_telecharger/knife_throw.png"></a>
+        </div>
+        
+        <div class="card">
+        <h4>La batte :</h4>
+        <a href="couteau.html"><img src="fichiers_a_telecharger/batte.png"></a>
+    </div>
+
+    <div class="card">
+            <h4>Le saut :</h4>
+            <a href="saut.html"><img src="fichiers_a_telecharger/jump.png"></a>
+        </div>
+
+</div>
+
+
+    </div>
+    </section>
+    <br>
+    <h3 class="mid">Voici toutes les autres cartes non implémenté du jeu, qui le seront à la sortie d'AniMatch</h3>
+    <br>
+    <div class="imgmid">
+    <img src="fichiers_a_telecharger/cartes.png" height=100% width=70%>
+
+</div>
+      <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+    <footer>
+        <p>&copy; 2024 AniMatch. Tous droits réservés.</p>
+    </footer>
+    <!-- ... Autres contenus de la page ... -->
+
+<script>
+    $(document).ready(function () {
+        // Animation de la taille au survol de chaque carte
+        $('.card').hover(function () {
+            $(this).find('img').animate({ width: '+=20px', height: '+=20px' }, 'fast');
+            $(this).find('h4').animate({ fontSize: '+=4px' }, 'fast');
+        }, function () {
+            $(this).find('img').animate({ width: '-=20px', height: '-=20px' }, 'fast');
+            $(this).find('h4').animate({ fontSize: '-=4px' }, 'fast');
+        });
+    });
+     // Code jQuery pour animer les boutons
+    $(document).ready(function () {
+        // Animation au survol des liens dans la barre de navigation
+        $('nav a').hover(function () {
+            $(this).animate({ fontSize: '1.2em' }, 'fast');
+        }, function () {
+            $(this).animate({ fontSize: '1em' }, 'fast');
+        });
+
+        // Animation au clic sur les boutons
+        $('button').click(function () {
+            $(this).animate({ opacity: 0.5 }, 200, function () {
+                $(this).animate({ opacity: 1 }, 200);
+            });
+        });
+    });
+</script>
+</body>
+
+</body>
+
+</html>

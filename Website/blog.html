@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+    <title>AniMatch - Cartes</title>
+   <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+      <header>
+    <div class="container">
+        <nav>
+            <div class="logo-container">
+            <a href="index.html"><img src="fichiers_a_telecharger/logo.png" ></a>
+            </div>
+
+            
+                <ul>
+                    
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="animaux.html">Animaux</a></li>
+                    <li><a href="cards.html">Cartes</a></li>
+                    <li><a href="gameplay.html">Gameplay</a></li>
+                    <li><a href="learnmore.html">En savoir plus</a></li>
+
+                </ul>
+                <a href="fichiers_a_telecharger/logo_illusion.zip" download="logo_illusion.png" class="download-button">Download</a> 
+            </nav>
+        </div>
+    
+    </header>
+    <a href="index.html"><img src="fichiers_a_telecharger/fleche.png"height=5% width=5%></a>
+
+    <section>
+       <section id="content">
+        <h2>Bugs reporter :</h2>
+        <br> 
+        <h4>Bug#1 : Les explosions se declanchent instantanément parfois (fix)</h4>
+        <br> 
+        <h4>Bug#2 : Le pouvoir du chien s’applique sur le mauvais animal quelques fois (fix)</h4>
+        <br> 
+        <h4>Bug#3 : Détecté lors de la mort d’un animal pendant son tour, ça passe à l’animal adverse donc encore au tour de l’adversaire (fix)</h4>
+        <br> 
+        <h4>Bug#4 : Fait jouer le perso 2 avec la compétence du perso 1 (fix)</h4>
+        <br> 
+        <h4>Bug#5 : Les animaux peuvent etre placé à l'interieur des surctures de la map </h4>
+        <br> 
+        <h4>Bug#6 : Si on spam une carte ça la fait jouer plusieurs fois (fix)</h4>
+        <br> 
+        <h4>Bug#7 : La carte (si lag) fait n'importe quoi pendant l'animation et monte en escalier (fix)</h4>
+        <br> 
+        <h4>Bug#8 : Le bot joue pendant notre tour (le tour change alors que le bot n'a pas encore jouer) (fix)</h4>
+        <br> 
+        <h4>Bug#9 : Si on joue une carte puis on annule ça a quand même consommé le drop de la carte</h4>
+
+
+
+        
+       </section>
+    
+    </section>
+
+
+    <footer>
+        <p>&copy; 2024 AniMatch. Tous droits réservés.</p>
+    </footer>
+    
+
+<script>
+    // Code jQuery pour animer les boutons
+     $(document).ready(function () {
+        // Animation au survol des liens dans la barre de navigation
+        $('nav a').hover(function () {
+            $(this).animate({ fontSize: '1.2em' }, 'fast');
+        }, function () {
+            $(this).animate({ fontSize: '1em' }, 'fast');
+        });
+
+        // Animation au clic sur les boutons
+        $('button').click(function () {
+            $(this).animate({ opacity: 0.5 }, 200, function () {
+                $(this).animate({ opacity: 1 }, 200);
+            });
+        });
+    });
+</script>
+</body>
+
+</body>
+
+</html>

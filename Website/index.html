@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+    <title>AniMatch - Accueil</title>
+    <link rel="stylesheet" href="styles.css">
+     <style>
+        @font-face {
+            font-family: 'Spash'; /* Nom que vous allez utiliser pour la police */
+            src: url('front/Splatch.ttf') format('truetype'); /* Chemin vers votre fichier de police */
+        }
+        /* Appliquez la police aux éléments souhaités */
+        h2 {
+            font-family: 'Spash', sans-serif; /* Utilisation de la police personnalisée avec une police de secours sans-serif */
+        }
+    </style>
+    
+</head>
+
+<body>
+   <header>
+    <div class="container">
+        <nav>
+            <div class="logo-container">
+            <a href="index.html"><img src="fichiers_a_telecharger/logo.png" ></a> <!-- Met ton image ici -->
+            </div>
+
+            
+                <ul>
+                    
+                    <li><a href="index.html"><b><u>Accueil</u></b></a></li>
+                    <li><a href="animaux.html">Animaux</a></li>
+                    <li><a href="cards.html">Cartes</a></li>
+                    <li><a href="gameplay.html">Gameplay</a></li>
+                    <li><a href="sources.html">Sources</a></li>
+
+                </ul>
+                 <a href="fichiers_a_telecharger/CDT.zip" download="CDT.zip" class="download-button">Download</a>
+            </nav>
+        </div>
+    
+    </header>
+    <section>
+        <section class id="textalign">
+        <div class="centerindex">
+        <section id="content">
+        <div class="pad">
+        <h2>Bienvenue sur AniMatch !</h2>
+        <br>
+        <br>
+        <h4>Ici vous pourrez visualiser tous les aspects du développement de notre jeu</h4>
+        <br>
+        <p>Voici une liste exostive de tous <span class="highlight"><span class="clickable" onclick="window.location.href='membres.html';"><b>les développeurs d'Illusion .</b></span></span></p>
+        <br>
+
+        <p> Vous pouvez visualiser une représentation de notre jeu : (appuyez sur l'image) </p>
+        <img id="carteSans" src="fichiers_a_telecharger/cartesans.png" alt="Carte sans"height=45% width=45%>
+        <img id="carteAvec" src="fichiers_a_telecharger/carteavec.png" alt="Carte avec" style="display:none"height=45% width=45%>
+        <br>
+        <br>
+        <p> Les développeurs chez Illusion on <span class="highlight"><span class="clickable" onclick="window.location.href='chronologie.html';"><b>une chronologie de la réalisation</b></span></span></h7> de leurs jeux vidéos.</p>
+        
+        <br>
+        <p>Sur <span class="highlight"><span class="clickable" onclick="window.location.href='blog.html';"><b>cette page</b></span></span></h7>, vous trouverez tous les problèmes en cours de résolution d'Animatch, un blog qui permet de suivre l'avancement de notre jeu vidéo.</p>
+    
+    </section>
+    </div>
+
+    </section>
+    </section>
+</div>
+
+
+    <footer>
+        <p>&copy; 2024 AniMatch. Tous droits réservés.</p>
+    </footer>
+    <!-- ... Autres contenus de la page ... -->
+
+<script>
+    // Code jQuery pour animer les boutons
+    $(document).ready(function () {
+        // Animation au survol des liens dans la barre de navigation
+        $('nav a').hover(function () {
+            $(this).animate({ fontSize: '1.2em' }, 'fast');
+        }, function () {
+            $(this).animate({ fontSize: '1em' }, 'fast');
+        });
+        $('span p').hover(function () {
+            $(this).animate({ fontSize: '1.2em' }, 'fast');
+        }, function () {
+            $(this).animate({ fontSize: '1em' }, 'fast');
+        });
+
+        // Animation au clic sur les boutons
+        $('button').click(function () {
+            $(this).animate({ opacity: 0.5 }, 200, function () {
+                $(this).animate({ opacity: 1 }, 200);
+            });
+        });
+    });
+            document.getElementById("carteSans").addEventListener("click", function() {
+            document.getElementById("carteSans").style.display = "none";
+            document.getElementById("carteAvec").style.display = "inline";
+        });
+
+        document.getElementById("carteAvec").addEventListener("click", function() {
+            document.getElementById("carteSans").style.display = "inline";
+            document.getElementById("carteAvec").style.display = "none";
+        });
+</script>
+</body>
+
+</body>
+
+</html>

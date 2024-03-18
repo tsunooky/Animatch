@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+    <title>AniMatch - Gameplay</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <header>
+    <div class="container">
+        <nav>
+            <div class="logo-container">
+            <a href="index.html"><img src="fichiers_a_telecharger/logo.png" ></a>
+            </div>
+
+            
+                <ul>
+                    
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="animaux.html">Animaux</a></li>
+                    <li><a href="cards.html">Cartes</a></li>
+                    <li><a href="gameplay.html">Gameplay</a></li>
+                    <li><a href="sources.html"><b><u>Sources</u></b></a></li>
+
+                </ul>
+                <a href="fichiers_a_telecharger/logo_illusion.zip" download="logo_illusion.png" class="download-button">Download</a> 
+            </nav>
+        </div>
+    
+    </header>
+<section>
+        <div class="pad">
+            <section id="textalign">
+        <h2>Voici la liste de chaque outils que les membres d'Animatch utilisent :</h2>
+        <p>(cliquez pour accéder aux sites)</p>
+    </section>
+            <br>
+        <div class="disp">
+            <div class="card">
+                <h4>GitHub Desktop :</h4>
+                <a href="https://desktop.github.com/"><img src="fichiers_a_telecharger/git.png"></a>
+            </div>
+
+        <div class="card">
+            <h4>Unity :</h4>
+            <a href="https://unity.com/fr"><img src="fichiers_a_telecharger/unity.png"></a>
+        </div>
+        
+        <div class="card">
+        <h4>Notion :</h4>
+        <a href="https://www.notion.so/fr-fr"><img src="fichiers_a_telecharger/notion.png"></a>
+    </div>
+
+    <div class="card">
+            <h4>Sublime Text :</h4>
+            <a href="https://www.sublimetext.com/index2"><img src="fichiers_a_telecharger/sublime.png"></a>
+        </div>
+
+    
+            <div class="card">
+                <h4>Overleaf :</h4>
+                <a href="https://fr.overleaf.com/"><img src="fichiers_a_telecharger/overleaf.png"></a>
+            </div>
+
+        <div class="card">
+            <h4>Clip Studio Paint :</h4>
+            <a href="https://www.clipstudio.net/fr/"><img src="fichiers_a_telecharger/clip.png"></a>
+        </div>
+        
+        <div class="card">
+        <h4>Inkscape :</h4>
+        <a href="https://inkscape.org/fr/"><img src="fichiers_a_telecharger/ink.png"></a>
+    </div>
+
+    <div class="card">
+            <h4>FL Studio :</h4>
+            <a href="https://www.image-line.com/"><img src="fichiers_a_telecharger/FL.png"></a>
+        </div>
+
+        <div class="card">
+        <h4>Photon :</h4>
+        <a href="https://www.photonengine.com/pun"><img src="fichiers_a_telecharger/photon.png"></a>
+    </div>
+
+    <div class="card">
+            <h4>Canva :</h4>
+            <a href="https://www.canva.com/fr_fr/"><img src="fichiers_a_telecharger/canva.png"></a>
+        </div>
+
+
+</div>
+
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    </div>
+    </section>
+    <footer>
+        <p>&copy; 2024 AniMatch. Tous droits réservés.</p>
+    </footer>
+    <!-- ... Autres contenus de la page ... -->
+
+<script>
+        $(document).ready(function () {
+        // Animation de la taille au survol de chaque carte
+        $('.card').hover(function () {
+            $(this).find('img').animate({ width: '+=20px', height: '+=20px' }, 'fast');
+            $(this).find('h4').animate({ fontSize: '+=4px' }, 'fast');
+        }, function () {
+            $(this).find('img').animate({ width: '-=20px', height: '-=20px' }, 'fast');
+            $(this).find('h4').animate({ fontSize: '-=4px' }, 'fast');
+        });
+    });
+    // Code jQuery pour animer les boutons
+    $(document).ready(function () {
+        // Animation au survol des liens dans la barre de navigation
+        $('nav a').hover(function () {
+            $(this).animate({ fontSize: '1.2em' }, 'fast');
+        }, function () {
+            $(this).animate({ fontSize: '1em' }, 'fast');
+        });
+
+        // Animation au clic sur les boutons
+        $('button').click(function () {
+            $(this).animate({ opacity: 0.5 }, 200, function () {
+                $(this).animate({ opacity: 1 }, 200);
+            });
+        });
+    });
+</script>
+</body>
+
+</body>
+
+</html>

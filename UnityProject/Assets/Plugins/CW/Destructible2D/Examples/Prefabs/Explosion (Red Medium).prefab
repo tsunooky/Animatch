@@ -4800,7 +4800,6 @@ ParticleSystemRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 53ace69d89b8d7549a73f6e30705fb89, type: 2}
-  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4871,7 +4870,7 @@ MonoBehaviour:
     m_Bits: 4294967295
   Stamp: 1
   StampPaint: 0
-  StampShape: {fileID: -949900613627661759, guid: 082df75cba6ec094a966a53528dc06ac, type: 2}
+  StampShape: {fileID: 2800000, guid: 036108cbdb79b2142b9f63f60ce7e192, type: 3}
   StampColor: {r: 1, g: 1, b: 1, a: 1}
   StampSize: {x: 2, y: 2}
   StampRandomDirection: 1
@@ -9860,7 +9859,6 @@ ParticleSystemRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 8d879c2356b10f44bb6fcb5ea490440c, type: 2}
-  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

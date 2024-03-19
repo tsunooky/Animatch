@@ -61,7 +61,7 @@ public class HandToHand : MonoBehaviour
         {
             if (!bot)
             {
-                StartCoroutine(Shoot());
+                Shoot();
             }
         }
 
@@ -93,13 +93,11 @@ public class HandToHand : MonoBehaviour
     }
 
     // ReSharper disable Unity.PerformanceAnalysis
-    private IEnumerator Shoot()
+    private void Shoot()
     {
         if (gun != null)
         {
             setAim(false, false);
-            _affichage.GetComponent<TouchExplosion>().actif = true;
-            yield return new WaitForSeconds(0.5f);
             //ANIMATION BAT ICI
             Destroy(this);
         }

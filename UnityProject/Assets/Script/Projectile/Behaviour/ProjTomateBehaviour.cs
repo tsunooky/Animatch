@@ -7,7 +7,7 @@ public class ProjTomateBehaviour : ProjectileBehaviour
 {
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (!declanchement)
+        if (!declanchement && other.gameObject != projectileData.Lanceur)
         { 
             declanchement = true;
             var clone = Instantiate(Prefab, transform.position, transform.rotation);

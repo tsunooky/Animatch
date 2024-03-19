@@ -19,14 +19,12 @@ public class AimAndShoot : MonoBehaviour
 
     private GameObject gun;
 
-    private float spawnDistance = 0.90f;
-
     private float delayBeforeShootBOT = 5f;
     private bool isAiming;
 
     [SerializeField] private float lauchForce;
-    [SerializeField] private float trajectoryTimeStep = 0.05f;
-    [SerializeField] private int trajectoryStepCount = 5;
+    [SerializeField] private float trajectoryTimeStep = 0.0125f;
+    [SerializeField] private int trajectoryStepCount = 7;
     private Vector2 startMousePos;
     private Vector2 currentMousePos;
     private Vector2 velocity;
@@ -141,10 +139,8 @@ public class AimAndShoot : MonoBehaviour
         if (gun != null)
         {
             setAim(false,false);
-            Vector3 direction = -gun.transform.right;
-
-            // Calculer la nouvelle position en ajoutant la direction multipliée par la distance
-            Vector3 newPosition = gun.transform.position + direction * spawnDistance;
+            projectileData.Lanceur = gameObject;
+            Vector3 newPosition = gun.transform.position;
             GameObject bullet = Instantiate(projectileData.Projectile, newPosition, gun.transform.rotation * Quaternion.Euler(0f, 180f, 0f));
             ProjectileBehaviour bulletBehaviour = bullet.GetComponentsInChildren<ProjectileBehaviour>()[0];
             bulletBehaviour.Set(lauchForce,projectileData);
@@ -173,8 +169,8 @@ public class AimAndShoot : MonoBehaviour
     {
         // Attendre pendant le délai spécifié
         yield return new WaitForSeconds(delayBeforeShootBOT);
-        // Calculer la nouvelle position en ajoutant la direction multipliée par la distance
-        Vector3 newPosition = transform.position + direction * spawnDistance;
+        projectileData.Lanceur = gameObject;
+        Vector3 newPosition = transform.position;
         GameObject bullet = Instantiate(projectileData.Projectile, newPosition, transform.rotation);
         ProjectileBehaviour bulletBehaviour = bullet.GetComponent<ProjectileBehaviour>();
         bulletBehaviour.Set(lauchForce,projectileData);

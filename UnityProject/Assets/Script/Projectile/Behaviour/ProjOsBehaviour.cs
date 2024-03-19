@@ -8,7 +8,7 @@ public class ProjOsBehaviour : ProjectileBehaviour
 {
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (!declanchement)
+        if (!declanchement && other.gameObject != projectileData.Lanceur)
         {
             declanchement = true;
             GameManager.Instance.playerActif.animalActif.gameObject.transform.position = gameObject.transform.position;

@@ -32,15 +32,25 @@ public abstract class AnimalBehaviour : MonoBehaviour
     {
         animalData = Resources.Load<AnimalData>("Data/Animaux/" + nom_animal);
         pv = animalData.Pv;
-        healthBarInstance = Instantiate(Resources.Load<GameObject>("Prefabs/Autre/HealthBar_blue"));
-        //healthBarInstance = Instantiate(Resources.Load<GameObject>("Prefabs/Autre/HealthBar_red"));
-        healthBarInstance.transform.SetParent(GameObject.FindGameObjectWithTag("Canvas").transform);
-        healthBar = healthBarInstance.GetComponent<HealthBar>();
-        healthBar.SetMaxHealth(pv);
         poids = animalData.Poids;
         vitesse = animalData.Vitesse;   
     }
-    
+
+    public void LoadHealthbar()
+    {
+        if (player == GameManager.Instance.joueur)
+        {
+            healthBarInstance = Instantiate(Resources.Load<GameObject>("Prefabs/Autre/HealthBar_blue"));
+        }
+        else
+        {
+            healthBarInstance = Instantiate(Resources.Load<GameObject>("Prefabs/Autre/HealthBar_red"));
+        }
+        
+        healthBarInstance.transform.SetParent(GameObject.FindGameObjectWithTag("Canvas").transform);
+        healthBar = healthBarInstance.GetComponent<HealthBar>();
+        healthBar.SetMaxHealth(pv);
+    }
     
     // ReSharper disable Unity.PerformanceAnalysis
     public void AnimalVisible()

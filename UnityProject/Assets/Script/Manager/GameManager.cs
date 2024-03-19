@@ -69,6 +69,7 @@ namespace Script.Manager
                             x.deckAnimal.Dequeue());
                         x.animaux_vivant.Enqueue(newAnimal);
                         newAnimal.player = x;
+						newAnimal.LoadHealthbar();
                     }
                 }
             }

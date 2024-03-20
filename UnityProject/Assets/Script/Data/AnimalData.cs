@@ -8,6 +8,5 @@ public class AnimalData : ScriptableObject
    public string nom;
    public Sprite sprite;
    public int Pv;
-   public float Poids;
    public int Vitesse;
 }

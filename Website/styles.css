@@ -1,9 +1,15 @@
+ html{
+    cursor: url(fichiers_a_telecharger/cursor.png),auto;
+ }
+
+
  body {
     background-color: #f0f0f0;
     color: #333;
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
+    cursor: url(fichiers_a_telecharger/cursor.png),auto;
 }
 
 .tete{

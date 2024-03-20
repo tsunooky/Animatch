@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Destructible2D;
 using Script.Manager;
 using UnityEngine;
 using Destructible2D.Examples;
@@ -11,7 +12,6 @@ public abstract class AnimalBehaviour : MonoBehaviour
 {
     public AnimalData animalData;
     public int pv;
-    public float poids;
     public int vitesse;
     public PlayerManager player;
     public GameObject aura;
@@ -32,7 +32,6 @@ public abstract class AnimalBehaviour : MonoBehaviour
     {
         animalData = Resources.Load<AnimalData>("Data/Animaux/" + nom_animal);
         pv = animalData.Pv;
-        poids = animalData.Poids;
         vitesse = animalData.Vitesse;   
     }
 
@@ -55,14 +54,26 @@ public abstract class AnimalBehaviour : MonoBehaviour
     // ReSharper disable Unity.PerformanceAnalysis
     public void AnimalVisible()
     {
-        Rigidbody2D animalRigidbody2D = gameObject.AddComponent<Rigidbody2D>();
-        animalRigidbody2D.angularDrag = 45;
-        animalRigidbody2D.mass = poids;
         SpriteRenderer spriteRenderer = gameObject.AddComponent<SpriteRenderer>();
         spriteRenderer.sortingOrder = 5;
         spriteRenderer.sprite = animalData.sprite;
-        CircleCollider2D a = gameObject.AddComponent<CircleCollider2D>();
-        a.radius *= 0.75f;
+        D2dDestructibleSprite destructibleSprite = gameObject.AddComponent<D2dDestructibleSprite>();
+        destructibleSprite.Shape = animalData.sprite;
+        destructibleSprite.Rebuild();
+        destructibleSprite.RebuildAlphaTex();
+        destructibleSprite.Indestructible = true; // L'animal n'est pas destructible
+        destructibleSprite.Optimize(); // Optimiser le rendu pour les performances (3 fois)
+        destructibleSprite.Optimize();
+        destructibleSprite.Optimize();
+        destructibleSprite.RebuildAlphaTex();
+        destructibleSprite.CropSprite = false;
+        D2dSplitter d2dSplitter = gameObject.AddComponent<D2dSplitter>();
+        d2dSplitter.Feather = 5;
+        D2dPolygonCollider d2dPolygonCollider = gameObject.AddComponent<D2dPolygonCollider>();
+        d2dPolygonCollider.Straighten = 0.01f;
+        Rigidbody2D animalRigidbody2D = gameObject.AddComponent<Rigidbody2D>();
+        animalRigidbody2D.angularDrag = 0.05f;
+        animalRigidbody2D.mass = 1000f;
         gameObject.AddComponent<DespawnManager>();
         gameObject.AddComponent<Photon.Pun.PhotonTransformView>();
         gameObject.AddComponent<Photon.Pun.PhotonView>();

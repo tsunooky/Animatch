@@ -134,6 +134,8 @@ namespace Script.Manager
                 AnimalBehaviour animalBehaviour = (AnimalBehaviour)(newAnimal.AddComponent(typeAnimal));
                 newAnimal.transform.position = new Vector2(x, y);
                 animalBehaviour.AnimalVisible();
+                animalBehaviour.nom = animal + x;
+                animalBehaviour.setPointeur();
                 return animalBehaviour;
             }
             throw new Exception("Ce type d'animal n'existe pas ");

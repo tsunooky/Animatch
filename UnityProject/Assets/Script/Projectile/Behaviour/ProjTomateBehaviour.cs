@@ -7,6 +7,7 @@ public class ProjTomateBehaviour : ProjectileBehaviour
 {
     private void OnTriggerEnter2D(Collider2D other)
     {
+        Debug.Log(other.gameObject.name);
         if (!declanchement && other.gameObject != projectileData.Lanceur)
         { 
             declanchement = true;
@@ -17,5 +18,4 @@ public class ProjTomateBehaviour : ProjectileBehaviour
             Destroy(gameObject);
         }
     }
-    
 }

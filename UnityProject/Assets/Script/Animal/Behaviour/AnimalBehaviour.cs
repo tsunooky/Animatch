@@ -19,12 +19,25 @@ public abstract class AnimalBehaviour : MonoBehaviour
     public GameObject healthBarInstance;
     public float timeSpawn;
     public ProjectileData potentielleprojDataAnimax;
+    private GameObject pointeur;
+    private SpriteRenderer pointeurSprite;
+    public string nom;
+    public bool actif;
+    
+    public void setPointeur()
+    {
+        pointeur = new GameObject($"pointeur de {nom}");
+        pointeurSprite = pointeur.AddComponent<SpriteRenderer>();
+        pointeurSprite.sprite = Resources.Load<Sprite>("Icons/settings_button");
+        pointeurSprite.enabled = false;
+    }
     
     private void Start()
     {
         tag = "Animal";
         timeSpawn = Time.time;
         gameObject.layer = 6;
+        player = Instance.joueur;
     }
     
 
@@ -167,5 +180,9 @@ public abstract class AnimalBehaviour : MonoBehaviour
         {
             aura.transform.position = gameObject.transform.position;
         }
+
+        actif = player.animalActif == this;
+        pointeurSprite.enabled = actif;
+        pointeur.transform.position = gameObject.transform.position;
     }
 }

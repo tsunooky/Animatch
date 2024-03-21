@@ -29,6 +29,7 @@ public class PlayerManager : MonoBehaviour
         animalActif = null;
         mainManager = GameObject.FindGameObjectsWithTag("MainCarte");
         enVisee = false;
+        animalActif = null;
     }
 
     public void CreateProfil()

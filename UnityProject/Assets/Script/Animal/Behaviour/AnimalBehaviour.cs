@@ -139,6 +139,8 @@ public abstract class AnimalBehaviour : MonoBehaviour
 
     private void OnDestroy()
     {
+        Destroy(healthBarInstance);
+        Destroy(healthBar);
         for (int i = 0; i < player.animaux_vivant.Count; i++)
         {
             AnimalBehaviour animal = player.animaux_vivant.Dequeue();

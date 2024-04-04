@@ -93,6 +93,16 @@ public class AimAndShoot : MonoBehaviour
             velocity = (startMousePos - currentMousePos) * projectileData.Force * 0.5f * mass;
             DrawTrajectory();
         }
+        else
+        {
+            int len = pointilles.Length;
+            int i = 0;
+            while (i < len)
+            {
+                Destroy(pointilles[i]);
+                i++;
+            }
+        }
     }
 
     private void DrawTrajectory()

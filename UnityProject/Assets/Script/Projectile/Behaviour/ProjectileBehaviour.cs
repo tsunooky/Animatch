@@ -13,7 +13,7 @@ public abstract class ProjectileBehaviour : MonoBehaviour
 
     public bool declanchement;
 
-    public float lauchForce;
+    public (Vector2,Vector2) ligne;
     
     public void Start()
     {
@@ -22,18 +22,18 @@ public abstract class ProjectileBehaviour : MonoBehaviour
         circle.isTrigger = true;
     }
 
-    public void Set(float LauchfForce, ProjectileData proj)
+    public void Set((Vector2,Vector2)Ligne, ProjectileData proj)
     {
         projectileData = proj;
         Prefab = proj.Explosion;
-        lauchForce = LauchfForce;
+        ligne = Ligne;
         SetStraightVelocity();
     }
     
     
     public void SetStraightVelocity()
     {
-        gameObject.GetComponent<Rigidbody2D>().velocity = gameObject.transform.right * projectileData.Force * lauchForce * 0.075f;
+        gameObject.GetComponent<Rigidbody2D>().velocity = (ligne.Item1 - ligne.Item2) * projectileData.Force * 0.075f;;
     }
 
     protected void FinAction()

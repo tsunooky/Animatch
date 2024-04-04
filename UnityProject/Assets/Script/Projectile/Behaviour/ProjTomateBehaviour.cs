@@ -5,7 +5,7 @@ using Destructible2D.Examples;
 
 public class ProjTomateBehaviour : ProjectileBehaviour
 {
-    private void OnTriggerEnter2D(Collider2D other)
+    /*private void OnTriggerEnter2D(Collider2D other)
     {
         Debug.Log(other.gameObject.name);
         if (!declanchement && other.gameObject != projectileData.Lanceur)
@@ -17,5 +17,5 @@ public class ProjTomateBehaviour : ProjectileBehaviour
             FinAction();
             Destroy(gameObject);
         }
-    }
+    }*/
 }

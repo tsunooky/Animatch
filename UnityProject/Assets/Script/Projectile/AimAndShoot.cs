@@ -90,7 +90,7 @@ public class AimAndShoot : MonoBehaviour
         if (Input.GetMouseButton(0) && isAiming)
         {
             currentMousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            velocity = (startMousePos - currentMousePos) * lauchForce * projectileData.Force * 0.075f * mass;
+            velocity = (startMousePos - currentMousePos) * projectileData.Force * 0.5f * mass;
             DrawTrajectory();
         }
     }
@@ -143,7 +143,7 @@ public class AimAndShoot : MonoBehaviour
             Vector3 newPosition = gun.transform.position;
             GameObject bullet = Instantiate(projectileData.Projectile, newPosition, gun.transform.rotation * Quaternion.Euler(0f, 180f, 0f));
             ProjectileBehaviour bulletBehaviour = bullet.GetComponentsInChildren<ProjectileBehaviour>()[0];
-            bulletBehaviour.Set(lauchForce,projectileData);
+            bulletBehaviour.Set((startMousePos,currentMousePos),projectileData);
             Destroy(this);
         }
     }
@@ -173,7 +173,7 @@ public class AimAndShoot : MonoBehaviour
         Vector3 newPosition = transform.position;
         GameObject bullet = Instantiate(projectileData.Projectile, newPosition, transform.rotation);
         ProjectileBehaviour bulletBehaviour = bullet.GetComponent<ProjectileBehaviour>();
-        bulletBehaviour.Set(lauchForce,projectileData);
+        bulletBehaviour.Set((startMousePos,currentMousePos),projectileData);
         Destroy(this);
     }
 

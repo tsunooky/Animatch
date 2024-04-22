@@ -23,8 +23,7 @@ namespace Script.Manager
 
         public PlayerManager playerActif;
         public Text affichage_mana;
-        public Image image_mana;
-        
+      
         private void Awake()
         {
             if (Instance != null)

@@ -3,6 +3,7 @@ using System;
 using Script.Data;
 using UnityEngine;
 using Script.Manager;
+using UnityEngine.UI;
 
 namespace Script.Manager
 {
@@ -21,6 +22,9 @@ namespace Script.Manager
         public bool tourActif = false;
 
         public PlayerManager playerActif;
+        public Text affichage_mana;
+        public Image image_mana;
+        
         private void Awake()
         {
             if (Instance != null)
@@ -82,6 +86,7 @@ namespace Script.Manager
                     {
                         Debug.Log("C'est votre tour");
                         playerActif = joueur;
+                        affichage_mana.text = $"{joueur.drops}";
                         if (joueur.animaux_vivant.Count == 0)
                         {
                             Win(bot);
@@ -92,6 +97,8 @@ namespace Script.Manager
                             AnimalBehaviour animalActif = joueur.animaux_vivant.Dequeue();
                             joueur.animaux_vivant.Enqueue(animalActif);
                             playerActif.animalActif = animalActif;
+                            affichage_mana.text = $"{joueur.drops}";
+
                         }
                     }
                     else
@@ -103,6 +110,7 @@ namespace Script.Manager
                         }
                         else
                         {
+                            affichage_mana.text = $" ? ";
                             Debug.Log("Tour du bot");
                             AnimalBehaviour animalActif = bot.animaux_vivant.Dequeue();
                             bot.animaux_vivant.Enqueue(animalActif);
@@ -114,7 +122,7 @@ namespace Script.Manager
                         }
                     }
 
-                    Debug.Log("le joueur qui vient de jouer n'a plus que" + playerActif.drops+ " drops !");
+                    Debug.Log("le joueur qui vient de jouer n'a plus que " + playerActif.drops+ " drops !");
                     joueur.MettreAjourMain();
                     tour += 1;
                 }

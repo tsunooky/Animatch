@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 114070398809276716}
   - component: {fileID: 1529943587245828053}
   m_Layer: 0
-  m_Name: Explosion (Red Medium) 1
+  m_Name: Explosion (Red Medium)
   m_TagString: Explosion
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3956,7 +3956,7 @@ ParticleSystem:
         m_RotationOrder: 4
     maxLights: 20
   TrailModule:
-    enabled: 1
+    enabled: 0
     mode: 0
     ratio: 1
     lifetime:
@@ -4800,7 +4800,6 @@ ParticleSystemRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 53ace69d89b8d7549a73f6e30705fb89, type: 2}
-  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4877,7 +4876,7 @@ MonoBehaviour:
   StampRandomDirection: 1
   Raycast: 1
   RaycastRadius: 1
-  RaycastCount: 1
+  RaycastCount: 32
   ForcePerRay: 10
   DamagePerRay: 1
 --- !u!82 &8237358

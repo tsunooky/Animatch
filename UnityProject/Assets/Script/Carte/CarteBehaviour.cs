@@ -40,6 +40,8 @@ public abstract class CarteBehaviour : MonoBehaviour
         {
             Instance.playerActif.SetAura(false);
             Instance.playerActif.enAction = false;
+            player.drops += carteData.drops;
+            player.MiseAjourAffichageDrops();
         }
     }
 

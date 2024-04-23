@@ -13,7 +13,7 @@ public class ProjTomateBehaviour : ProjectileBehaviour
         bool invinsible = cible == AnimalActif; 
         if (!invinsible)
         {
-            if (!declanchement && other.gameObject != projectileData.Lanceur)
+            if (!declanchement)
             {
                 declanchement = true;
                 var clone = Instantiate(Prefab, transform.position, transform.rotation);

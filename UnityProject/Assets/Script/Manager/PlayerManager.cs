@@ -66,7 +66,6 @@ public class PlayerManager : MonoBehaviour
 
     public void MiseAJourDrops(int tour)
     {
-        Debug.Log(tour);
         Debug.Log(tour % 2);
         drops = tour / 2 + tour % 2;
     }

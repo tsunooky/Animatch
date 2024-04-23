@@ -1,22 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Destructible2D.Examples;
 using Script.Manager;
+using UnityEngine.InputSystem;
 
-public class ProjOsBehaviour : ProjectileBehaviour
+public class TouchToBump : ProjectileBehaviour
 {
     private void OnTriggerEnter2D(Collider2D other)
     {
         GameObject cible = other.gameObject.transform.parent.gameObject;
         GameObject AnimalActif = GameManager.Instance.playerActif.animalActif.gameObject;
-        bool invinsible = cible == AnimalActif; 
-        if (!declanchement && !invinsible)
+        bool invinsible = cible == AnimalActif;
+        if (!invinsible)
         {
-            declanchement = true;
-            GameManager.Instance.playerActif.animalActif.gameObject.transform.position = gameObject.transform.position;
+            other.gameObject.transform.parent.gameObject.transform.position = new Vector3();
             FinAction();
-            Destroy(gameObject);
         }
     }
 }

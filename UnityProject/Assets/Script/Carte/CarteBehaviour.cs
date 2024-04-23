@@ -34,6 +34,7 @@ public abstract class CarteBehaviour : MonoBehaviour
             Instance.playerActif.SetAura(true);
             Spell();
             player.drops -= carteData.drops;
+            player.MiseAjourAffichageDrops();
         }
         else if (player.enAction)
         {

@@ -63,13 +63,12 @@ public class PlayerManager : MonoBehaviour
     {
         main.Dequeue();
     }
- 
+
     public void MiseAJourDrops(int tour)
     {
-        /*
-         * A voir
-         * 
-         */
+        Debug.Log(tour);
+        Debug.Log(tour % 2);
+        drops = tour / 2 + tour % 2;
     }
 
     public void trierAnimaux()
@@ -116,5 +115,11 @@ public class PlayerManager : MonoBehaviour
         {
             Destroy(animalActif.aura);
         }
+    }
+
+    public void MiseAjourAffichageDrops()
+    {
+        //Mise a jour de l'affichage des drops
+        GameManager.Instance.affichage_mana.text = $"{drops}";
     }
 }

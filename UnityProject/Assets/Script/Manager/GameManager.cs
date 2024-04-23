@@ -43,6 +43,7 @@ namespace Script.Manager
             
             // Evité bug au lancement
             playerActif = joueur;
+            tour = 1;
         }
     
         void Update()
@@ -81,10 +82,11 @@ namespace Script.Manager
                 if (!tourActif)
                 {
                     tourActif = true;
-                    if (tour % 2 == 0)
+                    if (tour % 2 != 0)
                     {
                         Debug.Log("C'est votre tour");
                         playerActif = joueur;
+                        joueur.MiseAJourDrops(tour);
                         affichage_mana.text = $"{joueur.drops}";
                         if (joueur.animaux_vivant.Count == 0)
                         {
@@ -92,11 +94,10 @@ namespace Script.Manager
                         }
                         else
                         {
-                            joueur.drops += 5;
                             AnimalBehaviour animalActif = joueur.animaux_vivant.Dequeue();
                             joueur.animaux_vivant.Enqueue(animalActif);
                             playerActif.animalActif = animalActif;
-                            affichage_mana.text = $"{joueur.drops}";
+                            joueur.MiseAjourAffichageDrops();
 
                         }
                     }

@@ -105,6 +105,7 @@ public class PlayerManager : MonoBehaviour
     
     public void SetAura(bool aura)
     {
+        /*
         if (aura)
         {
             animalActif.aura = Instantiate(prefabAura);
@@ -114,6 +115,7 @@ public class PlayerManager : MonoBehaviour
         {
             Destroy(animalActif.aura);
         }
+        */
     }
 
     public void MiseAjourAffichageDrops()

@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Experimental.Rendering.RenderGraphModule;
 using static Script.Manager.GameManager;
-
+using UnityEngine.UI;
 public abstract class CarteBehaviour : MonoBehaviour
 {
     public SpriteRenderer spriteRenderer; 
@@ -15,6 +15,8 @@ public abstract class CarteBehaviour : MonoBehaviour
 
     public CarteData carteData;
 
+    public Text text;
+    
     protected abstract void Awake();
     
     private void Start()
@@ -24,6 +26,31 @@ public abstract class CarteBehaviour : MonoBehaviour
         spriteRenderer.sprite = carteData.Sprite;
         spriteRenderer.sortingOrder = 1;
         player = Instance.joueur;
+        
+        //pour mettre le coût de la carte sur la carte : 
+        GameObject canvasObj = new GameObject("CardCanvas");
+        canvasObj.transform.SetParent(transform);
+        Canvas canvas = canvasObj.AddComponent<Canvas>();
+        canvas.renderMode = RenderMode.ScreenSpaceOverlay;
+        GameObject textObj = new GameObject("CardText");
+        textObj.transform.SetParent(canvasObj.transform);
+        text = textObj.AddComponent<Text>();
+        text.font = Resources.Load<Font>("Fonts/Splatch");
+        text.text = carteData.drops.ToString();
+        text.fontSize = 25; 
+        text.color = new Color32(56, 56, 56, 255); 
+        text.alignment = TextAnchor.MiddleCenter;
+        text.fontStyle = FontStyle.Bold; 
+        RectTransform rectTransform = textObj.GetComponent<RectTransform>();
+        rectTransform.localPosition = new Vector3(transform.position.x, transform.position.y + 1f, 0);
+        rectTransform.sizeDelta = new Vector2(72, 92); 
+
+    }
+    
+    
+    private void Update()
+    {
+        text.text = carteData.drops.ToString();
     }
 
     private void OnMouseDown()

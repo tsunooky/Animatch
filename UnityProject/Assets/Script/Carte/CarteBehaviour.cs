@@ -32,25 +32,30 @@ public abstract class CarteBehaviour : MonoBehaviour
         canvasObj.transform.SetParent(transform);
         Canvas canvas = canvasObj.AddComponent<Canvas>();
         canvas.renderMode = RenderMode.ScreenSpaceOverlay;
+        CanvasScaler scaler = canvasObj.AddComponent<CanvasScaler>();
+        scaler.uiScaleMode = CanvasScaler.ScaleMode.ScaleWithScreenSize;
+        scaler.referenceResolution = new Vector2(1920, 1080);
         GameObject textObj = new GameObject("CardText");
         textObj.transform.SetParent(canvasObj.transform);
         text = textObj.AddComponent<Text>();
         text.font = Resources.Load<Font>("Fonts/Splatch");
         text.text = carteData.drops.ToString();
         text.fontSize = 25; 
-        text.color = new Color32(56, 56, 56, 255); 
-        text.alignment = TextAnchor.MiddleCenter;
+        text.color = new Color32(56, 56, 56, 255);
+        text.alignment = TextAnchor.UpperCenter;
         text.fontStyle = FontStyle.Bold; 
         RectTransform rectTransform = textObj.GetComponent<RectTransform>();
-        rectTransform.localPosition = new Vector3(transform.position.x, transform.position.y + 1f, 0);
-        rectTransform.sizeDelta = new Vector2(72, 92); 
-
+        rectTransform.sizeDelta = new Vector2(70, 92); 
     }
     
     
     private void Update()
     {
         text.text = carteData.drops.ToString();
+        RectTransform rectTransform = text.GetComponent<RectTransform>();
+        Vector3 worldPosition = new Vector3(transform.position.x, transform.position.y + 0.89f, transform.position.z);
+        Vector2 screenPoint = Camera.main.WorldToScreenPoint(worldPosition);
+        rectTransform.position = screenPoint;
     }
 
     private void OnMouseDown()

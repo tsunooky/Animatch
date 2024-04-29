@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Destructible2D;
 using Script.Manager;
 using UnityEngine;
+using Photon.Pun;
 using Destructible2D.Examples;
 using Unity.VisualScripting;
 using static Script.Manager.GameManager;

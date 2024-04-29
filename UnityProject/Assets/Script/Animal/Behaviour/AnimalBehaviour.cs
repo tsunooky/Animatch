@@ -15,7 +15,7 @@ public abstract class AnimalBehaviour : MonoBehaviour
     public int pv;
     public int vitesse;
     public PlayerManager player;
-    public GameObject aura;
+    //public GameObject aura;
     public HealthBar healthBar;
     public GameObject healthBarInstance;
     public float timeSpawn;
@@ -24,6 +24,7 @@ public abstract class AnimalBehaviour : MonoBehaviour
     private SpriteRenderer pointeurSprite;
     public string nom;
     public bool actif;
+    public GameObject currentInstance;
     
     public void setPointeur()
     {
@@ -64,7 +65,18 @@ public abstract class AnimalBehaviour : MonoBehaviour
         healthBar = healthBarInstance.GetComponent<HealthBar>();
         healthBar.SetMaxHealth(pv);
     }
-    
+
+    public void LoadAura()
+    {
+        if (player == GameManager.Instance.playerActif)
+        {
+            currentInstance = Instantiate(Resources.Load<GameObject>("Prefabs/Autre/joueur_equi"));
+        }
+        else
+        {
+            currentInstance = Instantiate(Resources.Load<GameObject>("Prefabs/Autre/joueur_adv"));
+        }
+    }
     // ReSharper disable Unity.PerformanceAnalysis
     public void AnimalVisible()
     {
@@ -104,6 +116,7 @@ public abstract class AnimalBehaviour : MonoBehaviour
             healthBar.SetHealth(pv);
             Destroy(healthBar);
             Destroy(gameObject);
+            Destroy(currentInstance);
             if (healthBarInstance != null)
             {
                 Destroy(healthBarInstance);
@@ -142,6 +155,7 @@ public abstract class AnimalBehaviour : MonoBehaviour
     {
         Destroy(healthBarInstance);
         Destroy(healthBar);
+        Destroy(currentInstance);
         for (int i = 0; i < player.animaux_vivant.Count; i++)
         {
             AnimalBehaviour animal = player.animaux_vivant.Dequeue();
@@ -179,13 +193,43 @@ public abstract class AnimalBehaviour : MonoBehaviour
             screenPosition.y += 50; // Adjust this value as needed
             healthBarInstance.transform.position = screenPosition;
         }
+
+        if (currentInstance != null)
+        {
+            Vector3 screenPosition = transform.position;
+            screenPosition.y += 1.2f; 
+            currentInstance.transform.position = screenPosition;
+            StartCoroutine(MoveAura());
+        }
+        
+        /*
         if (aura != null)
         {
             aura.transform.position = gameObject.transform.position;
-        }
+        }*/
 
         actif = player.animalActif == this;
         pointeurSprite.enabled = actif;
         pointeur.transform.position = gameObject.transform.position;
+    }
+    
+    IEnumerator MoveAura()
+    {
+        while (true)
+        {
+            // Move the object upwards over 2 seconds
+            for (float t = 0; t <= 0.1f; t += Time.deltaTime / 5f)
+            {
+                currentInstance.transform.position = new Vector3(currentInstance.transform.position.x, currentInstance.transform.position.y + t * 0.02f, currentInstance.transform.position.z);
+                yield return null;
+            }
+
+            // Move the object downwards over 2 seconds
+            for (float t = 0; t <= 0.1f; t += Time.deltaTime / 5f)
+            {
+                currentInstance.transform.position = new Vector3(currentInstance.transform.position.x, currentInstance.transform.position.y - t * 0.02f, currentInstance.transform.position.z);
+                yield return null;
+            }
+        }
     }
 }

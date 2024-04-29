@@ -82,7 +82,7 @@ public class My_Launcher : MonoBehaviourPunCallbacks
         // Load a game when we are a host, if not Awake will be used to get connect
         if (PhotonNetwork.CurrentRoom.PlayerCount == 1)
         {
-            Debug.Log("We load the 'Room for 1' ");
+            Debug.Log("We load the 'Room for 1");
 
             PhotonNetwork.LoadLevel("Main");
         }

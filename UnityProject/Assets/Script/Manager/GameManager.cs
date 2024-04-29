@@ -75,9 +75,6 @@ namespace Script.Manager
                         x.animaux_vivant.Enqueue(newAnimal);
                         newAnimal.player = x;
 						newAnimal.LoadHealthbar();
-                        GameObject animalObject = new GameObject(newAnimal.nom); // Créer un nouvel objet avec le nom de l'animal
-                        PhotonView photonView = animalObject.AddComponent<PhotonView>(); // Ajouter un PhotonView à l'objet
-                        photonView.TransferOwnership(PhotonNetwork.LocalPlayer); // Transférer la propriété de l'objet au joueur local
                     }
                 }
             }

@@ -26,6 +26,7 @@ public abstract class CarteBehaviour : MonoBehaviour
         spriteRenderer.sprite = carteData.Sprite;
         spriteRenderer.sortingOrder = 1;
         player = Instance.joueur;
+        spriteRenderer.color = new Color32(200,200,200,255);
         
         //pour mettre le coût de la carte sur la carte : 
         GameObject canvasObj = new GameObject("CardCanvas");
@@ -41,7 +42,7 @@ public abstract class CarteBehaviour : MonoBehaviour
         text.font = Resources.Load<Font>("Fonts/Splatch");
         text.text = carteData.drops.ToString();
         text.fontSize = 25; 
-        text.color = new Color32(56, 56, 56, 255);
+        text.color = new Color32(50, 50, 50, 255);
         text.alignment = TextAnchor.UpperCenter;
         text.fontStyle = FontStyle.Bold; 
         RectTransform rectTransform = textObj.GetComponent<RectTransform>();
@@ -62,6 +63,7 @@ public abstract class CarteBehaviour : MonoBehaviour
     {
         if (Instance.playerActif == player && player.drops - carteData.drops >= 0 && !player.enAction)
         { 
+            spriteRenderer.color = Color.white;
             Instance.playerActif.enAction = true;
             Instance.playerActif.SetAura(true);
             Spell();
@@ -82,6 +84,8 @@ public abstract class CarteBehaviour : MonoBehaviour
         var vector3 = transform.position;
         vector3.y += 1f;
         transform.position = vector3;
+        
+        spriteRenderer.color = Color.white;
     }
 
     private void OnMouseExit()
@@ -89,6 +93,7 @@ public abstract class CarteBehaviour : MonoBehaviour
         var vector3 = transform.position;
         vector3.y =  -4f;
         transform.position = vector3;
+        spriteRenderer.color = new Color32(200,200,200,255);
     }
 
     protected abstract void Spell();

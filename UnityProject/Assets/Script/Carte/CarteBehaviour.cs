@@ -65,14 +65,17 @@ public abstract class CarteBehaviour : MonoBehaviour
 
     private void OnMouseDown()
     {
-        OnMouseExit();
         if (ancienne_carte_selec != null && ancienne_carte_selec != this)
         {
             ancienne_carte_selec.DeselectCard();
         }
         
         if (Instance.playerActif == player && player.drops - carteData.drops >= 0 && !player.enAction)
-        { 
+        {
+            var vector3 = transform.position;
+            vector3.y =  -4f;
+            transform.position = vector3;
+            spriteRenderer.color = new Color32(200,200,200,255);
             SelectCard();
         }
         else if (player.enAction)

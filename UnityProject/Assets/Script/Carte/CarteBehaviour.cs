@@ -28,7 +28,7 @@ public abstract class CarteBehaviour : MonoBehaviour
         spriteRenderer = gameObject.AddComponent<SpriteRenderer>();
         gameObject.AddComponent<BoxCollider2D>().size = new Vector2(1.75f,3);
         spriteRenderer.sprite = carteData.Sprite;
-        spriteRenderer.sortingOrder = 10;
+        spriteRenderer.sortingOrder = 11;
         player = Instance.joueur;
         spriteRenderer.color = new Color32(200,200,200,255);
         

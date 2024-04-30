@@ -155,6 +155,8 @@ public class AimAndShoot : MonoBehaviour
             ProjectileBehaviour bulletBehaviour = bullet.GetComponentsInChildren<ProjectileBehaviour>()[0];
             bulletBehaviour.Set((startMousePos,currentMousePos),projectileData);
             Destroy(this);
+            //mettre carte shoot dans queue + destory card on board 
+            
         }
     }
     

@@ -5,6 +5,7 @@ using UnityEngine;
 using Script.Manager;
 using UnityEngine.UI;
 using Photon.Pun;
+using UnityEngine.SceneManagement;
 
 namespace Script.Manager
 {
@@ -162,7 +163,14 @@ namespace Script.Manager
         private void Win(PlayerManager player)
         {
             Debug.Log("Victoire de " + player.name);
+            SceneManager.LoadScene("Fin");
+            Invoke("QuitGame", 10f);
+        }
+        private void QuitGame()
+        {
             Application.Quit();
         }
     }
-}
+
+    
+    }

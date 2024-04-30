@@ -61,6 +61,7 @@ public class PlayerManager : MonoBehaviour
 
     public void DefausserMain()
     {
+        
         main.Dequeue();
     }
 

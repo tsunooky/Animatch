@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Destructible2D;
 using UnityEngine;
 using Script.Manager;
 using UnityEngine.InputSystem;
@@ -13,7 +14,7 @@ public class HandToHand : MonoBehaviour
 
     private float spawnDistance = 0.70f;
 
-    private float delayBeforeHitBOT = 5f;
+    private float delayBeforeHitBOT = 0.1f;
     public bool bot;
     private bool isAiming;
 
@@ -32,7 +33,14 @@ public class HandToHand : MonoBehaviour
     {
         _affichage = new GameObject("Trajectory_hand_tot_hand");
         var affich = _affichage.AddComponent<SpriteRenderer>();
-        affich.sprite = Resources.Load<Sprite>("Sprites/Autre/HandToHand_Affichage");
+        Sprite sprite = Resources.Load<Sprite>("Sprites/Autre/HandToHand_Affichage");
+        D2dDestructibleSprite destructibleSprite = _affichage.AddComponent<D2dDestructibleSprite>();
+        affich.sprite = sprite;
+        destructibleSprite.Shape = sprite; 
+        destructibleSprite.Rebuild();
+        destructibleSprite.RebuildAlphaTex();
+        destructibleSprite.Indestructible = true; // L'animal n'est pas destructible
+        destructibleSprite.CropSprite = false;
         affich.enabled = false;
     }
     
@@ -77,6 +85,7 @@ public class HandToHand : MonoBehaviour
             Vector2 mousePositionWorld = Camera.main.ScreenToWorldPoint(mousePositionPixels);
             direction = (mousePositionWorld - (Vector2)_affichage.transform.position).normalized;
             _affichage.transform.right = direction;
+            _affichage.transform.rotation *= Quaternion.Euler(0, 0, -45f);
         }
     }
 
@@ -86,6 +95,7 @@ public class HandToHand : MonoBehaviour
         setAim(false, false);
         //ANIMATION BAT ICI
         _affichage.AddComponent<TouchToBump>();
+        _affichage.AddComponent<PolygonCollider2D>();
         yield return new WaitForSeconds(delayBeforeHitBOT);
         Destroy(this);
     }

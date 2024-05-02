@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,7 +14,17 @@ public class TouchToBump : ProjectileBehaviour
         bool invinsible = cible == AnimalActif;
         if (!invinsible)
         {
-            other.gameObject.transform.parent.gameObject.transform.position = new Vector3();
+            // Coordonnées de départ
+            Vector2 startPosition = transform.position;
+            
+            // Direction en fonction de l'angle de rotation
+            Vector2 direction = Quaternion.Euler(0, 0, transform.rotation.eulerAngles.z) * Vector2.right;
+            
+            // Coordonnées d'arrivée
+            Vector2 endPosition = startPosition + direction;
+ 
+            Vector2 bump = (endPosition - startPosition).normalized;
+            cible.GetComponent<Rigidbody2D>().AddForce(bump * 50000);
             FinAction();
         }
     }

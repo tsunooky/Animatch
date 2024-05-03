@@ -42,6 +42,7 @@ public class HandToHand : MonoBehaviour
         destructibleSprite.Indestructible = true; // L'animal n'est pas destructible
         destructibleSprite.CropSprite = false;
         affich.enabled = false;
+        _affichage.AddComponent<PolygonCollider2D>().enabled = false;
     }
     
     
@@ -94,8 +95,8 @@ public class HandToHand : MonoBehaviour
     {
         setAim(false, false);
         //ANIMATION BAT ICI
-        _affichage.AddComponent<TouchToBump>();
-        _affichage.AddComponent<PolygonCollider2D>();
+        _affichage.AddComponent<TouchToBump>(); 
+        _affichage.GetComponent<PolygonCollider2D>().enabled = true;
         yield return new WaitForSeconds(delayBeforeHitBOT);
         Destroy(this);
     }

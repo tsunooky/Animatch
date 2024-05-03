@@ -26,7 +26,8 @@ public abstract class CarteBehaviour : MonoBehaviour
     private void Start()
     {
         spriteRenderer = gameObject.AddComponent<SpriteRenderer>();
-        gameObject.AddComponent<BoxCollider2D>().size = new Vector2(1.75f,3);
+        gameObject.AddComponent<BoxCollider2D>().size = new Vector2(1.75f, 5);
+        gameObject.GetComponent<BoxCollider2D>().offset = new Vector2(0, -1);
         spriteRenderer.sprite = carteData.Sprite;
         spriteRenderer.sortingOrder = 11;
         player = Instance.joueur;
@@ -67,7 +68,7 @@ public abstract class CarteBehaviour : MonoBehaviour
     {
         if (ancienne_carte_selec != null && ancienne_carte_selec != this)
         {
-            ancienne_carte_selec.DeselectCard();
+            ancienne_carte_selec.carte_actuel = false;
         }
         
         if (Instance.playerActif == player && player.drops - carteData.drops >= 0 && !player.enAction)
@@ -78,7 +79,7 @@ public abstract class CarteBehaviour : MonoBehaviour
             spriteRenderer.color = new Color32(200,200,200,255);
             SelectCard();
         }
-        else if (player.enAction)
+        else if (player.enAction && player.drops != 0)
         {
             DeselectCard();
         }

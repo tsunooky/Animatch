@@ -41,6 +41,7 @@ public abstract class AnimalBehaviour : MonoBehaviour
         timeSpawn = Time.time;
         gameObject.layer = 6;
         player = Instance.joueur;
+        currentInstance = new GameObject();
     }
     
 

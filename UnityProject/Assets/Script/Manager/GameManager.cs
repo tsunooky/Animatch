@@ -118,9 +118,12 @@ namespace Script.Manager
                             animalActif.LoadAura();
                             bot.animaux_vivant.Enqueue(animalActif);
                             playerActif.animalActif = animalActif;
-                            AimAndShoot animalActifBot = animalActif.gameObject.AddComponent<AimAndShoot>();
-                            animalActifBot.Initialize("tomate");
-                            animalActifBot.Shoot(Vector3.up);
+                            if (animalActif!=null)
+                            {
+                                AimAndShoot animalActifBot = animalActif.gameObject.AddComponent<AimAndShoot>();
+                                animalActifBot.Initialize("tomate");
+                                animalActifBot.Shoot(Vector3.up);
+                            }
                             
                             FinfDuTour();
                         }
@@ -162,6 +165,7 @@ namespace Script.Manager
             // regle le bug #01
             tourActif = false;
             Destroy(playerActif.animalActif.currentInstance);
+            playerActif.animalActif.currentInstance = new GameObject();
         }
 
         private void Win(PlayerManager player)

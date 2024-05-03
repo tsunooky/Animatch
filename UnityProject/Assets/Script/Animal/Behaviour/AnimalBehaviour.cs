@@ -25,6 +25,7 @@ public abstract class AnimalBehaviour : MonoBehaviour
     public string nom;
     public bool actif;
     public GameObject currentInstance;
+    [SerializeField] private ParticleSystem ps = default;
     
     public void setPointeur()
     {

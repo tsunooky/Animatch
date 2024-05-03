@@ -6,7 +6,7 @@ public class DespawnManager : MonoBehaviour
 {
     private void Update()
     {
-        if (gameObject.transform.position.y < -6)
+        if (gameObject.transform.position.y < -5)
         {
             Destroy(gameObject);
         }

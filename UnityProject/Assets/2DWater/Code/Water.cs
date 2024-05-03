@@ -1,3 +1,5 @@
+using System;
+using System.IO.Pipes;
 using UnityEngine;
 
 namespace Bundos.WaterSystem
@@ -212,9 +214,12 @@ namespace Bundos.WaterSystem
         {
             if (!interactive)
                 return;
-
-            Rigidbody2D otherRigidbody = other.GetComponent<Rigidbody2D>();
-            if (otherRigidbody != null)
+            var otherparent = other.gameObject.transform.parent.gameObject;
+            if (otherparent == null)
+                otherparent = other.gameObject;
+            Rigidbody2D otherRigidbody = otherparent.GetComponent<Rigidbody2D>();
+            Rigidbody2D otherr = otherparent.GetComponent<Rigidbody2D>();
+            if (otherRigidbody != null || otherr != null)
             {
                 Vector2 contactPoint = other.ClosestPoint(transform.position);
 
@@ -222,17 +227,23 @@ namespace Bundos.WaterSystem
             }
         }
 
+        /*
         void OnTriggerExit2D(Collider2D other)
         {
-            if (!interactive)
+            if (!interactive || other.gameObject.transform.parent.gameObject == null)
                 return;
 
-            Rigidbody2D otherRigidbody = other.GetComponent<Rigidbody2D>();
-            if (otherRigidbody != null)
+            var otherparent = other.gameObject.transform.parent.gameObject;
+            if (otherparent == null)
+                otherparent = other.gameObject;
+            Rigidbody2D otherRigidbody = otherparent.GetComponent<Rigidbody2D>();
+            Rigidbody2D otherr = otherparent.GetComponent<Rigidbody2D>();
+            if (otherRigidbody != null || otherr != null)
             {
                 Vector2 contactPoint = other.ClosestPoint(transform.position);
                 Ripple(contactPoint, true);
             }
         }
+        */
     }
 }

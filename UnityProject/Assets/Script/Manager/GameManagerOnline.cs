@@ -136,16 +136,17 @@ namespace Script.ManagerOnline
     
     
         // ReSharper disable Unity.PerformanceAnalysis
+        
         AnimalBehaviour creerAnimal(float x, float y,string animal)
         {
             var animalTypes = DataDico.animalTypes;
             if (animalTypes.ContainsKey(animal))
             {
                 // Création d'un GameObject
-                GameObject newAnimal = new GameObject(animal + x);
+                GameObject newAnimal = PhotonNetwork.Instantiate($"Prefabs/Animaux/{animal}", new Vector2(x, y),
+                    Quaternion.identity);
                 Type typeAnimal = animalTypes[animal];
                 AnimalBehaviour animalBehaviour = (AnimalBehaviour)(newAnimal.AddComponent(typeAnimal));
-                newAnimal.transform.position = new Vector2(x, y);
                 animalBehaviour.AnimalVisible();
                 animalBehaviour.nom = animal + x;
                 animalBehaviour.setPointeur();
@@ -172,6 +173,23 @@ namespace Script.ManagerOnline
             Application.Quit();
         }
     }
-
-    
-    }
+    /*
+     AnimalBehaviour creerAnimal(float x, float y,string animal)
+        {
+            var animalTypes = DataDico.animalTypes;
+            if (animalTypes.ContainsKey(animal))
+            {
+                // Création d'un GameObject
+                GameObject newAnimal = new GameObject(animal + x);
+                Type typeAnimal = animalTypes[animal];
+                AnimalBehaviour animalBehaviour = (AnimalBehaviour)(newAnimal.AddComponent(typeAnimal));
+                newAnimal.transform.position = new Vector2(x, y);
+                animalBehaviour.AnimalVisible();
+                animalBehaviour.nom = animal + x;
+                animalBehaviour.setPointeur();
+                return animalBehaviour;
+            }
+            throw new Exception("Ce type d'animal n'existe pas ");
+        }
+     */
+}

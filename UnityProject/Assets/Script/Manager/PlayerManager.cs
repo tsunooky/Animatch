@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using Script.Data;
 using Script.Manager;
 using UnityEngine;
+using System.Linq;
+
 
 public class PlayerManager : MonoBehaviour
 {
@@ -57,6 +59,15 @@ public class PlayerManager : MonoBehaviour
             mécanique utlisant le deck de carte de Profil non implémenter pour le moment 
             main.Enqueue(carte);
         */
+        // Méthode pour piocher la main initiale
+        for (int i = 0; i < 4; i++)
+        {
+            if (profil.deckCartes.Length > i)
+            {
+                main.Enqueue(DataDico.carteTypes[profil.deckCartes[i]]);
+            }
+        }
+        MettreAjourMain();
     }
 
     public void DefausserMain()
@@ -104,21 +115,35 @@ public class PlayerManager : MonoBehaviour
         }
     }
     
-    public void SetAura(bool aura)
+    public void ActionComplete(CarteBehaviour carte)
     {
-        /*
-        if (aura)
-        {
-            animalActif.aura = Instantiate(prefabAura);
-        }
+        Type usedCardType = carte.GetType();
+        main.Dequeue();
+        main.Enqueue(usedCardType);
 
-        if (!aura)
-        {
-            Destroy(animalActif.aura);
-        }
-        */
+        // Mettre à jour l'affichage de la main
+        MettreAjourMain();
     }
+    
+    /*public void RetirerCarteEtPiocherNouvelle(CarteBehaviour carte)
+    {
+        // Retirer la carte jouée
+        main.Dequeue();
+        Destroy(carte.gameObject);
 
+        // Piocher une nouvelle carte
+        if (profil.deckCartes.Length > 0)
+        {
+            var newCardType = DataDico.carteTypes[profil.deckCartes[0]];
+            main.Enqueue(newCardType);
+            profil.deckCartes = profil.deckCartes.Skip(1).ToArray();
+
+            // Mettre à jour l'affichage de la main
+            MettreAjourMain();
+        }
+    }*/
+    
+    public void SetAura(bool aura){}
     public void MiseAjourAffichageDrops()
     {
         //Mise a jour de l'affichage des drops

@@ -57,11 +57,14 @@ public abstract class CarteBehaviour : MonoBehaviour
     
     private void Update()
     {
-        text.text = carteData.drops.ToString();
-        RectTransform rectTransform = text.GetComponent<RectTransform>();
-        Vector3 worldPosition = new Vector3(transform.position.x, transform.position.y + 0.89f, transform.position.z);
-        Vector2 screenPoint = Camera.main.WorldToScreenPoint(worldPosition);
-        rectTransform.position = screenPoint;
+        if (text != null)
+        {
+            text.text = carteData.drops.ToString();
+            RectTransform rectTransform = text.GetComponent<RectTransform>();
+            Vector3 worldPosition = new Vector3(transform.position.x, transform.position.y + 0.89f, transform.position.z);
+            Vector2 screenPoint = Camera.main.WorldToScreenPoint(worldPosition);
+            rectTransform.position = screenPoint;
+        }
     }
 
     private void OnMouseDown()
@@ -99,6 +102,9 @@ public abstract class CarteBehaviour : MonoBehaviour
         player.drops -= carteData.drops;
         player.MiseAjourAffichageDrops();
         ancienne_carte_selec = this;
+        
+        //Instance.playerActif.ActionComplete(this);
+    
     }
 
     private void DeselectCard()
@@ -136,7 +142,12 @@ public abstract class CarteBehaviour : MonoBehaviour
             spriteRenderer.color = new Color32(200,200,200,255);
         }
     }
-
+    
+    /*protected void ActionComplete()
+    {
+        player.RetirerCarteEtPiocherNouvelle(this);
+    }*/
+    
     protected abstract void Spell();
 
     protected virtual void RemoveSpell()

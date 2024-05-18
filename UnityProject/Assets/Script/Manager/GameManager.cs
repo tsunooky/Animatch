@@ -5,6 +5,7 @@ using UnityEngine;
 using Script.Manager;
 using UnityEngine.UI;
 using Photon.Pun;
+using UnityEditor;
 using UnityEngine.SceneManagement;
 
 namespace Script.Manager

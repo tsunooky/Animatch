@@ -15,7 +15,6 @@ public abstract class AnimalBehaviour : MonoBehaviour
     public int pv;
     public int vitesse;
     public PlayerManager player;
-    //public GameObject aura;
     public HealthBar healthBar;
     public GameObject healthBarInstance;
     public float timeSpawn;
@@ -203,12 +202,6 @@ public abstract class AnimalBehaviour : MonoBehaviour
             currentInstance.transform.position = screenPosition;
             StartCoroutine(MoveAura());
         }
-        
-        /*
-        if (aura != null)
-        {
-            aura.transform.position = gameObject.transform.position;
-        }*/
 
         actif = player.animalActif == this;
         pointeurSprite.enabled = actif;

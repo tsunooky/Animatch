@@ -102,8 +102,6 @@ public abstract class CarteBehaviour : MonoBehaviour
         player.drops -= carteData.drops;
         player.MiseAjourAffichageDrops();
         ancienne_carte_selec = this;
-        
-        //Instance.playerActif.ActionComplete(this);
     
     }
 
@@ -142,11 +140,6 @@ public abstract class CarteBehaviour : MonoBehaviour
             spriteRenderer.color = new Color32(200,200,200,255);
         }
     }
-    
-    /*protected void ActionComplete()
-    {
-        player.RetirerCarteEtPiocherNouvelle(this);
-    }*/
     
     protected abstract void Spell();
 

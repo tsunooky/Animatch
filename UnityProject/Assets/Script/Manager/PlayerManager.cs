@@ -22,7 +22,7 @@ public class PlayerManager : MonoBehaviour
     public bool enAction;
     public bool enVisee;
     private GameObject prefabAura;
-   
+    public Queue<Type> deck = new Queue<Type>();
 
     public void Awake()
     {
@@ -59,21 +59,16 @@ public class PlayerManager : MonoBehaviour
             mécanique utlisant le deck de carte de Profil non implémenter pour le moment 
             main.Enqueue(carte);
         */
-        // Méthode pour piocher la main initiale
-        for (int i = 0; i < 4; i++)
-        {
-            if (profil.deckCartes.Length > i)
-            {
-                main.Enqueue(DataDico.carteTypes[profil.deckCartes[i]]);
-            }
-        }
-        MettreAjourMain();
+        
+        
+       MettreAjourMain();
     }
-
+    
     public void DefausserMain()
     {
         
         main.Dequeue();
+        MettreAjourMain();
     }
 
     public void MiseAJourDrops(int tour)
@@ -94,8 +89,14 @@ public class PlayerManager : MonoBehaviour
 
     public void CreerMain()
     {
+        for (int i = 0; i < 8; i++)
+        {
+            deck.Enqueue(DataDico.carteTypes[profil.deckCartes[i]]);
+        }
+        // Méthode pour piocher la main initiale
         for (int i = 0; i < 4; i++)
         {
+            deck.Enqueue(deck.Dequeue());
             main.Enqueue(DataDico.carteTypes[profil.deckCartes[i]]);
         }
         MettreAjourMain();
@@ -114,34 +115,6 @@ public class PlayerManager : MonoBehaviour
             main.Enqueue(typeCarte);
         }
     }
-    
-    public void ActionComplete(CarteBehaviour carte)
-    {
-        Type usedCardType = carte.GetType();
-        main.Dequeue();
-        main.Enqueue(usedCardType);
-
-        // Mettre à jour l'affichage de la main
-        MettreAjourMain();
-    }
-    
-    /*public void RetirerCarteEtPiocherNouvelle(CarteBehaviour carte)
-    {
-        // Retirer la carte jouée
-        main.Dequeue();
-        Destroy(carte.gameObject);
-
-        // Piocher une nouvelle carte
-        if (profil.deckCartes.Length > 0)
-        {
-            var newCardType = DataDico.carteTypes[profil.deckCartes[0]];
-            main.Enqueue(newCardType);
-            profil.deckCartes = profil.deckCartes.Skip(1).ToArray();
-
-            // Mettre à jour l'affichage de la main
-            MettreAjourMain();
-        }
-    }*/
     
     public void SetAura(bool aura){}
     public void MiseAjourAffichageDrops()

@@ -98,14 +98,14 @@ public abstract class CarteBehaviour : MonoBehaviour
         
         Instance.playerActif.enAction = true;
         Instance.playerActif.SetAura(true);
-        Spell();
+        SpellClickOnCarte();
         player.drops -= carteData.drops;
         player.MiseAjourAffichageDrops();
         ancienne_carte_selec = this;
     
     }
 
-    private void DeselectCard()
+    public void DeselectCard()
     {
         carte_actuel = false;
         Instance.playerActif.SetAura(false);
@@ -141,10 +141,31 @@ public abstract class CarteBehaviour : MonoBehaviour
         }
     }
     
+<<<<<<< Updated upstream
     protected abstract void Spell();
+=======
+    /*protected void ActionComplete()
+    {
+        player.RetirerCarteEtPiocherNouvelle(this);
+    }*/
+
+    protected abstract void SpellClickOnCarte();
+    public abstract void SpellAfterClick();
+
+    public abstract void SpellAfterShoot(Vector2 start,Vector2 current);
+>>>>>>> Stashed changes
 
     protected virtual void RemoveSpell()
     {
         Instance.playerActif.enAction = false;
+    }
+
+    protected void ClassiqueShoot(Vector2 startPosition, Vector2 currentMousePos)
+    {
+        var projectileData = carteData.projectileData;
+        projectileData.Lanceur = gameObject;
+        GameObject bullet = Instantiate(projectileData.Projectile, startPosition, Quaternion.identity);
+        ProjectileBehaviour bulletBehaviour = bullet.GetComponent<ProjectileBehaviour>();
+        bulletBehaviour.Set((startPosition, currentMousePos), projectileData);
     }
 }

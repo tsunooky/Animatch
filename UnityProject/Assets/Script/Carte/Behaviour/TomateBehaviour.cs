@@ -8,9 +8,20 @@ public class TomateBehaviour : CarteBehaviour
         carteData = Resources.Load<CarteData>("Data/Carte/Tomate");
     }
 
-    protected override void Spell()
+    protected override void SpellClickOnCarte()
     {
-        GameManager.Instance.playerActif.animalActif.gameObject.AddComponent<AimAndShoot>().Initialize(carteData.projectileData,
-            carteData.projectileData.Projectile.GetComponent<Sprite>());
+        GameManager.Instance.playerActif.animalActif.gameObject.AddComponent<ClickBehaviour>().Initialize(this);
     }
+    
+    public override void SpellAfterClick()
+    {
+        GameManager.Instance.playerActif.animalActif.gameObject.AddComponent<AimBehviour>().Initialize(carteData.projectileData,this);
+    }
+
+    public override void SpellAfterShoot(Vector2 startPosition ,Vector2 currentMousePos)
+    {
+        ClassiqueShoot(startPosition,currentMousePos);
+    }
+
+    
 }

@@ -33,7 +33,7 @@ public abstract class ProjectileBehaviour : MonoBehaviour
     
     public void SetStraightVelocity()
     {
-        gameObject.GetComponent<Rigidbody2D>().velocity = (ligne.Item1 - ligne.Item2) * projectileData.Force * 0.075f;;
+        gameObject.GetComponent<Rigidbody2D>().velocity = (ligne.Item1 - ligne.Item2) * (projectileData.Force * 0.075f);;
     }
 
     protected void FinAction()

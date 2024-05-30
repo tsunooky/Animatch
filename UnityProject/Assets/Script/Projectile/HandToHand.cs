@@ -17,6 +17,7 @@ public class HandToHand : MonoBehaviour
     private float delayBeforeHitBOT = 0.1f;
     public bool bot;
     private bool isAiming;
+    private Transform colliderChild;
 
     public void Initialize(ProjectileData ProjectileData, Sprite SpriteGun)
     {
@@ -31,21 +32,19 @@ public class HandToHand : MonoBehaviour
 
     void Awake()
     {
-        _affichage = new GameObject("Trajectory_hand_tot_hand");
+        _affichage = new GameObject("Trajectory_hand_to_hand");
         var affich = _affichage.AddComponent<SpriteRenderer>();
         Sprite sprite = Resources.Load<Sprite>("Sprites/Autre/HandToHand_Affichage");
         D2dDestructibleSprite destructibleSprite = _affichage.AddComponent<D2dDestructibleSprite>();
         affich.sprite = sprite;
-        destructibleSprite.Shape = sprite; 
+        destructibleSprite.Shape = sprite;
         destructibleSprite.Rebuild();
         destructibleSprite.RebuildAlphaTex();
         destructibleSprite.Indestructible = true; // L'animal n'est pas destructible
         destructibleSprite.CropSprite = false;
         affich.enabled = false;
-        _affichage.AddComponent<PolygonCollider2D>().enabled = false;
     }
-    
-    
+
     private void Update()
     {
         if (!GameManager.Instance.playerActif.enAction)
@@ -54,7 +53,7 @@ public class HandToHand : MonoBehaviour
         }
         if (Mouse.current.leftButton.wasPressedThisFrame && GameManager.Instance.playerActif.enVisee)
         {
-            setAim(true,false);
+            SetAim(true, false);
         }
         if (Mouse.current.leftButton.wasReleasedThisFrame && isAiming && !GameManager.Instance.playerActif.enVisee)
         {
@@ -64,17 +63,17 @@ public class HandToHand : MonoBehaviour
             }
         }
 
-        if (Input.GetMouseButton(0) && isAiming)
+        if (Mouse.current.leftButton.isPressed && isAiming)
         {
             _affichage.transform.position = gameObject.transform.position;
-             _affichage.GetComponent<SpriteRenderer>().enabled = true;
+            _affichage.GetComponent<SpriteRenderer>().enabled = true;
         }
         else
         {
             _affichage.GetComponent<SpriteRenderer>().enabled = false;
         }
     }
-    
+
     private void Aim()
     {
         if (!bot)
@@ -90,27 +89,40 @@ public class HandToHand : MonoBehaviour
         }
     }
 
-    // ReSharper disable Unity.PerformanceAnalysis
     private IEnumerator Shoot()
     {
-        setAim(false, false);
-        //ANIMATION BAT ICI
-        _affichage.AddComponent<TouchToBump>(); 
-        _affichage.GetComponent<PolygonCollider2D>().enabled = true;
+        _affichage.AddComponent<D2dPolygonCollider>();
+        SetAim(false, false);
+        // ANIMATION BAT ICI
+
+        // Activer le collider au moment du shoot
+        AddBump();
         yield return new WaitForSeconds(delayBeforeHitBOT);
         Destroy(this);
     }
-    
+
     private void OnDestroy()
     {
         Destroy(_affichage);
     }
-    
-    
-    private void setAim(bool isAiming, bool aura)
+
+    private void AddBump()
+    {
+        colliderChild = _affichage.transform.Find("Collider");
+        if (colliderChild != null)
+        {
+            colliderChild.gameObject.AddComponent<TouchToBump>();
+            Debug.Log("Le composant TouchToBump a été ajouté à " + colliderChild.name);
+        }
+        else
+        {
+            Debug.LogWarning("L'objet 'Collider' n'a pas été trouvé pour ajouter le composant TouchToBump.");
+        }
+    }
+
+    private void SetAim(bool isAiming, bool aura)
     {
         GameManager.Instance.playerActif.SetAura(aura);
         this.isAiming = isAiming;
     }
-    
 }

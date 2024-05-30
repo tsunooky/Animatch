@@ -15,7 +15,9 @@ namespace Script.Data
         public static Dictionary<string, Type> carteTypes = new Dictionary<string, Type>
         {
             { "tomate", typeof(TomateBehaviour) },
-            {"bat",typeof(BatBehaviour)}
+            {"bat",typeof(BatBehaviour)},
+            {"jump",typeof(JumpBehaviour)},
+            {"heal",typeof(HealBehaviour)}
         };
     }
 }

@@ -147,10 +147,6 @@ namespace Script.Manager
                 // Création d'un GameObject
                 GameObject newAnimal = new GameObject(animal + x);
                 Type typeAnimal = animalTypes[animal];
-                // Pour online, pour l'instant ici, a terme dans le ManagerOnline
-                PhotonView photonView = newAnimal.AddComponent<PhotonView>();
-                photonView.TransferOwnership(PhotonNetwork.LocalPlayer);
-                //
                 AnimalBehaviour animalBehaviour = (AnimalBehaviour)(newAnimal.AddComponent(typeAnimal));
                 newAnimal.transform.position = new Vector2(x, y);
                 animalBehaviour.AnimalVisible();

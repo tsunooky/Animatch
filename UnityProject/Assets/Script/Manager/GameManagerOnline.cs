@@ -6,10 +6,11 @@ using Script.Manager;
 using UnityEngine.UI;
 using Photon.Pun;
 using UnityEngine.SceneManagement;
+using Photon.Realtime;
 
 namespace Script.ManagerOnline
 {
-    public class GameManagerOnline : MonoBehaviour
+    public class GameManagerOnline : MonoBehaviourPunCallbacks
     { 
         public static GameManagerOnline Instance;
 
@@ -22,8 +23,11 @@ namespace Script.ManagerOnline
         private bool spawn = true;
 
         public bool tourActif = false;
+    
+        private bool isRoomReady = false;
 
         public PlayerManager playerActif;
+        
         public Text affichage_mana;
       
         private void Awake()
@@ -36,7 +40,7 @@ namespace Script.ManagerOnline
             
             
             Instance = this;
-            joueur =  gameObject.AddComponent<PlayerManager>();
+            joueur =  gameObject.AddComponent<PlayerManager>(); 
             joueur.CreateProfil();
             joueur.CreerMain();
             joueur2 = gameObject.AddComponent<PlayerManager>();
@@ -47,10 +51,18 @@ namespace Script.ManagerOnline
             // Evité bug au lancement
             playerActif = joueur;
             tour = 1;
+            
+            isRoomReady = PhotonNetwork.CurrentRoom.PlayerCount > 1;
+            PhotonNetwork.AddCallbackTarget(this);
         }
     
         void Update()
         {
+            if (!isRoomReady)
+            {
+                // Ne rien faire tant que la salle n'est pas prête
+                return;
+            }
             if (spawn)
             {
                 if (joueur.deckAnimal.Count == 0 && joueur2.deckAnimal.Count == 0)
@@ -133,23 +145,53 @@ namespace Script.ManagerOnline
                 }
             }
         }
-    
+        
+        public override void OnPlayerEnteredRoom(Player newPlayer)
+        {
+            base.OnPlayerEnteredRoom(newPlayer);
+            CheckRoomStatus(); // Vérifiez si la salle est prête à démarrer le jeu
+        }
+
+        // Méthode appelée lorsqu'un joueur quitte la salle
+        public override void OnPlayerLeftRoom(Player otherPlayer)
+        {
+            base.OnPlayerLeftRoom(otherPlayer);
+            CheckRoomStatus(); // Vérifiez si la salle est prête à démarrer le jeu
+        }
+
+        private void CheckRoomStatus()
+        {
+            isRoomReady = PhotonNetwork.CurrentRoom.PlayerCount > 1; // La salle est prête si elle a au moins deux joueurs
+        }
     
         // ReSharper disable Unity.PerformanceAnalysis
         
-        AnimalBehaviour creerAnimal(float x, float y,string animal)
+        public AnimalBehaviour creerAnimal(float x, float y, string animal)
         {
             var animalTypes = DataDico.animalTypes;
             if (animalTypes.ContainsKey(animal))
             {
-                // Création d'un GameObject
-                GameObject newAnimal = PhotonNetwork.Instantiate($"Prefabs/Animaux/{animal}", new Vector2(x, y),
-                    Quaternion.identity);
+                // Chemin du prefab dans les ressources
+                string prefabPath = $"Prefabs/Animaux/animal";
+                GameObject prefab = Resources.Load<GameObject>(prefabPath);
+
+                if (prefab == null)
+                {
+                    throw new Exception($"Le prefab pour {animal} n'a pas été trouvé à l'emplacement {prefabPath}");
+                }
+
+                // Création d'un GameObject via PhotonNetwork.Instantiate
+                GameObject newAnimal = PhotonNetwork.Instantiate(prefabPath, new Vector2(x, y), Quaternion.identity);
+                Debug.Log($"Instantiated {animal} at position ({x}, {y})");
+
                 Type typeAnimal = animalTypes[animal];
-                AnimalBehaviour animalBehaviour = (AnimalBehaviour)(newAnimal.AddComponent(typeAnimal));
+                AnimalBehaviour animalBehaviour = (AnimalBehaviour)newAnimal.AddComponent(typeAnimal);
+
+                // Initialisation de l'animal
                 animalBehaviour.AnimalVisible();
                 animalBehaviour.nom = animal + x;
                 animalBehaviour.setPointeur();
+
                 return animalBehaviour;
             }
             throw new Exception("Ce type d'animal n'existe pas ");

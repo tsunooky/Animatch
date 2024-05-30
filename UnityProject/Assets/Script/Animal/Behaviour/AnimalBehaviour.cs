@@ -31,8 +31,16 @@ public abstract class AnimalBehaviour : MonoBehaviour
         pointeur = new GameObject($"pointeur de {nom}");
         pointeurSprite = pointeur.AddComponent<SpriteRenderer>();
         pointeurSprite.sprite = Resources.Load<Sprite>("Icons/settings_button");
+
+        // Vérifiez si le sprite a bien été chargé
+        if (pointeurSprite.sprite == null)
+        {
+            Debug.LogError("Sprite 'Icons/settings_button' n'a pas été trouvé dans Resources.");
+        }
+
         pointeurSprite.enabled = false;
     }
+
     
     private void Start()
     {

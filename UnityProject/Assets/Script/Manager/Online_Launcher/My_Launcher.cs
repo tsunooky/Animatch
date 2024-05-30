@@ -84,7 +84,7 @@ public class My_Launcher : MonoBehaviourPunCallbacks
         {
             Debug.Log("We load the 'Room for 1");
 
-            PhotonNetwork.LoadLevel("Main");
+            PhotonNetwork.LoadLevel("Main_Online");
         }
     }
     public override void OnJoinRandomFailed(short returnCode, string message)

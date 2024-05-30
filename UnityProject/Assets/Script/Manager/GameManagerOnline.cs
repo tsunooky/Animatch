@@ -43,9 +43,6 @@ namespace Script.ManagerOnline
             joueur =  gameObject.AddComponent<PlayerManager>(); 
             joueur.CreateProfil();
             joueur.CreerMain();
-            joueur2 = gameObject.AddComponent<PlayerManager>();
-            joueur2.CreateProfil();
-			joueur2.CreerMain();
             
             
             // Evité bug au lancement
@@ -145,24 +142,33 @@ namespace Script.ManagerOnline
                 }
             }
         }
-        
+
+        #region 2Player
         public override void OnPlayerEnteredRoom(Player newPlayer)
         {
             base.OnPlayerEnteredRoom(newPlayer);
-            CheckRoomStatus(); // Vérifiez si la salle est prête à démarrer le jeu
-        }
+            if (PhotonNetwork.LocalPlayer.ActorNumber == 1)
+            {
+                
+                GameObject newPlayerObject = new GameObject("Player2"); 
+                PlayerManager j2 = newPlayerObject.AddComponent<PlayerManager>(); 
+                joueur2 = j2;
+            }
 
-        // Méthode appelée lorsqu'un joueur quitte la salle
+            CheckRoomStatus();
+        }
+        
         public override void OnPlayerLeftRoom(Player otherPlayer)
         {
             base.OnPlayerLeftRoom(otherPlayer);
-            CheckRoomStatus(); // Vérifiez si la salle est prête à démarrer le jeu
+            CheckRoomStatus(); 
         }
 
         private void CheckRoomStatus()
         {
-            isRoomReady = PhotonNetwork.CurrentRoom.PlayerCount > 1; // La salle est prête si elle a au moins deux joueurs
+            isRoomReady = PhotonNetwork.CurrentRoom.PlayerCount > 1; 
         }
+        #endregion
     
         // ReSharper disable Unity.PerformanceAnalysis
         

@@ -4,11 +4,13 @@ using UnityEngine;
 using UnityEngine.UI;
 using Photon.Realtime;
 using Photon.Pun;
+using UnityEngine.SceneManagement;
 
 public class My_Launcher : MonoBehaviourPunCallbacks
 {
     #region initialisation 
     public Button btn;
+    public Button btnOff;
     public Text feedbackText;
     private byte maxPlayersPerRoom = 2;
     bool isConnecting;
@@ -23,6 +25,12 @@ public class My_Launcher : MonoBehaviourPunCallbacks
     {
         PhotonNetwork.AutomaticallySyncScene = true;
     }
+    public void PlayOffline()
+    {
+        btn.interactable = false;
+        btnOff.interactable = false; 
+        SceneManager.LoadScene("Main");
+    }
     
     public void Connect()
     {
@@ -34,6 +42,7 @@ public class My_Launcher : MonoBehaviourPunCallbacks
 
         // the button isn't usable now
         btn.interactable = false;
+        btnOff.interactable = false; 
 
         // trying to connect, if not we get connect to the serv, if so we try to join a Room 
         if (PhotonNetwork.IsConnected)
@@ -103,8 +112,8 @@ public class My_Launcher : MonoBehaviourPunCallbacks
 
         isConnecting = false;
         btn.interactable = true;
+        btnOff.interactable = true;
     }
-    
     void Start()
     {
         

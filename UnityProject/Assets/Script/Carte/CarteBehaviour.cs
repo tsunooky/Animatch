@@ -141,9 +141,7 @@ public abstract class CarteBehaviour : MonoBehaviour
         }
     }
     
-<<<<<<< Updated upstream
-    protected abstract void Spell();
-=======
+  
     /*protected void ActionComplete()
     {
         player.RetirerCarteEtPiocherNouvelle(this);
@@ -153,7 +151,6 @@ public abstract class CarteBehaviour : MonoBehaviour
     public abstract void SpellAfterClick();
 
     public abstract void SpellAfterShoot(Vector2 start,Vector2 current);
->>>>>>> Stashed changes
 
     protected virtual void RemoveSpell()
     {

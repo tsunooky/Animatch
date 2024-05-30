@@ -110,8 +110,6 @@ public abstract class AnimalBehaviour : MonoBehaviour
         animalRigidbody2D.angularDrag = 0.05f;
         animalRigidbody2D.mass = 1000f;
         gameObject.AddComponent<DespawnManager>();
-        gameObject.AddComponent<Photon.Pun.PhotonTransformView>();
-        gameObject.AddComponent<Photon.Pun.PhotonView>();
     }
     
     public abstract void Animax();

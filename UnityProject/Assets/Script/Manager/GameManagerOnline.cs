@@ -70,9 +70,7 @@ namespace Script.ManagerOnline
                 {
                     PlayerManager x;
                     if (joueur.deckAnimal.Count > joueur2.deckAnimal.Count)
-                    {
                         x = joueur;
-                    }
                     else
                         x = joueur2;
                     // Vérifie si le joueur a cliqué
@@ -153,6 +151,8 @@ namespace Script.ManagerOnline
                 GameObject newPlayerObject = new GameObject("Player2"); 
                 PlayerManager j2 = newPlayerObject.AddComponent<PlayerManager>(); 
                 joueur2 = j2;
+                joueur2.CreateProfil();
+                joueur2.CreerMain();
             }
 
             CheckRoomStatus();
@@ -174,32 +174,33 @@ namespace Script.ManagerOnline
         
         public AnimalBehaviour creerAnimal(float x, float y, string animal)
         {
+            // Dictionnary of the Animal who exist 
             var animalTypes = DataDico.animalTypes;
             if (animalTypes.ContainsKey(animal))
             {
-                // Chemin du prefab dans les ressources
+                // Path of the prefab to load 
                 string prefabPath = $"Prefabs/Animaux/animal";
                 GameObject prefab = Resources.Load<GameObject>(prefabPath);
-
                 if (prefab == null)
                 {
                     throw new Exception($"Le prefab pour {animal} n'a pas été trouvé à l'emplacement {prefabPath}");
                 }
 
-                // Création d'un GameObject via PhotonNetwork.Instantiate
+                // create a gameobject with a Photon.Instantiate
                 GameObject newAnimal = PhotonNetwork.Instantiate(prefabPath, new Vector2(x, y), Quaternion.identity);
                 Debug.Log($"Instantiated {animal} at position ({x}, {y})");
 
                 Type typeAnimal = animalTypes[animal];
                 AnimalBehaviour animalBehaviour = (AnimalBehaviour)newAnimal.AddComponent(typeAnimal);
 
-                // Initialisation de l'animal
+                // Initialisation of the animal
                 animalBehaviour.AnimalVisible();
                 animalBehaviour.nom = animal + x;
                 animalBehaviour.setPointeur();
 
                 return animalBehaviour;
             }
+            // The animal doesn't exist
             throw new Exception("Ce type d'animal n'existe pas ");
         }
 

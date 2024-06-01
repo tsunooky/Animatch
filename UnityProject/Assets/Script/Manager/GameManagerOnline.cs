@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System;
+using JetBrains.Annotations;
 using Script.Data;
 using UnityEngine;
 using Script.Manager;
@@ -16,9 +17,9 @@ namespace Script.ManagerOnline
 
         public int tour;
 
-        public PlayerManager joueur;
+        [CanBeNull] public PlayerManager joueur;
 
-        public PlayerManager joueur2;
+        [CanBeNull] public PlayerManager joueur2;
 
         private bool spawn = true;
 
@@ -29,6 +30,8 @@ namespace Script.ManagerOnline
         public PlayerManager playerActif;
         
         public Text affichage_mana;
+        
+        public Text Waiting;
       
         private void Awake()
         {
@@ -37,13 +40,14 @@ namespace Script.ManagerOnline
                 Debug.LogError("GameManager n'est plus un singleton car il viens d'être redéfinis une deuxième fois !");
                 return;
             }
-            
-            
             Instance = this;
-            joueur =  gameObject.AddComponent<PlayerManager>(); 
-            joueur.CreateProfil();
-            joueur.CreerMain();
-            
+                joueur = gameObject.AddComponent<PlayerManager>();
+                joueur.CreateProfil();
+                joueur.CreerMain();
+                
+                joueur2 = gameObject.AddComponent<PlayerManager>();
+                joueur2.CreateProfil();
+                joueur2.CreerMain();
             
             // Evité bug au lancement
             playerActif = joueur;
@@ -51,15 +55,21 @@ namespace Script.ManagerOnline
             
             isRoomReady = PhotonNetwork.CurrentRoom.PlayerCount > 1;
             PhotonNetwork.AddCallbackTarget(this);
+            PhotonNetwork.AutomaticallySyncScene = true;
         }
     
         void Update()
         {
             if (!isRoomReady)
             {
-                // Ne rien faire tant que la salle n'est pas prête
+                Debug.Log("Waiting for players...");
+                Waiting.enabled = true;
+                CheckRoomStatus();
                 return;
             }
+
+            Waiting.enabled = false;
+            
             if (spawn)
             {
                 if (joueur.deckAnimal.Count == 0 && joueur2.deckAnimal.Count == 0)
@@ -145,18 +155,38 @@ namespace Script.ManagerOnline
         public override void OnPlayerEnteredRoom(Player newPlayer)
         {
             base.OnPlayerEnteredRoom(newPlayer);
-            if (PhotonNetwork.LocalPlayer.ActorNumber == 1)
+            // After
+            if (PhotonNetwork.LocalPlayer.IsMasterClient)
             {
-                
-                GameObject newPlayerObject = new GameObject("Player2"); 
-                PlayerManager j2 = newPlayerObject.AddComponent<PlayerManager>(); 
-                joueur2 = j2;
-                joueur2.CreateProfil();
-                joueur2.CreerMain();
-                PhotonNetwork.AutomaticallySyncScene = true;
+                if (joueur == null)
+                {
+                    GameObject newPlayerObject1 = PhotonNetwork.Instantiate("/Prefabs/Player", Vector2.zero, Quaternion.identity);
+                    joueur = newPlayerObject1.GetComponent<PlayerManager>();
+                    joueur.CreateProfil();
+                    joueur.CreerMain();
+                }
             }
-
+            else
+            {
+                if (joueur2 == null)
+                {
+                    GameObject newPlayerObject2 = PhotonNetwork.Instantiate("/Prefabs/Player", Vector2.zero, Quaternion.identity);
+                    joueur2 = newPlayerObject2.GetComponent<PlayerManager>();
+                    joueur2.CreateProfil();
+                    joueur2.CreerMain();
+                }
+            }
             CheckRoomStatus();
+            
+            /*
+            // Before
+            GameObject newPlayerObject = new GameObject("Player2");
+            PlayerManager j2 = newPlayerObject.AddComponent<PlayerManager>();
+            joueur2 = j2;
+            joueur2.CreateProfil();
+            joueur2.CreerMain();
+            PhotonNetwork.AutomaticallySyncScene = true;
+            */
         }
         
         public override void OnPlayerLeftRoom(Player otherPlayer)

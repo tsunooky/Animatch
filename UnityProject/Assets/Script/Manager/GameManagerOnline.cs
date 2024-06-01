@@ -153,6 +153,7 @@ namespace Script.ManagerOnline
                 joueur2 = j2;
                 joueur2.CreateProfil();
                 joueur2.CreerMain();
+                PhotonNetwork.AutomaticallySyncScene = true;
             }
 
             CheckRoomStatus();

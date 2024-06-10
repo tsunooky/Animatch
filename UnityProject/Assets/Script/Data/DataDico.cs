@@ -18,7 +18,7 @@ namespace Script.Data
             {"bat",typeof(BatBehaviour)},
             {"jump",typeof(JumpBehaviour)},
             {"heal",typeof(HealBehaviour)},
-            {"jump",typeof(KnifeBehaviour)}
+            {"knife",typeof(KnifeBehaviour)}
         };
     }
 }

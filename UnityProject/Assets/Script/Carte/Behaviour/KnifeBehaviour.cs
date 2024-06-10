@@ -1,5 +1,6 @@
 using Script.Manager;
 using UnityEngine;
+using System.Collections;
 
 public class KnifeBehaviour : CarteBehaviour
 {
@@ -20,8 +21,17 @@ public class KnifeBehaviour : CarteBehaviour
 
     public override void SpellAfterShoot(Vector2 startPosition ,Vector2 currentMousePos)
     {
-        /* ici lancer plusieur couteau*/
-        ClassiqueShoot(startPosition,currentMousePos);
+        StartCoroutine(ShootCoroutine(startPosition, currentMousePos));
+    }
+
+    private IEnumerator ShootCoroutine(Vector2 startPosition, Vector2 currentMousePos)
+    {
+        for (int i = 0; i < 5; i++)
+        {
+            ClassiqueShoot(startPosition, currentMousePos);
+            // Attendre pendant le délai spécifié
+            yield return new WaitForSeconds((float)1.5);
+        }
     }
 
     

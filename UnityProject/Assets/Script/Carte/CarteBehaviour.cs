@@ -11,8 +11,6 @@ public abstract class CarteBehaviour : MonoBehaviour
 {
     public SpriteRenderer spriteRenderer;
 
-    public ProjectileBehaviour projectile;
-
     public PlayerManager player;
     
     public bool carte_actuel = false;
@@ -23,6 +21,8 @@ public abstract class CarteBehaviour : MonoBehaviour
     
     public Text text;
     
+    public  Image cardImage; 
+    private  Canvas cardCanvas;
     protected abstract void Awake();
     
     private void Start()
@@ -33,9 +33,7 @@ public abstract class CarteBehaviour : MonoBehaviour
         spriteRenderer.sprite = carteData.Sprite;
         spriteRenderer.sortingOrder = 11;
         player = Instance.joueur;
-        spriteRenderer.color = new Color32(200,200,200,255);
-        
-        projectile = new ProjTomateBehaviour();
+        spriteRenderer.color = new Color32(200, 200, 200, 255);
             
         //pour mettre le coût de la carte sur la carte : 
         GameObject canvasObj = new GameObject("CardCanvas");
@@ -56,8 +54,45 @@ public abstract class CarteBehaviour : MonoBehaviour
         text.fontStyle = FontStyle.Bold; 
         RectTransform rectTransform = textObj.GetComponent<RectTransform>();
         rectTransform.sizeDelta = new Vector2(70, 92); 
+        
+        if (cardCanvas == null)
+        {
+            CreateSharedCanvas();
+        }
     }
-    
+    private void CreateSharedCanvas()
+    {
+        // Create and set up a Canvas for UI elements
+        GameObject canvasObj = new GameObject("CardCanvas");
+        cardCanvas = canvasObj.AddComponent<Canvas>();
+        cardCanvas.renderMode = RenderMode.ScreenSpaceOverlay;
+        canvasObj.AddComponent<CanvasScaler>();
+        canvasObj.AddComponent<GraphicRaycaster>();
+
+        // Create an Image UI element for the card image
+        GameObject imageObj = new GameObject("CardImage");
+        imageObj.transform.SetParent(canvasObj.transform);
+        cardImage = imageObj.AddComponent<Image>();
+        RectTransform imageRect = imageObj.GetComponent<RectTransform>();
+        imageRect.sizeDelta = new Vector2(90, 150); // Adjust size to fit your card
+        imageRect.anchoredPosition = new Vector2(135, -463);
+        cardImage.color = Color.gray;
+        LoadCardImage(carteData.Sprite.name);
+    }
+    private void LoadCardImage(string imageName)
+    {
+        string cheminImage = "Sprites/cards/" + imageName;
+        Sprite newSprite = Resources.Load<Sprite>(cheminImage);
+        if (newSprite != null)
+        {
+            cardImage.sprite = newSprite;
+            cardImage.rectTransform.sizeDelta = new Vector2(90,150); // Adjust size to match image
+        }
+        else
+        {
+            Debug.LogError("Image non trouvée au chemin: " + cheminImage);
+        }
+    }
    
     private void Update()
     {
@@ -106,6 +141,7 @@ public abstract class CarteBehaviour : MonoBehaviour
         player.drops -= carteData.drops;
         player.MiseAjourAffichageDrops();
         ancienne_carte_selec = this;
+        
     }
 
     public void DeselectCard()
@@ -182,7 +218,8 @@ public abstract class CarteBehaviour : MonoBehaviour
                             car.transform.position = vec2;
                         }
                     }
-
+                    
+                    LoadCardImage(carteData.Sprite.name);
                     break;
                 }
             }
@@ -197,4 +234,6 @@ public abstract class CarteBehaviour : MonoBehaviour
         ProjectileBehaviour bulletBehaviour = bullet.GetComponent<ProjectileBehaviour>();
         bulletBehaviour.Set((startPosition, currentMousePos), projectileData);
     }
+    
+   
 }

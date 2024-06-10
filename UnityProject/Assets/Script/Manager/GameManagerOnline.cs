@@ -1,30 +1,37 @@
 using System.Collections.Generic;
 using System;
+using JetBrains.Annotations;
 using Script.Data;
 using UnityEngine;
 using Script.Manager;
 using UnityEngine.UI;
 using Photon.Pun;
 using UnityEngine.SceneManagement;
+using Photon.Realtime;
 
 namespace Script.ManagerOnline
 {
-    public class GameManagerOnline : MonoBehaviour
+    public class GameManagerOnline : MonoBehaviourPunCallbacks
     { 
         public static GameManagerOnline Instance;
 
         public int tour;
 
-        public PlayerManager joueur;
+        [CanBeNull] public PlayerManager joueur;
 
-        public PlayerManager joueur2;
+        [CanBeNull] public PlayerManager joueur2;
 
         private bool spawn = true;
 
         public bool tourActif = false;
+    
+        private bool isRoomReady = false;
 
         public PlayerManager playerActif;
+        
         public Text affichage_mana;
+        
+        public Text Waiting;
       
         private void Awake()
         {
@@ -33,24 +40,36 @@ namespace Script.ManagerOnline
                 Debug.LogError("GameManager n'est plus un singleton car il viens d'être redéfinis une deuxième fois !");
                 return;
             }
-            
-            
             Instance = this;
-            joueur =  gameObject.AddComponent<PlayerManager>();
-            joueur.CreateProfil();
-            joueur.CreerMain();
-            joueur2 = gameObject.AddComponent<PlayerManager>();
-            joueur2.CreateProfil();
-			joueur2.CreerMain();
-            
+                joueur = gameObject.AddComponent<PlayerManager>();
+                joueur.CreateProfil();
+                joueur.CreerMain();
+                
+                joueur2 = gameObject.AddComponent<PlayerManager>();
+                joueur2.CreateProfil();
+                joueur2.CreerMain();
             
             // Evité bug au lancement
             playerActif = joueur;
             tour = 1;
+            
+            isRoomReady = PhotonNetwork.CurrentRoom.PlayerCount > 1;
+            PhotonNetwork.AddCallbackTarget(this);
+            PhotonNetwork.AutomaticallySyncScene = true;
         }
     
         void Update()
         {
+            if (!isRoomReady)
+            {
+                Debug.Log("Waiting for players...");
+                Waiting.enabled = true;
+                CheckRoomStatus();
+                return;
+            }
+
+            Waiting.enabled = false;
+            
             if (spawn)
             {
                 if (joueur.deckAnimal.Count == 0 && joueur2.deckAnimal.Count == 0)
@@ -61,9 +80,7 @@ namespace Script.ManagerOnline
                 {
                     PlayerManager x;
                     if (joueur.deckAnimal.Count > joueur2.deckAnimal.Count)
-                    {
                         x = joueur;
-                    }
                     else
                         x = joueur2;
                     // Vérifie si le joueur a cliqué
@@ -133,25 +150,88 @@ namespace Script.ManagerOnline
                 }
             }
         }
-    
+
+        #region 2Player
+        public override void OnPlayerEnteredRoom(Player newPlayer)
+        {
+            base.OnPlayerEnteredRoom(newPlayer);
+            // After
+            if (PhotonNetwork.LocalPlayer.IsMasterClient)
+            {
+                if (joueur == null)
+                {
+                    GameObject newPlayerObject1 = PhotonNetwork.Instantiate("/Prefabs/Player", Vector2.zero, Quaternion.identity);
+                    joueur = newPlayerObject1.GetComponent<PlayerManager>();
+                    joueur.CreateProfil();
+                    joueur.CreerMain();
+                }
+            }
+            else
+            {
+                if (joueur2 == null)
+                {
+                    GameObject newPlayerObject2 = PhotonNetwork.Instantiate("/Prefabs/Player", Vector2.zero, Quaternion.identity);
+                    joueur2 = newPlayerObject2.GetComponent<PlayerManager>();
+                    joueur2.CreateProfil();
+                    joueur2.CreerMain();
+                }
+            }
+            CheckRoomStatus();
+            
+            /*
+            // Before
+            GameObject newPlayerObject = new GameObject("Player2");
+            PlayerManager j2 = newPlayerObject.AddComponent<PlayerManager>();
+            joueur2 = j2;
+            joueur2.CreateProfil();
+            joueur2.CreerMain();
+            PhotonNetwork.AutomaticallySyncScene = true;
+            */
+        }
+        
+        public override void OnPlayerLeftRoom(Player otherPlayer)
+        {
+            base.OnPlayerLeftRoom(otherPlayer);
+            CheckRoomStatus(); 
+        }
+
+        private void CheckRoomStatus()
+        {
+            isRoomReady = PhotonNetwork.CurrentRoom.PlayerCount > 1; 
+        }
+        #endregion
     
         // ReSharper disable Unity.PerformanceAnalysis
         
-        AnimalBehaviour creerAnimal(float x, float y,string animal)
+        public AnimalBehaviour creerAnimal(float x, float y, string animal)
         {
+            // Dictionnary of the Animal who exist 
             var animalTypes = DataDico.animalTypes;
             if (animalTypes.ContainsKey(animal))
             {
-                // Création d'un GameObject
-                GameObject newAnimal = PhotonNetwork.Instantiate($"Prefabs/Animaux/{animal}", new Vector2(x, y),
-                    Quaternion.identity);
+                // Path of the prefab to load 
+                string prefabPath = $"Prefabs/Animaux/animal";
+                GameObject prefab = Resources.Load<GameObject>(prefabPath);
+                if (prefab == null)
+                {
+                    throw new Exception($"Le prefab pour {animal} n'a pas été trouvé à l'emplacement {prefabPath}");
+                }
+
+                // create a gameobject with a Photon.Instantiate
+                GameObject newAnimal = PhotonNetwork.Instantiate(prefabPath, new Vector2(x, y), Quaternion.identity);
+                Debug.Log($"Instantiated {animal} at position ({x}, {y})");
+
                 Type typeAnimal = animalTypes[animal];
-                AnimalBehaviour animalBehaviour = (AnimalBehaviour)(newAnimal.AddComponent(typeAnimal));
+                AnimalBehaviour animalBehaviour = (AnimalBehaviour)newAnimal.AddComponent(typeAnimal);
+
+                // Initialisation of the animal
                 animalBehaviour.AnimalVisible();
                 animalBehaviour.nom = animal + x;
                 animalBehaviour.setPointeur();
+
                 return animalBehaviour;
             }
+            // The animal doesn't exist
             throw new Exception("Ce type d'animal n'existe pas ");
         }
 

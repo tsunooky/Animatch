@@ -31,8 +31,16 @@ public abstract class AnimalBehaviour : MonoBehaviour
         pointeur = new GameObject($"pointeur de {nom}");
         pointeurSprite = pointeur.AddComponent<SpriteRenderer>();
         pointeurSprite.sprite = Resources.Load<Sprite>("Icons/settings_button");
+
+        // Vérifiez si le sprite a bien été chargé
+        if (pointeurSprite.sprite == null)
+        {
+            Debug.LogError("Sprite 'Icons/settings_button' n'a pas été trouvé dans Resources.");
+        }
+
         pointeurSprite.enabled = false;
     }
+
     
     private void Start()
     {
@@ -102,8 +110,6 @@ public abstract class AnimalBehaviour : MonoBehaviour
         animalRigidbody2D.angularDrag = 0.05f;
         animalRigidbody2D.mass = 1000f;
         gameObject.AddComponent<DespawnManager>();
-        gameObject.AddComponent<Photon.Pun.PhotonTransformView>();
-        gameObject.AddComponent<Photon.Pun.PhotonView>();
     }
     
     public abstract void Animax();

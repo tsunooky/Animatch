@@ -113,6 +113,7 @@ public class AimBehviour : MonoBehaviour
     {
         carteBehaviour.SpellAfterShoot(transform.position,currentMousePos);
         Destroy(this);
+        carteBehaviour.PiocherMain();
     }
 
     private void OnDestroy()

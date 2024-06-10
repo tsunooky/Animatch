@@ -9,11 +9,13 @@ using static Script.Manager.GameManager;
 using UnityEngine.UI;
 public abstract class CarteBehaviour : MonoBehaviour
 {
-    public SpriteRenderer spriteRenderer; 
+    public SpriteRenderer spriteRenderer;
+
+    public ProjectileBehaviour projectile;
 
     public PlayerManager player;
     
-    private bool carte_actuel = false;
+    public bool carte_actuel = false;
     
     private static CarteBehaviour ancienne_carte_selec;
     
@@ -33,6 +35,8 @@ public abstract class CarteBehaviour : MonoBehaviour
         player = Instance.joueur;
         spriteRenderer.color = new Color32(200,200,200,255);
         
+        projectile = new ProjTomateBehaviour();
+            
         //pour mettre le coût de la carte sur la carte : 
         GameObject canvasObj = new GameObject("CardCanvas");
         canvasObj.transform.SetParent(transform);
@@ -54,7 +58,7 @@ public abstract class CarteBehaviour : MonoBehaviour
         rectTransform.sizeDelta = new Vector2(70, 92); 
     }
     
-    
+   
     private void Update()
     {
         if (text != null)
@@ -102,7 +106,6 @@ public abstract class CarteBehaviour : MonoBehaviour
         player.drops -= carteData.drops;
         player.MiseAjourAffichageDrops();
         ancienne_carte_selec = this;
-    
     }
 
     public void DeselectCard()
@@ -127,7 +130,9 @@ public abstract class CarteBehaviour : MonoBehaviour
             vector3.y += 1f;
             transform.position = vector3;
             spriteRenderer.color = Color.white;
+            
         }
+        
     }
 
     private void OnMouseExit()
@@ -141,12 +146,6 @@ public abstract class CarteBehaviour : MonoBehaviour
         }
     }
     
-  
-    /*protected void ActionComplete()
-    {
-        player.RetirerCarteEtPiocherNouvelle(this);
-    }*/
-
     protected abstract void SpellClickOnCarte();
     public abstract void SpellAfterClick();
 
@@ -155,6 +154,39 @@ public abstract class CarteBehaviour : MonoBehaviour
     protected virtual void RemoveSpell()
     {
         Instance.playerActif.enAction = false;
+    }
+    
+    public void PiocherMain()
+    { 
+        if ( carte_actuel)
+        {
+            foreach (var gr in player.mainManager)
+            {
+                var min = gr.transform.position.x;
+                if (min > 8 && min < 21)
+                {
+
+                    var vec = gr.transform.position;
+                    vec.x = transform.position.x;
+                    gr.transform.position = vec;
+
+                    var vector3 = transform.position;
+                    vector3.x = 28;
+                    transform.position = vector3;
+                    foreach (var car in player.mainManager)
+                    {
+                        if (car.transform.position.x > 10)
+                        {
+                            var vec2 = car.transform.position;
+                            vec2.x -= 2;
+                            car.transform.position = vec2;
+                        }
+                    }
+
+                    break;
+                }
+            }
+        }
     }
 
     protected void ClassiqueShoot(Vector2 startPosition, Vector2 currentMousePos)

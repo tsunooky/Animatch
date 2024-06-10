@@ -22,7 +22,6 @@ public class PlayerManager : MonoBehaviour
     public bool enAction;
     public bool enVisee;
     private GameObject prefabAura;
-    public Queue<Type> deck = new Queue<Type>();
 
     public void Awake()
     {
@@ -52,17 +51,7 @@ public class PlayerManager : MonoBehaviour
     {
        mécanique utlisant le deck d'animaux de Profil non implémenter pour le moment 
     }*/
-
-    public void PiocherMain()
-    { 
-        /* 
-            mécanique utlisant le deck de carte de Profil non implémenter pour le moment 
-            main.Enqueue(carte);
-        */
-        
-        
-       MettreAjourMain();
-    }
+    
     
     public void DefausserMain()
     {
@@ -89,14 +78,10 @@ public class PlayerManager : MonoBehaviour
 
     public void CreerMain()
     {
+        
+        // Méthode pour piocher la main initiale
         for (int i = 0; i < 8; i++)
         {
-            deck.Enqueue(DataDico.carteTypes[profil.deckCartes[i]]);
-        }
-        // Méthode pour piocher la main initiale
-        for (int i = 0; i < 4; i++)
-        {
-            deck.Enqueue(deck.Dequeue());
             main.Enqueue(DataDico.carteTypes[profil.deckCartes[i]]);
         }
         MettreAjourMain();

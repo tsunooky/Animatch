@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System;
 using System.Collections;
+using JetBrains.Annotations;
 using Script.Data;
 using UnityEngine;
 using Script.Manager;
@@ -143,17 +144,33 @@ namespace Script.Manager
             }
         }
 
+        [CanBeNull]
+        public AnimalBehaviour getnearest()
+        {
+            var res = joueur.animaux_vivant.Peek();
+            foreach (var animal in joueur.animaux_vivant)
+            {
+                if (animal.transform.position.x < res.transform.position.x && animal.transform.position.y < res.transform.position.y)
+                {
+                    res = animal;
+                }
+            }
+
+            return res;
+        }
+
         IEnumerator tirerbot(AnimalBehaviour animalActif)
         {
+            
             yield return new WaitForSeconds(2);
             var aimbotani = animalActif.AddComponent<aimBot>();
-            float xcible = playerActif.transform.position.x -2;
-            float ycible = playerActif.transform.position.y + 2;
-            var cible = new Vector2(xcible, ycible);
-            aimbotani.ClassiqueShootbot(cible);
+            var cible = getnearest();
+            
+            aimbotani.ClassiqueShootbot(cible.transform.position);
             Destroy(aimbotani);
             FinfDuTour();
         }
+        
         IEnumerator PlaceAnimal(PlayerManager player)
         {
             animalBeingPlaced = true;

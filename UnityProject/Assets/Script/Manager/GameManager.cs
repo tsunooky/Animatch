@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System;
+using System.Collections;
 using Script.Data;
 using UnityEngine;
 using Script.Manager;
@@ -7,6 +8,7 @@ using UnityEngine.UI;
 using Photon.Pun;
 using UnityEditor;
 using UnityEngine.SceneManagement;
+using static Unity.Mathematics.Random;
 
 namespace Script.Manager
 {
@@ -21,6 +23,7 @@ namespace Script.Manager
         public PlayerManager bot;
 
         private bool spawn = true;
+        private bool animalBeingPlaced = false;
 
         public bool tourActif = false;
 
@@ -61,25 +64,26 @@ namespace Script.Manager
                 }
                 else
                 {
-                    PlayerManager x;
-                    if (joueur.deckAnimal.Count > bot.deckAnimal.Count)
+                    
+                    if (!animalBeingPlaced)
                     {
-                        x = joueur;
+                        if (joueur.deckAnimal.Count > bot.deckAnimal.Count)
+                        {
+                            if (Input.GetMouseButtonDown(0))
+                            {
+                                StartCoroutine(PlaceAnimal(joueur));
+                            }
+                        }
+                        else
+                        {
+                            StartCoroutine(PlaceAnimal(bot));
+                        }
                     }
-                    else
-                        x = bot;
-                    // Vérifie si le joueur a cliqué
-                    if (Input.GetMouseButtonDown(0))
-                    {
-                        // Obtenez les coordonnées du clic de la souris
-                        Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                        // Instanciez l'animal à la position du clic en x et y = hauteur
-                        AnimalBehaviour newAnimal = creerAnimal(mousePosition.x, mousePosition.y,
-                            x.deckAnimal.Dequeue());
-                        x.animaux_vivant.Enqueue(newAnimal);
-                        newAnimal.player = x;
-						newAnimal.LoadHealthbar();
-                    }
+                       
+                    
+                   
+                    
+                    
                 }
             }
             else
@@ -139,6 +143,40 @@ namespace Script.Manager
                     tour += 1;
                 }
             }
+        }
+        IEnumerator PlaceAnimal(PlayerManager player)
+        {
+            animalBeingPlaced = true;
+
+            if (player == joueur)
+            {
+                // Pour le joueur, attendre un clic de souris
+                while (!Input.GetMouseButtonDown(0))
+                {
+                    yield return null;
+                }
+
+                // Obtenez les coordonnées du clic de la souris
+                Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                // Instanciez l'animal à la position du clic en x et y = hauteur
+                AnimalBehaviour newAnimal = creerAnimal(mousePosition.x, mousePosition.y, player.deckAnimal.Dequeue());
+                player.animaux_vivant.Enqueue(newAnimal);
+                newAnimal.player = player;
+                newAnimal.LoadHealthbar();
+            }
+            else
+            {
+                // Pour le bot, attendre avant de placer l'animal
+                yield return new WaitForSeconds(2f); // Attendre 2 secondes
+
+                float randomX = UnityEngine.Random.Range(-6.5f, 7f);
+                AnimalBehaviour newAnimal = creerAnimal(randomX, 4.7f, player.deckAnimal.Dequeue());
+                player.animaux_vivant.Enqueue(newAnimal);
+                newAnimal.player = player;
+                newAnimal.LoadHealthbar();
+            }
+
+            animalBeingPlaced = false;
         }
     
     

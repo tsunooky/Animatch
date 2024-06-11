@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Script.Manager;
-
+/*
 public class LionBehaviour : AnimalBehaviour
 {
     
@@ -30,3 +30,4 @@ public class LionBehaviour : AnimalBehaviour
         pv += heal + heal/2;
     }
 }
+*/

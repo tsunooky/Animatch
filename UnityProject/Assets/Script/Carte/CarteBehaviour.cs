@@ -239,7 +239,7 @@ public abstract class CarteBehaviour : MonoBehaviour, Tireur
         }
     }
 
-     void ClassiqueShoot(Vector2 startPosition, Vector2 currentMousePos)
+     public void ClassiqueShoot(Vector2 startPosition, Vector2 currentMousePos)
     {
         var projectileData = carteData.projectileData;
         projectileData.Lanceur = gameObject;

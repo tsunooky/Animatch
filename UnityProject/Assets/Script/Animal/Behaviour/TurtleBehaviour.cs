@@ -23,7 +23,9 @@ public class TurtleBehaviour : AnimalBehaviour
     public override void Degat(int damage)
     {
         if (invinsible)
+        {
             invinsible = false;
+        }
         else
         {
             if (damage > 25)

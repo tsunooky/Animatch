@@ -8,7 +8,7 @@ public class PandaBehaviour : AnimalBehaviour, Tireur
     public void Awake()
     {
         LoadData("panda");
-        potentielleprojDataAnimax = Resources.Load<ProjectileData>("Prefabs/Projectile/Proj_Bambo");
+        potentielleprojDataAnimax = Resources.Load<ProjectileData>("Data/Projectile/Bamboo");
     }
 
     public override void Animax()

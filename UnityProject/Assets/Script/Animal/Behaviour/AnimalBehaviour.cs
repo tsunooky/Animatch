@@ -146,6 +146,8 @@ public abstract class AnimalBehaviour : MonoBehaviour
         {
             D2dExplosion explosion = collison2D.gameObject.GetComponent<D2dExplosion>();
             Degat(explosion.degat);
+            
+            // BUG_EXPLO SUR LES DEGAT DES EXPLOSIONS VOIR #BUG sur discord le 11/09/2024 à 14:21 
         }
         
         /*if (collison2D.gameObject.tag == "Map")

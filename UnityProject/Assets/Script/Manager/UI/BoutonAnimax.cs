@@ -10,6 +10,7 @@ public class BoutonAnimax : MonoBehaviour
         AnimalBehaviour animalActif = GameManager.Instance.playerActif.animalActif;
         if (GameManager.Instance.playerActif == GameManager.Instance.joueur)
         {
+            GameManager.Instance.playerActif.enAction = true;
             animalActif.Animax();
         }
     }

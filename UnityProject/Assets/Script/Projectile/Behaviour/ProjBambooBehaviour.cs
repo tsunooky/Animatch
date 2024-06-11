@@ -8,7 +8,7 @@ public class ProjBambooBehaviour: ProjectileBehaviour
 
     private void Awake()
     {
-        Bamboo = Resources.Load<GameObject>("Prefabs/Bamboo");
+        Bamboo = Resources.Load<GameObject>("Prefabs/Autre/Bamboo");
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -19,7 +19,7 @@ public class ProjBambooBehaviour: ProjectileBehaviour
         if (!declanchement && !invinsible)
         {
             declanchement = true;
-            GameObject bullet = Instantiate(Bamboo, gameObject.transform);
+            Instantiate(Bamboo, gameObject.transform);
             FinAction();
             Destroy(gameObject);
         }

@@ -157,6 +157,7 @@ public class AimAndShoot : MonoBehaviour
             Destroy(this);
             //mettre carte shoot dans queue + destory card on board 
             
+            
         }
     }
     

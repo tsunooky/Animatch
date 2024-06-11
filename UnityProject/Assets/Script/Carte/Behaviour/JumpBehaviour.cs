@@ -30,5 +30,5 @@ public class JumpBehaviour : CarteBehaviour
         FinAction();
     }
 
-
+    
 }

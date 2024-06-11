@@ -250,13 +250,7 @@ public abstract class CarteBehaviour : MonoBehaviour, Tireur
         
     }
 
-     public void ClassiqueShootbot(Vector3 targetPosition)
-     {
-         var pro = Resources.Load<ProjectileData>("Data/Carte/Tomate");
-         GameObject bullet = Instantiate(pro.Projectile, gameObject.transform.position, Quaternion.identity);
-         ProjectileBehaviour bulletBehaviour = bullet.GetComponent<ProjectileBehaviour>();
-         bulletBehaviour.Set((gameObject.transform.position,targetPosition), pro);
-     }
+    
 
      protected void FinAction()
     {

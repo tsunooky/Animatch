@@ -26,5 +26,5 @@ public class HealBehaviour : CarteBehaviour
         throw new NotImplementedException();
     }
 
-
+    
 }

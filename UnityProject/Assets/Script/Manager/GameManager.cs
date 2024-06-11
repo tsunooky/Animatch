@@ -6,6 +6,7 @@ using UnityEngine;
 using Script.Manager;
 using UnityEngine.UI;
 using Photon.Pun;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine.SceneManagement;
 using static Unity.Mathematics.Random;
@@ -15,7 +16,7 @@ namespace Script.Manager
     public class GameManager : MonoBehaviour
     { 
         public static GameManager Instance;
-
+        public GameObject nextTurnButton; 
         public int tour;
 
         public PlayerManager joueur;
@@ -39,7 +40,7 @@ namespace Script.Manager
                 return;
             }
             
-            
+            nextTurnButton.gameObject.SetActive(false);
             Instance = this;
             joueur =  gameObject.AddComponent<PlayerManager>();
             joueur.CreateProfil();
@@ -55,7 +56,6 @@ namespace Script.Manager
     
         void Update()
         {
-            
             if (spawn)
             {
                 if (joueur.deckAnimal.Count == 0 && bot.deckAnimal.Count == 0)
@@ -64,7 +64,6 @@ namespace Script.Manager
                 }
                 else
                 {
-                    
                     if (!animalBeingPlaced)
                     {
                         if (joueur.deckAnimal.Count > bot.deckAnimal.Count)
@@ -79,11 +78,6 @@ namespace Script.Manager
                             StartCoroutine(PlaceAnimal(bot));
                         }
                     }
-                       
-                    
-                   
-                    
-                    
                 }
             }
             else
@@ -97,6 +91,7 @@ namespace Script.Manager
                         playerActif = joueur;
                         joueur.MiseAJourDrops(tour);
                         affichage_mana.text = $"{joueur.drops}";
+                        nextTurnButton.gameObject.SetActive(true);
                         if (joueur.animaux_vivant.Count == 0)
                         {
                             Win(bot);
@@ -109,12 +104,11 @@ namespace Script.Manager
                             animalActif.LoadAura();
                             joueur.MiseAjourAffichageDrops();
                         }
-
-                        
                     }
                     else
                     {
                         playerActif = bot;
+                        nextTurnButton.gameObject.SetActive(false);
                         if (bot.animaux_vivant.Count == 0)
                         {
                             Win(joueur);
@@ -127,11 +121,15 @@ namespace Script.Manager
                             animalActif.LoadAura();
                             bot.animaux_vivant.Enqueue(animalActif);
                             playerActif.animalActif = animalActif;
+                            
                             if (animalActif!=null)
                             {
-                                AimAndShoot animalActifBot = animalActif.gameObject.AddComponent<AimAndShoot>();
-                                animalActifBot.Initialize("tomate");
-                                animalActifBot.Shoot(Vector3.up);
+                                var aimbotani = animalActif.AddComponent<aimBot>();
+                                float xcible = playerActif.transform.position.x + 10;
+                                float ycible = playerActif.transform.position.y + 10;
+                                var cible = new Vector2(xcible, ycible);
+                                aimbotani.ClassiqueShootbot(cible);
+                                Destroy(aimbotani);
                             }
                             
                             FinfDuTour();

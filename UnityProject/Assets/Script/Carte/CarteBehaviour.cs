@@ -7,7 +7,7 @@ using UnityEngine.Events;
 using UnityEngine.Experimental.Rendering.RenderGraphModule;
 using static Script.Manager.GameManager;
 using UnityEngine.UI;
-public abstract class CarteBehaviour : MonoBehaviour
+public abstract class CarteBehaviour : MonoBehaviour, Tireur
 {
     public SpriteRenderer spriteRenderer;
 
@@ -226,7 +226,7 @@ public abstract class CarteBehaviour : MonoBehaviour
         }
     }
 
-    protected void ClassiqueShoot(Vector2 startPosition, Vector2 currentMousePos)
+     void ClassiqueShoot(Vector2 startPosition, Vector2 currentMousePos)
     {
         var projectileData = carteData.projectileData;
         projectileData.Lanceur = gameObject;

@@ -12,12 +12,12 @@ using Script.Manager;
 public class ClickBehaviour : MonoBehaviour
 {
     private GameObject gun;
-    private CarteBehaviour carteBehaviour;
+    private Tireur Tireur;
     
 
-    public void Initialize(CarteBehaviour CarteBehaviour)
+    public void Initialize(Tireur tireur)
     {
-        carteBehaviour = CarteBehaviour;
+        Tireur = tireur;
     }
 
     private void Update()
@@ -29,7 +29,7 @@ public class ClickBehaviour : MonoBehaviour
         }
         else if (Mouse.current.leftButton.wasPressedThisFrame && GameManager.Instance.playerActif.enVisee)
         {
-           carteBehaviour.SpellAfterClick();
+           Tireur.SpellAfterClick();
         }
     }
 }

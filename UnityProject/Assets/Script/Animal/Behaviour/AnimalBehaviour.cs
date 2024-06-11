@@ -114,7 +114,7 @@ public abstract class AnimalBehaviour : MonoBehaviour
     
     public abstract void Animax();
 
-    protected void Degat(int damage)
+    public void Degat(int damage)
     {
         pv -= damage;
         if (pv <= 0)
@@ -132,7 +132,7 @@ public abstract class AnimalBehaviour : MonoBehaviour
         healthBar.SetHealth(pv);
     }
 
-    protected virtual void Soin(int heal)
+    public virtual void Soin(int heal)
     {
         pv += heal;
         healthBar.SetHealth(pv);
@@ -147,6 +147,7 @@ public abstract class AnimalBehaviour : MonoBehaviour
             D2dExplosion explosion = collison2D.gameObject.GetComponent<D2dExplosion>();
             Degat(explosion.degat);
         }
+        
         /*if (collison2D.gameObject.tag == "Map")
         {
             if (Time.time  - timeSpawn < 0.4)

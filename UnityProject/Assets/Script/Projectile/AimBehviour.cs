@@ -18,11 +18,11 @@ public class AimBehviour : MonoBehaviour
     [SerializeField] private float trajectoryTimeStep = 0.0125f;
     [SerializeField] private int trajectoryStepCount = 7;
     private float delayBeforeShootBOT = 0.1f;
-    private CarteBehaviour carteBehaviour;
+    private Tireur TireurBehaviour;
 
-    public void Initialize(ProjectileData ProjectileData, CarteBehaviour CarteBehaviour)
+    public void Initialize(ProjectileData ProjectileData, Tireur tireurBehaviour)
     {
-        carteBehaviour = CarteBehaviour;
+        TireurBehaviour = tireurBehaviour;
         projectileData = ProjectileData;
         lauchForce = projectileData.Force;
         Rigidbody2D rigidbody2D = projectileData.Projectile.GetComponent<Rigidbody2D>();
@@ -30,9 +30,9 @@ public class AimBehviour : MonoBehaviour
         InvokeRepeating("Aim", 0f, 1f / 60f);
     }
     
-    public void Initialize(CarteBehaviour CarteBehaviour)
+    public void Initialize(Tireur tireurBehaviour)
     {
-        carteBehaviour = CarteBehaviour;
+        TireurBehaviour = tireurBehaviour;
         // TEMPORAIRE
         lauchForce = 10;
         mass = 1;
@@ -111,9 +111,12 @@ public class AimBehviour : MonoBehaviour
     // ReSharper disable Unity.PerformanceAnalysis
     private void Shoot()
     {
-        carteBehaviour.SpellAfterShoot(transform.position,currentMousePos);
+        TireurBehaviour.SpellAfterShoot(transform.position,currentMousePos);
         Destroy(this);
-        carteBehaviour.PiocherMain();
+        if (TireurBehaviour is CarteBehaviour)
+        {
+            ((CarteBehaviour)TireurBehaviour).PiocherMain();
+        }
     }
 
     private void OnDestroy()

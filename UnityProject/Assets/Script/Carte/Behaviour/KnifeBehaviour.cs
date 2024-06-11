@@ -26,7 +26,7 @@ public class KnifeBehaviour : CarteBehaviour
 
     private IEnumerator ShootCoroutine(Vector2 startPosition, Vector2 currentMousePos)
     {
-        for (int i = 0; i < 5; i++)
+        for (int i = 0; i < 4; i++)
         {
             ClassiqueShoot(startPosition, currentMousePos);
             // Attendre pendant le délai spécifié

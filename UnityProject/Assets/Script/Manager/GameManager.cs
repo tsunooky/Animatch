@@ -15,7 +15,7 @@ namespace Script.Manager
     public class GameManager : MonoBehaviour
     { 
         public static GameManager Instance;
-
+        public GameObject nextTurnButton; 
         public int tour;
 
         public PlayerManager joueur;
@@ -39,7 +39,7 @@ namespace Script.Manager
                 return;
             }
             
-            
+            nextTurnButton.gameObject.SetActive(false);
             Instance = this;
             joueur =  gameObject.AddComponent<PlayerManager>();
             joueur.CreateProfil();
@@ -97,6 +97,7 @@ namespace Script.Manager
                         playerActif = joueur;
                         joueur.MiseAJourDrops(tour);
                         affichage_mana.text = $"{joueur.drops}";
+                        nextTurnButton.gameObject.SetActive(true);
                         if (joueur.animaux_vivant.Count == 0)
                         {
                             Win(bot);
@@ -115,6 +116,7 @@ namespace Script.Manager
                     else
                     {
                         playerActif = bot;
+                        nextTurnButton.gameObject.SetActive(false);
                         if (bot.animaux_vivant.Count == 0)
                         {
                             Win(joueur);

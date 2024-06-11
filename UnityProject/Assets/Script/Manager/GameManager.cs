@@ -104,7 +104,6 @@ namespace Script.Manager
                             playerActif.animalActif = animalActif;
                             animalActif.LoadAura();
                             joueur.MiseAjourAffichageDrops();
-                            
                         }
 
                         

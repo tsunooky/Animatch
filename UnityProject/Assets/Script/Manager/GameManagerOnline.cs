@@ -32,6 +32,9 @@ namespace Script.ManagerOnline
         public Text affichage_mana;
         
         public Text Waiting;
+        public Text Tour;
+        private bool isPlayerTurn = true;
+        private bool isProcessingTurn = false;
       
         private void Awake()
         {
@@ -41,13 +44,6 @@ namespace Script.ManagerOnline
                 return;
             }
             Instance = this;
-                joueur = gameObject.AddComponent<PlayerManager>();
-                joueur.CreateProfil();
-                joueur.CreerMain();
-                
-                joueur2 = gameObject.AddComponent<PlayerManager>();
-                joueur2.CreateProfil();
-                joueur2.CreerMain();
             
             // Evité bug au lancement
             playerActif = joueur;
@@ -60,96 +56,100 @@ namespace Script.ManagerOnline
     
         void Update()
         {
-            if (!isRoomReady)
-            {
-                Debug.Log("Waiting for players...");
-                Waiting.enabled = true;
-                CheckRoomStatus();
-                return;
-            }
-
-            Waiting.enabled = false;
-            
             if (spawn)
             {
-                if (joueur.deckAnimal.Count == 0 && joueur2.deckAnimal.Count == 0)
-                {
-                    spawn = false;
-                }
-                else
-                {
-                    PlayerManager x;
-                    if (joueur.deckAnimal.Count > joueur2.deckAnimal.Count)
-                        x = joueur;
-                    else
-                        x = joueur2;
-                    // Vérifie si le joueur a cliqué
-                    if (Input.GetMouseButtonDown(0))
-                    {
-                        // Obtenez les coordonnées du clic de la souris
-                        Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                        // Instanciez l'animal à la position du clic en x et y = hauteur
-                        AnimalBehaviour newAnimal = creerAnimal(mousePosition.x, mousePosition.y,
-                            x.deckAnimal.Dequeue());
-                        x.animaux_vivant.Enqueue(newAnimal);
-                        newAnimal.player = x;
-						newAnimal.LoadHealthbar();
-                    }
-                }
+                HandleSpawning();
             }
             else
             {
-                if (!tourActif)
+                if (!isProcessingTurn)
                 {
-                    tourActif = true;
-                    if (tour % 2 != 0)
+                    if (isPlayerTurn)
                     {
-                        Debug.Log("C'est votre tour");
-                        playerActif = joueur;
-                        joueur.MiseAJourDrops(tour);
-                        affichage_mana.text = $"{joueur.drops}";
-                        if (joueur.animaux_vivant.Count == 0)
-                        {
-                            Win(joueur2);
-                        }
-                        else
-                        {
-                            AnimalBehaviour animalActif = joueur.animaux_vivant.Dequeue();
-                            joueur.animaux_vivant.Enqueue(animalActif);
-                            playerActif.animalActif = animalActif;
-                            animalActif.LoadAura();
-                            joueur.MiseAjourAffichageDrops();
-                        }
+                        StartCoroutine(GererTourJoueur1());
                     }
                     else
                     {
-                        playerActif = joueur2;
-                        if (joueur2.animaux_vivant.Count == 0)
-                        {
-                            Win(joueur);
-                        }
-                        else
-                        {
-                            affichage_mana.text = $" ? ";
-                            Debug.Log("Tour du joueur 2");
-                            AnimalBehaviour animalActif = joueur2.animaux_vivant.Dequeue();
-                            animalActif.LoadAura();
-                            joueur2.animaux_vivant.Enqueue(animalActif);
-                            playerActif.animalActif = animalActif;
-                            AimAndShoot animalActifjoueur2 = animalActif.gameObject.AddComponent<AimAndShoot>();
-                            animalActifjoueur2.Initialize("tomate");
-                            animalActifjoueur2.Shoot(Vector3.up);
-                            
-                            FinfDuTour();
-                        }
+                        StartCoroutine(GererTourJoueur2());
                     }
-
-                    Debug.Log("le joueur qui vient de jouer n'a plus que " + playerActif.drops+ " drops !");
-                    joueur.MettreAjourMain();
-                    tour += 1;
                 }
             }
         }
+        private void HandleSpawning()
+        {
+            if (joueur.deckAnimal.Count == 0 && joueur2.deckAnimal.Count == 0)
+            {
+                spawn = false;
+            }
+            else
+            {
+                PlayerManager x = (joueur.deckAnimal.Count > joueur2.deckAnimal.Count) ? joueur : joueur2;
+
+                if (Input.GetMouseButtonDown(0))
+                {
+                    Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                    AnimalBehaviour newAnimal = creerAnimal(mousePosition.x, mousePosition.y, x.deckAnimal.Dequeue());
+                    x.animaux_vivant.Enqueue(newAnimal);
+                    newAnimal.player = x;
+                    newAnimal.LoadHealthbar();
+                }
+            }
+        }
+        
+        #region GererJoueur
+        
+        private System.Collections.IEnumerator GererTourJoueur1()
+        {
+            isProcessingTurn = true;
+            playerActif = joueur;
+            Tour.text = "C'est le tour du Joueur 1";
+            Tour.enabled = true;
+
+            // Attendre 3 secondes
+            yield return new WaitForSeconds(3);
+
+            if (joueur.animaux_vivant.Count == 0)
+            {
+                Win(joueur2);
+            }
+            else
+            {
+                AnimalBehaviour animalActif = joueur.animaux_vivant.Dequeue();
+                joueur.animaux_vivant.Enqueue(animalActif);
+                playerActif.animalActif = animalActif;
+                animalActif.LoadAura();
+                joueur.MiseAjourAffichageDrops();
+            }
+            isProcessingTurn = false;
+            isPlayerTurn = false;
+        }
+        private System.Collections.IEnumerator GererTourJoueur2()
+        {
+            isProcessingTurn = true;
+            playerActif = joueur2;
+            Tour.text = "C'est le tour du Joueur 2";
+            Tour.enabled = true;
+
+            // Attendre 3 secondes
+            yield return new WaitForSeconds(3);
+
+            if (joueur2.animaux_vivant.Count == 0)
+            {
+                Win(joueur);
+            }
+            else
+            {
+                AnimalBehaviour animalActif = joueur2.animaux_vivant.Dequeue();
+                joueur2.animaux_vivant.Enqueue(animalActif);
+                playerActif.animalActif = animalActif;
+                animalActif.LoadAura();
+                joueur2.MiseAjourAffichageDrops();
+                FinfDuTour();
+            }
+            isProcessingTurn = false;
+            isPlayerTurn = true;
+        }
+        #endregion
 
         #region 2Player
         public override void OnPlayerEnteredRoom(Player newPlayer)
@@ -177,7 +177,6 @@ namespace Script.ManagerOnline
                 }
             }
             CheckRoomStatus();
-            
             /*
             // Before
             GameObject newPlayerObject = new GameObject("Player2");

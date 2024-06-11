@@ -21,8 +21,8 @@ public abstract class CarteBehaviour : MonoBehaviour
     
     public Text text;
     
-    public  Image cardImage; 
-    private  Canvas cardCanvas;
+    public static Image cardImage; 
+    private static Canvas cardCanvas;
     protected abstract void Awake();
     
     private void Start()
@@ -53,20 +53,23 @@ public abstract class CarteBehaviour : MonoBehaviour
         text.alignment = TextAnchor.UpperCenter;
         text.fontStyle = FontStyle.Bold; 
         RectTransform rectTransform = textObj.GetComponent<RectTransform>();
-        rectTransform.sizeDelta = new Vector2(70, 92); 
-        
+        rectTransform.sizeDelta = new Vector2(70, 92);
+
         if (cardCanvas == null)
         {
             CreateSharedCanvas();
         }
+        
     }
-    private void CreateSharedCanvas()
+    private static void CreateSharedCanvas()
     {
         // Create and set up a Canvas for UI elements
         GameObject canvasObj = new GameObject("CardCanvas");
         cardCanvas = canvasObj.AddComponent<Canvas>();
         cardCanvas.renderMode = RenderMode.ScreenSpaceOverlay;
-        canvasObj.AddComponent<CanvasScaler>();
+        CanvasScaler scaler2 = canvasObj.AddComponent<CanvasScaler>();
+        scaler2.uiScaleMode = CanvasScaler.ScaleMode.ScaleWithScreenSize;
+        scaler2.referenceResolution = new Vector2(1920, 1080);
         canvasObj.AddComponent<GraphicRaycaster>();
 
         // Create an Image UI element for the card image
@@ -77,9 +80,10 @@ public abstract class CarteBehaviour : MonoBehaviour
         imageRect.sizeDelta = new Vector2(90, 150); // Adjust size to fit your card
         imageRect.anchoredPosition = new Vector2(135, -463);
         cardImage.color = Color.gray;
-        LoadCardImage(carteData.Sprite.name);
+        LoadCardImage("batte");
     }
-    private void LoadCardImage(string imageName)
+    
+    private static void LoadCardImage(string imageName)
     {
         string cheminImage = "Sprites/cards/" + imageName;
         Sprite newSprite = Resources.Load<Sprite>(cheminImage);
@@ -219,7 +223,7 @@ public abstract class CarteBehaviour : MonoBehaviour
                         }
                     }
                     
-                    LoadCardImage(carteData.Sprite.name);
+                    LoadCardImage("tomato");
                     break;
                 }
             }
@@ -235,5 +239,8 @@ public abstract class CarteBehaviour : MonoBehaviour
         bulletBehaviour.Set((startPosition, currentMousePos), projectileData);
     }
     
-   
+    protected void FinAction()
+    {
+        GameManager.Instance.playerActif.enAction = false;
+    }
 }

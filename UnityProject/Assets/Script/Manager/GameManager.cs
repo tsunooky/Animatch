@@ -125,8 +125,8 @@ namespace Script.Manager
                             if (animalActif!=null)
                             {
                                 var aimbotani = animalActif.AddComponent<aimBot>();
-                                float xcible = transform.position.x + 10;
-                                float ycible = transform.position.y + 10;
+                                float xcible = playerActif.transform.position.x + 10;
+                                float ycible = playerActif.transform.position.y + 10;
                                 var cible = new Vector2(xcible, ycible);
                                 aimbotani.ClassiqueShootbot(cible);
                                 Destroy(aimbotani);

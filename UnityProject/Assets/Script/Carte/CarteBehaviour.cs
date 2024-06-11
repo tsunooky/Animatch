@@ -239,11 +239,8 @@ public abstract class CarteBehaviour : MonoBehaviour, Tireur
         }
     }
 
-<<<<<<< Updated upstream
-     public void ClassiqueShoot(Vector2 startPosition, Vector2 currentMousePos)
-=======
+
     public void ClassiqueShoot(Vector2 startPosition, Vector2 currentMousePos)
->>>>>>> Stashed changes
     {
         var projectileData = carteData.projectileData;
         projectileData.Lanceur = gameObject;

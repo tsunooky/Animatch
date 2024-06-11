@@ -7,10 +7,12 @@ using UnityEngine;
 using Script.Manager;
 using UnityEngine.UI;
 using Photon.Pun;
+using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine.SceneManagement;
 using static Unity.Mathematics.Random;
+using static Unity.Mathematics.math;
 
 namespace Script.Manager
 {
@@ -147,16 +149,36 @@ namespace Script.Manager
         [CanBeNull]
         public AnimalBehaviour getnearest()
         {
-            var res = joueur.animaux_vivant.Peek();
-            foreach (var animal in joueur.animaux_vivant)
+            if (joueur.animaux_vivant.Count > 0)
             {
-                if (animal.transform.position.x < res.transform.position.x && animal.transform.position.y < res.transform.position.y)
+                var res = joueur.animaux_vivant.Peek();
+                var moi = this.transform.position;
+                float distance = 10000;
+                foreach (var animal in joueur.animaux_vivant)
                 {
-                    res = animal;
+
+                    var xB = animal.transform.position.x;
+                    var xA = moi.x;
+                    var yB = animal.transform.position.y;
+                    var yA = moi.y;
+                    
+                    
+
+                    var temp = sqrt(((xB - xA) * (xB - xA)) + ((yB - yA) * (yB - yA)));
+                    Debug.Log(distance);
+                    
+                    
+                    if (temp < distance)
+                    {
+                        distance = temp;
+                        res = animal;
+                    }
                 }
+
+                return res;
             }
 
-            return res;
+            return null;
         }
 
         IEnumerator tirerbot(AnimalBehaviour animalActif)

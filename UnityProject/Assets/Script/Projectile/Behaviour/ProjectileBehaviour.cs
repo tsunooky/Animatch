@@ -39,5 +39,9 @@ public abstract class ProjectileBehaviour : MonoBehaviour
     protected void FinAction()
     {
         GameManager.Instance.playerActif.enAction = false;
+        if (GameManager.Instance.playerActif.drops == 0)
+        {
+            GameManager.Instance.FinfDuTour();
+        }
     }
 }

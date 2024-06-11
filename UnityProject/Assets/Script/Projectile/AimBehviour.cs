@@ -7,10 +7,11 @@ using UnityEngine.InputSystem;
 public class AimBehviour : MonoBehaviour
 {
     public ProjectileData projectileData;
-
+    
     private Vector2 direction;
     private Vector2 currentMousePos;
     private Vector2 velocity;
+    
     private GameObject pointilleVisee;
     [SerializeField] private GameObject[] pointilles;
     private float mass;
@@ -25,6 +26,7 @@ public class AimBehviour : MonoBehaviour
         TireurBehaviour = tireurBehaviour;
         projectileData = ProjectileData;
         lauchForce = projectileData.Force;
+        
         Rigidbody2D rigidbody2D = projectileData.Projectile.GetComponent<Rigidbody2D>();
         mass = rigidbody2D.mass;
         InvokeRepeating("Aim", 0f, 1f / 60f);

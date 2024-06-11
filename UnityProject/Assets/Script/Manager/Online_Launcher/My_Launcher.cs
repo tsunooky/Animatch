@@ -15,7 +15,6 @@ public class My_Launcher : MonoBehaviourPunCallbacks
     private byte maxPlayersPerRoom = 2;
     bool isConnecting;
     string gameVersion = "Alpha";
-    
     #endregion
     // for adding animation to load in game,add a LoaderAnime
     

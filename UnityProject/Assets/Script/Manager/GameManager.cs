@@ -29,8 +29,10 @@ namespace Script.Manager
         public bool tourActif = false;
 
         public PlayerManager playerActif;
-        public Text affichage_mana;
         
+        public Text affichage_mana;
+
+        public GameObject drop_left;
       
         private void Awake()
         {
@@ -39,7 +41,8 @@ namespace Script.Manager
                 Debug.LogError("GameManager n'est plus un singleton car il viens d'être redéfinis une deuxième fois !");
                 return;
             }
-            
+
+            drop_left.gameObject.SetActive(false);
             nextTurnButton.gameObject.SetActive(false);
             Instance = this;
             joueur =  gameObject.AddComponent<PlayerManager>();
@@ -92,6 +95,7 @@ namespace Script.Manager
                         joueur.MiseAJourDrops(tour);
                         affichage_mana.text = $"{joueur.drops}";
                         nextTurnButton.gameObject.SetActive(true);
+                        drop_left.gameObject.SetActive(true);
                         if (joueur.animaux_vivant.Count == 0)
                         {
                             Win(bot);
@@ -109,6 +113,7 @@ namespace Script.Manager
                     {
                         playerActif = bot;
                         nextTurnButton.gameObject.SetActive(false);
+                        drop_left.gameObject.SetActive(false);
                         if (bot.animaux_vivant.Count == 0)
                         {
                             Win(joueur);

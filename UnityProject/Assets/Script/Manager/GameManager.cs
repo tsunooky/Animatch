@@ -26,6 +26,7 @@ namespace Script.Manager
 
         public PlayerManager playerActif;
         public Text affichage_mana;
+        
       
         private void Awake()
         {
@@ -51,6 +52,7 @@ namespace Script.Manager
     
         void Update()
         {
+            
             if (spawn)
             {
                 if (joueur.deckAnimal.Count == 0 && bot.deckAnimal.Count == 0)
@@ -102,7 +104,10 @@ namespace Script.Manager
                             playerActif.animalActif = animalActif;
                             animalActif.LoadAura();
                             joueur.MiseAjourAffichageDrops();
+                            
                         }
+
+                        
                     }
                     else
                     {

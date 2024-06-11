@@ -24,6 +24,5 @@ public class BatBehaviour : CarteBehaviour
         // A CHANGER POUR ADAPTER AU CORPS à CORPS
        ClassiqueShoot(startPosition,currentMousePos);
     }
-
-
+    
 }

@@ -24,6 +24,8 @@ public class KnifeBehaviour : CarteBehaviour
         StartCoroutine(ShootCoroutine(startPosition, currentMousePos));
     }
 
+    
+
     private IEnumerator ShootCoroutine(Vector2 startPosition, Vector2 currentMousePos)
     {
         for (int i = 0; i < 4; i++)

@@ -6,6 +6,7 @@ using UnityEngine;
 using Script.Manager;
 using UnityEngine.UI;
 using Photon.Pun;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine.SceneManagement;
 using static Unity.Mathematics.Random;
@@ -55,7 +56,6 @@ namespace Script.Manager
     
         void Update()
         {
-            
             if (spawn)
             {
                 if (joueur.deckAnimal.Count == 0 && bot.deckAnimal.Count == 0)
@@ -64,7 +64,6 @@ namespace Script.Manager
                 }
                 else
                 {
-                    
                     if (!animalBeingPlaced)
                     {
                         if (joueur.deckAnimal.Count > bot.deckAnimal.Count)
@@ -79,11 +78,6 @@ namespace Script.Manager
                             StartCoroutine(PlaceAnimal(bot));
                         }
                     }
-                       
-                    
-                   
-                    
-                    
                 }
             }
             else
@@ -110,8 +104,6 @@ namespace Script.Manager
                             animalActif.LoadAura();
                             joueur.MiseAjourAffichageDrops();
                         }
-
-                        
                     }
                     else
                     {
@@ -129,11 +121,15 @@ namespace Script.Manager
                             animalActif.LoadAura();
                             bot.animaux_vivant.Enqueue(animalActif);
                             playerActif.animalActif = animalActif;
+                            
                             if (animalActif!=null)
                             {
-                                AimAndShoot animalActifBot = animalActif.gameObject.AddComponent<AimAndShoot>();
-                                animalActifBot.Initialize("tomate");
-                                animalActifBot.Shoot(Vector3.up);
+                                var aimbotani = animalActif.AddComponent<aimBot>();
+                                float xcible = transform.position.x + 10;
+                                float ycible = transform.position.y + 10;
+                                var cible = new Vector2(xcible, ycible);
+                                aimbotani.ClassiqueShootbot(cible);
+                                Destroy(aimbotani);
                             }
                             
                             FinfDuTour();

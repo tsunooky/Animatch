@@ -58,8 +58,10 @@ public abstract class CarteBehaviour : MonoBehaviour
         if (cardCanvas == null)
         {
             CreateSharedCanvas();
+            LoadCardImage(player.mainManager[6].GetComponents<CarteBehaviour>()[0].carteData.Sprite.name);
         }
         
+
     }
     private static void CreateSharedCanvas()
     {
@@ -80,7 +82,7 @@ public abstract class CarteBehaviour : MonoBehaviour
         imageRect.sizeDelta = new Vector2(90, 150); // Adjust size to fit your card
         imageRect.anchoredPosition = new Vector2(135, -463);
         cardImage.color = Color.gray;
-        LoadCardImage("batte");
+       
     }
     
     private static void LoadCardImage(string imageName)
@@ -223,7 +225,14 @@ public abstract class CarteBehaviour : MonoBehaviour
                         }
                     }
                     
-                    LoadCardImage("tomato");
+                }
+            }
+            foreach (var next_card in player.mainManager)
+            {
+                var x = next_card.transform.position.x;
+                if (x > 8 && x < 21)
+                {
+                    LoadCardImage(next_card.GetComponents<CarteBehaviour>()[0].carteData.Sprite.name);
                     break;
                 }
             }

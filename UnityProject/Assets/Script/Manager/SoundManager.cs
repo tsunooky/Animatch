@@ -1,45 +1,44 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
-namespace Resources.Sounds
+public class SoundManager : MonoBehaviour
 {
-    public class SoundManager : MonoBehaviour
+    public static SoundManager Instance;
+ 
+    [SerializeField]
+    private SoundLibrary sfxLibrary;
+    [SerializeField]
+    private AudioSource sfx2DSource;
+ 
+    private void Awake()
     {
-        public static SoundManager Instance;
- 
-        [SerializeField]
-        private SoundLibrary sfxLibrary;
-        [SerializeField]
-        private AudioSource sfx2DSource;
- 
-        private void Awake()
+        if (Instance != null)
         {
-            if (Instance != null)
-            {
-                Destroy(gameObject);
-            }
-            else
-            {
-                Instance = this;
-                DontDestroyOnLoad(gameObject);
-            }
+            Destroy(gameObject);
         }
- 
-        public void PlaySound3D(AudioClip clip, Vector3 pos)
+        else
         {
-            if (clip != null)
-            {
-                AudioSource.PlayClipAtPoint(clip, pos);
-            }
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
         }
+    }
  
-        public void PlaySound3D(string soundName, Vector3 pos)
+    public void PlaySound3D(AudioClip clip, Vector3 pos)
+    {
+        if (clip != null)
         {
-            PlaySound3D(sfxLibrary.GetClipFromName(soundName), pos);
+            AudioSource.PlayClipAtPoint(clip, pos);
         }
+    }
  
-        public void PlaySound2D(string soundName)
-        {
-            sfx2DSource.PlayOneShot(sfxLibrary.GetClipFromName(soundName));
-        }
+    public void PlaySound3D(string soundName, Vector3 pos)
+    {
+        PlaySound3D(sfxLibrary.GetClipFromName(soundName), pos);
+    }
+ 
+    public void PlaySound2D(string soundName)
+    {
+        sfx2DSource.PlayOneShot(sfxLibrary.GetClipFromName(soundName));
     }
 }

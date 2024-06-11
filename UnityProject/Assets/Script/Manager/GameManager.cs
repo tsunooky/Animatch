@@ -129,15 +129,10 @@ namespace Script.Manager
                             
                             if (animalActif!=null)
                             {
-                                var aimbotani = animalActif.AddComponent<aimBot>();
-                                float xcible = playerActif.transform.position.x + 10;
-                                float ycible = playerActif.transform.position.y + 10;
-                                var cible = new Vector2(xcible, ycible);
-                                aimbotani.ClassiqueShootbot(cible);
-                                Destroy(aimbotani);
+                                StartCoroutine(tirerbot(animalActif));
                             }
                             
-                            FinfDuTour();
+                            
                         }
                     }
 
@@ -146,6 +141,18 @@ namespace Script.Manager
                     tour += 1;
                 }
             }
+        }
+
+        IEnumerator tirerbot(AnimalBehaviour animalActif)
+        {
+            yield return new WaitForSeconds(2);
+            var aimbotani = animalActif.AddComponent<aimBot>();
+            float xcible = playerActif.transform.position.x -2;
+            float ycible = playerActif.transform.position.y + 2;
+            var cible = new Vector2(xcible, ycible);
+            aimbotani.ClassiqueShootbot(cible);
+            Destroy(aimbotani);
+            FinfDuTour();
         }
         IEnumerator PlaceAnimal(PlayerManager player)
         {

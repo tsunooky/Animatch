@@ -10,6 +10,7 @@ TagManager:
   - Spawn
   - MainCarte
   - Canvas
+  - ProjDegat
   layers:
   - Default
   - TransparentFX

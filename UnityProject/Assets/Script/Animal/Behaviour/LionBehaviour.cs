@@ -25,7 +25,7 @@ public class LionBehaviour : AnimalBehaviour
         }
     }
 
-    protected override void Soin(int heal) // passif lion
+    public override void Soin(int heal) // passif lion
     {
         pv += heal + heal/2;
     }

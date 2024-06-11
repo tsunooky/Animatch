@@ -114,7 +114,7 @@ public abstract class AnimalBehaviour : MonoBehaviour
     
     public abstract void Animax();
 
-    public void Degat(int damage)
+    public virtual void Degat(int damage)
     {
         pv -= damage;
         if (pv <= 0)

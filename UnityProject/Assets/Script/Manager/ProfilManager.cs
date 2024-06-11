@@ -34,7 +34,7 @@ namespace Script.Manager
             {
                 { "a", "b" }
             };
-            deckAnimaux = new[] {"turtle", "dog","panda"};
+            deckAnimaux = new[] {"panda", "panda","panda"};
             deckCartes = new[]
             {
                 "jump", "tomate", "tomate", "tomate",

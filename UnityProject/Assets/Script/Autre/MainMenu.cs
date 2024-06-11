@@ -11,16 +11,16 @@ public class MainMenu : MonoBehaviour
    }
    public void PlayGameMulti()
    {
-      SceneManager.LoadScene("Main_Online");
+      SceneManager.LoadScene("Main 2P");
    }
    public void OpenOption()
    {
-      SceneManager.LoadScene("Options");
+      SceneManager.LoadScene("Settings");
    }
    
    public void OpenEquipes()
    {
-      SceneManager.LoadScene("Equipes");
+      SceneManager.LoadScene("Team");
    }
    
    public void OpenMenu()

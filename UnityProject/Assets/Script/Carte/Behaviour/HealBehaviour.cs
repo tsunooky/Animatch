@@ -18,6 +18,7 @@ public class HealBehaviour : CarteBehaviour
     public override void SpellAfterClick()
     {
         GameManager.Instance.playerActif.animalActif.pv += 10;
+        FinAction();
     }
 
     public override void SpellAfterShoot(Vector2 startPosition,Vector2 currentMousePos)

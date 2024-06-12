@@ -1,4 +1,5 @@
 using System;
+using Destructible2D;
 using UnityEngine;
 using Script.Manager;
 
@@ -19,8 +20,8 @@ public class ProjBambooBehaviour: ProjectileBehaviour
         if (!declanchement && !invinsible)
         {
             declanchement = true;
-            Debug.Log("aaaaaaaaaaaaaa");
-            Instantiate(Bamboo, gameObject.transform);
+            Debug.Log("ADDDRIEN");
+            Instantiate(Bamboo, gameObject.transform.position, gameObject.transform.rotation);
             FinAction();
             Destroy(gameObject);
         }

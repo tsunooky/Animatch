@@ -126,12 +126,12 @@ public abstract class AnimalBehaviour : MonoBehaviour
             pv = 0;
             healthBar.SetHealth(pv);
             Destroy(healthBar);
-            Meurt();
             Destroy(currentInstance);
             if (healthBarInstance != null)
             {
                 Destroy(healthBarInstance);
             }
+            Meurt();
         }
         healthBar.SetHealth(pv);
     }

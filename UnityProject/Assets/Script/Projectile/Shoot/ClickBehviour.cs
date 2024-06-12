@@ -27,9 +27,12 @@ public class ClickBehaviour : MonoBehaviour
             Destroy(gun);
             Destroy(this);
         }
-        else if (Mouse.current.leftButton.wasPressedThisFrame && GameManager.Instance.playerActif.enVisee)
+        else if (Mouse.current.leftButton.wasPressedThisFrame) 
         {
-           Tireur.SpellAfterClick();
+            if( GameManager.Instance.playerActif.enVisee)
+            {
+               Tireur.SpellAfterClick();
+            }
         }
     }
 }

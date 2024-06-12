@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 11418418}
   - component: {fileID: 8237358}
   - component: {fileID: 11401416}
-  - component: {fileID: 114070398809276716}
   - component: {fileID: 1529943587245828053}
   m_Layer: 0
   m_Name: Tomato
@@ -4998,19 +4997,6 @@ MonoBehaviour:
   lifeMax: 1
   startColor: {r: 0, g: 0, b: 0, a: 0}
   startLocalScale: {x: 0, y: 0, z: 0}
---- !u!114 &114070398809276716
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 100000}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 694dd02f24b737247a594ec9a2714315, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Shake: 0.5
 --- !u!61 &1529943587245828053
 BoxCollider2D:
   m_ObjectHideFlags: 0

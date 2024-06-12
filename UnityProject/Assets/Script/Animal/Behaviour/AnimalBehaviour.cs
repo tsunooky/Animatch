@@ -25,6 +25,9 @@ public abstract class AnimalBehaviour : MonoBehaviour
     public bool actif;
     public GameObject currentInstance;
     [SerializeField] private ParticleSystem ps = default;
+
+    // Stock les collision2D qui ont infligé degat par chaque projo pour eviter de s'en reprendre un autre
+    private List<Collision2D> ListDegat;
     
     public void setPointeur()
     {
@@ -44,6 +47,7 @@ public abstract class AnimalBehaviour : MonoBehaviour
     
     private void Start()
     {
+        ListDegat = new List<Collision2D>();
         tag = "Animal";
         timeSpawn = Time.time;
         gameObject.layer = 6;
@@ -122,7 +126,7 @@ public abstract class AnimalBehaviour : MonoBehaviour
             pv = 0;
             healthBar.SetHealth(pv);
             Destroy(healthBar);
-            Destroy(gameObject);
+            Meurt();
             Destroy(currentInstance);
             if (healthBarInstance != null)
             {
@@ -142,12 +146,12 @@ public abstract class AnimalBehaviour : MonoBehaviour
     void OnCollisionEnter2D(Collision2D collison2D)
     {
         // Vérifiez si la collision concerne un animal
-        if (collison2D.gameObject.CompareTag("Explosion"))
+        if (collison2D.gameObject.CompareTag("Explosion") && !ListDegat.Contains(collison2D))
         {
             D2dExplosion explosion = collison2D.gameObject.GetComponent<D2dExplosion>();
             Degat(explosion.degat);
             
-            // BUG_EXPLO SUR LES DEGAT DES EXPLOSIONS VOIR #BUG sur discord le 11/09/2024 à 14:21 
+            ListDegat.Add(collison2D);
         }
         
         /*if (collison2D.gameObject.tag == "Map")
@@ -219,21 +223,28 @@ public abstract class AnimalBehaviour : MonoBehaviour
     
     IEnumerator MoveAura()
     {
-        while (true)
+        while (currentInstance != null)
         {
             // Move the object upwards over 2 seconds
             for (float t = 0; t <= 0.1f; t += Time.deltaTime / 5f)
             {
-                currentInstance.transform.position = new Vector3(currentInstance.transform.position.x, currentInstance.transform.position.y + t * 0.02f, currentInstance.transform.position.z);
+                if(currentInstance != null)
+                    currentInstance.transform.position = new Vector3(currentInstance.transform.position.x, currentInstance.transform.position.y + t * 0.02f, currentInstance.transform.position.z);
                 yield return null;
             }
 
             // Move the object downwards over 2 seconds
             for (float t = 0; t <= 0.1f; t += Time.deltaTime / 5f)
             {
-                currentInstance.transform.position = new Vector3(currentInstance.transform.position.x, currentInstance.transform.position.y - t * 0.02f, currentInstance.transform.position.z);
+                if (currentInstance != null)
+                 currentInstance.transform.position = new Vector3(currentInstance.transform.position.x, currentInstance.transform.position.y - t * 0.02f, currentInstance.transform.position.z);
                 yield return null;
             }
         }
+    }
+
+    public void Meurt()
+    {
+        StartCoroutine(gameObject.GetComponent<DespawnManager>().Death());
     }
 }

@@ -19,6 +19,7 @@ public class ProjBambooBehaviour: ProjectileBehaviour
         if (!declanchement && !invinsible)
         {
             declanchement = true;
+            Debug.Log("aaaaaaaaaaaaaa");
             Instantiate(Bamboo, gameObject.transform);
             FinAction();
             Destroy(gameObject);

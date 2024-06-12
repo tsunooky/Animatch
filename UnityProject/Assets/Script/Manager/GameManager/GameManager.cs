@@ -127,12 +127,17 @@ namespace Script.Manager
                             Debug.Log("Tour du bot");
                             AnimalBehaviour animalActif = bot.animaux_vivant.Dequeue();
                             animalActif.LoadAura();
-                            bot.animaux_vivant.Enqueue(animalActif);
+                            
                             playerActif.animalActif = animalActif;
                             
                             if (animalActif!=null)
                             {
                                 StartCoroutine(tirerbot(animalActif));
+                            }
+
+                            if (animalActif != null)
+                            {
+                                bot.animaux_vivant.Enqueue(animalActif);
                             }
                             
                             

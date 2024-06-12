@@ -147,15 +147,15 @@ namespace Script.Manager
         }
 
         [CanBeNull]
-        public AnimalBehaviour getnearest()
+        public AnimalBehaviour getnearest(PlayerManager player)
         {
             if (joueur.animaux_vivant.Count > 0)
             {
-                AnimalBehaviour res = joueur.animaux_vivant.Peek();
-                var moi = this.transform.position;
+                AnimalBehaviour res = player.animaux_vivant.Peek();
+                var moi = playerActif.animalActif.transform.position;
                 float minDistance = float.MaxValue;
 
-                foreach (var animal in joueur.animaux_vivant)
+                foreach (var animal in player.animaux_vivant)
                 {
                     float distance = Vector2.Distance(moi, animal.transform.position);
                     if (distance < minDistance)
@@ -176,7 +176,7 @@ namespace Script.Manager
             
             yield return new WaitForSeconds(2);
             var aimbotani = animalActif.AddComponent<AimBot>();
-            var cible = getnearest();
+            var cible = getnearest(joueur);
             
             if (cible != null)
             {

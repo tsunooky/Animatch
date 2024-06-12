@@ -5,7 +5,7 @@ using Script.Manager;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Experimental.Rendering.RenderGraphModule;
-using static Script.Manager.GameManager;
+using static Script.Manager.AGameManager;
 using UnityEngine.UI;
 public abstract class CarteBehaviour : MonoBehaviour, Tireur
 {

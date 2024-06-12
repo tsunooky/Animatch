@@ -7,7 +7,7 @@ using UnityEngine;
 using Photon.Pun;
 using Destructible2D.Examples;
 using Unity.VisualScripting;
-using static Script.Manager.GameManager;
+using static Script.Manager.AGameManager;
 
 public abstract class AnimalBehaviour : MonoBehaviour
 {

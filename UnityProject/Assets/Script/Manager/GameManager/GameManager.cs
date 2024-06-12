@@ -17,24 +17,14 @@ using Random = UnityEngine.Random;
 
 namespace Script.Manager
 {
-    public class GameManager : MonoBehaviour
+    public class GameManager : AGameManager
     { 
-        public static GameManager Instance;
         public GameObject nextTurnButton; 
         public int tour;
-
-        public PlayerManager joueur;
-
         public PlayerManager bot;
 
         private bool spawn = true;
         private bool animalBeingPlaced = false;
-
-        public bool tourActif = false;
-
-        public PlayerManager playerActif;
-        
-        public Text affichage_mana;
 
         public GameObject drop_left;
       
@@ -237,44 +227,6 @@ namespace Script.Manager
             player.animalActif = player.animaux_vivant.Peek();
 
             animalBeingPlaced = false;
-        }
-    
-    
-        // ReSharper disable Unity.PerformanceAnalysis
-        AnimalBehaviour creerAnimal(float x, float y,string animal)
-        {
-            var animalTypes = DataDico.animalTypes;
-            if (animalTypes.ContainsKey(animal))
-            {
-                // Création d'un GameObject
-                GameObject newAnimal = new GameObject(animal + x);
-                Type typeAnimal = animalTypes[animal];
-                AnimalBehaviour animalBehaviour = (AnimalBehaviour)(newAnimal.AddComponent(typeAnimal));
-                newAnimal.transform.position = new Vector2(x, y);
-                animalBehaviour.AnimalVisible();
-                animalBehaviour.nom = animal + x;
-                animalBehaviour.setPointeur();
-                return animalBehaviour;
-            }
-            throw new Exception("Ce type d'animal n'existe pas ");
-        }
-
-        public void FinDuTour()
-        {
-            // regle le bug #01
-            tourActif = false;
-            Destroy(playerActif.animalActif.currentInstance);
-        }
-
-        private void Win(PlayerManager player)
-        {
-            Debug.Log("Victoire de " + player.name);
-            SceneManager.LoadScene("Fin");
-            Invoke("QuitGame", 10f);
-        }
-        private void QuitGame()
-        {
-            Application.Quit();
         }
     }
 

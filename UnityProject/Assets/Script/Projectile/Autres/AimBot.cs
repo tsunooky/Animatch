@@ -25,7 +25,7 @@ public  class AimBot : MonoBehaviour
     {
         var pro = Resources.Load<ProjectileData>("Data/Projectile/Tomate");
         GameObject bullet = Instantiate(pro.Projectile, gameObject.transform.position, Quaternion.identity);
-
+        pro.Degat += 10;
         // Obtenir le composant ProjectileBehaviour
         ProjectileBehaviour bulletBehaviour = bullet.GetComponent<ProjectileBehaviour>();
 
@@ -35,8 +35,8 @@ public  class AimBot : MonoBehaviour
 
         // Générer un décalage aléatoire
         float randomOffsetX = UnityEngine.Random.Range(-0.5f, 0.5f);
-        float randomOffsetY = UnityEngine.Random.Range(-0.5f, 0.5f);
-
+        float randomOffsetY = UnityEngine.Random.Range(0.5f, 1f);
+        
         // Ajuster la direction pour tirer à droite avec un décalage aléatoire
         Vector2 direction = new Vector2(relativePosition.x + 1f + randomOffsetX, relativePosition.y + 3f + randomOffsetY);
 
@@ -51,7 +51,7 @@ public  class AimBot : MonoBehaviour
     {
         var pro = Resources.Load<ProjectileData>("Data/Projectile/Tomate");
         GameObject bullet = Instantiate(pro.Projectile, gameObject.transform.position, Quaternion.identity);
-
+        pro.Degat += 10;
         // Obtenir le composant ProjectileBehaviour
         ProjectileBehaviour bulletBehaviour = bullet.GetComponent<ProjectileBehaviour>();
 
@@ -61,10 +61,10 @@ public  class AimBot : MonoBehaviour
 
         // Générer un décalage aléatoire
         float randomOffsetX = UnityEngine.Random.Range(-0.5f, 0.5f);
-        float randomOffsetY = UnityEngine.Random.Range(-0.5f, 0.5f);
-
+        float randomOffsetY = UnityEngine.Random.Range(0.5f, 1f);
+        
         // Ajuster la direction pour tirer à gauche avec un décalage aléatoire
-        Vector2 direction = new Vector2(relativePosition.x - 1f + randomOffsetX, relativePosition.y + 3f + randomOffsetY);
+        Vector2 direction = new Vector2(relativePosition.x - 1f + randomOffsetX, relativePosition.y + 3f + randomOffsetY );
 
         // Convertir la direction relative en une position absolue pour la cible
         Vector2 targetPosition = botPosition + direction;

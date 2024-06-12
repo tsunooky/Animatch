@@ -31,10 +31,5 @@ public class DogBehaviour : AnimalBehaviour, Tireur
         ProjectileBehaviour bulletBehaviour = bullet.GetComponent<ProjectileBehaviour>();
         bulletBehaviour.Set((startPosition, currentMousePos), potentielleprojDataAnimax);
     }
-
-    void OnDestroy()
-    {
-        //SON PASSIF COPIE COLLER LA FIN DE LA BAT
-    }
     
 }

@@ -226,6 +226,8 @@ namespace Script.Manager
                 newAnimal.LoadHealthbar();
             }
 
+            player.animalActif = player.animaux_vivant.Peek();
+
             animalBeingPlaced = false;
         }
     

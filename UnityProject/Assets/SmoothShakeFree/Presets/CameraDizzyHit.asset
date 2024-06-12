@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timeSettings:
     fadeValue: 0
-    enableOnStart: 0
-    constantShake: 0
+    enableOnStart: 1
+    constantShake: 1
     fadeInDuration: 0
     fadeInCurve:
       serializedVersion: 2

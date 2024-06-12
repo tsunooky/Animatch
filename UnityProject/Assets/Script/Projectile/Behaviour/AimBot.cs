@@ -3,7 +3,7 @@ using UnityEngine;
 
 
 
-public  class aimBot : MonoBehaviour
+public  class AimBot : MonoBehaviour
 {
     public void ClassiqueShootbot(Vector2 targetPosition)
     {
@@ -11,6 +11,13 @@ public  class aimBot : MonoBehaviour
         pro.Force += 5;
         GameObject bullet = Instantiate(pro.Projectile, gameObject.transform.position, Quaternion.identity);
         ProjectileBehaviour bulletBehaviour = bullet.GetComponent<ProjectileBehaviour>();
-        bulletBehaviour.Set((gameObject.transform.position,targetPosition), pro);
+        if (gameObject.transform.position.x < 0 )
+        {
+            bulletBehaviour.Set((new Vector2(-gameObject.transform.position.x, gameObject.transform.position.y), targetPosition), pro);
+        }
+        else
+        {
+            bulletBehaviour.Set((new Vector2(gameObject.transform.position.x, gameObject.transform.position.y), targetPosition), pro);
+        }
     }
 }

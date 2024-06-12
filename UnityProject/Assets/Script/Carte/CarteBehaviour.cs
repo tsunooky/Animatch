@@ -34,7 +34,8 @@ public abstract class CarteBehaviour : MonoBehaviour, Tireur
         spriteRenderer.sortingOrder = 11;
         player = Instance.joueur;
         spriteRenderer.color = new Color32(200, 200, 200, 255);
-            
+        ancienne_carte_selec = null;
+        
         //pour mettre le coût de la carte sur la carte : 
         GameObject canvasObj = new GameObject("CardCanvas");
         canvasObj.transform.SetParent(transform);

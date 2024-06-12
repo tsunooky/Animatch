@@ -151,30 +151,20 @@ namespace Script.Manager
         {
             if (joueur.animaux_vivant.Count > 0)
             {
-                var res = joueur.animaux_vivant.Peek();
+                AnimalBehaviour res = joueur.animaux_vivant.Peek();
                 var moi = this.transform.position;
-                float distance = 10000;
+                float minDistance = float.MaxValue;
+
                 foreach (var animal in joueur.animaux_vivant)
                 {
-
-                    var xB = animal.transform.position.x;
-                    var xA = moi.x;
-                    var yB = animal.transform.position.y;
-                    var yA = moi.y;
-                    
-                    
-
-                    var temp = sqrt(((xB - xA) * (xB - xA)) + ((yB - yA) * (yB - yA)));
-                    Debug.Log(distance);
-                    
-                    
-                    if (temp < distance)
+                    float distance = Vector2.Distance(moi, animal.transform.position);
+                    if (distance < minDistance)
                     {
-                        distance = temp;
+                        minDistance = distance;
                         res = animal;
                     }
                 }
-
+                Debug.Log(res.nom);
                 return res;
             }
 
@@ -185,10 +175,13 @@ namespace Script.Manager
         {
             
             yield return new WaitForSeconds(2);
-            var aimbotani = animalActif.AddComponent<aimBot>();
+            var aimbotani = animalActif.AddComponent<AimBot>();
             var cible = getnearest();
             
-            aimbotani.ClassiqueShootbot(cible.transform.position);
+            if (cible != null)
+            {
+                aimbotani.ClassiqueShootbot(cible.transform.position);
+            }
             Destroy(aimbotani);
             FinfDuTour();
         }

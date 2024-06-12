@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,6 +8,13 @@ using Unity.VisualScripting;
 
 public class ProjKnifeBehaviour : ProjectileBehaviour
 {
+    private void Awake()
+    {
+        // Retourne le couteau car le sprite est a l'envers tar adrien
+        SpriteRenderer spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
+        spriteRenderer.flipY = true;
+    }
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.transform.parent is not null)

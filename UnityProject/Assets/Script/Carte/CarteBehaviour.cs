@@ -248,7 +248,6 @@ public abstract class CarteBehaviour : MonoBehaviour, Tireur
         GameObject bullet = Instantiate(projectileData.Projectile, startPosition, Quaternion.identity);
         ProjectileBehaviour bulletBehaviour = bullet.GetComponent<ProjectileBehaviour>();
         bulletBehaviour.Set((startPosition, currentMousePos), projectileData);
-        
     }
 
     

@@ -173,7 +173,6 @@ public abstract class AnimalBehaviour : MonoBehaviour
         for (int i = 0; i < player.animaux_vivant.Count; i++)
         {
             AnimalBehaviour animal = player.animaux_vivant.Dequeue();
-            Debug.Log($"{animal.gameObject.name} + {gameObject.name} = {animal != this}");
             if (animal != this)
                 player.animaux_vivant.Enqueue(animal);
           

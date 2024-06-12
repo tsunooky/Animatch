@@ -18,6 +18,8 @@ public class HealBehaviour : CarteBehaviour
     public override void SpellAfterClick()
     {
         GameManager.Instance.playerActif.animalActif.pv += 10;
+        GameManager.Instance.playerActif.animalActif.healthBar.SetHealth(GameManager.Instance.playerActif.animalActif.pv);
+        PiocherMain();
         FinAction();
     }
 

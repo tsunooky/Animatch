@@ -17,6 +17,10 @@ public class HealBehaviour : CarteBehaviour
     
     public override void SpellAfterClick()
     {
+        var vector3 = transform.position;
+        vector3.y =  -4f;
+        transform.position = vector3;
+        spriteRenderer.color = new Color32(200,200,200,255);
         GameManager.Instance.playerActif.animalActif.pv += 10;
         GameManager.Instance.playerActif.animalActif.healthBar.SetHealth(GameManager.Instance.playerActif.animalActif.pv);
         PiocherMain();

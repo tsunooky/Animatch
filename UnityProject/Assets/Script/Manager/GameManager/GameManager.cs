@@ -190,7 +190,7 @@ namespace Script.Manager
                 }
 
                 Destroy(aimbotani);
-                FinfDuTour();
+                FinDuTour();
             }
         }
         
@@ -251,7 +251,7 @@ namespace Script.Manager
             throw new Exception("Ce type d'animal n'existe pas ");
         }
 
-        public void FinfDuTour()
+        public void FinDuTour()
         {
             // regle le bug #01
             tourActif = false;

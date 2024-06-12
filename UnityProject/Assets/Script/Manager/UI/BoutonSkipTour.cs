@@ -14,6 +14,6 @@ public class BoutonSkipTour : MonoBehaviour
             animalActif.Soin(10);
         }
 
-        GameManager.Instance.FinfDuTour();
+        GameManager.Instance.FinDuTour();
     }
 }

@@ -257,7 +257,7 @@ public abstract class CarteBehaviour : MonoBehaviour, Tireur
         GameManager.Instance.playerActif.enAction = false;
         if (GameManager.Instance.playerActif.drops == 0)
         {
-            GameManager.Instance.FinfDuTour();
+            GameManager.Instance.FinDuTour();
         }
     }
     

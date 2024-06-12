@@ -117,6 +117,10 @@ public class AimBehviour : MonoBehaviour
         Destroy(this);
         if (TireurBehaviour is CarteBehaviour)
         {
+            var vector3 = ((CarteBehaviour)TireurBehaviour).transform.position;
+            vector3.y =  -4f;
+            ((CarteBehaviour)TireurBehaviour).transform.position = vector3;
+            ((CarteBehaviour)TireurBehaviour).spriteRenderer.color = new Color32(200,200,200,255);
             ((CarteBehaviour)TireurBehaviour).PiocherMain();
         }
     }

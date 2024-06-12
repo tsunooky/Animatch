@@ -178,8 +178,11 @@ public abstract class AnimalBehaviour : MonoBehaviour
           
         }
         
-        
-        FinAction();
+        if (player.animalActif == this)
+        {
+            Instance.playerActif.enAction = false;
+            Instance.tourActif = false;
+        }
     }
 
     public void OnMouseEnter()
@@ -245,12 +248,4 @@ public abstract class AnimalBehaviour : MonoBehaviour
         StartCoroutine(gameObject.GetComponent<DespawnManager>().Death());
     }
     
-    protected void FinAction()
-    {
-        Instance.playerActif.enAction = false;
-        if (player.animalActif == this)
-        {
-            Instance.tourActif = false;
-        }
-    }
 }

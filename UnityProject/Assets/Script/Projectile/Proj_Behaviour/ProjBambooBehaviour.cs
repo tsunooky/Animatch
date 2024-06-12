@@ -14,16 +14,19 @@ public class ProjBambooBehaviour: ProjectileBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        GameObject cible = other.gameObject.transform.parent.gameObject;
-        GameObject AnimalActif = GameManager.Instance.playerActif.animalActif.gameObject;
-        bool invinsible = cible == AnimalActif; 
-        if (!declanchement && !invinsible)
+        if (other.gameObject.transform.parent is not null)
         {
-            declanchement = true;
-            Debug.Log("ADDDRIEN");
-            Instantiate(Bamboo, gameObject.transform.position, gameObject.transform.rotation);
-            FinAction();
-            Destroy(gameObject);
+            GameObject cible = other.gameObject.transform.parent.gameObject;
+            GameObject AnimalActif = GameManager.Instance.playerActif.animalActif.gameObject;
+            bool invinsible = cible == AnimalActif;
+            if (!declanchement && !invinsible)
+            {
+                declanchement = true;
+                Debug.Log("ADDDRIEN");
+                Instantiate(Bamboo, gameObject.transform.position, gameObject.transform.rotation);
+                FinAction();
+                Destroy(gameObject);
+            }
         }
     }
 

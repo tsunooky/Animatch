@@ -256,7 +256,6 @@ namespace Script.Manager
             // regle le bug #01
             tourActif = false;
             Destroy(playerActif.animalActif.currentInstance);
-            playerActif.animalActif.currentInstance = new GameObject();
         }
 
         private void Win(PlayerManager player)

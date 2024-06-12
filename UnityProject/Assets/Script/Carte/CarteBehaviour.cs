@@ -21,6 +21,7 @@ public abstract class CarteBehaviour : MonoBehaviour, Tireur
     
     public Text text;
     
+    public static bool alreadylifted;
     public static Image cardImage; 
     private static Canvas cardCanvas;
     protected abstract void Awake();
@@ -112,12 +113,65 @@ public abstract class CarteBehaviour : MonoBehaviour, Tireur
             rectTransform.position = screenPoint;
         }
     }
+    private void OnMouseDown()
+    {
+        if (carte_actuel)
+        {
+            DeselectCard();
+            OnMouseExit();
+        }
+        else
+        {
+            SelectCard();
+        }
+    }
 
+    private void SelectCard()
+    {
+        
+        if (Instance.playerActif == player && player.drops - carteData.drops >= 0 && !player.enAction)
+        {
+            carte_actuel = true;
+            ancienne_carte_selec = this;
+            alreadylifted = true;
+            Instance.playerActif.enAction = true;
+            Instance.playerActif.SetAura(true);
+            SpellClickOnCarte();
+            player.drops -= carteData.drops;
+            player.MiseAjourAffichageDrops();
+        }
+        
+    }
+
+    public void DeselectCard()
+    {
+        carte_actuel = false;
+        Instance.playerActif.SetAura(false);
+        Instance.playerActif.enAction = false;
+        player.drops += carteData.drops;
+        player.MiseAjourAffichageDrops();
+        alreadylifted = false;
+        var vector3 = transform.position;
+        vector3.y -= 4f;
+        transform.position = vector3;
+        spriteRenderer.color = new Color32(200,200,200,255);
+
+        if (ancienne_carte_selec == this)
+        {
+            ancienne_carte_selec = null;
+        }
+    }
+    /*
     private void OnMouseDown()
     {
         if (ancienne_carte_selec != null && ancienne_carte_selec != this)
         {
             ancienne_carte_selec.carte_actuel = false;
+        }
+
+        if (ancienne_carte_selec == this)
+        {
+            DeselectCard();
         }
         
         if (Instance.playerActif == player && player.drops - carteData.drops >= 0 && !player.enAction)
@@ -142,6 +196,7 @@ public abstract class CarteBehaviour : MonoBehaviour, Tireur
         transform.position = vector3;
         spriteRenderer.color = Color.white;
         
+        alreadylifted = true;
         Instance.playerActif.enAction = true;
         Instance.playerActif.SetAura(true);
         SpellClickOnCarte();
@@ -158,16 +213,17 @@ public abstract class CarteBehaviour : MonoBehaviour, Tireur
         Instance.playerActif.enAction = false;
         player.drops += carteData.drops;
         player.MiseAjourAffichageDrops();
+        alreadylifted = false;
         OnMouseExit();
         if (ancienne_carte_selec == this)
         {
             ancienne_carte_selec = null;
         }
     }
-
+*/
     private void OnMouseEnter()
     {
-        if (!carte_actuel)
+        if (!carte_actuel && !alreadylifted )
         {
             var vector3 = transform.position;
             vector3.y += 1f;
@@ -175,12 +231,11 @@ public abstract class CarteBehaviour : MonoBehaviour, Tireur
             spriteRenderer.color = Color.white;
             
         }
-        
     }
 
     private void OnMouseExit()
     {
-        if (!carte_actuel)
+        if (!carte_actuel && !alreadylifted)
         { 
             var vector3 = transform.position;
             vector3.y =  -4f;

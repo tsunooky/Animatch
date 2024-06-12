@@ -14,30 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timeSettings:
     fadeValue: 0
-    enableOnStart: 1
-    constantShake: 1
+    enableOnStart: 0
+    constantShake: 0
     fadeInDuration: 1
     fadeInCurve:
       serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 0
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 1
-        value: 1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
+      m_Curve: []
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
@@ -45,31 +27,13 @@ MonoBehaviour:
     fadeOutDuration: 1
     fadeOutCurve:
       serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0.016666412
-        value: 1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 0.9916687
-        value: 0.0070762634
-        inSlope: 0.02483903
-        outSlope: 0.02483903
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0.09741809
-        outWeight: 0
+      m_Curve: []
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
   positionShake:
     noiseType: 1
-    amplitude: {x: 0.2, y: 1, z: 0.2}
+    amplitude: {x: 0.02, y: 0.1, z: 0.02}
     frequency: {x: 0.1, y: 0.2, z: 0.1}
   rotationShake:
     noiseType: 0

@@ -137,7 +137,7 @@ namespace Bundos.WaterSystem
 
         private void Update()
         {
-           // UpdateSpringPositions();
+            UpdateSpringPositions();
             UpdateMeshVerticePositions();
             UpdateMesh();
         }
@@ -149,7 +149,7 @@ namespace Bundos.WaterSystem
                 vertices[(2 * i) + 1] = baseVertecies[(2 * i) + 1] + springs[i].weightPosition + springs[i].sineOffset;
             }
         }
-/*
+
         private void UpdateSpringPositions()
         {
             // Random spring movement
@@ -177,7 +177,7 @@ namespace Bundos.WaterSystem
                 springs[i].weightPosition += springs[i].velocity;
             }
         }
-*/
+
         public void UpdateMesh()
         {
             mesh.Clear();

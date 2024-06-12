@@ -13,6 +13,7 @@ using UnityEditor;
 using UnityEngine.SceneManagement;
 using static Unity.Mathematics.Random;
 using static Unity.Mathematics.math;
+using Random = UnityEngine.Random;
 
 namespace Script.Manager
 {
@@ -183,10 +184,17 @@ namespace Script.Manager
             {
                 var aimbotani = animalActif.AddComponent<AimBot>();
                 var cible = getnearest(joueur);
+                Vector2 botPosition = gameObject.transform.position;
+                Vector2 ciblePosition = cible.transform.position;
+                Vector2 relativePosition = ciblePosition - botPosition;
 
-                if (cible != null)
+                if (relativePosition.x > 0)
                 {
-                    aimbotani.ClassiqueShootbot(cible.transform.position);
+                    aimbotani.TirerDansUneDirectiondroite(ciblePosition);
+                }
+                else if (relativePosition.x < 0)
+                {
+                    aimbotani.TirerDansUneDirectiongauche(ciblePosition);
                 }
 
                 Destroy(aimbotani);

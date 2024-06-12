@@ -32,8 +32,9 @@ public class KnifeBehaviour : CarteBehaviour
         {
             ClassiqueShoot(startPosition, currentMousePos);
             // Attendre pendant le délai spécifié
-            yield return new WaitForSeconds((float)1.5);
+            yield return new WaitForSeconds((float)0.5);
         }
+        FinAction();
     }
 
     

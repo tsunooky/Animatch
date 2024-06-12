@@ -173,17 +173,20 @@ namespace Script.Manager
 
         IEnumerator tirerbot(AnimalBehaviour animalActif)
         {
-            
             yield return new WaitForSeconds(2);
-            var aimbotani = animalActif.AddComponent<AimBot>();
-            var cible = getnearest(joueur);
-            
-            if (cible != null)
+            if (animalActif != null)
             {
-                aimbotani.ClassiqueShootbot(cible.transform.position);
+                var aimbotani = animalActif.AddComponent<AimBot>();
+                var cible = getnearest(joueur);
+
+                if (cible != null)
+                {
+                    aimbotani.ClassiqueShootbot(cible.transform.position);
+                }
+
+                Destroy(aimbotani);
+                FinfDuTour();
             }
-            Destroy(aimbotani);
-            FinfDuTour();
         }
         
         IEnumerator PlaceAnimal(PlayerManager player)
@@ -262,4 +265,4 @@ namespace Script.Manager
     }
 
     
-    }
+}

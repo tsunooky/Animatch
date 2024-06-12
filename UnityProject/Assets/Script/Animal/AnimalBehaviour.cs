@@ -178,11 +178,8 @@ public abstract class AnimalBehaviour : MonoBehaviour
                 player.animaux_vivant.Enqueue(animal);
             }
         }
-
-        if (Instance.playerActif.animalActif == this)
-        {
-            Instance.tourActif = false;
-        }
+        Instance.tourActif = !Instance.tourActif;
+        FinAction();
     }
 
     public void OnMouseEnter()
@@ -246,5 +243,10 @@ public abstract class AnimalBehaviour : MonoBehaviour
     public void Meurt()
     {
         StartCoroutine(gameObject.GetComponent<DespawnManager>().Death());
+    }
+    
+    protected void FinAction()
+    {
+        Instance.playerActif.enAction = false;
     }
 }

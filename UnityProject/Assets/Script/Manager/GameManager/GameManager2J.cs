@@ -161,15 +161,29 @@ namespace Script.Manager
 
             if (player == joueur)
             {
-                
-                // Pour le joueur, attendre un clic de souris
-                while (!Input.GetMouseButtonDown(0))
+                bool posval = false;
+                Vector2 mousePosition = Vector2.one;
+                while (!posval)
                 {
-                    yield return null;
+                    // Pour le joueur, attendre un clic de souris
+                    while (!Input.GetMouseButtonDown(0))
+                    {
+                        yield return null;
+                    }
+
+                    mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                    Collider2D? hit = Physics2D.OverlapPoint(mousePosition);
+                    if (hit != null)
+                    {
+                        Debug.Log("Collision detecté, ne peut pas faire spawn ici.");
+                    }
+                    else
+                    {
+                        posval = true;
+                    } 
+                    yield return new WaitForSeconds(0.1f);
                 }
 
-                // Obtenez les coordonnées du clic de la souris
-                Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                 // Instanciez l'animal à la position du clic en x et y = hauteur
                 AnimalBehaviour newAnimal = creerAnimal(mousePosition.x, mousePosition.y, joueur.deckAnimal.Dequeue(),player);
                 joueur.animaux_vivant.Enqueue(newAnimal);
@@ -178,14 +192,29 @@ namespace Script.Manager
             }
             else
             {
-                // Pour le joueur, attendre un clic de souris
-                while (!Input.GetMouseButtonDown(0))
+                bool posval = false;
+                Vector2 mousePosition = Vector2.one;
+                while (!posval)
                 {
-                    yield return null;
+                    // Pour le joueur, attendre un clic de souris
+                    while (!Input.GetMouseButtonDown(0))
+                    {
+                        yield return null;
+                    }
+
+                    mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                    Collider2D? hit = Physics2D.OverlapPoint(mousePosition);
+                    if (hit != null)
+                    {
+                        Debug.Log("Collision detecté, ne peut pas faire spawn ici.");
+                    }
+                    else
+                    {
+                        posval = true;
+                    } 
+                    yield return new WaitForSeconds(0.1f);
                 }
 
-                // Obtenez les coordonnées du clic de la souris
-                Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                 // Instanciez l'animal à la position du clic en x et y = hauteur
                 AnimalBehaviour newAnimal = creerAnimal(mousePosition.x, mousePosition.y, joueur2.deckAnimal.Dequeue(),player);
                 joueur2.animaux_vivant.Enqueue(newAnimal);

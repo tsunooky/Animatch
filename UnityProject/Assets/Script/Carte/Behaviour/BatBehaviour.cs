@@ -11,18 +11,20 @@ public class BatBehaviour : CarteBehaviour
 
     protected override void SpellClickOnCarte()
     {
-        GameManager.Instance.playerActif.animalActif.gameObject.AddComponent<ClickBehaviour>();
+        GameManager.Instance.playerActif.animalActif.gameObject.AddComponent<ClickBehaviour>().Initialize(this);
     }
     
     public override void SpellAfterClick()
     {
-        GameManager.Instance.playerActif.animalActif.gameObject.AddComponent<AimBehviour>();
+        GameManager.Instance.playerActif.animalActif.gameObject.AddComponent<AimBehviour>().Initialize(carteData.projectileData, this);
     }
 
     public override void SpellAfterShoot(Vector2 startPosition,Vector2 currentMousePos)
     {
-        // A CHANGER POUR ADAPTER AU CORPS à CORPS
-       ClassiqueShoot(startPosition,currentMousePos);
+        //Création bat
+        //animation Bat
+        // ADD le component Hand To hand à la bat
+        FinAction();
     }
     
 }

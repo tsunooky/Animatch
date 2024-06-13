@@ -25,3 +25,4 @@ public class LionBehaviour : AnimalBehaviour
         pv += heal + heal/2;
     }
 }
+

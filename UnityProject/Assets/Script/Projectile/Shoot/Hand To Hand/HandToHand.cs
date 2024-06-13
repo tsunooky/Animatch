@@ -11,23 +11,18 @@ public class HandToHand : MonoBehaviour
     public ProjectileData projectileData;
     private Vector2 direction;
     private GameObject _affichage;
-
-    private float spawnDistance = 0.70f;
-
-    private float delayBeforeHitBOT = 0.1f;
+    
     public bool bot;
     private bool isAiming;
-    private Transform colliderChild;
+    private Tireur TireurBehaviour;
+    
 
-    public void Initialize(ProjectileData ProjectileData, Sprite SpriteGun)
+    public void Initialize(ProjectileData ProjectileData, Tireur tireurBehaviour)
     {
-        isAiming = false;
-        bot = false;
+        TireurBehaviour = tireurBehaviour;
         projectileData = ProjectileData;
-        if (!bot)
-        {
-            InvokeRepeating("Aim", 0f, 1f / 60f);
-        }
+        
+        InvokeRepeating("Aim", 0f, 1f / 60f);
     }
 
     void Awake()
@@ -59,7 +54,7 @@ public class HandToHand : MonoBehaviour
         {
             if (!bot)
             {
-                StartCoroutine(Shoot());
+                Shoot();
             }
         }
 
@@ -89,15 +84,10 @@ public class HandToHand : MonoBehaviour
         }
     }
 
-    private IEnumerator Shoot()
+    private void Shoot()
     {
-        _affichage.AddComponent<D2dPolygonCollider>();
+        TireurBehaviour.SpellAfterShoot(transform.position, transform.position);
         SetAim(false, false);
-        // ANIMATION BAT ICI
-
-        // Activer le collider au moment du shoot
-        AddBump();
-        yield return new WaitForSeconds(delayBeforeHitBOT);
         Destroy(this);
     }
 
@@ -105,21 +95,7 @@ public class HandToHand : MonoBehaviour
     {
         Destroy(_affichage);
     }
-
-    private void AddBump()
-    {
-        colliderChild = _affichage.transform.Find("Collider");
-        if (colliderChild != null)
-        {
-            colliderChild.gameObject.AddComponent<TouchToBump>();
-            Debug.Log("Le composant TouchToBump a été ajouté à " + colliderChild.name);
-        }
-        else
-        {
-            Debug.LogWarning("L'objet 'Collider' n'a pas été trouvé pour ajouter le composant TouchToBump.");
-        }
-    }
-
+    
     private void SetAim(bool isAiming, bool aura)
     {
         GameManager.Instance.playerActif.SetAura(aura);

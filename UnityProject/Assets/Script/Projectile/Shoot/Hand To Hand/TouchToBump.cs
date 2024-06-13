@@ -14,9 +14,8 @@ public class TouchToBump : ProjectileBehaviour
         bool invinsible = cible == AnimalActif;
         if (!invinsible)
         {
-            Debug.Log("CA MARCHE");
             // Coordonnées de départ
-            Vector2 startPosition = transform.position;
+            Vector2 startPosition = AnimalActif.transform.position;
 
             // Direction en fonction de l'angle de rotation
             Vector2 direction = Quaternion.Euler(0, 0, transform.rotation.eulerAngles.z) * Vector2.right;

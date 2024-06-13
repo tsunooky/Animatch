@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using Script.Manager;
 
-public class PandaBehaviour : AnimalBehaviour, Tireur
+public class 
+    PandaBehaviour : AnimalBehaviour, Tireur
 {
     public void Awake()
     {

@@ -23,7 +23,7 @@ public class MainMenu : MonoBehaviour
    }
    public void OpenOptionInGame()
    {
-      SceneManager.LoadScene("Settingsgame");
+      SceneManager.LoadScene("Settingsgame",LoadSceneMode.Additive);
    }
    
    public void OpenEquipes()
@@ -44,7 +44,12 @@ public class MainMenu : MonoBehaviour
    {
       Application.Quit();
    }
-
+   
+   public void CloseSettings()
+   {
+      SceneManager.UnloadSceneAsync("Settingsgame");
+   }
+   
    public void UpdateSoundVolume(float volume)
    {
       audioMixer.SetFloat("SFXVolume", volume);

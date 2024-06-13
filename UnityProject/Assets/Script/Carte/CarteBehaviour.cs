@@ -282,6 +282,7 @@ public abstract class CarteBehaviour : MonoBehaviour, Tireur
     { 
         if ( carte_actuel)
         {
+            carte_actuel = false;
             foreach (var gr in player.mainManager)
             {
                 var min = gr.transform.position.x;
@@ -317,6 +318,74 @@ public abstract class CarteBehaviour : MonoBehaviour, Tireur
                 }
             }
         }
+        /*if ( carte_actuel)
+        {
+            carte_actuel = false;
+            foreach (var gr in player.mainManager)
+            {
+                var min = gr.transform.position.x;
+                if (min > 8 && min < 21)
+                {
+                    if (transform.position.x == 2.57f)
+                    {
+                        var vec = gr.transform.position;
+                        vec.x -= 20f - transform.position.x;
+                        gr.transform.position = vec;
+                    }
+                    else
+                    {
+                        if (transform.position.x == 4.38f)
+                        {
+                            var vec = gr.transform.position;
+                            vec.x -= 20f - transform.position.x;
+                            gr.transform.position = vec;
+                        }
+                        else
+                        {
+                            if (transform.position.x == 6.14f)
+                            {
+                                var vec = gr.transform.position;
+                                vec.x -= 20f - transform.position.x;
+                                gr.transform.position = vec;
+                            }
+                            else
+                            {
+                                if (transform.position.x == 7.91f)
+                                {
+                                    var vec = gr.transform.position;
+                                    vec.x -= 20f - transform.position.x;
+                                    gr.transform.position = vec;
+                                }
+                                
+                            }
+                        }
+                    }
+                    
+                    var vector3 = transform.position;
+                    vector3.x += 28f - transform.position.x;
+                    transform.position = vector3;
+                    foreach (var car in player.mainManager)
+                    {
+                        if (car.transform.position.x > 20f)
+                        {
+                            var vec2 = car.transform.position;
+                            vec2.x -= 2f;
+                            car.transform.position = vec2;
+                        }
+                    }
+                    
+                }
+            }
+            foreach (var next_card in player.mainManager)
+            {
+                var x = next_card.transform.position.x;
+                if (x > 8 && x < 21)
+                {
+                    LoadCardImage(next_card.GetComponents<CarteBehaviour>()[0].carteData.Sprite.name);
+                    break;
+                }
+            }
+        }*/
     }
 
 

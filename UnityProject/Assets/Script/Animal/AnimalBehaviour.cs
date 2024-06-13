@@ -80,20 +80,10 @@ public abstract class AnimalBehaviour : MonoBehaviour
 
     public void LoadAura()
     {
-        if (Instance is GameManager)
-        {
-            if (player == GameManager.Instance.playerActif)
-                currentInstance = Instantiate(Resources.Load<GameObject>("Prefabs/Autre/joueur_equi"));
-            else
-                currentInstance = Instantiate(Resources.Load<GameObject>("Prefabs/Autre/joueur_adv"));
-        }
+        if (player == GameManager.Instance.joueur)
+            currentInstance = Instantiate(Resources.Load<GameObject>("Prefabs/Autre/joueur_equi"));
         else
-        {
-            if (player == GameManager.Instance.joueur)
-                currentInstance = Instantiate(Resources.Load<GameObject>("Prefabs/Autre/joueur_equi"));
-            else
-                currentInstance = Instantiate(Resources.Load<GameObject>("Prefabs/Autre/joueur_adv"));
-        }
+            currentInstance = Instantiate(Resources.Load<GameObject>("Prefabs/Autre/joueur_adv"));
     }
     // ReSharper disable Unity.PerformanceAnalysis
     public void AnimalVisible()

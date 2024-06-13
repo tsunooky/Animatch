@@ -1,3 +1,4 @@
+using System.Collections;
 using Script.Manager;
 using UnityEngine;
 using UnityEngine.Rendering.UI;
@@ -16,14 +17,30 @@ public class BatBehaviour : CarteBehaviour
     
     public override void SpellAfterClick()
     {
-        GameManager.Instance.playerActif.animalActif.gameObject.AddComponent<AimBehviour>().Initialize(carteData.projectileData, this);
+        GameManager.Instance.playerActif.animalActif.gameObject.AddComponent<HandToHand>().Initialize(carteData.projectileData, this);
     }
 
     public override void SpellAfterShoot(Vector2 startPosition,Vector2 currentMousePos)
     {
+        StartCoroutine(CoupBat(startPosition,currentMousePos));
+    }
+
+    private IEnumerator CoupBat(Vector2 startPosition,Vector2 currentMousePos)
+    {
+        Debug.Log("JOSSELIN EST LE GOAT");
         //Création bat
+
+        GameObject bat = Instantiate(carteData.projectileData.Projectile,startPosition,Quaternion.identity);
+        bat.AddComponent<TouchToBump>();
+        
         //animation Bat
-        // ADD le component Hand To hand à la bat
+        
+        // A FAIRE
+        yield return new WaitForSeconds(1);
+        
+        //Fin anim
+        Destroy(bat);
+        
         FinAction();
     }
     

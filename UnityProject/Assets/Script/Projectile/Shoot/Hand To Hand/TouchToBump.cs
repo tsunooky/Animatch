@@ -5,9 +5,9 @@ using UnityEngine;
 using Script.Manager;
 using UnityEngine.InputSystem;
 
-public class TouchToBump : ProjectileBehaviour
+public class TouchToBump : MonoBehaviour
 {
-    private void OnTriggerEnter2D(Collider2D other)
+    void OnTriggerEnter2D(Collider2D other)
     {
         GameObject cible = other.gameObject.transform.parent.gameObject;
         GameObject AnimalActif = GameManager.Instance.playerActif.animalActif.gameObject;
@@ -25,8 +25,9 @@ public class TouchToBump : ProjectileBehaviour
 
             Vector2 bump = (endPosition - startPosition).normalized;
             cible.GetComponent<Rigidbody2D>().AddForce(bump * 50000);
-            FinAction();
         }
     }
+    
+    
 }
 

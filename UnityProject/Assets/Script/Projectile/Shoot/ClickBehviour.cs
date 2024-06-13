@@ -29,9 +29,10 @@ public class ClickBehaviour : MonoBehaviour
         }
         else if (Mouse.current.leftButton.wasPressedThisFrame) 
         {
-            if( GameManager.Instance.playerActif.enVisee)
+            if(GameManager.Instance.playerActif.enVisee)
             {
                Tireur.SpellAfterClick();
+               Destroy(this);
             }
         }
     }

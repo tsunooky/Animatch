@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 550f39e17185d66468f4c092c1f53a29, type: 3}
-  m_Name: Bat_Proj
+  m_Name: Bat
   m_EditorClassIdentifier: 
   Expulsion: 70
   Force: 0
@@ -18,3 +18,4 @@ MonoBehaviour:
   Projectile: {fileID: 0}
   Explosion: {fileID: 0}
   SpriteIfHandToHand: {fileID: 0}
+  Lanceur: {fileID: 0}

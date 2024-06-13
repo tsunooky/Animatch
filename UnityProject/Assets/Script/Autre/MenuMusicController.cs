@@ -1,18 +1,52 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MenuMusicController : MonoBehaviour
 {
-    public AudioSource audioSource; // Assurez-vous que ce champ soit assigné dans l'inspecteur
+    public AudioSource audioSource;
+
+    void Awake()
+    {
+        DontDestroyOnLoad(gameObject);
+    }
 
     void Start()
     {
         if (audioSource != null)
         {
-            audioSource.Play(); // Démarre la musique au début de la scène
+            audioSource.Play();
         }
+
+        SceneManager.sceneLoaded += OnSceneLoaded;
     }
-    void Awake()
+
+    void OnDestroy()
     {
-        DontDestroyOnLoad(gameObject); // Empêche la destruction de l'objet lors du chargement d'une nouvelle scène
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        Debug.Log("MenuMusicController - Scene loaded: " + scene.name);
+
+        if (scene.name == "Main")
+        {
+            // Arrêter et détruire le MenuMusicController quand on entre dans la scène de jeu
+            if (audioSource != null && audioSource.isPlaying)
+            {
+                audioSource.Stop();
+                
+            }
+
+            // Détruire cet objet pour permettre au GameMusicController de gérer la musique
+            Destroy(gameObject);
+        }
+        else
+        {
+            if (audioSource != null && !audioSource.isPlaying)
+            {
+                audioSource.Play();
+            }
+        }
     }
 }

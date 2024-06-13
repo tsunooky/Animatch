@@ -27,6 +27,7 @@ public class JumpBehaviour : CarteBehaviour
     public override void SpellAfterShoot(Vector2 startPosition,Vector2 currentMousePos)
     {
         GameManager.Instance.playerActif.animalActif.gameObject.GetComponent<Rigidbody2D>().velocity = (startPosition - currentMousePos) * (Bump * 0.075f);
+        CarteBehaviour.alreadylifted = false;
         FinAction();
     }
 

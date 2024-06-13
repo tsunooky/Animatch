@@ -310,6 +310,8 @@ public abstract class CarteBehaviour : MonoBehaviour, Tireur
      protected void FinAction()
     {
         GameManager.Instance.playerActif.enAction = false;
+        CarteBehaviour.alreadylifted = false;
+        alreadylifted = false;
         if (GameManager.Instance.playerActif.drops == 0)
         {
             GameManager.Instance.FinDuTour();

@@ -51,7 +51,6 @@ public abstract class AnimalBehaviour : MonoBehaviour
         tag = "Animal";
         timeSpawn = Time.time;
         gameObject.layer = 6;
-        player = Instance.joueur;
         currentInstance = new GameObject();
     }
     
@@ -81,13 +80,19 @@ public abstract class AnimalBehaviour : MonoBehaviour
 
     public void LoadAura()
     {
-        if (player == GameManager.Instance.playerActif)
+        if (Instance is GameManager)
         {
-            currentInstance = Instantiate(Resources.Load<GameObject>("Prefabs/Autre/joueur_equi"));
+            if (player == GameManager.Instance.playerActif)
+                currentInstance = Instantiate(Resources.Load<GameObject>("Prefabs/Autre/joueur_equi"));
+            else
+                currentInstance = Instantiate(Resources.Load<GameObject>("Prefabs/Autre/joueur_adv"));
         }
         else
         {
-            currentInstance = Instantiate(Resources.Load<GameObject>("Prefabs/Autre/joueur_adv"));
+            if (player == GameManager.Instance.joueur)
+                currentInstance = Instantiate(Resources.Load<GameObject>("Prefabs/Autre/joueur_equi"));
+            else
+                currentInstance = Instantiate(Resources.Load<GameObject>("Prefabs/Autre/joueur_adv"));
         }
     }
     // ReSharper disable Unity.PerformanceAnalysis

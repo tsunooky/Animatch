@@ -27,7 +27,7 @@ namespace Script.Manager
         public bool tourActif;
         public Text affichage_mana;
         #region Code Moved
-        protected AnimalBehaviour creerAnimal(float x, float y,string animal)
+        protected AnimalBehaviour creerAnimal(float x, float y,string animal,PlayerManager player)
         {
             var animalTypes = DataDico.animalTypes;
             if (animalTypes.ContainsKey(animal))
@@ -36,6 +36,7 @@ namespace Script.Manager
                 GameObject newAnimal = new GameObject(animal + x);
                 Type typeAnimal = animalTypes[animal];
                 AnimalBehaviour animalBehaviour = (AnimalBehaviour)(newAnimal.AddComponent(typeAnimal));
+                animalBehaviour.player = player;
                 newAnimal.transform.position = new Vector2(x, y);
                 animalBehaviour.AnimalVisible();
                 animalBehaviour.nom = animal + x;

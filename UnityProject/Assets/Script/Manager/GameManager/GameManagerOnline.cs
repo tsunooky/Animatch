@@ -124,7 +124,7 @@ namespace Script.ManagerOnline
                 // Obtenez les coordonnées du clic de la souris
                 Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                 // Instanciez l'animal à la position du clic en x et y = hauteur
-                AnimalBehaviour newAnimal = creerAnimal(mousePosition.x, mousePosition.y, joueur.deckAnimal.Dequeue());
+                AnimalBehaviour newAnimal = creerAnimal(mousePosition.x, mousePosition.y, joueur.deckAnimal.Dequeue(),player);
                 joueur.animaux_vivant.Enqueue(newAnimal);
                 newAnimal.player = joueur;
                 newAnimal.LoadHealthbar();
@@ -140,7 +140,7 @@ namespace Script.ManagerOnline
                 // Obtenez les coordonnées du clic de la souris
                 Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                 // Instanciez l'animal à la position du clic en x et y = hauteur
-                AnimalBehaviour newAnimal = creerAnimal(mousePosition.x, mousePosition.y, joueur2.deckAnimal.Dequeue());
+                AnimalBehaviour newAnimal = creerAnimal(mousePosition.x, mousePosition.y, joueur2.deckAnimal.Dequeue(),player);
                 joueur2.animaux_vivant.Enqueue(newAnimal);
                 newAnimal.player = joueur2;
                 newAnimal.LoadHealthbar();

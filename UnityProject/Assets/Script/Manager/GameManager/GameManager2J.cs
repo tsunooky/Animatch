@@ -21,6 +21,7 @@ namespace Script.Manager
         public PlayerManager joueur2;
         private bool animalBeingPlaced = false;
         public GameObject drop_left;
+		public Text Turn;
       
         private void Awake()
         {
@@ -65,6 +66,7 @@ namespace Script.Manager
         {
             if (spawn)
             {
+                Turn.enabled = true;
                 if (joueur.deckAnimal.Count == 0 && joueur2.deckAnimal.Count == 0)
                 {
                     spawn = false;
@@ -75,11 +77,13 @@ namespace Script.Manager
                     {
                         if (joueur.deckAnimal.Count > joueur2.deckAnimal.Count)
                         {
+                            Turn.text = "Joueur 1 pour spawn";
                             if (Input.GetMouseButtonDown(0))
                                 StartCoroutine(PlaceAnimal(joueur));
                         }
                         else
                         {
+                            Turn.text = "Joueur 2 pour spawn";
                             if(Input.GetMouseButtonDown(0))
                                 StartCoroutine(PlaceAnimal(joueur2));
                         }
@@ -91,6 +95,7 @@ namespace Script.Manager
                 if (!tourActif)
                 {
                     tourActif = true;
+                    Turn.text = $"Tour n°{tour}.";
                     if (tour % 2 != 0)
                     {
                         Debug.Log("C'est votre tour");
@@ -126,10 +131,10 @@ namespace Script.Manager
                         }
                         else
                         {
-                            AnimalBehaviour animalActif = joueur2.animaux_vivant.Dequeue();
-                            joueur2.animaux_vivant.Enqueue(animalActif);
-                            playerActif.animalActif = animalActif;
-                            animalActif.LoadAura();
+                            AnimalBehaviour animalActif2 = joueur2.animaux_vivant.Dequeue();
+                            joueur2.animaux_vivant.Enqueue(animalActif2);
+                            playerActif.animalActif = animalActif2;
+                            animalActif2.LoadAura();
                             joueur2.MiseAjourAffichageDrops();
                         }
                     }
@@ -140,7 +145,8 @@ namespace Script.Manager
                 }
             }
         }
-        
+
+        #region Spawn
         IEnumerator PlaceAnimal(PlayerManager player)
         {
             animalBeingPlaced = true;
@@ -157,7 +163,7 @@ namespace Script.Manager
                 // Obtenez les coordonnées du clic de la souris
                 Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                 // Instanciez l'animal à la position du clic en x et y = hauteur
-                AnimalBehaviour newAnimal = creerAnimal(mousePosition.x, mousePosition.y, joueur.deckAnimal.Dequeue());
+                AnimalBehaviour newAnimal = creerAnimal(mousePosition.x, mousePosition.y, joueur.deckAnimal.Dequeue(),player);
                 joueur.animaux_vivant.Enqueue(newAnimal);
                 newAnimal.player = joueur;
                 newAnimal.LoadHealthbar();
@@ -173,7 +179,7 @@ namespace Script.Manager
                 // Obtenez les coordonnées du clic de la souris
                 Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                 // Instanciez l'animal à la position du clic en x et y = hauteur
-                AnimalBehaviour newAnimal = creerAnimal(mousePosition.x, mousePosition.y, joueur2.deckAnimal.Dequeue());
+                AnimalBehaviour newAnimal = creerAnimal(mousePosition.x, mousePosition.y, joueur2.deckAnimal.Dequeue(),player);
                 joueur2.animaux_vivant.Enqueue(newAnimal);
                 newAnimal.player = joueur2;
                 newAnimal.LoadHealthbar();
@@ -183,6 +189,7 @@ namespace Script.Manager
 
             animalBeingPlaced = false;
         }
+        #endregion
         public void UpdateCardDisplay(PlayerManager currentPlayer)
         {
             //Le joueur donné est le joueur qui joue

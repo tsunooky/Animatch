@@ -203,7 +203,7 @@ namespace Script.Manager
                 // Obtenez les coordonnées du clic de la souris
                 Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                 // Instanciez l'animal à la position du clic en x et y = hauteur
-                AnimalBehaviour newAnimal = creerAnimal(mousePosition.x, mousePosition.y, joueur.deckAnimal.Dequeue());
+                AnimalBehaviour newAnimal = creerAnimal(mousePosition.x, mousePosition.y, joueur.deckAnimal.Dequeue(),player);
                 joueur.animaux_vivant.Enqueue(newAnimal);
                 newAnimal.player = joueur;
                 newAnimal.LoadHealthbar();
@@ -214,7 +214,7 @@ namespace Script.Manager
                 yield return new WaitForSeconds(2f); // Attendre 2 secondes
 
                 float randomX = UnityEngine.Random.Range(-6.5f, 7f);
-                AnimalBehaviour newAnimal = creerAnimal(randomX, 4.7f, bot.deckAnimal.Dequeue());
+                AnimalBehaviour newAnimal = creerAnimal(randomX, 4.7f, bot.deckAnimal.Dequeue(),player);
                 bot.animaux_vivant.Enqueue(newAnimal);
                 newAnimal.player = bot;
                 newAnimal.LoadHealthbar();

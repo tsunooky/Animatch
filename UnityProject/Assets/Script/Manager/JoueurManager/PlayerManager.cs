@@ -62,7 +62,10 @@ public class PlayerManager : MonoBehaviour
 
     public void MiseAJourDrops(int tour)
     {
-        drops = tour / 2 + tour % 2;
+        if (animaux_vivant.Peek() is RatBehaviour)
+            drops = (tour / 2 + tour % 2) + 1;
+        else
+            drops = tour / 2 + tour % 2;
     }
 
     public void trierAnimaux()

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Photon.Pun.Demo.PunBasics;
 using UnityEngine;
 
 public class RatBehaviour : AnimalBehaviour
@@ -11,7 +12,8 @@ public class RatBehaviour : AnimalBehaviour
 
     public override void Animax()
     {
-        Debug.Log("aaaaaaaaaaaa");
+        player.drops += 3;
+        player.MiseAjourAffichageDrops();
     }
 }
 

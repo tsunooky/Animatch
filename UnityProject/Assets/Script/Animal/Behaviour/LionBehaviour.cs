@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Script.Manager;
-/*
+
 public class LionBehaviour : AnimalBehaviour
 {
     
@@ -10,24 +10,18 @@ public class LionBehaviour : AnimalBehaviour
     {
         LoadData("Lion");
     }
-
     
     public override void Animax()
     {
-
-        if (GameManager.Instance.joueur.animaux_vivant.Contains(gameObject.GetComponent<LionBehaviour>()))
+        foreach (AnimalBehaviour animal in player.animaux_vivant)
         {
-            Debug.Log("bump tout l'equipe du bot");
-        }
-        else
-        {
-            Debug.Log("bump tout l'equipe du joueur");
+            //soigne de 20 toutes son équipe
+            animal.Soin(20);
         }
     }
 
-    public override void Soin(int heal) // passif lion
+    public override void Soin(int heal) 
     {
         pv += heal + heal/2;
     }
 }
-*/

@@ -20,12 +20,8 @@ namespace Script.Manager
     public class GameManager : AGameManager
     { 
         public GameObject nextTurnButton; 
-        public int tour;
         public PlayerManager bot;
-
-        private bool spawn = true;
         private bool animalBeingPlaced = false;
-
         public GameObject drop_left;
       
         private void Awake()
@@ -35,10 +31,10 @@ namespace Script.Manager
                 Debug.LogError("GameManager n'est plus un singleton car il viens d'être redéfinis une deuxième fois !");
                 return;
             }
-
+            
+            Instance = this;
             drop_left.gameObject.SetActive(false);
             nextTurnButton.gameObject.SetActive(false);
-            Instance = this;
             joueur =  gameObject.AddComponent<PlayerManager>();
             joueur.CreateProfil();
             joueur.CreerMain();

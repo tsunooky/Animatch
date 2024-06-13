@@ -5,6 +5,8 @@ using Script.Data;
 using Script.Manager;
 using UnityEngine;
 using System.Linq;
+using ExitGames.Client.Photon.StructWrapping;
+using static Script.Manager.AGameManager;
 
 
 public class PlayerManager : MonoBehaviour
@@ -28,7 +30,10 @@ public class PlayerManager : MonoBehaviour
         prefabAura = (GameObject)Resources.Load("Prefabs/Autre/Aura");
         enAction = false;
         animalActif = null;
-        mainManager = GameObject.FindGameObjectsWithTag("MainCarte");
+        if (Instance is GameManager2J && this != Instance.joueur)
+            mainManager = GameObject.FindGameObjectsWithTag("MainCarte2J");
+        else
+            mainManager = GameObject.FindGameObjectsWithTag("MainCarte");
         enVisee = false;
         animalActif = null;
     }
@@ -85,6 +90,15 @@ public class PlayerManager : MonoBehaviour
         for (int i = 0; i < 8; i++)
         {
             main.Enqueue(DataDico.carteTypes[profil.deckCartes[i]]);
+        }
+
+        foreach (var card in mainManager)
+        {
+            var carteBehaviour = card.GetComponent<CarteBehaviour>();
+            if (carteBehaviour != null)
+            {
+                carteBehaviour.Initialize(this);
+            }
         }
         MettreAjourMain();
     }

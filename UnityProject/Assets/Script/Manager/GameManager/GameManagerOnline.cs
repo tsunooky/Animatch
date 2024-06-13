@@ -1,36 +1,29 @@
 using System.Collections.Generic;
 using System;
+using System.Collections;
 using JetBrains.Annotations;
 using Script.Data;
 using UnityEngine;
 using Script.Manager;
 using UnityEngine.UI;
 using Photon.Pun;
-using UnityEngine.SceneManagement;
 using Photon.Realtime;
+using Unity.Mathematics;
+using Unity.VisualScripting;
+using UnityEditor;
+using UnityEngine.SceneManagement;
+using static Unity.Mathematics.Random;
+using static Unity.Mathematics.math;
 
 namespace Script.ManagerOnline
 {
-    public class GameManagerOnline : MonoBehaviourPunCallbacks
+    public class GameManagerOnline : AGameManager
     { 
-        public static GameManagerOnline Instance;
-
-        public int tour;
-
-        [CanBeNull] public PlayerManager joueur;
-
         [CanBeNull] public PlayerManager joueur2;
-
-        private bool spawn = true;
-
-        public bool tourActif = false;
-    
+        public GameObject nextTurnButton;
+        private bool animalBeingPlaced = false;
+        public GameObject drop_left;
         private bool isRoomReady = false;
-
-        public PlayerManager playerActif;
-        
-        public Text affichage_mana;
-        
         public Text Waiting;
         public Text Tour;
         private bool isPlayerTurn = true;
@@ -43,111 +36,159 @@ namespace Script.ManagerOnline
                 Debug.LogError("GameManager n'est plus un singleton car il viens d'être redéfinis une deuxième fois !");
                 return;
             }
+
+            drop_left.gameObject.SetActive(false);
+            nextTurnButton.gameObject.SetActive(false);
+            Waiting.text = "Waiting another player to get connect to the room to start !";
+            Waiting.enabled = true;
             Instance = this;
-            
-            // Evité bug au lancement
-            playerActif = joueur;
-            tour = 1;
-            
-            isRoomReady = PhotonNetwork.CurrentRoom.PlayerCount > 1;
-            PhotonNetwork.AddCallbackTarget(this);
-            PhotonNetwork.AutomaticallySyncScene = true;
+            if (PhotonNetwork.IsConnected)
+            {
+                if (PhotonNetwork.IsMasterClient)
+                {
+                    GameObject player1 = PhotonNetwork.Instantiate("Prefabs/Autre/Player", Vector3.zero, Quaternion.identity);
+                    joueur = player1.GetComponent<PlayerManager>();
+                    joueur.CreateProfil();
+                    joueur.CreerMain();
+                }
+                else
+                {
+                    GameObject player2 = PhotonNetwork.Instantiate("Prefabs/Autre/Player", Vector3.zero, Quaternion.identity);
+                    joueur2 = player2.GetComponent<PlayerManager>();
+                    joueur2.CreateProfil();
+                    joueur2.CreerMain();
+                }
+            }
         }
     
         void Update()
         {
             if (spawn)
             {
-                HandleSpawning();
+                if (joueur.deckAnimal.Count == 0 && joueur2.deckAnimal.Count == 0)
+                {
+                    spawn = false;
+                }
+                else
+                {
+                    if (!animalBeingPlaced)
+                    {
+                        if (joueur.deckAnimal.Count > joueur2.deckAnimal.Count)
+                        {
+                            if (Input.GetMouseButtonDown(0))
+                                StartCoroutine(PlaceAnimal(joueur));
+                        }
+                        else
+                        {
+                            if(Input.GetMouseButtonDown(0))
+                                StartCoroutine(PlaceAnimal(joueur2));
+                        }
+                    }
+                }
             }
             else
             {
-                if (!isProcessingTurn)
+                if (!tourActif)
                 {
-                    if (isPlayerTurn)
+                    tourActif = true;
+                    if (tour % 2 != 0)
                     {
-                        StartCoroutine(GererTourJoueur1());
+                        if (PhotonNetwork.IsMasterClient)
+                        {
+                            StartCoroutine(GererTour(joueur));
+                        }
                     }
                     else
                     {
-                        StartCoroutine(GererTourJoueur2());
+                        if (!PhotonNetwork.IsMasterClient)
+                        {
+                            StartCoroutine(GererTour(joueur2));
+                        }
                     }
                 }
             }
         }
-        private void HandleSpawning()
+        
+        IEnumerator PlaceAnimal(PlayerManager player)
         {
-            if (joueur.deckAnimal.Count == 0 && joueur2.deckAnimal.Count == 0)
+            animalBeingPlaced = true;
+
+            if (player == joueur)
             {
-                spawn = false;
+                // Pour le joueur, attendre un clic de souris
+                while (!Input.GetMouseButtonDown(0))
+                {
+                    yield return null;
+                }
+
+                // Obtenez les coordonnées du clic de la souris
+                Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                // Instanciez l'animal à la position du clic en x et y = hauteur
+                AnimalBehaviour newAnimal = creerAnimal(mousePosition.x, mousePosition.y, joueur.deckAnimal.Dequeue());
+                joueur.animaux_vivant.Enqueue(newAnimal);
+                newAnimal.player = joueur;
+                newAnimal.LoadHealthbar();
             }
             else
             {
-                PlayerManager x = (joueur.deckAnimal.Count > joueur2.deckAnimal.Count) ? joueur : joueur2;
-
-                if (Input.GetMouseButtonDown(0))
+                // Pour le joueur, attendre un clic de souris
+                while (!Input.GetMouseButtonDown(0))
                 {
-                    Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                    AnimalBehaviour newAnimal = creerAnimal(mousePosition.x, mousePosition.y, x.deckAnimal.Dequeue());
-                    x.animaux_vivant.Enqueue(newAnimal);
-                    newAnimal.player = x;
-                    newAnimal.LoadHealthbar();
+                    yield return null;
                 }
+
+                // Obtenez les coordonnées du clic de la souris
+                Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                // Instanciez l'animal à la position du clic en x et y = hauteur
+                AnimalBehaviour newAnimal = creerAnimal(mousePosition.x, mousePosition.y, joueur2.deckAnimal.Dequeue());
+                joueur2.animaux_vivant.Enqueue(newAnimal);
+                newAnimal.player = joueur2;
+                newAnimal.LoadHealthbar();
             }
+
+            player.animalActif = player.animaux_vivant.Peek();
+
+            animalBeingPlaced = false;
+        }
+
+        #region PunCode
+        [PunRPC]
+        void PlaceAnimalRPC(Player player, float x, float y)
+        {
+            // Utiliser le joueur spécifié pour placer l'animal
+            PlayerManager playerManager = (player == PhotonNetwork.LocalPlayer) ? joueur : joueur2;
+            StartCoroutine(PlaceAnimal(playerManager));
         }
         
+
+        #endregion
         #region GererJoueur
         
-        private System.Collections.IEnumerator GererTourJoueur1()
+        private IEnumerator GererTour(PlayerManager player)
         {
             isProcessingTurn = true;
-            playerActif = joueur;
-            Tour.text = "C'est le tour du Joueur 1";
+            playerActif = player;
+            Tour.text = $"C'est le tour du {player.name}";
             Tour.enabled = true;
 
-            // Attendre 3 secondes
             yield return new WaitForSeconds(3);
 
-            if (joueur.animaux_vivant.Count == 0)
+            if (player.animaux_vivant.Count == 0)
             {
-                Win(joueur2);
+                Win(player == joueur ? joueur2 : joueur);
             }
             else
             {
-                AnimalBehaviour animalActif = joueur.animaux_vivant.Dequeue();
-                joueur.animaux_vivant.Enqueue(animalActif);
-                playerActif.animalActif = animalActif;
+                AnimalBehaviour animalActif = player.animaux_vivant.Dequeue();
+                player.animaux_vivant.Enqueue(animalActif);
+                player.animalActif = animalActif;
                 animalActif.LoadAura();
-                joueur.MiseAjourAffichageDrops();
+                player.MiseAjourAffichageDrops();
             }
             isProcessingTurn = false;
-            isPlayerTurn = false;
-        }
-        private System.Collections.IEnumerator GererTourJoueur2()
-        {
-            isProcessingTurn = true;
-            playerActif = joueur2;
-            Tour.text = "C'est le tour du Joueur 2";
-            Tour.enabled = true;
-
-            // Attendre 3 secondes
-            yield return new WaitForSeconds(3);
-
-            if (joueur2.animaux_vivant.Count == 0)
-            {
-                Win(joueur);
-            }
-            else
-            {
-                AnimalBehaviour animalActif = joueur2.animaux_vivant.Dequeue();
-                joueur2.animaux_vivant.Enqueue(animalActif);
-                playerActif.animalActif = animalActif;
-                animalActif.LoadAura();
-                joueur2.MiseAjourAffichageDrops();
-                FinfDuTour();
-            }
-            isProcessingTurn = false;
-            isPlayerTurn = true;
+            isPlayerTurn = !isPlayerTurn;
+            tourActif = false;
+            tour++;
         }
         #endregion
 
@@ -155,37 +196,7 @@ namespace Script.ManagerOnline
         public override void OnPlayerEnteredRoom(Player newPlayer)
         {
             base.OnPlayerEnteredRoom(newPlayer);
-            // After
-            if (PhotonNetwork.LocalPlayer.IsMasterClient)
-            {
-                if (joueur == null)
-                {
-                    GameObject newPlayerObject1 = PhotonNetwork.Instantiate("/Prefabs/Player", Vector2.zero, Quaternion.identity);
-                    joueur = newPlayerObject1.GetComponent<PlayerManager>();
-                    joueur.CreateProfil();
-                    joueur.CreerMain();
-                }
-            }
-            else
-            {
-                if (joueur2 == null)
-                {
-                    GameObject newPlayerObject2 = PhotonNetwork.Instantiate("/Prefabs/Player", Vector2.zero, Quaternion.identity);
-                    joueur2 = newPlayerObject2.GetComponent<PlayerManager>();
-                    joueur2.CreateProfil();
-                    joueur2.CreerMain();
-                }
-            }
             CheckRoomStatus();
-            /*
-            // Before
-            GameObject newPlayerObject = new GameObject("Player2");
-            PlayerManager j2 = newPlayerObject.AddComponent<PlayerManager>();
-            joueur2 = j2;
-            joueur2.CreateProfil();
-            joueur2.CreerMain();
-            PhotonNetwork.AutomaticallySyncScene = true;
-            */
         }
         
         public override void OnPlayerLeftRoom(Player otherPlayer)
@@ -197,60 +208,9 @@ namespace Script.ManagerOnline
         private void CheckRoomStatus()
         {
             isRoomReady = PhotonNetwork.CurrentRoom.PlayerCount > 1; 
+            Waiting.enabled = !isRoomReady;
         }
         #endregion
-    
-        // ReSharper disable Unity.PerformanceAnalysis
-        
-        public AnimalBehaviour creerAnimal(float x, float y, string animal)
-        {
-            // Dictionnary of the Animal who exist 
-            var animalTypes = DataDico.animalTypes;
-            if (animalTypes.ContainsKey(animal))
-            {
-                // Path of the prefab to load 
-                string prefabPath = $"Prefabs/Animaux/animal";
-                GameObject prefab = Resources.Load<GameObject>(prefabPath);
-                if (prefab == null)
-                {
-                    throw new Exception($"Le prefab pour {animal} n'a pas été trouvé à l'emplacement {prefabPath}");
-                }
-
-                // create a gameobject with a Photon.Instantiate
-                GameObject newAnimal = PhotonNetwork.Instantiate(prefabPath, new Vector2(x, y), Quaternion.identity);
-                Debug.Log($"Instantiated {animal} at position ({x}, {y})");
-
-                Type typeAnimal = animalTypes[animal];
-                AnimalBehaviour animalBehaviour = (AnimalBehaviour)newAnimal.AddComponent(typeAnimal);
-
-                // Initialisation of the animal
-                animalBehaviour.AnimalVisible();
-                animalBehaviour.nom = animal + x;
-                animalBehaviour.setPointeur();
-
-                return animalBehaviour;
-            }
-            // The animal doesn't exist
-            throw new Exception("Ce type d'animal n'existe pas ");
-        }
-
-        public void FinfDuTour()
-        {
-            // regle le bug #01
-            tourActif = false;
-            Destroy(playerActif.animalActif.currentInstance);
-        }
-
-        private void Win(PlayerManager player)
-        {
-            Debug.Log("Victoire de " + player.name);
-            SceneManager.LoadScene("Fin");
-            Invoke("QuitGame", 10f);
-        }
-        private void QuitGame()
-        {
-            Application.Quit();
-        }
     }
     /*
      AnimalBehaviour creerAnimal(float x, float y,string animal)

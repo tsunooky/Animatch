@@ -17,9 +17,11 @@ using static Unity.Mathematics.math;
 
 namespace Script.Manager
 {
-    public abstract class AGameManager : MonoBehaviour
+    public abstract class AGameManager : MonoBehaviourPunCallbacks
     {
-        public PlayerManager joueur;
+        public PlayerManager? joueur;
+        public int tour;
+        protected bool spawn = true;
         public static AGameManager Instance;
         public PlayerManager playerActif;
         public bool tourActif;

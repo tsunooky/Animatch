@@ -28,14 +28,14 @@ public abstract class CarteBehaviour : MonoBehaviour, Tireur
     
     private void Start()
     {
+        player = Instance.playerActif;
         spriteRenderer = gameObject.AddComponent<SpriteRenderer>();
         gameObject.AddComponent<BoxCollider2D>().size = new Vector2(1.75f, 5);
         gameObject.GetComponent<BoxCollider2D>().offset = new Vector2(0, -1);
         spriteRenderer.sprite = carteData.Sprite;
         spriteRenderer.sortingOrder = 11;
-        player = Instance.joueur;
         spriteRenderer.color = new Color32(200, 200, 200, 255);
-        ancienne_carte_selec = null;
+        ancienne_carte_selec = null;   
         
         //pour mettre le coût de la carte sur la carte : 
         GameObject canvasObj = new GameObject("CardCanvas");
@@ -64,6 +64,10 @@ public abstract class CarteBehaviour : MonoBehaviour, Tireur
         }
         
 
+    }
+    public void Initialize(PlayerManager player)
+    {
+        this.player = player;
     }
     private static void CreateSharedCanvas()
     {

@@ -18,10 +18,7 @@ namespace Script.Manager
     public class GameManager2J : AGameManager
     {
         public GameObject nextTurnButton; 
-        public int tour;
         public PlayerManager joueur2;
-
-        private bool spawn = true;
         private bool animalBeingPlaced = false;
         public GameObject drop_left;
       
@@ -37,11 +34,27 @@ namespace Script.Manager
             nextTurnButton.gameObject.SetActive(false);
             Instance = this;
             joueur =  gameObject.AddComponent<PlayerManager>();
+            playerActif = joueur;
             joueur.CreateProfil();
             joueur.CreerMain();
+            joueur.mainManager = GameObject.FindGameObjectsWithTag("MainCarte");
             joueur2 = gameObject.AddComponent<PlayerManager>();
+            playerActif = joueur2;
             joueur2.CreateProfil();
-            
+            joueur2.CreerMain();
+            joueur2.mainManager = GameObject.FindGameObjectsWithTag("MainCarte2J");
+            UpdateCardDisplay(joueur);
+            int i = 1;
+            foreach (var card in joueur.mainManager)  
+            {
+                    Debug.Log($"La carte {i} appartient au joueur 1");
+                    i++;
+            }
+            foreach (var card in joueur2.mainManager)  
+            {
+                Debug.Log($"La carte {i} appartient au joueur 2");
+                i++;
+            }
             
             // Evité bug au lancement
             playerActif = joueur;
@@ -86,6 +99,7 @@ namespace Script.Manager
                         affichage_mana.text = $"{joueur.drops}";
                         nextTurnButton.gameObject.SetActive(true);
                         drop_left.gameObject.SetActive(true);
+                        UpdateCardDisplay(playerActif);
                         if (joueur.animaux_vivant.Count == 0)
                         {
                             Win(joueur2);
@@ -105,6 +119,7 @@ namespace Script.Manager
                         playerActif = joueur2;
                         joueur2.MiseAJourDrops(tour);
                         affichage_mana.text = $"{joueur2.drops}";
+                        UpdateCardDisplay(playerActif);
                         if (joueur2.animaux_vivant.Count == 0)
                         {
                             Win(joueur);
@@ -132,6 +147,7 @@ namespace Script.Manager
 
             if (player == joueur)
             {
+                
                 // Pour le joueur, attendre un clic de souris
                 while (!Input.GetMouseButtonDown(0))
                 {
@@ -167,16 +183,35 @@ namespace Script.Manager
 
             animalBeingPlaced = false;
         }
+        public void UpdateCardDisplay(PlayerManager currentPlayer)
+        {
+            //Le joueur donné est le joueur qui joue
+            if (currentPlayer == joueur)
+            {
+                foreach(var card in joueur.mainManager)
+                {
+                    card.SetActive(true);
+                }
+                foreach(var card2 in joueur2.mainManager)
+                {
+                    card2.SetActive(false);
+                }    
+            }
+            else
+            {
+                foreach(var card3 in joueur.mainManager)
+                {
+                    card3.SetActive(false);
+                }
+                foreach(var card4 in joueur2.mainManager)
+                {
+                    card4.SetActive(true);
+                }
+            }
+            
 
-        private void Win(PlayerManager player)
-        {
-            Debug.Log("Victoire de " + player.name);
-            SceneManager.LoadScene("Fin");
-            Invoke("QuitGame", 10f);
-        }
-        private void QuitGame()
-        {
-            Application.Quit();
-        }
-    }   
+            
+        }   
+    }
 }
+

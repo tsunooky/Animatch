@@ -424,10 +424,15 @@ MonoBehaviour:
   sr0: {fileID: 440527940}
   sr1: {fileID: 418338885}
   sr2: {fileID: 866113151}
+  sr0save: {fileID: 0}
+  sr1save: {fileID: 0}
+  sr2save: {fileID: 0}
   animals:
   - {fileID: 21300000, guid: bacdb613388bca34c8a7107812ff4280, type: 3}
   - {fileID: 21300000, guid: 098e81769365d234487e793cee078e19, type: 3}
   - {fileID: 21300000, guid: 827e3e7ae15c401428a46b28abbf3d3a, type: 3}
+  - {fileID: 21300000, guid: c7ee47e39ff64484ba97cad49bb85174, type: 3}
+  - {fileID: 21300000, guid: dcd26feff8563cd4b832643b4bc048b5, type: 3}
   selecteds: 000000000100000002000000
 --- !u!4 &300387502
 Transform:
@@ -698,6 +703,10 @@ PrefabInstance:
       propertyPath: m_FlipY
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9098025957919068406, guid: 0afc94c4bdd9a05488e02617779c2f87, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: dcd26feff8563cd4b832643b4bc048b5, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -6080,6 +6089,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: selected3
       objectReference: {fileID: 0}
+    - target: {fileID: 4756408005520357710, guid: 08c07c24d6901eb4fbb61a9b6ffad62e, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: c7ee47e39ff64484ba97cad49bb85174, type: 3}
     - target: {fileID: 4796164712221456070, guid: 08c07c24d6901eb4fbb61a9b6ffad62e, type: 3}
       propertyPath: m_LocalScale.x
       value: 2

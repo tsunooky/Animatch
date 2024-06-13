@@ -21,6 +21,10 @@ public class MainMenu : MonoBehaviour
    {
       SceneManager.LoadScene("Settings");
    }
+   public void OpenOptionInGame()
+   {
+      SceneManager.LoadScene("Settingsgame");
+   }
    
    public void OpenEquipes()
    {
@@ -30,6 +34,10 @@ public class MainMenu : MonoBehaviour
    public void OpenMenu()
    {
       SceneManager.LoadScene("Menu");
+   }
+   public void OpenInPlayGame()
+   {
+      SceneManager.LoadScene("Main");
    }
 
    public void QuitGame()

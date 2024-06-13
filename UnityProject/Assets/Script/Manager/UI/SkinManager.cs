@@ -105,6 +105,12 @@ public class SkinManager : MonoBehaviour
                 case 2:
                     animalList.Add("turtle");
                     break;
+                case 3:
+                    animalList.Add("rat");
+                    break;
+                case 4:
+                    animalList.Add("lion");
+                    break;
             }
         }
 

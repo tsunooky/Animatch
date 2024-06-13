@@ -10,7 +10,7 @@ public class GameMusicController : MonoBehaviour
     private int lastClipIndex = -1; // Pour éviter de jouer la même musique deux fois de suite (optionnel)
 
     void Awake()
-    {
+    { 
         if (instance == null)
         {
             instance = this;

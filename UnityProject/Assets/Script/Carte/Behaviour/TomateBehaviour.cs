@@ -20,8 +20,8 @@ public class TomateBehaviour : CarteBehaviour
 
     public override void SpellAfterShoot(Vector2 startPosition ,Vector2 currentMousePos)
     {
-        ClassiqueShoot(startPosition,currentMousePos);
         alreadylifted = false;
+        ClassiqueShoot(startPosition,currentMousePos);
     }
 
     

@@ -88,6 +88,14 @@ namespace Script.ManagerOnline
             }
             else
             {
+                if (joueur.animaux_vivant.Count == 0)
+                {
+                    Win(joueur2, true);
+                }
+                if (joueur2.animaux_vivant.Count == 0)
+                {
+                    Win(joueur, false);
+                }
                 if (!tourActif)
                 {
                     tourActif = true;
@@ -175,7 +183,7 @@ namespace Script.ManagerOnline
 
             if (player.animaux_vivant.Count == 0)
             {
-                Win(player == joueur ? joueur2 : joueur);
+                Win(player == joueur ? joueur2 : joueur, player == joueur ? false : true);
             }
             else
             {

@@ -7,6 +7,7 @@ using UnityEngine;
 using Script.Manager;
 using UnityEngine.UI;
 using Photon.Pun;
+using TMPro;
 using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEditor;
@@ -15,7 +16,9 @@ using static Unity.Mathematics.Random;
 using static Unity.Mathematics.math;
 
 
+
 namespace Script.Manager
+
 {
     public abstract class AGameManager : MonoBehaviourPunCallbacks
     {
@@ -26,7 +29,10 @@ namespace Script.Manager
         public PlayerManager playerActif;
         public bool tourActif;
         public Text affichage_mana;
+        
         #region Code Moved
+        
+        
         protected AnimalBehaviour creerAnimal(float x, float y,string animal,PlayerManager player)
         {
             var animalTypes = DataDico.animalTypes;
@@ -52,14 +58,13 @@ namespace Script.Manager
             tourActif = false;
             Destroy(playerActif.animalActif.currentInstance);
         }
-        
-        protected void Win(PlayerManager player)
+
+        public void Win(PlayerManager player, bool res)
         {
-            Debug.Log("Victoire de " + player.name);
-            SceneManager.LoadScene("Fin");
-            Invoke("QuitGame", 10f);
+            gameObject.AddComponent<WinGame>().Win(player,res);
+            
         }
-        
+
         protected void QuitGame()
         {
             Application.Quit();

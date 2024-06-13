@@ -92,6 +92,14 @@ namespace Script.Manager
             }
             else
             {
+                if (joueur.animaux_vivant.Count == 0)
+                {
+                    Win(joueur2,true);
+                }
+                if (joueur2.animaux_vivant.Count == 0)
+                {
+                    Win(joueur,false);
+                }
                 if (!tourActif)
                 {
                     tourActif = true;
@@ -107,7 +115,7 @@ namespace Script.Manager
                         UpdateCardDisplay(playerActif);
                         if (joueur.animaux_vivant.Count == 0)
                         {
-                            Win(joueur2);
+                            Win(joueur2,true);
                         }
                         else
                         {
@@ -127,7 +135,7 @@ namespace Script.Manager
                         UpdateCardDisplay(playerActif);
                         if (joueur2.animaux_vivant.Count == 0)
                         {
-                            Win(joueur);
+                            Win(joueur,false);
                         }
                         else
                         {

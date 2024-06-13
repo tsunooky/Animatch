@@ -140,9 +140,9 @@ public abstract class CarteBehaviour : MonoBehaviour, Tireur
             alreadylifted = true;
             Instance.playerActif.enAction = true;
             Instance.playerActif.SetAura(true);
-            SpellClickOnCarte();
             player.drops -= carteData.drops;
             player.MiseAjourAffichageDrops();
+            SpellClickOnCarte();
         }
         
     }

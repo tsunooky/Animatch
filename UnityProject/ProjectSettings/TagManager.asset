@@ -11,6 +11,8 @@ TagManager:
   - MainCarte
   - Canvas
   - ProjDegat
+  - MenuMusic
+  - 2DSource
   layers:
   - Default
   - TransparentFX

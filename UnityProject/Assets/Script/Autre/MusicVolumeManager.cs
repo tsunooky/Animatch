@@ -1,37 +1,41 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine.UI;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 
-public class NewBehaviourScript : MonoBehaviour
+public class MusicVolumeManager : MonoBehaviour
 {
-public AudioSource audioSource; // Assignez votre Audio Source ici
-    public Slider volumeSlider; // Assignez votre Slider ici
-    public TMP_Text volumePercentageText;
+    public Slider musicSlider; // Référence au Slider
+    public TMP_Text volumePercentageText; // Référence au texte qui affiche le pourcentage
 
-    void Start()
+    private AudioSource menuMusicSource;
+
+    private void Start()
     {
-        // Charger le volume de la musique à partir des préférences sauvegardées
-        float savedVolume = PlayerPrefs.GetFloat("MusicVolume", 0.50f); // Par défaut, le volume est à 100%
-        audioSource.volume = savedVolume;
-
-        // Si un Slider est assigné, synchroniser son état
-        if (volumeSlider != null)
+        // Trouver l'objet MenuMusic qui n'a pas été détruit lors du changement de scène
+        GameObject menuMusic = GameObject.Find("MenuMusic");
+        if (menuMusic != null)
         {
-            volumeSlider.value = savedVolume;
-            volumeSlider.onValueChanged.AddListener(delegate { AdjustVolume(volumeSlider.value); });
+            menuMusicSource = menuMusic.GetComponent<AudioSource>();
         }
-        UpdateVolumePercentageText(savedVolume);
+
+        // Initialiser le slider avec le volume actuel de la musique
+        if (musicSlider != null && menuMusicSource != null)
+        {
+            musicSlider.value = menuMusicSource.volume;
+            musicSlider.onValueChanged.AddListener(AdjustVolume);
+            UpdateVolumePercentageText(musicSlider.value);
+        }
     }
 
     public void AdjustVolume(float newVolume)
     {
-        audioSource.volume = newVolume; // Ajuste le volume de l'audio source
-        PlayerPrefs.SetFloat("MusicVolume", newVolume); // Sauvegarder la nouvelle valeur de volume
-        PlayerPrefs.Save();
-        UpdateVolumePercentageText(newVolume);
+        if (menuMusicSource != null)
+        {
+            menuMusicSource.volume = newVolume;
+            UpdateVolumePercentageText(newVolume);
+        }
     }
+
     private void UpdateVolumePercentageText(float volume)
     {
         if (volumePercentageText != null)
@@ -40,9 +44,5 @@ public AudioSource audioSource; // Assignez votre Audio Source ici
             volumePercentageText.text = percentage.ToString() + "%";
         }
     }
-    
-    void Awake()
-    {
-        DontDestroyOnLoad(gameObject); // Empêche la destruction de l'objet lors du chargement d'une nouvelle scène
-    }
 }
+

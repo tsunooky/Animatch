@@ -280,38 +280,42 @@ public abstract class CarteBehaviour : MonoBehaviour, Tireur
     
     public void PiocherMain()
     { 
-        if ( carte_actuel)
+       
+        if (carte_actuel)
         {
             carte_actuel = false;
+
             foreach (var gr in player.mainManager)
             {
                 var min = gr.transform.position.x;
-                if (min > 8 && min < 21)
+                if (min > 10f && min < 21f)
                 {
-
+                    // Déplacement relatif de la carte actuellement en jeu
                     var vec = gr.transform.position;
-                    vec.x = transform.position.x;
+                    vec.x += (transform.position.x - vec.x); // Déplacement relatif
                     gr.transform.position = vec;
 
+                    // Déplacement relatif du transform
                     var vector3 = transform.position;
-                    vector3.x = 28;
+                    vector3.x += (28f - vector3.x); // Déplacement relatif
                     transform.position = vector3;
+
                     foreach (var car in player.mainManager)
                     {
-                        if (car.transform.position.x > 10)
+                        if (car.transform.position.x > 17f)
                         {
                             var vec2 = car.transform.position;
-                            vec2.x -= 2;
+                            vec2.x -= 2f;
                             car.transform.position = vec2;
                         }
                     }
-                    
                 }
             }
+
             foreach (var next_card in player.mainManager)
             {
                 var x = next_card.transform.position.x;
-                if (x > 8 && x < 21)
+                if (x > 10f && x < 21f)
                 {
                     LoadCardImage(next_card.GetComponents<CarteBehaviour>()[0].carteData.Sprite.name);
                     break;

@@ -23,6 +23,8 @@ namespace Script.Manager
         public PlayerManager bot;
         private bool animalBeingPlaced = false;
         public GameObject drop_left;
+        public int died;
+        
       
         private void Awake()
         {
@@ -39,7 +41,9 @@ namespace Script.Manager
             joueur.CreateProfil();
             joueur.CreerMain();
             bot = gameObject.AddComponent<PlayerManager>();
+            bot.IsBot = true;
             bot.CreateProfil();
+            bot.IsBot = false;
             
             
             // Evité bug au lancement

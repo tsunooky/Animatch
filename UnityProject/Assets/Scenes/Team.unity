@@ -421,15 +421,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56023e4f486fc2f49a0b7d51c2e95f44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sr0: {fileID: 0}
-  sr1: {fileID: 440527937}
-  sr2: {fileID: 0}
+  sr0: {fileID: 440527940}
+  sr1: {fileID: 418338885}
+  sr2: {fileID: 866113151}
   animals:
   - {fileID: 21300000, guid: bacdb613388bca34c8a7107812ff4280, type: 3}
   - {fileID: 21300000, guid: 098e81769365d234487e793cee078e19, type: 3}
   - {fileID: 21300000, guid: 827e3e7ae15c401428a46b28abbf3d3a, type: 3}
   selecteds: 000000000100000002000000
-  animal1Skin: {fileID: 440527936}
 --- !u!4 &300387502
 Transform:
   m_ObjectHideFlags: 0
@@ -529,7 +528,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 300387501}
         m_TargetAssemblyTypeName: SkinManager, Assembly-CSharp
-        m_MethodName: PreviousOption1
+        m_MethodName: PreviousOption2
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -622,6 +621,11 @@ MonoBehaviour:
     noiseType: 0
     amplitude: {x: 0, y: 0, z: 0}
     frequency: {x: 0, y: 0, z: 0}
+--- !u!212 &418338885 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 9098025957919068406, guid: 0afc94c4bdd9a05488e02617779c2f87, type: 3}
+  m_PrefabInstance: {fileID: 421180339}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &421180339
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -707,11 +711,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 3998491406222620646, guid: 7e4b261fa52277546bad952f7ca277de, type: 3}
   m_PrefabInstance: {fileID: 2076847913}
   m_PrefabAsset: {fileID: 0}
---- !u!212 &440527937 stripped
-SpriteRenderer:
-  m_CorrespondingSourceObject: {fileID: 2796828381083627875, guid: 7e4b261fa52277546bad952f7ca277de, type: 3}
-  m_PrefabInstance: {fileID: 2076847913}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &440527939
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -752,6 +751,11 @@ MonoBehaviour:
     noiseType: 0
     amplitude: {x: 0, y: 0, z: 0}
     frequency: {x: 0, y: 0, z: 0}
+--- !u!212 &440527940 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 2796828381083627875, guid: 7e4b261fa52277546bad952f7ca277de, type: 3}
+  m_PrefabInstance: {fileID: 2076847913}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &570725203
 GameObject:
   m_ObjectHideFlags: 0
@@ -6059,6 +6063,11 @@ MonoBehaviour:
     noiseType: 0
     amplitude: {x: 0, y: 0, z: 0}
     frequency: {x: 0, y: 0, z: 0}
+--- !u!212 &866113151 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 4756408005520357710, guid: 08c07c24d6901eb4fbb61a9b6ffad62e, type: 3}
+  m_PrefabInstance: {fileID: 934991846}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &934991846
 PrefabInstance:
   m_ObjectHideFlags: 0

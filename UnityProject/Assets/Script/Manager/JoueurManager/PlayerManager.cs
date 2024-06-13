@@ -18,12 +18,13 @@ public class PlayerManager : MonoBehaviour
     public Queue<Type> main = new Queue<Type>();
     public int drops;
     public Dictionary<string, bool> passif_actifs;
-    public ProfilManager profil = new ProfilManager("Joss","LePlusFort");
+    public ProfilManager profil = new ProfilManager();
     public GameObject[] mainManager;
     public AnimalBehaviour animalActif;
     public bool enAction;
     public bool enVisee;
     private GameObject prefabAura;
+    public bool IsBot = false;
 
     public void Awake()
     {
@@ -77,10 +78,21 @@ public class PlayerManager : MonoBehaviour
     {
         if (profil.deckAnimaux.Length != 3)
             throw new ArgumentException("BUG DETECTER DECK INCOMPLET");
-        foreach (string animal in profil.deckAnimaux)
+        if (IsBot)
         {
-            deckAnimal.Enqueue(animal);
+            foreach (string animal in profil.deckAnimauxbot)
+            {
+                deckAnimal.Enqueue(animal);
+            } 
         }
+        else
+        {
+            foreach (string animal in profil.deckAnimaux)
+            {
+                deckAnimal.Enqueue(animal);
+            }
+        }
+        
     }
 
     public void CreerMain()

@@ -5,14 +5,28 @@ namespace Script.Manager
 {
     public class ProfilManager
     {
-        public string[] deckAnimaux = new string[3];
+        public string[] deckAnimaux =new string[3];
+        public string[] deckAnimauxbot =new string[3];
         public string[] deckCartes = new string[8];
 
-        public ProfilManager(string pseudo, string mdp)
+        public ProfilManager()
         {
-            deckAnimaux = new[]
+
+            if (SkinManager.resSelection.Count == 0)
             {
-                "panda", "dog","turtle"
+                deckAnimaux = new[]
+                {
+                    "dog", "panda", "turtle"
+                };
+            }
+            else
+            {
+                deckAnimaux =  SkinManager.resSelection.ToArray();
+            }
+            
+            deckAnimauxbot = new[]
+            {
+                "panda", "panda", "panda"
             };
             
             deckCartes = new[]

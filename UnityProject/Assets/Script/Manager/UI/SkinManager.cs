@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEditor;
@@ -10,9 +11,23 @@ public class SkinManager : MonoBehaviour
     public SpriteRenderer sr0;
     public SpriteRenderer sr1;
     public SpriteRenderer sr2;
+    [CanBeNull] public SpriteRenderer sr0save = null;
+    [CanBeNull] public SpriteRenderer sr1save = null;
+    [CanBeNull] public SpriteRenderer sr2save = null;
     public List<Sprite> animals = new List<Sprite>();
     public List<int> selecteds = new List<int>(){0,1,2};
-    public GameObject animal1Skin;
+    public static List<string> resSelection = new List<string>();
+
+
+    public void Start()
+    {
+        // Charger les sélections sauvegardées
+        LoadSelectedAnimals();
+
+        sr0.sprite = animals[selecteds[0]];
+        sr1.sprite = animals[selecteds[1]];
+        sr2.sprite = animals[selecteds[2]];
+    }
 
     public void NextOption0()
     {
@@ -92,8 +107,40 @@ public class SkinManager : MonoBehaviour
                     break;
             }
         }
-        
-        Console.WriteLine(animalList[2]);
+
+        resSelection = animalList;
+        var res = "";
+        foreach (var str in resSelection)
+        {
+            res += $"{str}" + " ";
+        }
+        SaveSelectedAnimals();
+        Debug.Log(res);
         SceneManager.LoadScene("Menu");
+    }
+    
+    private void SaveSelectedAnimals()
+    {
+        for (int i = 0; i < selecteds.Count; i++)
+        {
+            PlayerPrefs.SetInt($"SelectedAnimal{i}", selecteds[i]);
+        }
+        PlayerPrefs.Save(); // Sauvegarder les modifications dans PlayerPrefs
+    }
+    
+    private void LoadSelectedAnimals()
+    {
+        for (int i = 0; i < selecteds.Count; i++)
+        {
+            if (PlayerPrefs.HasKey($"SelectedAnimal{i}"))
+            {
+                selecteds[i] = PlayerPrefs.GetInt($"SelectedAnimal{i}");
+            }
+            else
+            {
+                // Valeur par défaut si aucune sauvegarde n'est trouvée
+                selecteds[i] = i;
+            }
+        }
     }
 }

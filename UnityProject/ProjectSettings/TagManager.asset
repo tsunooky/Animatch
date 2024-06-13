@@ -13,6 +13,8 @@ TagManager:
   - ProjDegat
   - MenuMusic
   - 2DSource
+  - winbot
+  - winjoueur
   layers:
   - Default
   - TransparentFX

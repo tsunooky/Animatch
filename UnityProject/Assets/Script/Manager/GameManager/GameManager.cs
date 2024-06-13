@@ -7,6 +7,7 @@ using UnityEngine;
 using Script.Manager;
 using UnityEngine.UI;
 using Photon.Pun;
+using TMPro;
 using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEditor;
@@ -23,7 +24,7 @@ namespace Script.Manager
         public PlayerManager bot;
         private bool animalBeingPlaced = false;
         public GameObject drop_left;
-        public int died;
+        
         
       
         private void Awake()
@@ -53,6 +54,7 @@ namespace Script.Manager
     
         void Update()
         {
+            
             if (spawn)
             {
                 if (joueur.deckAnimal.Count == 0 && bot.deckAnimal.Count == 0)
@@ -75,10 +77,19 @@ namespace Script.Manager
                             StartCoroutine(PlaceAnimal(bot));
                         }
                     }
+                    
                 }
             }
             else
             {
+                if (joueur.animaux_vivant.Count == 0)
+                {
+                    Win(bot,true);
+                }
+                if (bot.animaux_vivant.Count == 0)
+                {
+                    Win(joueur,false);
+                }
                 if (!tourActif)
                 {
                     tourActif = true;
@@ -92,7 +103,7 @@ namespace Script.Manager
                         drop_left.gameObject.SetActive(true);
                         if (joueur.animaux_vivant.Count == 0)
                         {
-                            Win(bot);
+                            Win(bot,true);
                         }
                         else
                         {
@@ -110,7 +121,7 @@ namespace Script.Manager
                         drop_left.gameObject.SetActive(false);
                         if (bot.animaux_vivant.Count == 0)
                         {
-                            Win(joueur);
+                            Win(joueur,true);
                         }
                         else
                         {
@@ -166,6 +177,8 @@ namespace Script.Manager
 
             return null;
         }
+        
+        
 
         IEnumerator tirerbot(AnimalBehaviour animalActif)
         {

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Destructible2D;
 using Script.Manager;
 using UnityEngine;
 using UnityEngine.Events;
@@ -15,12 +16,13 @@ public abstract class CarteBehaviour : MonoBehaviour, Tireur
     
     public bool carte_actuel = false;
     
-    private static CarteBehaviour ancienne_carte_selec;
+    
     
     public CarteData carteData;
     
     public Text text;
-    
+
+    private bool samecard;
     public static bool alreadylifted;
     public static Image cardImage; 
     private static Canvas cardCanvas;
@@ -30,12 +32,15 @@ public abstract class CarteBehaviour : MonoBehaviour, Tireur
     {
         player = Instance.playerActif;
         spriteRenderer = gameObject.AddComponent<SpriteRenderer>();
-        gameObject.AddComponent<BoxCollider2D>().size = new Vector2(1.75f, 5);
-        gameObject.GetComponent<BoxCollider2D>().offset = new Vector2(0, -1);
+        BoxCollider2D collider = gameObject.AddComponent<BoxCollider2D>();
+        collider.size = new Vector2(1.75f, 5);
+        collider.offset = new Vector2(0, -1);
+        collider.isTrigger = true;
+        
         spriteRenderer.sprite = carteData.Sprite;
         spriteRenderer.sortingOrder = 11;
         spriteRenderer.color = new Color32(200, 200, 200, 255);
-        ancienne_carte_selec = null;   
+        
         
         //pour mettre le coût de la carte sur la carte : 
         GameObject canvasObj = new GameObject("CardCanvas");
@@ -121,8 +126,9 @@ public abstract class CarteBehaviour : MonoBehaviour, Tireur
     {
         if (carte_actuel)
         {
+            samecard = true;
             DeselectCard();
-            OnMouseExit();
+            
         }
         else
         {
@@ -132,11 +138,14 @@ public abstract class CarteBehaviour : MonoBehaviour, Tireur
 
     private void SelectCard()
     {
-        
+        if (samecard)
+        {
+            LiftCard();
+        }
         if (Instance.playerActif == player && player.drops - carteData.drops >= 0 && !player.enAction)
         {
             carte_actuel = true;
-            ancienne_carte_selec = this;
+           
             alreadylifted = true;
             Instance.playerActif.enAction = true;
             Instance.playerActif.SetAura(true);
@@ -156,14 +165,11 @@ public abstract class CarteBehaviour : MonoBehaviour, Tireur
         player.MiseAjourAffichageDrops();
         alreadylifted = false;
         var vector3 = transform.position;
-        vector3.y -= 4f;
+        vector3.y -= 1f;
         transform.position = vector3;
         spriteRenderer.color = new Color32(200,200,200,255);
 
-        if (ancienne_carte_selec == this)
-        {
-            ancienne_carte_selec = null;
-        }
+        
     }
     /*
     private void OnMouseDown()
@@ -229,24 +235,38 @@ public abstract class CarteBehaviour : MonoBehaviour, Tireur
     {
         if (!carte_actuel && !alreadylifted )
         {
-            var vector3 = transform.position;
-            vector3.y += 1f;
-            transform.position = vector3;
-            spriteRenderer.color = Color.white;
-            
+            LiftCard();
         }
     }
 
     private void OnMouseExit()
     {
-        if (!carte_actuel && !alreadylifted)
-        { 
-            var vector3 = transform.position;
-            vector3.y =  -4f;
-            transform.position = vector3;
-            spriteRenderer.color = new Color32(200,200,200,255);
+        if (!carte_actuel && !alreadylifted && !samecard )
+        {
+            LowerCard();
+        }
+        else
+        {
+            samecard = false;
         }
     }
+    
+    private void LiftCard()
+    {
+        var vector3 = transform.position;
+        vector3.y += 1f;
+        transform.position = vector3;
+        spriteRenderer.color = Color.white;
+    }
+    
+    private void LowerCard()
+    {
+        var vector3 = transform.position;
+        vector3.y -= 1f;
+        transform.position = vector3;
+        spriteRenderer.color = new Color32(200, 200, 200, 255);
+    }
+    
     
     protected abstract void SpellClickOnCarte();
     public abstract void SpellAfterClick();

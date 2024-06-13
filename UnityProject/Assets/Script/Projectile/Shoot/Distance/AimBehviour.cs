@@ -118,7 +118,7 @@ public class AimBehviour : MonoBehaviour
         if (TireurBehaviour is CarteBehaviour)
         {
             var vector3 = ((CarteBehaviour)TireurBehaviour).transform.position;
-            vector3.y =  -4f;
+            vector3.y -=  1f;
             ((CarteBehaviour)TireurBehaviour).transform.position = vector3;
             ((CarteBehaviour)TireurBehaviour).spriteRenderer.color = new Color32(200,200,200,255);
             ((CarteBehaviour)TireurBehaviour).PiocherMain();

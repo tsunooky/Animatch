@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Rat
   m_EditorClassIdentifier: 
   nom: Rat
-  sprite: {fileID: 21300000, guid: 7f9d8784fcd4ab44f9dda2bf40cbbd17, type: 3}
+  sprite: {fileID: 21300000, guid: c7ee47e39ff64484ba97cad49bb85174, type: 3}
   Pv: 60
   Vitesse: 35
   Animax: {fileID: 21300000, guid: 49774481bfdacbc4fb290341f64b1de4, type: 3}

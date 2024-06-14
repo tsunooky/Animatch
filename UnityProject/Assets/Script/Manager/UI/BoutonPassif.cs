@@ -15,7 +15,7 @@ public class BoutonPassif : MonoBehaviour
     void Update()
     {
         AnimalBehaviour animalActif = GameManager.Instance.playerActif.animalActif;
-        if (animalActif != null)
+        if (animalActif is not null)
             spriteRenderer.sprite = animalActif.animalData.Passif;
     }
 }

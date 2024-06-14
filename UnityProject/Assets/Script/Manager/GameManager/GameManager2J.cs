@@ -21,7 +21,6 @@ namespace Script.Manager
         public PlayerManager joueur2;
         private bool animalBeingPlaced = false;
         public GameObject drop_left;
-		public Text Turn;
       
         private void Awake()
         {

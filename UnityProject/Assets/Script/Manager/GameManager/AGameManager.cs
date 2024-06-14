@@ -32,6 +32,7 @@ namespace Script.Manager
         
         public GameObject animax;
         public GameObject passif;
+        public Text Turn;
         
         #region Code Moved
         

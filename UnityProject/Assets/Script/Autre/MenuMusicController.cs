@@ -4,6 +4,10 @@ using UnityEngine.SceneManagement;
 public class MenuMusicController : MonoBehaviour
 {
     public AudioSource audioSource;
+    public AudioSource audioSource2; // AudioSource pour jouer les musiques
+    public AudioClip[] gameMusicClips; // Tableau des musiques pour la scène de jeu
+
+    private int lastClipIndex = -1;
 
     void Awake()
     {
@@ -27,26 +31,27 @@ public class MenuMusicController : MonoBehaviour
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        Debug.Log("MenuMusicController - Scene loaded: " + scene.name);
-
+        
         if (scene.name == "Main")
         {
-            // Arrêter et détruire le MenuMusicController quand on entre dans la scène de jeu
-            if (audioSource != null && audioSource.isPlaying)
-            {
-                audioSource.Stop();
-                
-            }
+            audioSource.Stop();
+            PlayRandomMusic();
+        }
+        
+    }
+    private void PlayRandomMusic()
+    {
 
-            // Détruire cet objet pour permettre au GameMusicController de gérer la musique
-            Destroy(gameObject);
-        }
-        else
+        int randomIndex;
+        do
         {
-            if (audioSource != null && !audioSource.isPlaying)
-            {
-                audioSource.Play();
-            }
-        }
+            randomIndex = Random.Range(0, gameMusicClips.Length);
+        } while (randomIndex == lastClipIndex && gameMusicClips.Length > 1);
+
+        lastClipIndex = randomIndex;
+
+        audioSource2.clip = gameMusicClips[randomIndex];
+        Debug.Log("Playing random music: " + audioSource2.clip.name); // Pour le débogage
+        audioSource2.Play();
     }
 }

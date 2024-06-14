@@ -30,7 +30,8 @@ namespace Script.Manager
                 Debug.LogError("GameManager n'est plus un singleton car il viens d'être redéfinis une deuxième fois !");
                 return;
             }
-
+            animax.SetActive(false);
+            passif.SetActive(false);
             drop_left.gameObject.SetActive(false);
             nextTurnButton.gameObject.SetActive(false);
             Instance = this;
@@ -102,6 +103,8 @@ namespace Script.Manager
                 }
                 if (!tourActif)
                 {
+                    animax.SetActive(true);
+                    passif.SetActive(true);
                     tourActif = true;
                     Turn.text = $"Turn {tour}.";
                     if (tour % 2 != 0)

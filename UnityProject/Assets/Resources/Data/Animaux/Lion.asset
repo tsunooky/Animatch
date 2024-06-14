@@ -15,5 +15,6 @@ MonoBehaviour:
   nom: Lion
   sprite: {fileID: 21300000, guid: fc76135299c79874eba1e5557d3b28e3, type: 3}
   Pv: 125
-  Poids: 70
   Vitesse: 60
+  Animax: {fileID: 21300000, guid: 6f093a3d9ef1bee4faeb7d838072011f, type: 3}
+  Passif: {fileID: 21300000, guid: 3836c0821dfe5824f81eb1f1f940f5c9, type: 3}

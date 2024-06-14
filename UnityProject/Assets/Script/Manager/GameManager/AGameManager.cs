@@ -1,21 +1,8 @@
-﻿using System.Collections.Generic;
-using System;
-using System.Collections;
-using JetBrains.Annotations;
+﻿using System;
 using Script.Data;
 using UnityEngine;
-using Script.Manager;
 using UnityEngine.UI;
 using Photon.Pun;
-using TMPro;
-using Unity.Mathematics;
-using Unity.VisualScripting;
-using UnityEditor;
-using UnityEngine.SceneManagement;
-using static Unity.Mathematics.Random;
-using static Unity.Mathematics.math;
-
-
 
 namespace Script.Manager
 

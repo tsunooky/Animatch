@@ -23,13 +23,11 @@ public class PlayerManager : MonoBehaviour
     public AnimalBehaviour animalActif;
     public bool enAction;
     public bool enVisee;
-    private GameObject prefabAura;
     public bool IsBot = false;
     public bool IsPlayer2 = false;
 
     public void Awake()
     {
-        prefabAura = (GameObject)Resources.Load("Prefabs/Autre/Aura");
         enAction = false;
         animalActif = null;
         if (Instance is GameManager2J && this != Instance.joueur)
@@ -45,7 +43,6 @@ public class PlayerManager : MonoBehaviour
         animaux_vivant = new Queue<AnimalBehaviour>();
         trierAnimaux();
         drops = 1;
-        //DEFINITION DE TOUT LES PASSIFS
         passif_actifs = new Dictionary<string, bool>();
     }
     
@@ -53,11 +50,7 @@ public class PlayerManager : MonoBehaviour
     {
         Destroy(animalBehaviour.gameObject);
     }
-
-    /*public void RessuciterAnimal(AnimalBehaviour animalBehaviour)
-    {
-       mécanique utlisant le deck d'animaux de Profil non implémenter pour le moment 
-    }*/
+    
     
     
     public void DefausserMain()
@@ -80,7 +73,7 @@ public class PlayerManager : MonoBehaviour
     public void trierAnimaux()
     {
         if (profil.deckAnimaux.Length != 3)
-            throw new ArgumentException("BUG DETECTER DECK INCOMPLET");
+            throw new ArgumentException("DECK INCOMPLET");
         if (IsBot)
         {
             foreach (string animal in profil.deckAnimauxbot)

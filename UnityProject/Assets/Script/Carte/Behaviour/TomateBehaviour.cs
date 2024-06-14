@@ -23,10 +23,5 @@ public class TomateBehaviour : CarteBehaviour
         alreadylifted = false;
         ClassiqueShoot(startPosition,currentMousePos);
     }
-
-    
-
-    
-
     
 }

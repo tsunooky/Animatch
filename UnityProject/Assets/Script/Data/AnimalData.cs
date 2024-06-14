@@ -5,10 +5,8 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "NouveauAnimal", menuName = "Animal")]
 public class AnimalData : ScriptableObject
 {
-   public string nom;
    public Sprite sprite;
    public int Pv;
-   public int Vitesse;
    public Sprite Animax;
    public Sprite Passif;
    public Sprite Clignement;

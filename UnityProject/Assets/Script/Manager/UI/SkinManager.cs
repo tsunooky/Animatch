@@ -4,7 +4,6 @@ using UnityEngine.SceneManagement;
 
 public class SkinManager : MonoBehaviour
 {
-    // SpriteRenderers pour les animaux des deux équipes
     public SpriteRenderer sr0;
     public SpriteRenderer sr1;
     public SpriteRenderer sr2;
@@ -12,37 +11,30 @@ public class SkinManager : MonoBehaviour
     public SpriteRenderer sr4;
     public SpriteRenderer sr5;
     public static bool fix = false;
-
-    // Liste de tous les sprites d'animaux
+    
     public List<Sprite> animals = new List<Sprite>();
+    
+    public List<int> selecteds = new List<int>(){0, 1, 2}; 
+    public List<int> selecteds2 = new List<int>(){3, 4, 5}; 
+    
+    public static List<string> resSelection = new List<string>();
+    public static List<string> resSelectionPlayer2 = new List<string>();
 
-    // Sélections d'animaux pour les deux équipes
-    public List<int> selecteds = new List<int>(){0, 1, 2}; // Pour Team1
-    public List<int> selecteds2 = new List<int>(){0, 1, 2}; // Pour Team2
 
-    // Listes statiques pour stocker les noms des animaux sélectionnés
-    public static List<string> resSelection = new List<string>(); // Pour Team1
-    public static List<string> resSelectionPlayer2 = new List<string>(); // Pour Team2
-
-    // Méthode appelée au démarrage de la scène
     private void Start()
     {
-        // Charger les sélections sauvegardées
         LoadSelectedAnimals("Team1", selecteds);
         LoadSelectedAnimals("Team2", selecteds2);
-
-        // Assigner les sprites pour Team1
+        
         sr0.sprite = animals[selecteds[0]];
         sr1.sprite = animals[selecteds[1]];
         sr2.sprite = animals[selecteds[2]];
-
-        // Assigner les sprites pour Team2
+        
         sr3.sprite = animals[selecteds2[0]];
         sr4.sprite = animals[selecteds2[1]];
         sr5.sprite = animals[selecteds2[2]];
     }
-
-    // Méthodes de navigation pour les sélections de Team1
+    
     public void NextOption0()
     {
         selecteds[0] = (selecteds[0] + 1) % animals.Count;
@@ -78,8 +70,7 @@ public class SkinManager : MonoBehaviour
         selecteds[2] = (selecteds[2] - 1 + animals.Count) % animals.Count;
         sr2.sprite = animals[selecteds[2]];
     }
-
-    // Méthodes de navigation pour les sélections de Team2
+    
     public void NextOption0Player2()
     {
         selecteds2[0] = (selecteds2[0] + 1) % animals.Count;
@@ -115,8 +106,7 @@ public class SkinManager : MonoBehaviour
         selecteds2[2] = (selecteds2[2] - 1 + animals.Count) % animals.Count;
         sr5.sprite = animals[selecteds2[2]];
     }
-
-    // Sauvegarder les sélections et retourner au menu principal
+    
     public void ReturnMenu()
     {
         List<string> animalList = new List<string>();
@@ -156,7 +146,6 @@ public class SkinManager : MonoBehaviour
         SceneManager.LoadScene("Menu");
     }
 
-    // Sauvegarder les sélections de Team1 et passer à la scène de Team2
     public void GoToPlayer2()
     {
         List<string> animalList = new List<string>();
@@ -189,8 +178,7 @@ public class SkinManager : MonoBehaviour
         SaveSelectedAnimals("Team1", selecteds);
         SceneManager.LoadScene("Team2");
     }
-
-    // Sauvegarder les sélections de Team2 et retourner à la scène de Team1
+    
     public void ReturnToPlayer1()
     {
         fix = true;
@@ -226,17 +214,15 @@ public class SkinManager : MonoBehaviour
         SceneManager.LoadScene("Team");
     }
 
-    // Méthode générique pour sauvegarder les sélections dans PlayerPrefs
     private void SaveSelectedAnimals(string team, List<int> selections)
     {
         for (int i = 0; i < selections.Count; i++)
         {
             PlayerPrefs.SetInt($"{team}_SelectedAnimal{i}", selections[i]);
         }
-        PlayerPrefs.Save(); // Sauvegarder les modifications dans PlayerPrefs
+        PlayerPrefs.Save();
     }
 
-    // Méthode générique pour charger les sélections depuis PlayerPrefs
     private void LoadSelectedAnimals(string team, List<int> selections)
     {
         for (int i = 0; i < selections.Count; i++)
@@ -247,7 +233,6 @@ public class SkinManager : MonoBehaviour
             }
             else
             {
-                // Valeur par défaut si aucune sauvegarde n'est trouvée
                 selections[i] = i;
             }
         }

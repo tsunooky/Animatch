@@ -8,5 +8,4 @@ public class CarteData : ScriptableObject
     public ProjectileData projectileData;
     public Sprite Sprite;
     public int drops;
-    public string type;
 }

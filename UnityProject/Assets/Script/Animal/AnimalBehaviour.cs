@@ -11,7 +11,6 @@ public abstract class AnimalBehaviour : MonoBehaviour
 {
     public AnimalData animalData;
     public int pv;
-    public int vitesse;
     public PlayerManager player;
     public HealthBar healthBar;
     public GameObject healthBarInstance;
@@ -60,7 +59,6 @@ public abstract class AnimalBehaviour : MonoBehaviour
     {
         animalData = Resources.Load<AnimalData>("Data/Animaux/" + nom_animal);
         pv = animalData.Pv;
-        vitesse = animalData.Vitesse;   
     }
 
     public void LoadHealthbar()
@@ -251,16 +249,12 @@ public abstract class AnimalBehaviour : MonoBehaviour
         SpriteRenderer spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
         while (true)
         {
-            // Attendre le délai entre les clignotements
             yield return new WaitForSeconds(Random.Range(3,7));
-
-            // Changer le sprite pendant le clignotement
+            
             spriteRenderer.sprite = animalData.Clignement;
-
-            // Attendre pendant la durée du clignotement
+            
             yield return new WaitForSeconds((float)0.2);
-
-            // Revenir au sprite normal
+            
             spriteRenderer.sprite = animalData.sprite;
         }
     }

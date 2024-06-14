@@ -27,7 +27,6 @@ namespace Script.ManagerOnline
         public Text Waiting;
         public Text Tour;
         private bool isPlayerTurn = true;
-        private bool isProcessingTurn = false;
       
         private void Awake()
         {
@@ -174,7 +173,6 @@ namespace Script.ManagerOnline
         
         private IEnumerator GererTour(PlayerManager player)
         {
-            isProcessingTurn = true;
             playerActif = player;
             Tour.text = $"C'est le tour du {player.name}";
             Tour.enabled = true;
@@ -193,7 +191,6 @@ namespace Script.ManagerOnline
                 animalActif.LoadAura();
                 player.MiseAjourAffichageDrops();
             }
-            isProcessingTurn = false;
             isPlayerTurn = !isPlayerTurn;
             tourActif = false;
             tour++;

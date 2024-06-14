@@ -7,8 +7,7 @@ public class CameraMouv : MonoBehaviour
 { 
     public float dragSpeed = 12f;
     private Vector3 dragOrigin;
-
-    // Définir les limites de la caméra
+    
     public float leftLimit = -10.0f;
     public float rightLimit = 10.0f;
     public float topLimit = 4.0f;
@@ -28,11 +27,10 @@ public class CameraMouv : MonoBehaviour
         Vector3 move = new Vector3(pos.x * dragSpeed, pos.y * dragSpeed, 0);
 
         transform.Translate(move, Space.World);
-
-        // Limiter le mouvement de la caméra à la scène
+        
         transform.position = new Vector3(Mathf.Clamp(transform.position.x, leftLimit, rightLimit), Mathf.Clamp(transform.position.y, bottomLimit, topLimit),transform.position.z);
 
-        dragOrigin = Input.mousePosition; // Mettez à jour l'origine du glissement pour le prochain frame
+        dragOrigin = Input.mousePosition; 
     }
 }
 

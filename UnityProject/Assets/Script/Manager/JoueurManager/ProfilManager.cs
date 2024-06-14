@@ -1,6 +1,7 @@
 using System;
-using System.Collections.Generic;
-using UnityEngine;
+using System.Collections;
+using System.Linq;
+using Random = UnityEngine.Random;
 
 namespace Script.Manager
 {
@@ -10,23 +11,19 @@ namespace Script.Manager
         public string[] deckAnimauxbot =new string[3];
         public string[] deckAnimauxPlayer2 =new string[3];
         public string[] deckCartes = new string[8];
+        public string[] listeAnimauxPossible = { "panda", "dog", "turtle", "lion", "rat", "eagle" };
 
         public ProfilManager()
         {
-
             if (SkinManager.resSelection.Count == 0)
             {
                 deckAnimaux = new[]
-                {
-                    "dog", "dog", "dog"
-                };
+                {"panda", "dog", "turtle" };
             }
             if (SkinManager.resSelectionPlayer2.Count == 0)
             {
                 deckAnimauxPlayer2 = new[]
-                {
-                    "turtle", "turtle", "turtle"
-                };
+                {"lion", "rat", "eagle" };
             }
             else
             {
@@ -34,21 +31,14 @@ namespace Script.Manager
                 deckAnimauxPlayer2 = SkinManager.resSelectionPlayer2.ToArray();
             }
             
-            deckAnimauxbot = new[]
-            {
-                "panda", "panda", "panda"
-            };
-            
+            deckAnimauxbot = listeAnimauxPossible.OrderBy(x => Guid.NewGuid()).Take(3).ToArray();
+
             deckCartes = new[]
             {
                 "durian", "canon", "bat", "bombe",
                 "jump", "tomate", "knife", "heal"
             };
-        }
-
-        public void sauvegarderProfil()
-        {
-            /* a relier avec Airtable*/
+            
         }
     }
 

@@ -45,7 +45,7 @@ namespace Script.Manager
             bot.IsBot = true;
             bot.CreateProfil();
             bot.IsBot = false;
-
+            Turn.enabled = true;
             
             // Evité bug au lancement
             playerActif = joueur;
@@ -58,7 +58,6 @@ namespace Script.Manager
     
         void Update()
         {
-            Turn.enabled = true;
             if (spawn)
             {
                 if (joueur.deckAnimal.Count == 0 && bot.deckAnimal.Count == 0)

@@ -14,6 +14,7 @@ public class RatBehaviour : AnimalBehaviour
     {
         player.drops += 3;
         player.MiseAjourAffichageDrops();
+        player.enAction = false;
     }
 }
 

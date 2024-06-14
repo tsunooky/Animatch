@@ -19,6 +19,7 @@ public class LionBehaviour : AnimalBehaviour
             animal.Soin(20);
             animal.healthBar.SetHealth(animal.pv);
         }
+        player.enAction = false;
     }
 
     public override void Soin(int heal) 

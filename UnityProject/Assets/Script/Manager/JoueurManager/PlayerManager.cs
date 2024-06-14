@@ -72,6 +72,8 @@ public class PlayerManager : MonoBehaviour
             drops = (tour / 2 + tour % 2) + 1;
         else
             drops = tour / 2 + tour % 2;
+        if (drops > 6)
+            drops = 6;
     }
 
     public void trierAnimaux()

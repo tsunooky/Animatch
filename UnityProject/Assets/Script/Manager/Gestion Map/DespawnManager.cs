@@ -24,7 +24,7 @@ public class DespawnManager : MonoBehaviour
     public IEnumerator Death()
     {
         Destroy(gameObject.GetComponent<Rigidbody2D>());
-        Destroy(gameObject.GetComponent<PolygonCollider2D>());
+        Destroy(gameObject.GetComponent<D2DPollygonCollider>());
         
         isDestroying = true;
         

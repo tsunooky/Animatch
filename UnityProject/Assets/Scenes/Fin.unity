@@ -380,8 +380,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93f139f927f7b4c459dd9b67d0a24b6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  victoireBot: {fileID: 1115275498}
-  VictoireJoueur: {fileID: 1882857761}
+  victoireBot: {fileID: 0}
+  VictoireJoueur: {fileID: 0}
 --- !u!114 &320922661
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -429,8 +429,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -271, y: 0}
-  m_SizeDelta: {x: -448.2709, y: -544.0338}
+  m_AnchoredPosition: {x: -247.56769, y: 0}
+  m_SizeDelta: {x: -495.13538, y: -544.0338}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &558723298
 MonoBehaviour:
@@ -757,8 +757,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -80}
-  m_SizeDelta: {x: 509.8894, y: 88.7522}
+  m_AnchoredPosition: {x: 0, y: -100}
+  m_SizeDelta: {x: 682, y: 88.7522}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1232205190
 GameObject:
@@ -970,8 +970,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -80}
-  m_SizeDelta: {x: 679.3228, y: 88.7522}
+  m_AnchoredPosition: {x: 25, y: -100}
+  m_SizeDelta: {x: 825, y: 88.7522}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1993088572
 GameObject:

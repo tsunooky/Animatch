@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 550f39e17185d66468f4c092c1f53a29, type: 3}
   m_Name: Durian
   m_EditorClassIdentifier: 
-  Expulsion: 0
-  Force: 0
+  Expulsion: 100
+  Force: 8
   Degat: 0
   Projectile: {fileID: 0}
   Explosion: {fileID: 0}

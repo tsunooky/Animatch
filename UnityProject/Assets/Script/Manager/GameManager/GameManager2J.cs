@@ -77,13 +77,13 @@ namespace Script.Manager
                     {
                         if (joueur.deckAnimal.Count > joueur2.deckAnimal.Count)
                         {
-                            Turn.text = "Joueur 1 pour spawn";
+                            Turn.text = "Player 1 for spawn";
                             if (Input.GetMouseButtonDown(0))
                                 StartCoroutine(PlaceAnimal(joueur));
                         }
                         else
                         {
-                            Turn.text = "Joueur 2 pour spawn";
+                            Turn.text = "Player 2 for spawn";
                             if(Input.GetMouseButtonDown(0))
                                 StartCoroutine(PlaceAnimal(joueur2));
                         }
@@ -103,10 +103,10 @@ namespace Script.Manager
                 if (!tourActif)
                 {
                     tourActif = true;
-                    Turn.text = $"Tour n°{tour}.";
+                    Turn.text = $"Turn {tour}.";
                     if (tour % 2 != 0)
                     {
-                        Debug.Log("C'est votre tour");
+                        Debug.Log("It's your turn");
                         playerActif = joueur;
                         joueur.MiseAJourDrops(tour);
                         affichage_mana.text = $"{joueur.drops}";

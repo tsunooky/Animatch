@@ -452,7 +452,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: FIN DE LA PARTIE
+  m_text: END OF THE GAME
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: eecfca0817ed1884ba35d697d7628e14, type: 2}
   m_sharedMaterial: {fileID: -5727733498498506461, guid: eecfca0817ed1884ba35d697d7628e14, type: 2}
@@ -692,7 +692,6 @@ GameObject:
   - component: {fileID: 1115275500}
   - component: {fileID: 1115275499}
   - component: {fileID: 1115275498}
-  - component: {fileID: 1115275501}
   m_Layer: 5
   m_Name: Victoire du bot
   m_TagString: winbot
@@ -733,7 +732,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Victoire du bot
+  m_Text: Victory for the bot
 --- !u!222 &1115275499
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -761,20 +760,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -80}
   m_SizeDelta: {x: 509.8894, y: 88.7522}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1115275501
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1115275497}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 93f139f927f7b4c459dd9b67d0a24b6a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  victoireBot: {fileID: 1115275498}
-  VictoireJoueur: {fileID: 1882857761}
 --- !u!1 &1232205190
 GameObject:
   m_ObjectHideFlags: 0
@@ -920,7 +905,6 @@ GameObject:
   - component: {fileID: 1882857763}
   - component: {fileID: 1882857762}
   - component: {fileID: 1882857761}
-  - component: {fileID: 1882857764}
   m_Layer: 5
   m_Name: Victoire du joueur
   m_TagString: winjoueur
@@ -961,7 +945,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Victoire du joueur
+  m_Text: Victory for the player
 --- !u!222 &1882857762
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -989,20 +973,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -80}
   m_SizeDelta: {x: 679.3228, y: 88.7522}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1882857764
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1882857760}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 93f139f927f7b4c459dd9b67d0a24b6a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  victoireBot: {fileID: 1115275498}
-  VictoireJoueur: {fileID: 1882857761}
 --- !u!1 &1993088572
 GameObject:
   m_ObjectHideFlags: 0

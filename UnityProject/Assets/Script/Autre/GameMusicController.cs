@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 public class GameMusicController : MonoBehaviour
 {
     public static GameMusicController instance; // Instance statique pour le singleton
-    public AudioSource audioSource; // AudioSource pour jouer les musiques
+    public AudioSource audioSource2; // AudioSource pour jouer les musiques
     public AudioClip[] gameMusicClips; // Tableau des musiques pour la scène de jeu
 
     private int lastClipIndex = -1; // Pour éviter de jouer la même musique deux fois de suite (optionnel)
@@ -26,7 +26,7 @@ public class GameMusicController : MonoBehaviour
 
     private void PlayRandomMusic()
     {
-        if (gameMusicClips.Length == 0 || audioSource == null)
+        if (gameMusicClips.Length == 0 || audioSource2 == null)
         {
             Debug.LogWarning("Aucune musique à jouer ou AudioSource non assignée.");
             return;
@@ -40,8 +40,8 @@ public class GameMusicController : MonoBehaviour
 
         lastClipIndex = randomIndex;
 
-        audioSource.clip = gameMusicClips[randomIndex];
-        Debug.Log("Playing random music: " + audioSource.clip.name); // Pour le débogage
-        audioSource.Play();
+        audioSource2.clip = gameMusicClips[randomIndex];
+        Debug.Log("Playing random music: " + audioSource2.clip.name); // Pour le débogage
+        audioSource2.Play();
     }
 }

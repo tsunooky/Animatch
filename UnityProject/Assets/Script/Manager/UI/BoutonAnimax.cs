@@ -16,7 +16,7 @@ public class BoutonAnimax : MonoBehaviour
     private void OnMouseDown()
     {
         AnimalBehaviour animalActif = GameManager.Instance.playerActif.animalActif;
-        if (GameManager.Instance.playerActif == GameManager.Instance.joueur)
+        if (GameManager.Instance.playerActif == GameManager.Instance.joueur && spriteRenderer.sprite is not null)
         {
             GameManager.Instance.playerActif.enAction = true;
             animalActif.Animax();

@@ -22,7 +22,6 @@ public class ProjBambooBehaviour: ProjectileBehaviour
             if (!declanchement && !invinsible)
             {
                 declanchement = true;
-                Debug.Log("ADDDRIEN");
                 Instantiate(Bamboo, gameObject.transform.position, gameObject.transform.rotation);
                 FinAction();
                 Destroy(gameObject);

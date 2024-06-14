@@ -1,13 +1,11 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using Destructible2D;
 using Script.Manager;
 using UnityEngine;
-using Photon.Pun;
 using Destructible2D.Examples;
-using Unity.VisualScripting;
 using static Script.Manager.AGameManager;
+
 
 public abstract class AnimalBehaviour : MonoBehaviour
 {
@@ -54,6 +52,7 @@ public abstract class AnimalBehaviour : MonoBehaviour
         timeSpawn = Time.time;
         gameObject.layer = 6;
         currentInstance = new GameObject();
+        StartCoroutine(Clignement());
     }
     
 
@@ -247,4 +246,22 @@ public abstract class AnimalBehaviour : MonoBehaviour
         StartCoroutine(gameObject.GetComponent<DespawnManager>().Death());
     }
     
+    private IEnumerator Clignement()
+    {
+        SpriteRenderer spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
+        while (true)
+        {
+            // Attendre le délai entre les clignotements
+            yield return new WaitForSeconds(Random.Range(3,7));
+
+            // Changer le sprite pendant le clignotement
+            spriteRenderer.sprite = animalData.Clignement;
+
+            // Attendre pendant la durée du clignotement
+            yield return new WaitForSeconds((float)0.2);
+
+            // Revenir au sprite normal
+            spriteRenderer.sprite = animalData.sprite;
+        }
+    }
 }

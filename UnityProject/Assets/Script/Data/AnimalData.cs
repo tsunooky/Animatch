@@ -11,4 +11,5 @@ public class AnimalData : ScriptableObject
    public int Vitesse;
    public Sprite Animax;
    public Sprite Passif;
+   public Sprite Clignement;
 }

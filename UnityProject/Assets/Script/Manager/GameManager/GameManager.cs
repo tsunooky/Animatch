@@ -24,8 +24,9 @@ namespace Script.Manager
         public PlayerManager bot;
         private bool animalBeingPlaced = false;
         public GameObject drop_left;
-        
-        
+
+        public GameObject animax;
+        public GameObject passif;
       
         private void Awake()
         {
@@ -35,6 +36,8 @@ namespace Script.Manager
                 return;
             }
             
+            animax.SetActive(false);
+            passif.SetActive(false);
             Instance = this;
             drop_left.gameObject.SetActive(false);
             nextTurnButton.gameObject.SetActive(false);
@@ -100,6 +103,8 @@ namespace Script.Manager
                         if (joueur.enabled)
                         {
                             Debug.Log("C'est votre tour");
+                            animax.SetActive(true);
+                            passif.SetActive(true);
                             playerActif = joueur;
                             joueur.MiseAJourDrops(tour);
                             affichage_mana.text = $"{joueur.drops}";
@@ -116,6 +121,8 @@ namespace Script.Manager
                     {
                         if (bot.enabled)
                         {
+                            animax.SetActive(false);
+                            passif.SetActive(false);
                             playerActif = bot;
                             nextTurnButton.gameObject.SetActive(false);
                             drop_left.gameObject.SetActive(false);

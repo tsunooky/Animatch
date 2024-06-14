@@ -13,7 +13,7 @@ public class SoundVolumeManager : MonoBehaviour
     private void Start()
     {
         // Initialiser le slider avec le volume actuel enregistré
-        float savedVolume = PlayerPrefs.GetFloat(SoundVolumePrefKey, 1f);
+        float savedVolume = PlayerPrefs.GetFloat(SoundVolumePrefKey, 0.3f);
         soundSlider.value = savedVolume;
         soundSlider.onValueChanged.AddListener(AdjustSoundVolume);
         UpdateVolumePercentageText(savedVolume);

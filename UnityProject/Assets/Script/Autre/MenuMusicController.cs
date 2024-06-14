@@ -32,7 +32,7 @@ public class MenuMusicController : MonoBehaviour
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         
-        if (scene.name == "Main")
+        if (scene.name == "Main" || scene.name == "Main 2P" )
         {
             audioSource.Stop();
             PlayRandomMusic();
@@ -49,7 +49,6 @@ public class MenuMusicController : MonoBehaviour
 
     private void PlayMusicMenu()
     {
-        Debug.Log("neuille");
         audioSource.clip = MenuMusicClip;
         audioSource.Play();
     }

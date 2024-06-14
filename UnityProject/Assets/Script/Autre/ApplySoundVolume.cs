@@ -8,7 +8,7 @@ public class ApplySoundVolume : MonoBehaviour
     private void Start()
     {
         // Récupérer le volume enregistré
-        float savedVolume = PlayerPrefs.GetFloat(SoundVolumePrefKey, 1f);
+        float savedVolume = PlayerPrefs.GetFloat(SoundVolumePrefKey, 0.3f);
 
         // Mettre à jour le volume des sources audio dans la scène
         UpdateAudioSourcesVolume(savedVolume);

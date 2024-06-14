@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Durian
   m_EditorClassIdentifier: 
   Expulsion: 100
-  Force: 8
+  Force: 10
   Degat: 0
   Projectile: {fileID: 3029733605486418071, guid: 2e64532df57da1c47828fe5f58bb40fc, type: 3}
   Explosion: {fileID: 100000, guid: d577b80a09a9d4e43b7f3ab84d2db974, type: 3}

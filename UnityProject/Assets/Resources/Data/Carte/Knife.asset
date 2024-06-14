@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectileData: {fileID: 11400000, guid: 49b8d4035c2bb054091e0be6644a30d4, type: 2}
   Sprite: {fileID: 21300000, guid: ec44dbcc03dcb914c941c08f282a44d1, type: 3}
-  drops: 1
+  drops: 3
   type: 

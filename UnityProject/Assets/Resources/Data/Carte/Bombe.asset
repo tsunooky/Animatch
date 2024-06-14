@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2114f2c8b1e04247a49342e24fa54ff3, type: 3}
-  m_Name: Durian
+  m_Name: Bombe
   m_EditorClassIdentifier: 
-  projectileData: {fileID: 11400000, guid: 8ebadb5ec681b4a4bb30af36ca95192f, type: 2}
-  Sprite: {fileID: 21300000, guid: 0cf45aef2c09f7e4489b220ef2f10f75, type: 3}
-  drops: 2
-  type: Bump
+  projectileData: {fileID: 11400000, guid: 54aff51ad7666844798c390dc44dee25, type: 2}
+  Sprite: {fileID: 21300000, guid: e34e6b9a7d6dd7749a6b277a8872bd6e, type: 3}
+  drops: 6
+  type: Explosion

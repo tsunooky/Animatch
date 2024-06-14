@@ -13,9 +13,8 @@ MonoBehaviour:
   m_Name: Bamboo
   m_EditorClassIdentifier: 
   Expulsion: 0
-  Force: 8
+  Force: 7
   Degat: 0
   Projectile: {fileID: 4483138828243176656, guid: 11ddcb0a4ba01d547a34b68b62f6c860, type: 3}
   Explosion: {fileID: 0}
-  SpriteIfHandToHand: {fileID: 0}
   Lanceur: {fileID: 0}

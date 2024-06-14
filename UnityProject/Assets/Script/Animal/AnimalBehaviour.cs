@@ -240,6 +240,7 @@ public abstract class AnimalBehaviour : MonoBehaviour
 
     public void Meurt()
     {
+        Destroy(currentInstance);
         StartCoroutine(gameObject.GetComponent<DespawnManager>().Death());
     }
     

@@ -25,6 +25,7 @@ public class PlayerManager : MonoBehaviour
     public bool enVisee;
     private GameObject prefabAura;
     public bool IsBot = false;
+    public bool IsPlayer2 = false;
 
     public void Awake()
     {
@@ -86,6 +87,14 @@ public class PlayerManager : MonoBehaviour
             {
                 deckAnimal.Enqueue(animal);
             } 
+        }
+
+        if (IsPlayer2)
+        {
+            foreach (string animal in profil.deckAnimauxPlayer2)
+            {
+                deckAnimal.Enqueue(animal);
+            }
         }
         else
         {

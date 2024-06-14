@@ -41,8 +41,10 @@ namespace Script.Manager
             joueur.mainManager = GameObject.FindGameObjectsWithTag("MainCarte");
             joueur2 = gameObject.AddComponent<PlayerManager>();
             playerActif = joueur2;
+            joueur2.IsPlayer2 = true;
             joueur2.CreateProfil();
             joueur2.CreerMain();
+            joueur2.IsPlayer2 = false;
             joueur2.mainManager = GameObject.FindGameObjectsWithTag("MainCarte2J");
             UpdateCardDisplay(joueur);
             int i = 1;

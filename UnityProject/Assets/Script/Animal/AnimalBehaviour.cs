@@ -25,6 +25,8 @@ public abstract class AnimalBehaviour : MonoBehaviour
     public bool actif;
     public GameObject currentInstance;
     [SerializeField] private ParticleSystem ps = default;
+    
+    public bool AnimaxActivate;
 
     // Stock les collision2D qui ont infligé degat par chaque projo pour eviter de s'en reprendre un autre
     private List<Collision2D> ListDegat;
@@ -47,6 +49,7 @@ public abstract class AnimalBehaviour : MonoBehaviour
     
     private void Start()
     {
+        AnimaxActivate = false;
         ListDegat = new List<Collision2D>();
         tag = "Animal";
         timeSpawn = Time.time;

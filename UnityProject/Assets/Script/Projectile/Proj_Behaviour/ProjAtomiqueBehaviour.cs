@@ -21,13 +21,19 @@ public class ProjAtomiqueBehaviour : ProjectileBehaviour
                 if (!declanchement)
                 {
                     declanchement = true;
-                    var clone = Instantiate(Prefab, transform.position, transform.rotation);
-                    clone.SetActive(true);
-                    clone.GetComponent<D2dExplosion>().degat = projectileData.Degat;
-                    FinAction();
-                    Destroy(gameObject);
+                    StartCoroutine(Explose());
                 }
             }
         }
+    }
+
+    IEnumerator Explose()
+    {
+        yield return new WaitForSeconds((float)0.2);
+        var clone = Instantiate(Prefab, transform.position, transform.rotation);
+        clone.SetActive(true);
+        clone.GetComponent<D2dExplosion>().degat = projectileData.Degat;
+        FinAction();
+        Destroy(gameObject);
     }
 }

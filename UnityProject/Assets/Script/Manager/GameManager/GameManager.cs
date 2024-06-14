@@ -165,29 +165,33 @@ namespace Script.Manager
         
 
         [CanBeNull]
-        public AnimalBehaviour getnearest(PlayerManager player)
+        public AnimalBehaviour GetNearest(PlayerManager player)
         {
-            if (joueur.animaux_vivant.Count > 0)
+            if (joueur.animaux_vivant.Count == 0)
             {
-                AnimalBehaviour res = player.animaux_vivant.Peek();
-                var moi = playerActif.animalActif.transform.position;
-                float minDistance = float.MaxValue;
-
-                foreach (var animal in player.animaux_vivant)
-                {
-                    float distance = Vector2.Distance(moi, animal.transform.position);
-                    if (distance < minDistance)
-                    {
-                        minDistance = distance;
-                        res = animal;
-                    }
-                }
-                Debug.Log(res.nom);
-                return res;
+                return null;
             }
 
-            return null;
+            AnimalBehaviour nearestAnimal = player.animaux_vivant.Peek();
+            var currentPosition = playerActif.animalActif.transform.position;
+            float minDistance = float.MaxValue;
+
+            foreach (var animal in player.animaux_vivant)
+            {
+                Vector2 relativePosition = animal.transform.position - currentPosition;
+
+                float distance = relativePosition.magnitude;
+                if (distance < minDistance)
+                {
+                    minDistance = distance;
+                    nearestAnimal = animal;
+                }
+            }
+
+            Debug.Log(nearestAnimal.nom);
+            return nearestAnimal;
         }
+
 
         IEnumerator Wait2sec()
         {
@@ -202,11 +206,13 @@ namespace Script.Manager
             if (animalActif != null)
             {
                 var aimbotani = animalActif.AddComponent<AimBot>();
-                var cible = getnearest(joueur);
-                Vector2 botPosition = gameObject.transform.position;
+                var cible = GetNearest(joueur);
+                Vector2 botPosition = animalActif.transform.position;
                 Vector2 ciblePosition = cible.transform.position;
                 Vector2 relativePosition = ciblePosition - botPosition;
-
+                Debug.Log($"bot x = {botPosition.x}, bot y = {botPosition.y}");
+                Debug.Log($"cible x = {ciblePosition.x}, cible y = {ciblePosition.y}");
+                Debug.Log($"relative x = {relativePosition.x}, relative y = {relativePosition.y}");
                 if (relativePosition.x > 0)
                 {
                     aimbotani.TirerDansUneDirectiondroite(ciblePosition);

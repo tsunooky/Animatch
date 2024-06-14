@@ -3,68 +3,112 @@ using UnityEngine;
 
 
 
-public  class AimBot : MonoBehaviour
+public class AimBot : MonoBehaviour
 {
+
+    void Start()
+    {
+        // Assurez-vous que le projectile n'entre pas en collision avec le bot au départ
+        Collider2D botCollider = transform.root.GetComponent<Collider2D>();
+        Collider2D projectileCollider = GetComponent<Collider2D>();
+
+        if (botCollider != null && projectileCollider != null)
+        {
+            Physics2D.IgnoreCollision(projectileCollider, botCollider, true);
+        }
+    }
+
     public void ClassiqueShootbot(Vector2 targetPosition)
     {
         var pro = Resources.Load<ProjectileData>("Data/Projectile/Tomate");
-        
+
         GameObject bullet = Instantiate(pro.Projectile, gameObject.transform.position, Quaternion.identity);
         ProjectileBehaviour bulletBehaviour = bullet.GetComponent<ProjectileBehaviour>();
-        if (gameObject.transform.position.x < 0 )
+        if (gameObject.transform.position.x < 0)
         {
-            bulletBehaviour.Set((new Vector2(-gameObject.transform.position.x, gameObject.transform.position.y), targetPosition), pro);
+            bulletBehaviour.Set(
+                (new Vector2(-gameObject.transform.position.x, gameObject.transform.position.y), targetPosition), pro);
         }
         else
         {
-            bulletBehaviour.Set((new Vector2(gameObject.transform.position.x, gameObject.transform.position.y), targetPosition), pro);
+            bulletBehaviour.Set(
+                (new Vector2(gameObject.transform.position.x, gameObject.transform.position.y), targetPosition), pro);
         }
     }
-    
-    public void TirerDansUneDirectiondroite( Vector2 cible)
+
+    public void TirerDansUneDirectiondroite(Vector2 cible)
     {
+        Debug.Log("tirer dans une direction droite");
         var pro = Resources.Load<ProjectileData>("Data/Projectile/Tomate");
-        GameObject bullet = Instantiate(pro.Projectile, gameObject.transform.position, Quaternion.identity);
-        // Obtenir le composant ProjectileBehaviour
+
+        // Décalage initial pour éviter les collisions immédiates
+        Vector2 initialOffset = new Vector2(0.5f, 0.5f);
+        Vector2 initialPosition = (Vector2)transform.position + initialOffset;
+
+        GameObject bullet = Instantiate(pro.Projectile, initialPosition, Quaternion.identity);
         ProjectileBehaviour bulletBehaviour = bullet.GetComponent<ProjectileBehaviour>();
 
-        // Calculer la position relative de la cible par rapport au bot
-        Vector2 botPosition = gameObject.transform.position;
+        Vector2 botPosition = transform.position;
         Vector2 relativePosition = cible - botPosition;
 
-        // Générer un décalage aléatoire
-        
-        
-        // Ajuster la direction pour tirer à droite avec un décalage aléatoire
-        Vector2 direction = new Vector2(relativePosition.x , relativePosition.y);
+        // Vérifier si la cible est en dessous
+        if (relativePosition.y < -1.5f)
+        {
+            Debug.Log("Il tire pas dans les pieds");
+            relativePosition = new Vector2(5, 0.1f);
+        }
 
-        // Convertir la direction relative en une position absolue pour la cible
-        Vector2 targetPosition = botPosition + direction;
-
-        // Définir la vélocité du projectile
-        bulletBehaviour.SetDirection(targetPosition, pro);
-        
-    }
-    public void TirerDansUneDirectiongauche( Vector2 cible)
-    {
-        var pro = Resources.Load<ProjectileData>("Data/Projectile/Tomate");
-        GameObject bullet = Instantiate(pro.Projectile, gameObject.transform.position, Quaternion.identity);
-        pro.Degat += 10;
-        // Obtenir le composant ProjectileBehaviour
-        ProjectileBehaviour bulletBehaviour = bullet.GetComponent<ProjectileBehaviour>();
-
-        // Calculer la position relative de la cible par rapport au bot
-        Vector2 botPosition = gameObject.transform.position;
-        Vector2 relativePosition = cible - botPosition;
-        
-        // Ajuster la direction pour tirer à gauche avec un décalage aléatoire
         Vector2 direction = new Vector2(relativePosition.x, relativePosition.y);
-
-        // Convertir la direction relative en une position absolue pour la cible
         Vector2 targetPosition = botPosition + direction;
 
-        // Définir la vélocité du projectile
-        bulletBehaviour.SetDirection(targetPosition, pro);
-        
+        // Vérifier si la cible est loin et ajuster la vélocité
+        float distance = relativePosition.magnitude;
+        if (distance > 5.0f) // Seuil de distance pour augmenter la vélocité
+        {
+            float velocityMultiplier = distance / 5.0f; // Ajuster ce facteur pour contrôler la vélocité
+            bulletBehaviour.SetDirection(targetPosition, pro, velocityMultiplier);
+        }
+        else
+        {
+            bulletBehaviour.SetDirection(targetPosition, pro);
+        }
+    }
+
+    public void TirerDansUneDirectiongauche(Vector2 cible)
+    {
+        Debug.Log("tirer dans une direction gauche");
+        var pro = Resources.Load<ProjectileData>("Data/Projectile/Tomate");
+
+        // Décalage initial pour éviter les collisions immédiates
+        Vector2 initialOffset = new Vector2(-0.5f, 0.5f);
+        Vector2 initialPosition = (Vector2)transform.position + initialOffset;
+
+        GameObject bullet = Instantiate(pro.Projectile, initialPosition, Quaternion.identity);
+        ProjectileBehaviour bulletBehaviour = bullet.GetComponent<ProjectileBehaviour>();
+
+        Vector2 botPosition = transform.position;
+        Vector2 relativePosition = cible - botPosition;
+
+        // Vérifier si la cible est en dessous
+        if (relativePosition.y < -1.5f)
+        {
+            Debug.Log("Il tire pas dans les pieds");
+            relativePosition = new Vector2(-5, 0.1f);
+        }
+
+        Vector2 direction = new Vector2(relativePosition.x, relativePosition.y);
+        Vector2 targetPosition = botPosition + direction;
+
+        // Vérifier si la cible est loin et ajuster la vélocité
+        float distance = relativePosition.magnitude;
+        if (distance > 5.0f) // Seuil de distance pour augmenter la vélocité
+        {
+            float velocityMultiplier = distance / 5.0f; // Ajuster ce facteur pour contrôler la vélocité
+            bulletBehaviour.SetDirection(targetPosition, pro, velocityMultiplier);
+        }
+        else
+        {
+            bulletBehaviour.SetDirection(targetPosition, pro);
+        }
     }
 }

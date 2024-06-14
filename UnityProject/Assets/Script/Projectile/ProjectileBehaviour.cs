@@ -41,21 +41,22 @@ public abstract class ProjectileBehaviour : MonoBehaviour
         gameObject.GetComponent<Rigidbody2D>().velocity = (ligne.Item1 - ligne.Item2) * (projectileData.Force * 0.075f);;
     }
     
-    public void SetDirection(Vector2 targetPosition, ProjectileData proj)
+    public void SetDirection(Vector2 targetPosition, ProjectileData proj, float velocityMultiplier = 1.0f)
     {
-        
         projectileData = proj;
         Prefab = proj.Explosion;
-        
-        // Appliquer la direction et la vitesse au Rigidbody2D
+
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
 
         // Calculer la direction de la vélocité en direction de la position cible
         Vector2 direction = targetPosition - (Vector2)transform.position;
         direction.Normalize();
 
-        // Appliquer la vélocité au projectile
-        rb.velocity = direction * (proj.Force * 0.75f);
+        // Appliquer la vélocité au projectile en utilisant le multiplicateur
+        rb.velocity = direction * (proj.Force * 0.75f * velocityMultiplier);
+
+        // Debug pour vérifier la direction et la vélocité
+        Debug.Log("Projectile direction: " + direction + " with velocity: " + rb.velocity + " (multiplier: " + velocityMultiplier + ")");
     }
 
     protected void FinAction()

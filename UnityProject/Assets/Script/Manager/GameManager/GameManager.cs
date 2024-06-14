@@ -1,21 +1,10 @@
 using System.Collections.Generic;
 using System;
 using System.Collections;
-using System.ComponentModel;
 using JetBrains.Annotations;
-using Script.Data;
 using UnityEngine;
-using Script.Manager;
 using UnityEngine.UI;
-using Photon.Pun;
-using TMPro;
-using Unity.Mathematics;
 using Unity.VisualScripting;
-using UnityEditor;
-using UnityEngine.SceneManagement;
-using static Unity.Mathematics.Random;
-using static Unity.Mathematics.math;
-using Random = UnityEngine.Random;
 
 namespace Script.Manager
 {

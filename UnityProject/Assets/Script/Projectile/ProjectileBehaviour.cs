@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Photon.Pun;
 using UnityEngine;
 using Script.Manager;
 using Unity.VisualScripting;
@@ -47,15 +46,12 @@ public abstract class ProjectileBehaviour : MonoBehaviour
         Prefab = proj.Explosion;
 
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
-
-        // Calculer la direction de la vélocité en direction de la position cible
+        
         Vector2 direction = targetPosition - (Vector2)transform.position;
         direction.Normalize();
-
-        // Appliquer la vélocité au projectile en utilisant le multiplicateur
+        
         rb.velocity = direction * (proj.Force * 0.75f * velocityMultiplier);
-
-        // Debug pour vérifier la direction et la vélocité
+        
         Debug.Log("Projectile direction: " + direction + " with velocity: " + rb.velocity + " (multiplier: " + velocityMultiplier + ")");
     }
 
@@ -70,13 +66,10 @@ public abstract class ProjectileBehaviour : MonoBehaviour
     
     void Update()
     {
-        // Si la vélocité est significative, ajustez la rotation
         if (rb.velocity.sqrMagnitude > 0.01f)
         {
-            // Calculer l'angle de la vélocité
             float angle = Mathf.Atan2(rb.velocity.y, rb.velocity.x) * Mathf.Rad2Deg;
-
-            // Appliquer la rotation
+            
             transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
         }
     }

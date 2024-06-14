@@ -12,9 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a76443a93176304999bd127bc6c3676, type: 3}
   m_Name: Eagle
   m_EditorClassIdentifier: 
-  nom: turtle
-  sprite: {fileID: 21300000, guid: 827e3e7ae15c401428a46b28abbf3d3a, type: 3}
-  Pv: 85
-  Vitesse: 5
-  Animax: {fileID: 21300000, guid: 53cd0719a8b0a1240a0b8e36c12cab43, type: 3}
-  Passif: {fileID: 21300000, guid: d84d692cc9d5ee34ebda0ac9d0131e96, type: 3}
+  sprite: {fileID: 21300000, guid: bb85604b029736244bd79c7afb726209, type: 3}
+  Pv: 70
+  Animax: {fileID: 21300000, guid: c822b948ef9e6194cab6f7e1b711b6cd, type: 3}
+  Passif: {fileID: 21300000, guid: 4293f4ceaa79cb144af5a134c9184b41, type: 3}
+  Clignement: {fileID: 21300000, guid: 2d62a02d1d96bb5438045a94aaf16573, type: 3}

@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using Photon.Pun.Demo.PunBasics;
 using UnityEngine;
 
 public class EagleBehaviour : AnimalBehaviour

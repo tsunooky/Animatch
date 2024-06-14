@@ -6,7 +6,6 @@ using Script.Data;
 using UnityEngine;
 using Script.Manager;
 using UnityEngine.UI;
-using Photon.Pun;
 using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEditor;

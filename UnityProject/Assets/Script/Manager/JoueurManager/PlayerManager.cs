@@ -5,7 +5,6 @@ using Script.Data;
 using Script.Manager;
 using UnityEngine;
 using System.Linq;
-using ExitGames.Client.Photon.StructWrapping;
 using static Script.Manager.AGameManager;
 
 

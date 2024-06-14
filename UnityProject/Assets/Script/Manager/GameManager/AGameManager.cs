@@ -2,12 +2,11 @@
 using Script.Data;
 using UnityEngine;
 using UnityEngine.UI;
-using Photon.Pun;
 
 namespace Script.Manager
 
 {
-    public abstract class AGameManager : MonoBehaviourPunCallbacks
+    public abstract class AGameManager : MonoBehaviour
     {
         public PlayerManager? joueur;
         public int tour;

@@ -15,7 +15,6 @@ MonoBehaviour:
   Expulsion: 70
   Force: 0
   Degat: 10
-  Projectile: {fileID: 0}
+  Projectile: {fileID: 4776761928286551959, guid: 55f627fdbdb7e654995e9e6e3073a4ec, type: 3}
   Explosion: {fileID: 0}
-  SpriteIfHandToHand: {fileID: 0}
   Lanceur: {fileID: 0}

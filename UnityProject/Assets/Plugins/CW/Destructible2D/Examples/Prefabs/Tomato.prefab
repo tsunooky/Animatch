@@ -46,7 +46,7 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 100000}
   serializedVersion: 8
-  lengthInSec: 5
+  lengthInSec: 1
   simulationSpeed: 1
   stopAction: 0
   cullingMode: 1
@@ -4866,7 +4866,7 @@ MonoBehaviour:
   degat: 10
   Mask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 55
   Stamp: 1
   StampPaint: 0
   StampShape: {fileID: 2800000, guid: 036108cbdb79b2142b9f63f60ce7e192, type: 3}
@@ -4986,12 +4986,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33fbcb04c243139438f8b0b3f28d0e81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  life: 1
+  life: 0.2
   target: {fileID: 0}
   fade: 0
   fadeDuration: 1
   shrink: 0
-  shrinkDuration: 1
+  shrinkDuration: 0.1
   randomizeOnEnable: 0
   lifeMin: 0.5
   lifeMax: 1

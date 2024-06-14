@@ -20,6 +20,9 @@ namespace Script.Manager
                 {
                     "dog", "dog", "dog"
                 };
+            }
+            if (SkinManager.resSelectionPlayer2.Count == 0)
+            {
                 deckAnimauxPlayer2 = new[]
                 {
                     "turtle", "turtle", "turtle"

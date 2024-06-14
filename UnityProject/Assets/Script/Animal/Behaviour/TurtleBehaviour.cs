@@ -36,12 +36,12 @@ public class TurtleBehaviour : AnimalBehaviour
                 pv = 0;
                 healthBar.SetHealth(pv);
                 Destroy(healthBar);
-                Destroy(gameObject);
                 Destroy(currentInstance);
                 if (healthBarInstance != null)
                 {
                     Destroy(healthBarInstance);
                 }
+                Meurt();
             }
             healthBar.SetHealth(pv);
         }

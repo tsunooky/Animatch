@@ -164,73 +164,13 @@ public abstract class CarteBehaviour : MonoBehaviour, Tireur
         player.drops += carteData.drops;
         player.MiseAjourAffichageDrops();
         alreadylifted = false;
-        var vector3 = transform.position;
+        var vector3 = transform.localPosition;
         vector3.y -= 1f;
-        transform.position = vector3;
+        transform.localPosition = vector3;
         spriteRenderer.color = new Color32(200,200,200,255);
 
         
     }
-    /*
-    private void OnMouseDown()
-    {
-        if (ancienne_carte_selec != null && ancienne_carte_selec != this)
-        {
-            ancienne_carte_selec.carte_actuel = false;
-        }
-
-        if (ancienne_carte_selec == this)
-        {
-            DeselectCard();
-        }
-        
-        if (Instance.playerActif == player && player.drops - carteData.drops >= 0 && !player.enAction)
-        {
-            var vector3 = transform.position;
-            vector3.y =  -4f;
-            transform.position = vector3;
-            spriteRenderer.color = new Color32(200,200,200,255);
-            SelectCard();
-        }
-        else if (player.enAction && player.drops != 0)
-        {
-            DeselectCard();
-        }
-    }
-
-    private void SelectCard()
-    {
-        carte_actuel = true;
-        var vector3 = transform.position;
-        vector3.y += 1f;
-        transform.position = vector3;
-        spriteRenderer.color = Color.white;
-        
-        alreadylifted = true;
-        Instance.playerActif.enAction = true;
-        Instance.playerActif.SetAura(true);
-        SpellClickOnCarte();
-        player.drops -= carteData.drops;
-        player.MiseAjourAffichageDrops();
-        ancienne_carte_selec = this;
-        
-    }
-
-    public void DeselectCard()
-    {
-        carte_actuel = false;
-        Instance.playerActif.SetAura(false);
-        Instance.playerActif.enAction = false;
-        player.drops += carteData.drops;
-        player.MiseAjourAffichageDrops();
-        alreadylifted = false;
-        OnMouseExit();
-        if (ancienne_carte_selec == this)
-        {
-            ancienne_carte_selec = null;
-        }
-    }
-*/
     private void OnMouseEnter()
     {
         if (!carte_actuel && !alreadylifted )
@@ -253,17 +193,17 @@ public abstract class CarteBehaviour : MonoBehaviour, Tireur
     
     private void LiftCard()
     {
-        var vector3 = transform.position;
+        var vector3 = transform.localPosition;
         vector3.y += 1f;
-        transform.position = vector3;
+        transform.localPosition = vector3;
         spriteRenderer.color = Color.white;
     }
     
     private void LowerCard()
     {
-        var vector3 = transform.position;
+        var vector3 = transform.localPosition;
         vector3.y -= 1f;
-        transform.position = vector3;
+        transform.localPosition = vector3;
         spriteRenderer.color = new Color32(200, 200, 200, 255);
     }
     
@@ -280,36 +220,40 @@ public abstract class CarteBehaviour : MonoBehaviour, Tireur
     
     public void PiocherMain()
     { 
-        if ( carte_actuel)
+        if (carte_actuel)
         {
+            carte_actuel = false;
+
             foreach (var gr in player.mainManager)
             {
-                var min = gr.transform.position.x;
+                var min = gr.transform.localPosition.x;
                 if (min > 8 && min < 21)
                 {
+                    // Déplacement relatif de la carte actuellement en jeu
+                    var vec = gr.transform.localPosition;
+                    vec.x += (transform.localPosition.x - vec.x); // Déplacement relatif
+                    gr.transform.localPosition = vec;
 
-                    var vec = gr.transform.position;
-                    vec.x = transform.position.x;
-                    gr.transform.position = vec;
+                    // Déplacement relatif du transform
+                    var vector3 = transform.localPosition;
+                    vector3.x += 28 - vector3.x; // Déplacement relatif
+                    transform.localPosition = vector3;
 
-                    var vector3 = transform.position;
-                    vector3.x = 28;
-                    transform.position = vector3;
                     foreach (var car in player.mainManager)
                     {
-                        if (car.transform.position.x > 10)
+                        if (car.transform.localPosition.x > 10)
                         {
-                            var vec2 = car.transform.position;
+                            var vec2 = car.transform.localPosition;
                             vec2.x -= 2;
-                            car.transform.position = vec2;
+                            car.transform.localPosition = vec2;
                         }
                     }
-                    
                 }
             }
+
             foreach (var next_card in player.mainManager)
             {
-                var x = next_card.transform.position.x;
+                var x = next_card.transform.localPosition.x;
                 if (x > 8 && x < 21)
                 {
                     LoadCardImage(next_card.GetComponents<CarteBehaviour>()[0].carteData.Sprite.name);
@@ -317,6 +261,7 @@ public abstract class CarteBehaviour : MonoBehaviour, Tireur
                 }
             }
         }
+       
     }
 
 

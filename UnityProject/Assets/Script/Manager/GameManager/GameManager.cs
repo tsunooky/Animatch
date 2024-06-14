@@ -69,12 +69,14 @@ namespace Script.Manager
                         {
                             if (Input.GetMouseButtonDown(0))
                             {
-                                StartCoroutine(PlaceAnimal(joueur));
+                                if(joueur.enabled)
+                                    StartCoroutine(PlaceAnimal(joueur));
                             }
                         }
                         else
                         {
-                            StartCoroutine(PlaceAnimal(bot));
+                            if(bot.enabled)
+                                StartCoroutine(PlaceAnimal(bot));
                         }
                     }
                     
@@ -95,36 +97,28 @@ namespace Script.Manager
                     tourActif = true;
                     if (tour % 2 != 0)
                     {
-                        Debug.Log("C'est votre tour");
-                        playerActif = joueur;
-                        joueur.MiseAJourDrops(tour);
-                        affichage_mana.text = $"{joueur.drops}";
-                        nextTurnButton.gameObject.SetActive(true);
-                        drop_left.gameObject.SetActive(true);
-                        if (joueur.animaux_vivant.Count == 0)
+                        if (joueur.enabled)
                         {
-                            Win(bot,true);
-                        }
-                        else
-                        {
+                            Debug.Log("C'est votre tour");
+                            playerActif = joueur;
+                            joueur.MiseAJourDrops(tour);
+                            affichage_mana.text = $"{joueur.drops}";
+                            nextTurnButton.gameObject.SetActive(true);
+                            drop_left.gameObject.SetActive(true);
                             AnimalBehaviour animalActif = joueur.animaux_vivant.Dequeue();
                             joueur.animaux_vivant.Enqueue(animalActif);
                             playerActif.animalActif = animalActif;
                             animalActif.LoadAura();
-                            joueur.MiseAjourAffichageDrops();
+                            joueur.MiseAjourAffichageDrops();    
                         }
                     }
                     else
                     {
-                        playerActif = bot;
-                        nextTurnButton.gameObject.SetActive(false);
-                        drop_left.gameObject.SetActive(false);
-                        if (bot.animaux_vivant.Count == 0)
+                        if (bot.enabled)
                         {
-                            Win(joueur,true);
-                        }
-                        else
-                        {
+                            playerActif = bot;
+                            nextTurnButton.gameObject.SetActive(false);
+                            drop_left.gameObject.SetActive(false);
                             affichage_mana.text = $" ? ";
                             Debug.Log("Tour du bot");
                             AnimalBehaviour animalActif = bot.animaux_vivant.Dequeue();
@@ -133,16 +127,13 @@ namespace Script.Manager
                             playerActif.animalActif = animalActif;
                             
                             if (animalActif!=null)
-                            {
+                            { 
                                 StartCoroutine(tirerbot(animalActif));
                             }
-
                             if (animalActif != null)
-                            {
+                            { 
                                 bot.animaux_vivant.Enqueue(animalActif);
-                            }
-                            
-                            
+                            }    
                         }
                     }
 
@@ -211,14 +202,29 @@ namespace Script.Manager
 
             if (player == joueur)
             {
-                // Pour le joueur, attendre un clic de souris
-                while (!Input.GetMouseButtonDown(0))
+                bool posval = false;
+                Vector2 mousePosition = Vector2.one;
+                while (!posval)
                 {
-                    yield return null;
+                    // Pour le joueur, attendre un clic de souris
+                    while (!Input.GetMouseButtonDown(0))
+                    {
+                        yield return null;
+                    }
+
+                    mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                    Collider2D? hit = Physics2D.OverlapPoint(mousePosition);
+                    if (hit != null)
+                    {
+                        Debug.Log("Collision detecté, ne peut pas faire spawn ici.");
+                    }
+                    else
+                    {
+                        posval = true;
+                    } 
+                    yield return new WaitForSeconds(0.1f);
                 }
 
-                // Obtenez les coordonnées du clic de la souris
-                Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                 // Instanciez l'animal à la position du clic en x et y = hauteur
                 AnimalBehaviour newAnimal = creerAnimal(mousePosition.x, mousePosition.y, joueur.deckAnimal.Dequeue(),player);
                 joueur.animaux_vivant.Enqueue(newAnimal);

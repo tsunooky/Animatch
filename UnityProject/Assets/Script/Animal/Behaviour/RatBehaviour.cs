@@ -7,7 +7,7 @@ public class RatBehaviour : AnimalBehaviour
 {
     public void Awake()
     {
-        LoadData("Rat");
+        LoadData("rat");
     }
 
     public override void Animax()

@@ -38,7 +38,7 @@ public abstract class AnimalBehaviour : MonoBehaviour
         // Vérifiez si le sprite a bien été chargé
         if (pointeurSprite.sprite == null)
         {
-            Debug.LogError("Sprite 'Icons/settings_button' n'a pas été trouvé dans Resources.");
+            
         }
 
         pointeurSprite.enabled = false;
@@ -106,7 +106,7 @@ public abstract class AnimalBehaviour : MonoBehaviour
         D2dPolygonCollider d2dPolygonCollider = gameObject.AddComponent<D2dPolygonCollider>();
         d2dPolygonCollider.Straighten = 0.01f;
         Rigidbody2D animalRigidbody2D = gameObject.AddComponent<Rigidbody2D>();
-        animalRigidbody2D.angularDrag = 0.05f;
+        animalRigidbody2D.angularDrag = 0.8f;
         animalRigidbody2D.mass = 1000f;
         gameObject.AddComponent<DespawnManager>();
     }

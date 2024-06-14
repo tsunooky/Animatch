@@ -28,7 +28,7 @@ public abstract class AnimalBehaviour : MonoBehaviour
 
 
     // Stock les collision2D qui ont infligé degat par chaque projo pour eviter de s'en reprendre un autre
-    private List<Collision2D> ListDegat;
+    private List<(Collision2D,Vector3)> ListDegat;
     
     public void setPointeur()
     {
@@ -49,7 +49,7 @@ public abstract class AnimalBehaviour : MonoBehaviour
     private void Start()
     {
         AnimaxActivate = false;
-        ListDegat = new List<Collision2D>();
+        ListDegat = new List<(Collision2D,Vector3)>();
         tag = "Animal";
         timeSpawn = Time.time;
         gameObject.layer = 6;
@@ -143,12 +143,12 @@ public abstract class AnimalBehaviour : MonoBehaviour
     void OnCollisionEnter2D(Collision2D collison2D)
     {
         // Vérifiez si la collision concerne un animal
-        if (collison2D.gameObject.CompareTag("Explosion") && !ListDegat.Contains(collison2D))
+        if (collison2D.gameObject.CompareTag("Explosion") && !ListDegat.Contains((collison2D,collison2D.gameObject.transform.position)))
         {
             D2dExplosion explosion = collison2D.gameObject.GetComponent<D2dExplosion>();
             Degat(explosion.degat);
             
-            ListDegat.Add(collison2D);
+            ListDegat.Add((collison2D,collison2D.gameObject.transform.position));
         }
         
         /*if (collison2D.gameObject.tag == "Map")

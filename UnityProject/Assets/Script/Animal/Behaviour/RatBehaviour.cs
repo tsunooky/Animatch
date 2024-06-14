@@ -12,7 +12,7 @@ public class RatBehaviour : AnimalBehaviour
 
     public override void Animax()
     {
-        player.drops += 3;
+        player.drops += 2;
         player.MiseAjourAffichageDrops();
         player.enAction = false;
     }

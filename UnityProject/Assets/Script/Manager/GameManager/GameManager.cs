@@ -24,9 +24,6 @@ namespace Script.Manager
         public PlayerManager bot;
         private bool animalBeingPlaced = false;
         public GameObject drop_left;
-
-        public GameObject animax;
-        public GameObject passif;
       
         private void Awake()
         {

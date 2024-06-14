@@ -30,6 +30,9 @@ namespace Script.Manager
         public bool tourActif;
         public Text affichage_mana;
         
+        public GameObject animax;
+        public GameObject passif;
+        
         #region Code Moved
         
         

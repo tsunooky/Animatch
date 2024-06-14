@@ -61,7 +61,6 @@ namespace Script.Manager
             // regle le bug #01
             tourActif = false;
             Destroy(playerActif.animalActif.currentInstance);
-            Destroy(playerActif.animalActif.player.animalActif.currentInstance);
         }
 
         public void Win(PlayerManager player, bool res)

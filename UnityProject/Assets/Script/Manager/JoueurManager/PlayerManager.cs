@@ -88,8 +88,7 @@ public class PlayerManager : MonoBehaviour
                 deckAnimal.Enqueue(animal);
             } 
         }
-
-        if (IsPlayer2)
+        else if (IsPlayer2)
         {
             foreach (string animal in profil.deckAnimauxPlayer2)
             {

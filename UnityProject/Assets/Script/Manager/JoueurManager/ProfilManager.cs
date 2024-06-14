@@ -31,7 +31,7 @@ namespace Script.Manager
             
             deckCartes = new[]
             {
-                "jump", "tomate", "bat", "heal",
+                "jump", "canon", "bat", "heal",
                 "jump", "tomate", "knife", "heal"
             };
         }

@@ -25,7 +25,6 @@ public  class AimBot : MonoBehaviour
     {
         var pro = Resources.Load<ProjectileData>("Data/Projectile/Tomate");
         GameObject bullet = Instantiate(pro.Projectile, gameObject.transform.position, Quaternion.identity);
-        pro.Degat += 10;
         // Obtenir le composant ProjectileBehaviour
         ProjectileBehaviour bulletBehaviour = bullet.GetComponent<ProjectileBehaviour>();
 

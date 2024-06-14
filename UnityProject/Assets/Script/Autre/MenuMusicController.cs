@@ -6,7 +6,7 @@ public class MenuMusicController : MonoBehaviour
     public AudioSource audioSource;
     public AudioSource audioSource2; // AudioSource pour jouer les musiques
     public AudioClip[] gameMusicClips; // Tableau des musiques pour la scène de jeu
-
+    public AudioClip MenuMusicClip;
     private int lastClipIndex = -1;
 
     void Awake()
@@ -38,7 +38,22 @@ public class MenuMusicController : MonoBehaviour
             PlayRandomMusic();
         }
         
+        if (scene.name == "Fin")
+        {
+            audioSource.Stop();
+            PlayMusicMenu();
+        }
+        
+        
     }
+
+    private void PlayMusicMenu()
+    {
+        Debug.Log("neuille");
+        audioSource.clip = MenuMusicClip;
+        audioSource.Play();
+    }
+    
     private void PlayRandomMusic()
     {
 

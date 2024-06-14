@@ -11,9 +11,6 @@ public class SkinManager : MonoBehaviour
     public SpriteRenderer sr0;
     public SpriteRenderer sr1;
     public SpriteRenderer sr2;
-    [CanBeNull] public SpriteRenderer sr0save = null;
-    [CanBeNull] public SpriteRenderer sr1save = null;
-    [CanBeNull] public SpriteRenderer sr2save = null;
     public List<Sprite> animals = new List<Sprite>();
     public List<int> selecteds = new List<int>(){0,1,2};
     public static List<string> resSelection = new List<string>();
@@ -110,6 +107,9 @@ public class SkinManager : MonoBehaviour
                     break;
                 case 4:
                     animalList.Add("lion");
+                    break;
+                case 5:
+                    animalList.Add("eagle");
                     break;
             }
         }

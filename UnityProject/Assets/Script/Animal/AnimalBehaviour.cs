@@ -106,7 +106,7 @@ public abstract class AnimalBehaviour : MonoBehaviour
         D2dPolygonCollider d2dPolygonCollider = gameObject.AddComponent<D2dPolygonCollider>();
         d2dPolygonCollider.Straighten = 0.01f;
         Rigidbody2D animalRigidbody2D = gameObject.AddComponent<Rigidbody2D>();
-        animalRigidbody2D.angularDrag = 0.8f;
+        animalRigidbody2D.angularDrag = 1f;
         animalRigidbody2D.mass = 1000f;
         gameObject.AddComponent<DespawnManager>();
     }

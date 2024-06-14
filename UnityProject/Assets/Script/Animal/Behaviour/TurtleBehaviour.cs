@@ -18,6 +18,7 @@ public class TurtleBehaviour : AnimalBehaviour
     public override void Animax()
     {
         invinsible = true;
+        player.enAction = false;
     }
 
     public override void Degat(int damage)

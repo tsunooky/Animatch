@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Script.Manager;
 using Unity.VisualScripting;
+using static Script.Manager.AGameManager;
 
 public class BoutonAnimax : MonoBehaviour
 {
@@ -15,14 +16,37 @@ public class BoutonAnimax : MonoBehaviour
     
     private void OnMouseDown()
     {
-        AnimalBehaviour animalActif = GameManager.Instance.playerActif.animalActif;
-        if (GameManager.Instance.playerActif == GameManager.Instance.joueur 
-            && spriteRenderer.sprite is not null && !animalActif.AnimaxActivate)
+        if (Instance is GameManager gameManager)
         {
-            spriteRenderer.color = Color.grey;
-            GameManager.Instance.playerActif.enAction = true;
-            animalActif.AnimaxActivate = true;
-            animalActif.Animax();
+            AnimalBehaviour animalActif = GameManager.Instance.playerActif.animalActif;
+            if (Instance.playerActif == GameManager.Instance.joueur 
+                && spriteRenderer.sprite is not null && !animalActif.AnimaxActivate)
+            {
+                spriteRenderer.color = Color.grey;
+                GameManager.Instance.playerActif.enAction = true;
+                animalActif.AnimaxActivate = true;
+                animalActif.Animax();
+            }    
+        }
+        if (Instance is GameManager2J gameManager2)
+        {
+            AnimalBehaviour animalActif = GameManager.Instance.playerActif.animalActif;
+            if (Instance.playerActif == GameManager.Instance.joueur 
+                && spriteRenderer.sprite is not null && !animalActif.AnimaxActivate)
+            {
+                spriteRenderer.color = Color.grey;
+                GameManager.Instance.playerActif.enAction = true;
+                animalActif.AnimaxActivate = true;
+                animalActif.Animax();
+            }
+            else if (gameManager2.playerActif == gameManager2.joueur2
+                     && spriteRenderer.sprite is not null && !animalActif.AnimaxActivate)
+            {
+                spriteRenderer.color = Color.grey;
+                GameManager.Instance.playerActif.enAction = true;
+                animalActif.AnimaxActivate = true;
+                animalActif.Animax();    
+            }
         }
     }
     

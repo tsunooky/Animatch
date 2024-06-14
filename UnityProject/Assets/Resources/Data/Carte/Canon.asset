@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2114f2c8b1e04247a49342e24fa54ff3, type: 3}
   m_Name: Canon
   m_EditorClassIdentifier: 
-  projectileData: {fileID: 0}
-  Sprite: {fileID: 0}
-  drops: 0
-  type: 
+  projectileData: {fileID: 11400000, guid: c3cae1cd8e76d434aa95998f3c07dd6e, type: 2}
+  Sprite: {fileID: 21300000, guid: 2c00cfb6dfb3ec04cb424ac782fc0a0a, type: 3}
+  drops: 1
+  type: Explosion

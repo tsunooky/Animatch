@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System;
 using System.Collections;
+using System.ComponentModel;
 using JetBrains.Annotations;
 using Script.Data;
 using UnityEngine;
@@ -24,6 +25,7 @@ namespace Script.Manager
         public PlayerManager bot;
         private bool animalBeingPlaced = false;
         public GameObject drop_left;
+        public Button Settings;
       
         private void Awake()
         {
@@ -32,7 +34,9 @@ namespace Script.Manager
                 Debug.LogError("GameManager n'est plus un singleton car il viens d'être redéfinis une deuxième fois !");
                 return;
             }
-            
+
+            Settings.interactable = false;
+            Settings.enabled = false;
             animax.SetActive(false);
             passif.SetActive(false);
             Instance = this;
@@ -60,6 +64,8 @@ namespace Script.Manager
             {
                 if (joueur.deckAnimal.Count == 0 && bot.deckAnimal.Count == 0)
                 {
+                    Settings.interactable = true;
+                    Settings.enabled = true;
                     spawn = false;
                     foreach (var cartes in joueur.mainManager)
                     {

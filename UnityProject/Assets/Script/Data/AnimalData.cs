@@ -9,4 +9,6 @@ public class AnimalData : ScriptableObject
    public Sprite sprite;
    public int Pv;
    public int Vitesse;
+   public Sprite Animax;
+   public Sprite Passif;
 }

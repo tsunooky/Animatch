@@ -45,8 +45,6 @@ namespace Script.Manager
             bot.IsBot = true;
             bot.CreateProfil();
             bot.IsBot = false;
-            Turn.enabled = true;
-            
             // Evité bug au lancement
             playerActif = joueur;
             tour = 1;

@@ -22,7 +22,7 @@ public class LionBehaviour : AnimalBehaviour
 
     public override void Soin(int heal) 
     {
-        pv += heal + heal/2;
+        base.Soin(heal + heal/2);
     }
 }
 

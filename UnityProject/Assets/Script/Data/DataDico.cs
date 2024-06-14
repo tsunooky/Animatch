@@ -20,7 +20,8 @@ namespace Script.Data
             {"jump",typeof(JumpBehaviour)},
             {"heal",typeof(HealBehaviour)},
             {"knife",typeof(KnifeBehaviour)},
-            {"canon",typeof(CanonBehaviour)}
+            {"canon",typeof(CanonBehaviour)},
+            {"durian",typeof(DurianBehaviour)}
         };
     }
 }

@@ -137,6 +137,8 @@ public abstract class AnimalBehaviour : MonoBehaviour
     public virtual void Soin(int heal)
     {
         pv += heal;
+        if (animalData.Pv < pv)
+            pv = animalData.Pv;
         healthBar.SetHealth(pv);
     }
     

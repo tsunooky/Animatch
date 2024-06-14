@@ -8,6 +8,7 @@ public class MusicVolumeManager : MonoBehaviour
     public TMP_Text volumePercentageText; // Référence au texte qui affiche le pourcentage
 
     private AudioSource menuMusicSource;
+    private AudioSource gameMenuSource;
 
     private void Start()
     {

@@ -50,8 +50,8 @@ public class MenuMusicController : MonoBehaviour
 
         lastClipIndex = randomIndex;
 
-        audioSource2.clip = gameMusicClips[randomIndex];
-        Debug.Log("Playing random music: " + audioSource2.clip.name); // Pour le débogage
-        audioSource2.Play();
+        audioSource.clip = gameMusicClips[randomIndex];
+        Debug.Log("Playing random music: " + audioSource.clip.name); // Pour le débogage
+        audioSource.Play();
     }
 }

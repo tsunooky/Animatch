@@ -17,6 +17,7 @@ public class LionBehaviour : AnimalBehaviour
         {
             //soigne de 20 toutes son équipe
             animal.Soin(20);
+            animal.healthBar.SetHealth(animal.pv);
         }
     }
 

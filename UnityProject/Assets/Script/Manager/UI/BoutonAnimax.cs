@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Script.Manager;
+using Unity.VisualScripting;
 
 public class BoutonAnimax : MonoBehaviour
 {
-    
     private SpriteRenderer spriteRenderer;
     
     private void Start()

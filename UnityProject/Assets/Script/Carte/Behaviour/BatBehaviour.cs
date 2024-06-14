@@ -25,22 +25,42 @@ public class BatBehaviour : CarteBehaviour
         StartCoroutine(CoupBat(startPosition,currentMousePos));
     }
 
-    private IEnumerator CoupBat(Vector2 startPosition,Vector2 currentMousePos)
+    private IEnumerator CoupBat(Vector2 startPosition, Vector2 currentMousePos)
     {
-        Debug.Log("JOSSELIN EST LE GOAT");
-        //Création bat
-
-        GameObject bat = Instantiate(carteData.projectileData.Projectile,startPosition,Quaternion.identity);
+        // Création bat
+        GameObject bat = Instantiate(carteData.projectileData.Projectile, startPosition, Quaternion.identity);
         bat.AddComponent<TouchToBump>();
-        
-        //animation Bat
-        
-        // A FAIRE
-        yield return new WaitForSeconds(1);
-        
-        //Fin anim
+    
+        // Calcul de la direction vers laquelle la batte doit pointer
+        Vector2 direction = currentMousePos - startPosition;
+        float targetAngle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+    
+        // Définir l'angle de départ et de fin pour l'animation
+        float startAngle = targetAngle + 45f;  // 45 degrés en haut
+        float endAngle = targetAngle - 45f;    // 45 degrés en bas
+    
+        // Durée de l'animation en secondes
+        float duration = 1.0f;
+        float elapsedTime = 0.0f;
+    
+        // Animation Bat
+        while (elapsedTime < duration)
+        {
+            elapsedTime += Time.deltaTime;
+            float t = elapsedTime / duration;
+    
+            // Interpolation de l'angle de départ à l'angle de fin
+            float currentAngle = Mathf.Lerp(startAngle, endAngle, t);
+    
+            // Appliquer la rotation à la batte
+            bat.transform.rotation = Quaternion.Euler(0, 0, currentAngle);
+    
+            yield return null;
+        }
+    
+        // Fin anim
         Destroy(bat);
-        
+    
         FinAction();
     }
     

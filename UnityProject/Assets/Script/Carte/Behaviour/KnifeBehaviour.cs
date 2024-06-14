@@ -30,7 +30,7 @@ public class KnifeBehaviour : CarteBehaviour
     {
         for (int i = 0; i < 4; i++)
         {
-            ClassiqueShoot(startPosition, currentMousePos * (float)((float) i * 0.5));
+            ClassiqueShoot(startPosition, currentMousePos * (float)((i * 0.1)+ 1));
             // Attendre pendant le délai spécifié
             yield return new WaitForSeconds((float)0.5);
         }

@@ -143,7 +143,7 @@ namespace Script.Manager
                             animalActif.LoadAura();
                             
                             playerActif.animalActif = animalActif;
-                            
+                            Wait2sec();
                             if (animalActif!=null)
                             { 
                                 StartCoroutine(tirerbot(animalActif));
@@ -161,6 +161,8 @@ namespace Script.Manager
                 }
             }
         }
+        
+        
 
         [CanBeNull]
         public AnimalBehaviour getnearest(PlayerManager player)
@@ -186,8 +188,13 @@ namespace Script.Manager
 
             return null;
         }
+
+        IEnumerator Wait2sec()
+        {
+            yield return new WaitForSeconds(2f);
+        }
         
-        
+
 
         IEnumerator tirerbot(AnimalBehaviour animalActif)
         {

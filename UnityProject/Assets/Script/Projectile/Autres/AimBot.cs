@@ -34,11 +34,10 @@ public  class AimBot : MonoBehaviour
         Vector2 relativePosition = cible - botPosition;
 
         // Générer un décalage aléatoire
-        float randomOffsetX = UnityEngine.Random.Range(0.5f, 1f);
-        float randomOffsetY = UnityEngine.Random.Range(0.5f, 1f);
+        
         
         // Ajuster la direction pour tirer à droite avec un décalage aléatoire
-        Vector2 direction = new Vector2(relativePosition.x + 1f + randomOffsetX, relativePosition.y + 3f + randomOffsetY);
+        Vector2 direction = new Vector2(relativePosition.x , relativePosition.y);
 
         // Convertir la direction relative en une position absolue pour la cible
         Vector2 targetPosition = botPosition + direction;
@@ -58,13 +57,9 @@ public  class AimBot : MonoBehaviour
         // Calculer la position relative de la cible par rapport au bot
         Vector2 botPosition = gameObject.transform.position;
         Vector2 relativePosition = cible - botPosition;
-
-        
-        float randomOffsetX = UnityEngine.Random.Range(-1f, -0.5f);
-        float randomOffsetY = UnityEngine.Random.Range(0.5f, 1f);
         
         // Ajuster la direction pour tirer à gauche avec un décalage aléatoire
-        Vector2 direction = new Vector2(relativePosition.x - 1f + randomOffsetX, relativePosition.y + 3f + randomOffsetY );
+        Vector2 direction = new Vector2(relativePosition.x, relativePosition.y);
 
         // Convertir la direction relative en une position absolue pour la cible
         Vector2 targetPosition = botPosition + direction;

@@ -18,11 +18,11 @@ namespace Script.Manager
             {
                 deckAnimaux = new[]
                 {
-                    "lion", "rat", "turtle"
+                    "dog", "dog", "dog"
                 };
                 deckAnimauxPlayer2 = new[]
                 {
-                    "dog", "panda", "turtle"
+                    "turtle", "turtle", "turtle"
                 };
             }
             else
@@ -33,7 +33,7 @@ namespace Script.Manager
             
             deckAnimauxbot = new[]
             {
-                "lion", "panda", "dog"
+                "panda", "panda", "panda"
             };
             
             deckCartes = new[]

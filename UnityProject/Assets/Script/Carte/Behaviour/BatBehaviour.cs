@@ -24,30 +24,30 @@ public class BatBehaviour : CarteBehaviour
     {
         StartCoroutine(CoupBat(startPosition,currentMousePos));
     }
-
+    
     private IEnumerator CoupBat(Vector2 startPosition, Vector2 currentMousePos)
     {
-        // Création d'un objet vide pour ajuster le pivot
+        // Création d'un objet pivot pour ajuster le pivot de rotation de la batte
         GameObject pivot = new GameObject("BatPivot");
         pivot.transform.position = startPosition;
 
-        // Création bat
-        GameObject bat = Instantiate(carteData.projectileData.Projectile, startPosition, Quaternion.identity);
+        // Création de la batte
+        GameObject bat = Instantiate(carteData.projectileData.Projectile, pivot.transform.position, Quaternion.identity);
         bat.AddComponent<TouchToBump>();
 
         // Ajuster le pivot de la batte pour qu'il soit au niveau du manche
         SpriteRenderer batSpriteRenderer = bat.GetComponent<SpriteRenderer>();
         Vector2 batSize = batSpriteRenderer.bounds.size;
 
-        // Déplacer la batte de manière relative pour que son manche soit au pivot
+        // Positionner la batte de manière à ce que son manche soit au pivot
         bat.transform.SetParent(pivot.transform);
-        bat.transform.localPosition = new Vector3(0, batSize.y / 2, 0); // Inverser pour que le manche soit à la position de départ
+        bat.transform.localPosition = new Vector3(0, batSize.y / 2, 0); // Déplacer pour que le manche soit à la position de départ
 
         // Calcul de la direction vers laquelle la batte doit pointer
         Vector2 direction = currentMousePos - startPosition;
         float targetAngle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
 
-        // Vérifier les coordonnées d'entrée
+        // Vérification des coordonnées d'entrée
         Debug.Log($"Start Position: {startPosition}, Current Mouse Position: {currentMousePos}, Direction: {direction}, Target Angle: {targetAngle}");
 
         // Définir l'angle de départ et de fin pour l'animation
@@ -55,10 +55,10 @@ public class BatBehaviour : CarteBehaviour
         float endAngle = targetAngle - 25f;    // angle entre start et current moins 25 degrés
 
         // Durée de l'animation en secondes
-        float duration = 0.5f;
+        float duration = 0.1f;
         float elapsedTime = 0.0f;
 
-        // Animation Bat
+        // Animation de la rotation de la batte
         while (elapsedTime < duration)
         {
             elapsedTime += Time.deltaTime;
@@ -73,11 +73,18 @@ public class BatBehaviour : CarteBehaviour
             yield return null;
         }
 
-        // Fin anim
+        // Fin de l'animation : détruire la batte et le pivot
         Destroy(bat);
         Destroy(pivot);
 
+        // Fin de l'action (à adapter selon votre besoin)
         FinAction();
+        PiocherMain();  // Exemple d'une autre fonction appelée après le coup de batte
     }
+
+
+
+
+
 
 }

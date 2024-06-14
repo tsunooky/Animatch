@@ -21,7 +21,7 @@ public class TouchToBump : MonoBehaviour
             Vector2 bumpDirection = (ciblePosition - startPosition);
 
             // Appliquer la force de rejet à la cible
-            float bumpForce = 160000; // Ajuster cette valeur si nécessaire
+            float bumpForce = 150000; // Ajuster cette valeur si nécessaire
             cible.GetComponent<Rigidbody2D>().AddForce(bumpDirection * bumpForce);
         }
     }

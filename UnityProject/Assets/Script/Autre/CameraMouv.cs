@@ -11,8 +11,8 @@ public class CameraMouv : MonoBehaviour
     // Définir les limites de la caméra
     public float leftLimit = -10.0f;
     public float rightLimit = 10.0f;
-    public float topLimit = 6.0f;
-    public float bottomLimit = -5.0f;
+    public float topLimit = 4.0f;
+    public float bottomLimit = -4.0f;
 
     void Update()
     {

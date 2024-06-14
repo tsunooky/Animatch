@@ -45,11 +45,15 @@ namespace Script.Manager
             bot.IsBot = true;
             bot.CreateProfil();
             bot.IsBot = false;
-            
+
             
             // Evité bug au lancement
             playerActif = joueur;
             tour = 1;
+            foreach (var cartes in joueur.mainManager)
+            {
+                cartes.SetActive(false);
+            }
         }
     
         void Update()
@@ -60,6 +64,10 @@ namespace Script.Manager
                 if (joueur.deckAnimal.Count == 0 && bot.deckAnimal.Count == 0)
                 {
                     spawn = false;
+                    foreach (var cartes in joueur.mainManager)
+                    {
+                        cartes.SetActive(true);
+                    }
                 }
                 else
                 {

@@ -24,9 +24,8 @@ public abstract class AnimalBehaviour : MonoBehaviour
     public string nom;
     public bool actif;
     public GameObject currentInstance;
-    [SerializeField] private ParticleSystem ps = default;
-    
     public bool AnimaxActivate;
+
 
     // Stock les collision2D qui ont infligé degat par chaque projo pour eviter de s'en reprendre un autre
     private List<Collision2D> ListDegat;
@@ -104,12 +103,10 @@ public abstract class AnimalBehaviour : MonoBehaviour
         destructibleSprite.Optimize();
         destructibleSprite.RebuildAlphaTex();
         destructibleSprite.CropSprite = false;
-        D2dSplitter d2dSplitter = gameObject.AddComponent<D2dSplitter>();
-        d2dSplitter.Feather = 5;
         D2dPolygonCollider d2dPolygonCollider = gameObject.AddComponent<D2dPolygonCollider>();
         d2dPolygonCollider.Straighten = 0.01f;
         Rigidbody2D animalRigidbody2D = gameObject.AddComponent<Rigidbody2D>();
-        animalRigidbody2D.angularDrag = 1f;
+        animalRigidbody2D.angularDrag = 3f;
         animalRigidbody2D.mass = 1000f;
         gameObject.AddComponent<DespawnManager>();
     }

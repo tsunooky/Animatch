@@ -16,8 +16,6 @@ public abstract class CarteBehaviour : MonoBehaviour, Tireur
     
     public bool carte_actuel = false;
     
-    
-    
     public CarteData carteData;
     
     public Text text;
@@ -145,7 +143,7 @@ public abstract class CarteBehaviour : MonoBehaviour, Tireur
         if (Instance.playerActif == player && player.drops - carteData.drops >= 0 && !player.enAction)
         {
             carte_actuel = true;
-           
+
             alreadylifted = true;
             Instance.playerActif.enAction = true;
             Instance.playerActif.SetAura(true);
@@ -165,7 +163,7 @@ public abstract class CarteBehaviour : MonoBehaviour, Tireur
         player.MiseAjourAffichageDrops();
         alreadylifted = false;
         var vector3 = transform.localPosition;
-        vector3.y -= 1f;
+        vector3.y = -4f;
         transform.localPosition = vector3;
         spriteRenderer.color = new Color32(200,200,200,255);
 
@@ -173,15 +171,16 @@ public abstract class CarteBehaviour : MonoBehaviour, Tireur
     }
     private void OnMouseEnter()
     {
-        if (!carte_actuel && !alreadylifted )
+        if (!carte_actuel && !alreadylifted)
         {
             LiftCard();
         }
     }
+    
 
     private void OnMouseExit()
     {
-        if (!carte_actuel && !alreadylifted && !samecard )
+        if (!carte_actuel && !alreadylifted && !samecard)
         {
             LowerCard();
         }
@@ -194,7 +193,7 @@ public abstract class CarteBehaviour : MonoBehaviour, Tireur
     private void LiftCard()
     {
         var vector3 = transform.localPosition;
-        vector3.y += 1f;
+        vector3.y = -3f;
         transform.localPosition = vector3;
         spriteRenderer.color = Color.white;
     }
@@ -202,7 +201,7 @@ public abstract class CarteBehaviour : MonoBehaviour, Tireur
     private void LowerCard()
     {
         var vector3 = transform.localPosition;
-        vector3.y -= 1f;
+        vector3.y = -4f;
         transform.localPosition = vector3;
         spriteRenderer.color = new Color32(200, 200, 200, 255);
     }
@@ -223,28 +222,34 @@ public abstract class CarteBehaviour : MonoBehaviour, Tireur
         if (carte_actuel)
         {
             carte_actuel = false;
-
+            samecard = false;
+            alreadylifted = false;
+            
+            var vect = transform.localPosition;
+            vect.y = -4f;
+            transform.localPosition = vect;
+            
             foreach (var gr in player.mainManager)
             {
                 var min = gr.transform.localPosition.x;
-                if (min > 8 && min < 21)
+                if (min > 8f && min < 21f)
                 {
                     // Déplacement relatif de la carte actuellement en jeu
                     var vec = gr.transform.localPosition;
-                    vec.x += (transform.localPosition.x - vec.x); // Déplacement relatif
+                    vec.x += (transform.localPosition.x - vec.x);
                     gr.transform.localPosition = vec;
 
                     // Déplacement relatif du transform
                     var vector3 = transform.localPosition;
-                    vector3.x += 28 - vector3.x; // Déplacement relatif
+                    vector3.x = 28f ; 
                     transform.localPosition = vector3;
 
                     foreach (var car in player.mainManager)
                     {
-                        if (car.transform.localPosition.x > 10)
+                        if (car.transform.localPosition.x > 10f)
                         {
                             var vec2 = car.transform.localPosition;
-                            vec2.x -= 2;
+                            vec2.x -= 2f;
                             car.transform.localPosition = vec2;
                         }
                     }
@@ -254,7 +259,7 @@ public abstract class CarteBehaviour : MonoBehaviour, Tireur
             foreach (var next_card in player.mainManager)
             {
                 var x = next_card.transform.localPosition.x;
-                if (x > 8 && x < 21)
+                if (x > 8f && x < 21f)
                 {
                     LoadCardImage(next_card.GetComponents<CarteBehaviour>()[0].carteData.Sprite.name);
                     break;

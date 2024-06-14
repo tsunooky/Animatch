@@ -86,7 +86,9 @@ public class HandToHand : MonoBehaviour
 
     private void Shoot()
     {
-        TireurBehaviour.SpellAfterShoot(transform.position, transform.position);
+        // Récupérer les coordonnées de la souris en pixels
+        Vector2 mousePositionPixels = Mouse.current.position.ReadValue();
+        TireurBehaviour.SpellAfterShoot(transform.position, mousePositionPixels);
         SetAim(false, false);
         Destroy(this);
     }

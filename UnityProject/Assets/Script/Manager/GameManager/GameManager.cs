@@ -58,7 +58,7 @@ namespace Script.Manager
     
         void Update()
         {
-            
+            Turn.enabled = true;
             if (spawn)
             {
                 if (joueur.deckAnimal.Count == 0 && bot.deckAnimal.Count == 0)
@@ -75,6 +75,7 @@ namespace Script.Manager
                     {
                         if (joueur.deckAnimal.Count > bot.deckAnimal.Count)
                         {
+                            Turn.text = "Player 1 for spawn";
                             if (Input.GetMouseButtonDown(0))
                             {
                                 if(joueur.enabled)
@@ -83,6 +84,7 @@ namespace Script.Manager
                         }
                         else
                         {
+                            Turn.text = "Bob the bot for spawn";
                             if(bot.enabled)
                                 StartCoroutine(PlaceAnimal(bot));
                         }
@@ -103,6 +105,7 @@ namespace Script.Manager
                 if (!tourActif)
                 {
                     tourActif = true;
+                    Turn.text = $"Turn n°{tour}.";
                     if (tour % 2 != 0)
                     {
                         if (joueur.enabled)

@@ -4,14 +4,11 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using Script.Manager;
+using static Script.Manager.AGameManager;
 
 public class WinGame : MonoBehaviour
 {
-    public Text victoireBot;
-    public Text VictoireJoueur;
-    
-   
-    
     public void Win(PlayerManager player, bool res)
     {/*
         Debug.Log("Victoire de " + player.name);
@@ -33,6 +30,7 @@ public class WinGame : MonoBehaviour
 
         // Changer la scène après avoir affiché le message
         */
+        GameData.Winner = player;
         SceneManager.LoadScene("Fin");
         Invoke("QuitGame", 10f);
     }

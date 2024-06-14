@@ -76,7 +76,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -9095717837082945937, guid: 207ee8102dd4143d288186ef0be518ee, type: 3}
+  m_Sprite: {fileID: 21300000, guid: cdc2b6010cbd2134ab35f170a5951105, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -114,6 +114,7 @@ MonoBehaviour:
   Prefab: {fileID: 0}
   projectileData: {fileID: 0}
   declanchement: 0
+  rb: {fileID: 0}
 --- !u!50 &-2390581391636365848
 Rigidbody2D:
   serializedVersion: 4

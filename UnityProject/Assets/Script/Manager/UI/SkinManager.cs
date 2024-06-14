@@ -11,6 +11,7 @@ public class SkinManager : MonoBehaviour
     public SpriteRenderer sr3;
     public SpriteRenderer sr4;
     public SpriteRenderer sr5;
+    public static bool fix = false;
 
     // Liste de tous les sprites d'animaux
     public List<Sprite> animals = new List<Sprite>();
@@ -145,6 +146,12 @@ public class SkinManager : MonoBehaviour
         }
 
         resSelection = animalList;
+        if (fix == false)
+        {
+            Debug.Log("freuuuureeee");
+            resSelectionPlayer2 = animalList;
+            SaveSelectedAnimals("Team2", selecteds2);
+        }
         SaveSelectedAnimals("Team1", selecteds);
         SceneManager.LoadScene("Menu");
     }
@@ -186,6 +193,8 @@ public class SkinManager : MonoBehaviour
     // Sauvegarder les sélections de Team2 et retourner à la scène de Team1
     public void ReturnToPlayer1()
     {
+        fix = true;
+        Debug.Log("fix = true");
         List<string> animalList = new List<string>();
         foreach (var e in selecteds2)
         {

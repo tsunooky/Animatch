@@ -717,6 +717,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 1059c754d0782e740bfa987edcccdc65, type: 3}
   - {fileID: 8300000, guid: 1f6ffd062b0576242b7075a1fed54c10, type: 3}
   - {fileID: 8300000, guid: e43d05bae69dce641845f44be125531b, type: 3}
+  MenuMusicClip: {fileID: 8300000, guid: 02f201d98a215c84dbaef731b5b0b68e, type: 3}
 --- !u!82 &180727227
 AudioSource:
   m_ObjectHideFlags: 0

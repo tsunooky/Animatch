@@ -29,6 +29,7 @@ namespace Script.Manager
                 return;
             }
             settings.SetActive(false);
+            settings_canvas.SetActive(false);
             animax.SetActive(false);
             passif.SetActive(false);
             drop_left.gameObject.SetActive(false);
@@ -73,6 +74,7 @@ namespace Script.Manager
                 {
                     spawn = false;
                     settings.SetActive(true);
+                    settings_canvas.SetActive(true);
                 }
                 else
                 {

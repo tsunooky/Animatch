@@ -18,6 +18,7 @@ namespace Script.Manager
         public bool tourActif;
         public Text affichage_mana;
 
+        public GameObject settings_canvas;
         public GameObject settings;
         public GameObject animax;
         public GameObject passif;

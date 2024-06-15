@@ -85,7 +85,7 @@ public class AimBehviour : MonoBehaviour
         {
             float t = i * trajectoryTimeStep;
             Vector3 pos = transform.position + (Vector3)velocity * t +
-                          (Vector3)(Physics2D.gravity * (0.5f * lauchForce * mass * t * t));
+                          (Vector3)(Physics2D.gravity * (1.2f * lauchForce * mass * t * t));// le 1.2f a changer pour la forme de la trajectoire
             positions[i] = pos;
             pointilles[i] = Instantiate(pointilleVisee, positions[i], Quaternion.identity);
             pointilles[i].transform.localScale = new Vector3(scale, scale, 1);

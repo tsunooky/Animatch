@@ -7,17 +7,26 @@ public class TurtleBehaviour : AnimalBehaviour
 {
 
     private bool invinsible; 
+    public float yIncreaseAmount = 0.5f;
     
     public void Awake()
     {
         invinsible = false;
         LoadData("Turtle");
+        DefAnimax += "Protects itself from the next damages it gets.";
+        DefPassive += "The Turtle can't take more that 25 damage from ONE projectile.";
     }
 
 
     public override void Animax()
     {
+        float currentZRotation = transform.eulerAngles.z;
         invinsible = true;
+        if (currentZRotation > 80 && currentZRotation < 300)
+        {
+            transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, 0);
+            transform.position = new Vector3(transform.position.x, transform.position.y + yIncreaseAmount, transform.position.z);
+        }
         player.enAction = false;
     }
 

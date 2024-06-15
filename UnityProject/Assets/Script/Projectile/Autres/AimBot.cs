@@ -42,7 +42,7 @@ public class AimBot : MonoBehaviour
         var pro = Resources.Load<ProjectileData>("Data/Projectile/Tomate");
 
         // Décalage initial pour éviter les collisions immédiates
-        Vector2 initialOffset = new Vector2(0.45f, 0.45f);
+        Vector2 initialOffset = new Vector2(0.5f, 0.5f);
         Vector2 initialPosition = (Vector2)transform.position + initialOffset;
 
         GameObject bullet = Instantiate(pro.Projectile, initialPosition, Quaternion.identity);
@@ -63,9 +63,9 @@ public class AimBot : MonoBehaviour
 
         // Vérifier si la cible est loin et ajuster la vélocité
         float distance = relativePosition.magnitude;
-        if (distance > 5.0f) // Seuil de distance pour augmenter la vélocité
+        if (distance > 3.0f) // Seuil de distance pour augmenter la vélocité
         {
-            float velocityMultiplier = distance / 4.5f; // Ajuster ce facteur pour contrôler la vélocité
+            float velocityMultiplier = distance / 2.5f; // Ajuster ce facteur pour contrôler la vélocité
             bulletBehaviour.SetDirection(targetPosition, pro, velocityMultiplier);
         }
         else
@@ -80,7 +80,7 @@ public class AimBot : MonoBehaviour
         var pro = Resources.Load<ProjectileData>("Data/Projectile/Tomate");
 
         // Décalage initial pour éviter les collisions immédiates
-        Vector2 initialOffset = new Vector2(-0.45f, 0.45f);
+        Vector2 initialOffset = new Vector2(-0.5f, 0.5f);
         Vector2 initialPosition = (Vector2)transform.position + initialOffset;
 
         GameObject bullet = Instantiate(pro.Projectile, initialPosition, Quaternion.identity);
@@ -101,9 +101,9 @@ public class AimBot : MonoBehaviour
 
         // Vérifier si la cible est loin et ajuster la vélocité
         float distance = relativePosition.magnitude;
-        if (distance > 5.0f) // Seuil de distance pour augmenter la vélocité
+        if (distance > 3f) // Seuil de distance pour augmenter la vélocité
         {
-            float velocityMultiplier = distance / 5.0f; // Ajuster ce facteur pour contrôler la vélocité
+            float velocityMultiplier = distance / 2.5f; // Ajuster ce facteur pour contrôler la vélocité
             bulletBehaviour.SetDirection(targetPosition, pro, velocityMultiplier);
         }
         else

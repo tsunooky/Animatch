@@ -13,7 +13,10 @@ public class DespawnManager : MonoBehaviour
         if (!isDestroying && gameObject.transform.position.y < -4.3f)
         {
             if (gameObject.GetComponent<AnimalBehaviour>() is null)
+            {
                 Destroy(gameObject);
+                Destroy(gameObject.GetComponent<AnimalBehaviour>().currentInstance);
+            }
             else
             {
                 gameObject.GetComponent<AnimalBehaviour>().Degat(10000);
@@ -50,5 +53,6 @@ public class DespawnManager : MonoBehaviour
         transform.rotation = Quaternion.Euler(new Vector3(0, 0, targetRotation));
 
         Destroy(gameObject);
+        Destroy(gameObject.GetComponent<AnimalBehaviour>().currentInstance);
     }
 }

@@ -25,7 +25,7 @@ public abstract class AnimalBehaviour : MonoBehaviour
 
 
     // Stock les collision2D qui ont infligé degat par chaque projo pour eviter de s'en reprendre un autre
-    private List<(Collision2D,Vector3)> ListDegat;
+    public List<(Collision2D,Vector3)> ListDegat;
     
     public void setPointeur()
     {

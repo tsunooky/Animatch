@@ -59,6 +59,7 @@ public class EagleBehaviour : AnimalBehaviour, Tireur
             clone.SetActive(true);
             // DEGAT DE L'atterisage
             clone.GetComponent<D2dExplosion>().degat = 20;
+            Soin(20);
         }
     }
 }

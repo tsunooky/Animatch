@@ -33,12 +33,20 @@ namespace Script.Manager
             
             deckAnimauxbot = listeAnimauxPossible.OrderBy(x => Guid.NewGuid()).Take(3).ToArray();
 
+            
             deckCartes = new[]
             {
                 "durian", "canon", "bat", "bombe",
                 "jump", "tomate", "knife", "heal"
             };
             
+            /*
+            deckCartes = new[]
+                        {
+                            "durian", "durian", "durian", "durian",
+                            "durian", "durian", "durian", "durian"
+                        };
+            */
         }
     }
 

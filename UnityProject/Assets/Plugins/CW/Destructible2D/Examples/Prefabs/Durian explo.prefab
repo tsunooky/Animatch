@@ -11,10 +11,10 @@ GameObject:
   - component: {fileID: 400000}
   - component: {fileID: 19800000}
   - component: {fileID: 19900000}
-  - component: {fileID: 11418418}
   - component: {fileID: 8237358}
   - component: {fileID: 11401416}
-  - component: {fileID: 1529943587245828053}
+  - component: {fileID: 3404445550573223494}
+  - component: {fileID: -4123935395435789702}
   m_Layer: 0
   m_Name: Durian explo
   m_TagString: Explosion
@@ -46,8 +46,8 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 100000}
   serializedVersion: 8
-  lengthInSec: 3.82
-  simulationSpeed: 1
+  lengthInSec: 0.5
+  simulationSpeed: 2.95
   stopAction: 0
   cullingMode: 1
   ringBufferMode: 0
@@ -121,7 +121,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 5
+      scalar: 1
       minScalar: 0.5
       maxCurve:
         serializedVersion: 2
@@ -209,8 +209,8 @@ ParticleSystem:
     startColor:
       serializedVersion: 2
       minMaxState: 2
-      minColor: {r: 0.7830189, g: 0.0110804355, b: 0.0110804355, a: 1}
-      maxColor: {r: 0.9622642, g: 0.3295476, b: 0.30411178, a: 1}
+      minColor: {r: 0.35893556, g: 0.6981132, b: 0.4587035, a: 1}
+      maxColor: {r: 0.48458317, g: 0.9056604, b: 0.44001427, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -562,7 +562,7 @@ ParticleSystem:
     gravityModifier:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.6
+      scalar: -0.43
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -821,7 +821,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 3
+      scalar: 5
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -931,7 +931,7 @@ ParticleSystem:
       countCurve:
         serializedVersion: 2
         minMaxState: 0
-        scalar: 19.7
+        scalar: 47.7
         minScalar: 1
         maxCurve:
           serializedVersion: 2
@@ -2694,7 +2694,7 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
   NoiseModule:
-    enabled: 0
+    enabled: 1
     strength:
       serializedVersion: 2
       minMaxState: 0
@@ -3955,7 +3955,7 @@ ParticleSystem:
         m_RotationOrder: 4
     maxLights: 20
   TrailModule:
-    enabled: 0
+    enabled: 1
     mode: 0
     ratio: 1
     lifetime:
@@ -4799,6 +4799,7 @@ ParticleSystemRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 4dbe4a4b61221854dbe1a6aae2541130, type: 2}
+  - {fileID: 2100000, guid: c49b44b34b5bd9b4d9e99f508dcdc793, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4851,33 +4852,6 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
---- !u!114 &11418418
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 100000}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ef2b21ed79dd7394689a94432ca9a131, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  degat: 10
-  Mask:
-    serializedVersion: 2
-    m_Bits: 64
-  Stamp: 1
-  StampPaint: 0
-  StampShape: {fileID: 2800000, guid: 036108cbdb79b2142b9f63f60ce7e192, type: 3}
-  StampColor: {r: 1, g: 1, b: 1, a: 1}
-  StampSize: {x: 8.8, y: 7.84}
-  StampRandomDirection: 0
-  Raycast: 0
-  RaycastRadius: 1
-  RaycastCount: 15
-  ForcePerRay: 10
-  DamagePerRay: 1
 --- !u!82 &8237358
 AudioSource:
   m_ObjectHideFlags: 0
@@ -4986,7 +4960,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33fbcb04c243139438f8b0b3f28d0e81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  life: 0.5
+  life: 0.2
   target: {fileID: 0}
   fade: 0
   fadeDuration: 1
@@ -4997,8 +4971,8 @@ MonoBehaviour:
   lifeMax: 1
   startColor: {r: 0, g: 0, b: 0, a: 0}
   startLocalScale: {x: 0, y: 0, z: 0}
---- !u!61 &1529943587245828053
-BoxCollider2D:
+--- !u!58 &3404445550573223494
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -5030,18 +5004,35 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 14.65, y: 15.78}
-  m_EdgeRadius: 0
+  m_Radius: 1.5
+--- !u!114 &-4123935395435789702
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef2b21ed79dd7394689a94432ca9a131, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  degat: 0
+  Mask:
+    serializedVersion: 2
+    m_Bits: 0
+  Stamp: 0
+  StampPaint: 0
+  StampShape: {fileID: 28268798066460806, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
+  StampColor: {r: 1, g: 1, b: 1, a: 1}
+  StampSize: {x: 1, y: 1}
+  StampRandomDirection: 1
+  Raycast: 0
+  RaycastRadius: 0
+  RaycastCount: 0
+  ForcePerRay: 0
+  DamagePerRay: 0
 --- !u!1 &126704
 GameObject:
   m_ObjectHideFlags: 0

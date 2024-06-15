@@ -21,7 +21,7 @@ public class HealBehaviour : CarteBehaviour
         vector3.y =  -4f;
         transform.position = vector3;
         spriteRenderer.color = new Color32(200,200,200,255);
-        GameManager.Instance.playerActif.animalActif.pv += 10;
+        GameManager.Instance.playerActif.animalActif.pv += 15;
         GameManager.Instance.playerActif.animalActif.healthBar.SetHealth(GameManager.Instance.playerActif.animalActif.pv);
         PiocherMain();
         FinAction();

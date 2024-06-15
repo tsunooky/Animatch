@@ -124,24 +124,31 @@ public abstract class CarteBehaviour : MonoBehaviour, Tireur
     {
         yield return new WaitForSeconds(0.1f);
     }
+    
     private void OnMouseDown()
     {
-        if (carte_actuel)
+        if (Instance.playerActif == player)
         {
-            samecard = true;
-            DeselectCard();
-            
-        }
-        else
-        {
-            SelectCard();
+            Wait();
+            if (carte_actuel)
+            {
+                samecard = true;
+                DeselectCard();
+
+            }
+            else
+            {
+                SelectCard();
+            }
         }
     }
 
     private void SelectCard()
     {
+        Wait();
         if (samecard)
         {
+            Wait();
             LiftCard();
         }
         if (Instance.playerActif == player && player.drops - carteData.drops >= 0 && !player.enAction)
@@ -160,6 +167,7 @@ public abstract class CarteBehaviour : MonoBehaviour, Tireur
 
     public void DeselectCard()
     {
+        Wait();
         carte_actuel = false;
         Instance.playerActif.SetAura(false);
         Instance.playerActif.enAction = false;
@@ -175,24 +183,32 @@ public abstract class CarteBehaviour : MonoBehaviour, Tireur
     }
     private void OnMouseEnter()
     {
-        if (!carte_actuel && !alreadylifted)
+        if (Instance.playerActif == player)
         {
-            LiftCard();
-            Wait();
+            if (!carte_actuel && !alreadylifted)
+            {
+                Wait();
+                LiftCard();
+                Wait();
+            }
         }
     }
     
 
     private void OnMouseExit()
     {
-        if (!carte_actuel && !alreadylifted && !samecard)
+        if (Instance.playerActif == player)
         {
-            LowerCard();
-            Wait();
-        }
-        else
-        {
-            samecard = false;
+            if (!carte_actuel && !alreadylifted && !samecard)
+            {
+                Wait();
+                LowerCard();
+                Wait();
+            }
+            else
+            {
+                samecard = false;
+            }
         }
     }
     

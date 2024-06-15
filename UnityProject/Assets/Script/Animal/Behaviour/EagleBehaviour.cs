@@ -56,10 +56,10 @@ public class EagleBehaviour : AnimalBehaviour, Tireur
         {
             BOOM = false;
             GameObject clone = Instantiate(Explosion, transform.position, transform.rotation);
-            ListDegat.Add((clone.GetComponent<Collision2D>(),clone.transform.position));
+            //ListDegat.Add((clone.GetComponent<Collision2D>(),clone.transform.position));
             clone.SetActive(true);
             // DEGAT DE L'atterisage
-            clone.GetComponent<D2dExplosion>().degat = 20;
+            clone.GetComponent<D2dExplosion>().degat = 0;
         }
     }
 }

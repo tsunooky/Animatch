@@ -73,7 +73,11 @@ public class BoutonAnimax : MonoBehaviour
     }
     private void OnMouseEnter()
     {
-        StartCoroutine(OnMouseEnter2());
+        AnimalBehaviour animalActif = GameManager.Instance.playerActif.animalActif;
+        if (!animalActif.AnimaxActivate)
+        {
+            StartCoroutine(OnMouseEnter2());
+        }
     }
 
     private IEnumerator OnMouseEnter2()

@@ -15,11 +15,11 @@ public class DespawnManager : MonoBehaviour
             if (gameObject.GetComponent<AnimalBehaviour>() is null)
             {
                 Destroy(gameObject);
-                Destroy(gameObject.GetComponent<AnimalBehaviour>().currentInstance);
             }
             else
             {
                 gameObject.GetComponent<AnimalBehaviour>().Degat(10000);
+                Destroy(gameObject.GetComponent<AnimalBehaviour>().currentInstance);
             }
         }
     }

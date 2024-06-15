@@ -9,6 +9,8 @@ public class LionBehaviour : AnimalBehaviour
     public void Awake()
     {
         LoadData("Lion");
+        DefAnimax += "Heal All his Team up to 20hp max each.";
+        DefPassive += "When receiving a heal, the heal is up to 150%.";
     }
     
     public override void Animax()

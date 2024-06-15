@@ -22,6 +22,8 @@ public abstract class AnimalBehaviour : MonoBehaviour
     public bool actif;
     public GameObject currentInstance;
     public bool AnimaxActivate;
+    public string DefAnimax = "Animax : \n";
+    public string DefPassive = "Passive : \n";
 
 
     // Stock les collision2D qui ont infligé degat par chaque projo pour eviter de s'en reprendre un autre

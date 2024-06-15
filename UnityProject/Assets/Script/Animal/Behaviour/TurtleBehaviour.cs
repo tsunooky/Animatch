@@ -13,6 +13,8 @@ public class TurtleBehaviour : AnimalBehaviour
     {
         invinsible = false;
         LoadData("Turtle");
+        DefAnimax += "Protects itself from the next damages it gets.";
+        DefPassive += "The Turtle can't take more that 25 damage from ONE projectile.";
     }
 
 

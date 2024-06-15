@@ -16,6 +16,8 @@ public class EagleBehaviour : AnimalBehaviour, Tireur
         BOOM = false;
         Bump = 10;
         LoadData("Eagle");
+        DefAnimax += "Jump and deal damage when it lands.";
+        //DefPassive += "It Shows the trajectory of the projectile x2.";
     }
 
     public override void Animax()

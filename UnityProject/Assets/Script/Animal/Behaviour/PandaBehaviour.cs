@@ -10,6 +10,8 @@ public class
     {
         LoadData("panda");
         potentielleprojDataAnimax = Resources.Load<ProjectileData>("Data/Projectile/Bamboo");
+        DefAnimax += "Grow a Bamboo.";
+        DefPassive += "If the Panda doesn't play, it heal itself.";
     }
 
     public override void Animax()
@@ -29,4 +31,5 @@ public class
         ProjectileBehaviour bulletBehaviour = bullet.GetComponent<ProjectileBehaviour>();
         bulletBehaviour.Set((startPosition, currentMousePos), potentielleprojDataAnimax);
     }
+    
 }

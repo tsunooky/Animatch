@@ -10,6 +10,8 @@ public class DogBehaviour : AnimalBehaviour, Tireur
     {
         LoadData("Dog");
         potentielleprojDataAnimax = Resources.Load<ProjectileData>("Data/Projectile/Os");
+        DefAnimax += "Throws a bone and teleports where it lands.";
+        DefPassive += "Uppon death, bites in front of him.";
     }
 
     public override void Animax()

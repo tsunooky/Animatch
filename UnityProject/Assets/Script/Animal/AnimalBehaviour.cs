@@ -169,6 +169,7 @@ public abstract class AnimalBehaviour : MonoBehaviour
         {
             Instance.playerActif.enAction = false;
             Instance.tourActif = false;
+            Destroy(this.currentInstance);
         }
     }
 

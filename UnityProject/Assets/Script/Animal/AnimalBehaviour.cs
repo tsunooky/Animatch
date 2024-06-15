@@ -148,15 +148,6 @@ public abstract class AnimalBehaviour : MonoBehaviour
             ListDegat.Add((collison2D,collison2D.gameObject.transform.position));
         }
         
-        /*if (collison2D.gameObject.tag == "Map")
-        {
-            if (Time.time  - timeSpawn < 0.4)
-            {
-                var vector3 = gameObject.transform.position;
-                vector3.y = 10f;
-                gameObject.transform.position = vector3;
-            }
-        }*/
     }
 
     private void OnDestroy()

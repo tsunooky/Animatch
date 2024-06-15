@@ -45,6 +45,10 @@ public class AimBehviour : MonoBehaviour
     {
         pointilleVisee = Resources.Load<GameObject>("Prefabs/Autre/Pointille");
         pointilles = new GameObject[trajectoryStepCount];
+        if (GameManager.Instance.playerActif.animalActif is EagleBehaviour)
+        {
+            trajectoryStepCount *= 2;
+        }
     }
 
     private void Update()

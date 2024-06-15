@@ -1,17 +1,65 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Script.Manager;
+using Destructible2D.Examples;
 
-public class EagleBehaviour : AnimalBehaviour
+public class EagleBehaviour : AnimalBehaviour, Tireur
 {
+    private int Bump;
+    private bool BOOM;
+    private GameObject Explosion;
+    
     public void Awake()
     {
-        LoadData("eagle");
+        Explosion = Resources.Load<ProjectileData>("Data/Projectile/Tomate").Explosion;
+        BOOM = false;
+        Bump = 10;
+        LoadData("Eagle");
     }
 
     public override void Animax()
     {
-        // PAS ENCORE IMPLEMENTE
+        GameManager.Instance.playerActif.animalActif.gameObject.AddComponent<ClickBehaviour>().Initialize(this);
+    }
+    
+    public void SpellAfterClick()
+    {
+        GameManager.Instance.playerActif.animalActif.gameObject.AddComponent<AimBehviour>().Initialize(potentielleprojDataAnimax,this);
+    }
+
+    public void SpellAfterShoot(Vector2 startPosition ,Vector2 currentMousePos)
+    {
+        gameObject.GetComponent<Rigidbody2D>().velocity = (startPosition - currentMousePos) * (Bump * 0.075f);
+        player.enAction = false;
+        StartCoroutine(activateBoom());
+    }
+
+    private IEnumerator activateBoom()
+    {
+        yield return new WaitForSeconds((float)0.5);
+        BOOM = true;
+    }
+    
+    void OnCollisionEnter2D(Collision2D collison2D)
+    {
+        // Vérifiez si la collision concerne un animal
+        if (collison2D.gameObject.CompareTag("Explosion") && !ListDegat.Contains((collison2D,collison2D.gameObject.transform.position)))
+        {
+            D2dExplosion explosion = collison2D.gameObject.GetComponent<D2dExplosion>();
+            Degat(explosion.degat);
+            
+            ListDegat.Add((collison2D,collison2D.gameObject.transform.position));
+        }
+
+        if (BOOM)
+        {
+            BOOM = false;
+            GameObject clone = Instantiate(Explosion, transform.position, transform.rotation);
+            clone.SetActive(true);
+            // DEGAT DE L'atterisage
+            clone.GetComponent<D2dExplosion>().degat = 20;
+        }
     }
 }
 

@@ -26,7 +26,7 @@ public class CardManager : MonoBehaviour
     public static bool fix = false;
     public List<Sprite> cards = new List<Sprite>();
     public List<int> selecteds = new List<int>(){0, 1, 2, 3, 4, 5, 6, 7}; 
-    public List<int> selecteds2 = new List<int>(){8, 9, 10, 11, 12, 13, 14, 15}; 
+    public List<int> selecteds2 = new List<int>(){0, 1, 2, 3, 4, 5, 6, 7}; 
     public static List<string> resSelection = new List<string>();
     public static List<string> resSelectionPlayer2 = new List<string>();
 

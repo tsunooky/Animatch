@@ -37,7 +37,6 @@ namespace Script.Manager
             /**/
             if (CardManager.resSelection.Count == 0)
             {
-                Debug.Log("Cartemanager.resSelection.Count = 0");
                 deckCartes = new[]
                     { "durian", "canon", "bat", "bombe",
                         "jump", "tomate", "knife", "heal"};

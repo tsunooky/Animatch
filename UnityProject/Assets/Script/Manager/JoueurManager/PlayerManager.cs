@@ -29,10 +29,7 @@ public class PlayerManager : MonoBehaviour
     {
         enAction = false;
         animalActif = null;
-        if (Instance is GameManager2J gameManager && this != Instance.joueur)
-            mainManager = GameObject.FindGameObjectsWithTag("MainCarte2J");
-        else
-            mainManager = GameObject.FindGameObjectsWithTag("MainCarte");
+        mainManager = GameObject.FindGameObjectsWithTag("MainCarte");
         enVisee = false;
         animalActif = null;
     }
@@ -49,8 +46,6 @@ public class PlayerManager : MonoBehaviour
     {
         Destroy(animalBehaviour.gameObject);
     }
-    
-    
     
     public void DefausserMain()
     {
@@ -80,7 +75,7 @@ public class PlayerManager : MonoBehaviour
                 deckAnimal.Enqueue(animal);
             } 
         }
-        else if (IsPlayer2)
+        else if (Instance is GameManager2J gameManager && this == gameManager.joueur2)
         {
             foreach (string animal in profil.deckAnimauxPlayer2)
             {
@@ -99,23 +94,14 @@ public class PlayerManager : MonoBehaviour
 
     public void CreerMain()
     {
-        
-        // Méthode pour piocher la main initiale
-        if (Instance is GameManager2J gameManager && this == gameManager.joueur2)
+        string[] deck = profil.deckCartes;
+        if (Instance is GameManager2J && this != Instance.joueur)
         {
-            Debug.Log("on est dans le 2eme");
-            for (int i = 0; i < 8; i++)
-            {
-                main.Enqueue(DataDico.carteTypes[profil.deckCartesPlayer2[i]]);
-            }
+            deck = profil.deckCartesPlayer2;
         }
-        else
-        {
-            for (int i = 0; i < 8; i++)
-            {
-                main.Enqueue(DataDico.carteTypes[profil.deckCartes[i]]);
-            }
-            
+        for (int i = 0; i < 8; i++) 
+        { 
+            this.main.Enqueue(DataDico.carteTypes[deck[i]]);
         }
        
 

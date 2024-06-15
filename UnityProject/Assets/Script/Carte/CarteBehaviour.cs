@@ -17,9 +17,7 @@ public abstract class CarteBehaviour : MonoBehaviour, Tireur
     public bool carte_actuel = false;
     
     public CarteData carteData;
-    
     public Text text;
-
     private bool samecard;
     public static bool alreadylifted;
     public static Image cardImage; 
@@ -94,7 +92,7 @@ public abstract class CarteBehaviour : MonoBehaviour, Tireur
        
     }
     
-    private static void LoadCardImage(string imageName)
+    public static void LoadCardImage(string imageName)
     {
         string cheminImage = "Sprites/cards/" + imageName;
         Sprite newSprite = Resources.Load<Sprite>(cheminImage);

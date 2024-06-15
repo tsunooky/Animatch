@@ -39,27 +39,12 @@ namespace Script.Manager
             playerActif = joueur;
             joueur.CreateProfil();
             joueur.CreerMain();
-            joueur.mainManager = GameObject.FindGameObjectsWithTag("MainCarte");
             joueur2 = gameObject.AddComponent<PlayerManager>();
             playerActif = joueur2;
-            joueur2.IsPlayer2 = true;
+            joueur2.mainManager = GameObject.FindGameObjectsWithTag("MainCarte2J");
             joueur2.CreateProfil();
             joueur2.CreerMain();
-            joueur2.IsPlayer2 = false;
-            joueur2.mainManager = GameObject.FindGameObjectsWithTag("MainCarte2J");
             UpdateCardDisplay(joueur);
-            int i = 1;
-            foreach (var card in joueur.mainManager)  
-            {
-                    Debug.Log($"La carte {i} appartient au joueur 1");
-                    i++;
-            }
-            foreach (var card in joueur2.mainManager)  
-            {
-                Debug.Log($"La carte {i} appartient au joueur 2");
-                i++;
-            }
-            
             // Evité bug au lancement
             playerActif = joueur;
             tour = 1;
@@ -115,6 +100,15 @@ namespace Script.Manager
                     {
                         Debug.Log("It's your turn");
                         playerActif = joueur;
+                        foreach (var next_card in playerActif.mainManager)
+                        {
+                            var x = next_card.transform.localPosition.x;
+                            if (x > 8f && x < 21f)
+                            {
+                                CarteBehaviour.LoadCardImage(next_card.GetComponents<CarteBehaviour>()[0].carteData.Sprite.name);
+                                break;
+                            }
+                        }
                         joueur.MiseAJourDrops(tour);
                         affichage_mana.text = $"{joueur.drops}";
                         nextTurnButton.gameObject.SetActive(true);
@@ -137,6 +131,15 @@ namespace Script.Manager
                     {
                         Debug.Log("C'est Le Tour du Joueur 2");
                         playerActif = joueur2;
+                        foreach (var next_card in playerActif.mainManager)
+                        {
+                            var x = next_card.transform.localPosition.x;
+                            if (x > 8f && x < 21f)
+                            {
+                                CarteBehaviour.LoadCardImage(next_card.GetComponents<CarteBehaviour>()[0].carteData.Sprite.name);
+                                break;
+                            }
+                        }
                         joueur2.MiseAJourDrops(tour);
                         affichage_mana.text = $"{joueur2.drops}";
                         UpdateCardDisplay(playerActif);

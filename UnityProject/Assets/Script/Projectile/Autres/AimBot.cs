@@ -65,7 +65,7 @@ public class AimBot : MonoBehaviour
         float distance = relativePosition.magnitude;
         if (distance > 3.0f) // Seuil de distance pour augmenter la vélocité
         {
-            float velocityMultiplier = distance / 2.5f; // Ajuster ce facteur pour contrôler la vélocité
+            float velocityMultiplier = distance / 3f; // Ajuster ce facteur pour contrôler la vélocité
             bulletBehaviour.SetDirection(targetPosition, pro, velocityMultiplier);
         }
         else
@@ -103,7 +103,7 @@ public class AimBot : MonoBehaviour
         float distance = relativePosition.magnitude;
         if (distance > 3f) // Seuil de distance pour augmenter la vélocité
         {
-            float velocityMultiplier = distance / 2.5f; // Ajuster ce facteur pour contrôler la vélocité
+            float velocityMultiplier = distance / 3f; // Ajuster ce facteur pour contrôler la vélocité
             bulletBehaviour.SetDirection(targetPosition, pro, velocityMultiplier);
         }
         else

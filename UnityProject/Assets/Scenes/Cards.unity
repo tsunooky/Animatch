@@ -176,14 +176,14 @@ MonoBehaviour:
   sr6: {fileID: 1704870405}
   sr7: {fileID: 88039345}
   cards:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 21300000, guid: 1399c3a5e1b1eac48b28b2ea457a1818, type: 3}
+  - {fileID: 21300000, guid: 51fe14bb443841c40844574f3f366214, type: 3}
+  - {fileID: 21300000, guid: ec44dbcc03dcb914c941c08f282a44d1, type: 3}
+  - {fileID: 21300000, guid: 2716fdea3ee215e43ae59348be656509, type: 3}
+  - {fileID: 21300000, guid: 0cf45aef2c09f7e4489b220ef2f10f75, type: 3}
+  - {fileID: 21300000, guid: 2c00cfb6dfb3ec04cb424ac782fc0a0a, type: 3}
+  - {fileID: 21300000, guid: e34e6b9a7d6dd7749a6b277a8872bd6e, type: 3}
+  - {fileID: 21300000, guid: 4c804e3ae2ea3334c8dfa79199d7ab30, type: 3}
   selecteds: 0000000001000000020000000300000004000000050000000600000007000000
 --- !u!1 &14501641
 GameObject:
@@ -267,9 +267,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: SkinManager, Assembly-CSharp
-        m_MethodName: PreviousOption1
+      - m_Target: {fileID: 8971874}
+        m_TargetAssemblyTypeName: CardManager, Assembly-CSharp
+        m_MethodName: PreviousOption5
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -399,9 +399,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: SkinManager, Assembly-CSharp
-        m_MethodName: NextOption1
+      - m_Target: {fileID: 8971874}
+        m_TargetAssemblyTypeName: CardManager, Assembly-CSharp
+        m_MethodName: NextOption3
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -671,9 +671,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: SkinManager, Assembly-CSharp
-        m_MethodName: NextOption1
+      - m_Target: {fileID: 8971874}
+        m_TargetAssemblyTypeName: CardManager, Assembly-CSharp
+        m_MethodName: NextOption7
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -873,9 +873,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: SkinManager, Assembly-CSharp
-        m_MethodName: NextOption1
+      - m_Target: {fileID: 8971874}
+        m_TargetAssemblyTypeName: CardManager, Assembly-CSharp
+        m_MethodName: NextOption5
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6190,9 +6190,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: SkinManager, Assembly-CSharp
-        m_MethodName: PreviousOption0
+      - m_Target: {fileID: 8971874}
+        m_TargetAssemblyTypeName: CardManager, Assembly-CSharp
+        m_MethodName: PreviousOption6
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6322,9 +6322,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: SkinManager, Assembly-CSharp
-        m_MethodName: NextOption0
+      - m_Target: {fileID: 8971874}
+        m_TargetAssemblyTypeName: CardManager, Assembly-CSharp
+        m_MethodName: NextOption2
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6454,9 +6454,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: SkinManager, Assembly-CSharp
-        m_MethodName: NextOption0
+      - m_Target: {fileID: 8971874}
+        m_TargetAssemblyTypeName: CardManager, Assembly-CSharp
+        m_MethodName: NextOption4
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6707,9 +6707,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: SkinManager, Assembly-CSharp
-        m_MethodName: PreviousOption0
+      - m_Target: {fileID: 8971874}
+        m_TargetAssemblyTypeName: CardManager, Assembly-CSharp
+        m_MethodName: PreviousOption2
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6839,9 +6839,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: SkinManager, Assembly-CSharp
-        m_MethodName: PreviousOption0
+      - m_Target: {fileID: 8971874}
+        m_TargetAssemblyTypeName: CardManager, Assembly-CSharp
+        m_MethodName: PreviousOption4
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6971,9 +6971,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: SkinManager, Assembly-CSharp
-        m_MethodName: PreviousOption1
+      - m_Target: {fileID: 8971874}
+        m_TargetAssemblyTypeName: CardManager, Assembly-CSharp
+        m_MethodName: PreviousOption7
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -7103,8 +7103,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: SkinManager, Assembly-CSharp
+      - m_Target: {fileID: 8971874}
+        m_TargetAssemblyTypeName: CardManager, Assembly-CSharp
         m_MethodName: ReturnMenu
         m_Mode: 1
         m_Arguments:
@@ -7375,9 +7375,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: SkinManager, Assembly-CSharp
-        m_MethodName: PreviousOption1
+      - m_Target: {fileID: 8971874}
+        m_TargetAssemblyTypeName: CardManager, Assembly-CSharp
+        m_MethodName: PreviousOption3
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -7639,8 +7639,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: SkinManager, Assembly-CSharp
+      - m_Target: {fileID: 8971874}
+        m_TargetAssemblyTypeName: CardManager, Assembly-CSharp
         m_MethodName: NextOption0
         m_Mode: 1
         m_Arguments:
@@ -8045,8 +8045,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: SkinManager, Assembly-CSharp
+      - m_Target: {fileID: 8971874}
+        m_TargetAssemblyTypeName: CardManager, Assembly-CSharp
         m_MethodName: PreviousOption1
         m_Mode: 1
         m_Arguments:
@@ -8247,8 +8247,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: SkinManager, Assembly-CSharp
+      - m_Target: {fileID: 8971874}
+        m_TargetAssemblyTypeName: CardManager, Assembly-CSharp
         m_MethodName: PreviousOption0
         m_Mode: 1
         m_Arguments:
@@ -8531,9 +8531,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: SkinManager, Assembly-CSharp
-        m_MethodName: NextOption0
+      - m_Target: {fileID: 8971874}
+        m_TargetAssemblyTypeName: CardManager, Assembly-CSharp
+        m_MethodName: NextOption6
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -8663,8 +8663,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: SkinManager, Assembly-CSharp
+      - m_Target: {fileID: 8971874}
+        m_TargetAssemblyTypeName: CardManager, Assembly-CSharp
         m_MethodName: NextOption1
         m_Mode: 1
         m_Arguments:

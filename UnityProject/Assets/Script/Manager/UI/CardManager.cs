@@ -122,6 +122,12 @@ public class CardManager : MonoBehaviour
             SaveSelectedCards("Hand2", selecteds2);*/
         }
         SaveSelectedCards("Hand1", selecteds);
+        var res = "";
+        foreach (var str in resSelection)
+        {
+            res += str + " ";
+        }
+        Debug.Log($"{res}");
         SceneManager.LoadScene("Menu");
     }
     

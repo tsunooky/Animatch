@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Linq;
+using UnityEngine;
 using Random = UnityEngine.Random;
 
 namespace Script.Manager
@@ -36,6 +37,7 @@ namespace Script.Manager
             /**/
             if (CardManager.resSelection.Count == 0)
             {
+                Debug.Log("Cartemanager.resSelection.Count = 0");
                 deckCartes = new[]
                     { "durian", "canon", "bat", "bombe",
                         "jump", "tomate", "knife", "heal"};
@@ -52,13 +54,13 @@ namespace Script.Manager
                 /*deckCartesPlayer2 = CardManager.resSelectionPlayer2.ToArray();*/
             }
             
-            /**/
+            /*
             deckCartes = new[]
             {
                 "durian", "canon", "bat", "bombe",
                 "jump", "tomate", "knife", "heal"
             };
-            
+            */
             /*
             deckCartes = new[]
                         {

@@ -106,6 +106,7 @@ namespace Script.Manager
                     {
                         if (joueur.enabled)
                         {
+                            Wait2sec();
                             Debug.Log("C'est votre tour");
                             animax.SetActive(true);
                             passif.SetActive(true);
@@ -133,9 +134,9 @@ namespace Script.Manager
                             affichage_mana.text = $" ? ";
                             Debug.Log("Tour du bot");
                             AnimalBehaviour animalActif = bot.animaux_vivant.Dequeue();
-                            animalActif.LoadAura();
                             
                             playerActif.animalActif = animalActif;
+                            animalActif.LoadAura();
                             Wait2sec();
                             if (animalActif!=null)
                             { 

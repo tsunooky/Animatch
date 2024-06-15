@@ -309,6 +309,7 @@ public abstract class CarteBehaviour : MonoBehaviour, Tireur
         alreadylifted = false;
         if (GameManager.Instance.playerActif.drops == 0)
         {
+            Destroy(player.animalActif.currentInstance);
             GameManager.Instance.FinDuTour();
         }
     }

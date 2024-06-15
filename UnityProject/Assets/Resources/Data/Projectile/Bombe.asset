@@ -12,9 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 550f39e17185d66468f4c092c1f53a29, type: 3}
   m_Name: Bombe
   m_EditorClassIdentifier: 
-  Expulsion: 1
   Force: 12
   Degat: 35
   Projectile: {fileID: 2713818988505474901, guid: a8a74146a2596e548a1cafe1cc9568ba, type: 3}
-  Explosion: {fileID: 100000, guid: 318bc4f2f48896d44ac7a165c7400043, type: 3}
+  Explosion: {fileID: 100000, guid: 3e5fab0f2fe3c9c4c849e4d9529deefc, type: 3}
   Lanceur: {fileID: 0}

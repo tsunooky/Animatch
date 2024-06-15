@@ -25,7 +25,7 @@ public class EagleBehaviour : AnimalBehaviour, Tireur
     
     public void SpellAfterClick()
     {
-        GameManager.Instance.playerActif.animalActif.gameObject.AddComponent<AimBehviour>().Initialize(potentielleprojDataAnimax,this);
+        GameManager.Instance.playerActif.animalActif.gameObject.AddComponent<AimBehviour>().Initialize(this);
     }
 
     public void SpellAfterShoot(Vector2 startPosition ,Vector2 currentMousePos)

@@ -120,6 +120,10 @@ public abstract class CarteBehaviour : MonoBehaviour, Tireur
             rectTransform.position = screenPoint;
         }
     }
+    IEnumerator Wait()
+    {
+        yield return new WaitForSeconds(0.1f);
+    }
     private void OnMouseDown()
     {
         if (carte_actuel)
@@ -174,6 +178,7 @@ public abstract class CarteBehaviour : MonoBehaviour, Tireur
         if (!carte_actuel && !alreadylifted)
         {
             LiftCard();
+            Wait();
         }
     }
     
@@ -183,6 +188,7 @@ public abstract class CarteBehaviour : MonoBehaviour, Tireur
         if (!carte_actuel && !alreadylifted && !samecard)
         {
             LowerCard();
+            Wait();
         }
         else
         {

@@ -254,7 +254,7 @@ namespace Script.Manager
             else
             {
                 // Pour le bot, attendre avant de placer l'animal
-                yield return new WaitForSeconds(2f); // Attendre 2 secondes
+                yield return new WaitForSeconds(1.5f); // Attendre 2 secondes
 
                 float randomX = UnityEngine.Random.Range(-6.5f, 7f);
                 AnimalBehaviour newAnimal = creerAnimal(randomX, 4.7f, bot.deckAnimal.Dequeue(),player);

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Script.Manager;
@@ -9,14 +10,25 @@ using static Script.Manager.AGameManager;
 public class MainMenu : MonoBehaviour
 {
    public AudioMixer audioMixer;
+   [SerializeField] private GameObject _startingTransition;
+   [SerializeField] private GameObject _endingTransition;
+   
+   
+   private IEnumerator WaitAndLoadScene(string sceneName,float delay)
+   {
+      yield return new WaitForSeconds(delay);
+      SceneManager.LoadScene(sceneName);
+   }
    
    public void PlayGameSolo()
    {
-      SceneManager.LoadScene("Main");
+      _endingTransition.SetActive(true);
+      StartCoroutine(WaitAndLoadScene("Main",1f));
    }
    public void PlayGameMulti()
    {
-      SceneManager.LoadScene("Main 2P");
+      _endingTransition.SetActive(true);
+      StartCoroutine(WaitAndLoadScene("Main 2P",1f));
    }
    public void OpenOption()
    {

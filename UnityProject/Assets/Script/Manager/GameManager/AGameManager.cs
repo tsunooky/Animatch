@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections;
 using Script.Data;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 namespace Script.Manager
@@ -19,6 +21,29 @@ namespace Script.Manager
         public GameObject animax;
         public GameObject passif;
         public Text Turn;
+        
+        [SerializeField] private GameObject _startingTransition;
+        [SerializeField] private GameObject _endingTransition;
+
+        public void Start()
+        {
+            _startingTransition.SetActive(true);
+            StartCoroutine(DisableStartingSceneTransition(3f));
+        }
+
+        private IEnumerator DisableStartingSceneTransition(float delay)
+        {
+            yield return new WaitForSeconds(delay);
+            _startingTransition.SetActive(false);
+        }
+   
+   
+        private IEnumerator WaitAndLoadScene(string sceneName,float delay)
+        {
+            yield return new WaitForSeconds(delay);
+            SceneManager.LoadScene(sceneName);
+            Start();
+        }
         
         #region Code Moved
         

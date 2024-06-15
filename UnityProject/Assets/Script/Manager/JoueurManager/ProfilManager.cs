@@ -11,6 +11,7 @@ namespace Script.Manager
         public string[] deckAnimauxbot =new string[3];
         public string[] deckAnimauxPlayer2 =new string[3];
         public string[] deckCartes = new string[8];
+        public string[] deckCartesPlayer2 = new string[8];
         public string[] listeAnimauxPossible = { "panda", "dog", "turtle", "lion", "rat", "eagle" };
 
         public ProfilManager()
@@ -32,8 +33,26 @@ namespace Script.Manager
             }
             
             deckAnimauxbot = listeAnimauxPossible.OrderBy(x => Guid.NewGuid()).Take(3).ToArray();
-
+            /**/
+            if (CardManager.resSelection.Count == 0)
+            {
+                deckCartes = new[]
+                    { "durian", "canon", "bat", "bombe",
+                        "jump", "tomate", "knife", "heal"};
+            }
+            if (CardManager.resSelectionPlayer2.Count == 0)
+            {
+                deckCartesPlayer2 = new[]
+                    { "durian", "canon", "bat", "bombe",
+                        "jump", "tomate", "knife", "heal"};
+            }
+            else
+            {
+                deckCartes =  CardManager.resSelection.ToArray();
+                deckCartesPlayer2 = CardManager.resSelectionPlayer2.ToArray();
+            }
             
+            /**/
             deckCartes = new[]
             {
                 "durian", "canon", "bat", "bombe",

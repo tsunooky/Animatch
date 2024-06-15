@@ -12,7 +12,7 @@ public class EagleBehaviour : AnimalBehaviour, Tireur
     
     public void Awake()
     {
-        Explosion = Resources.Load<ProjectileData>("Data/Projectile/Tomate").Explosion;
+        Explosion = Resources.Load<ProjectileData>("Data/Projectile/Canon").Explosion;
         BOOM = false;
         Bump = 10;
         LoadData("Eagle");
@@ -56,10 +56,10 @@ public class EagleBehaviour : AnimalBehaviour, Tireur
         {
             BOOM = false;
             GameObject clone = Instantiate(Explosion, transform.position, transform.rotation);
+            ListDegat.Add((clone.GetComponent<Collision2D>(),clone.transform.position));
             clone.SetActive(true);
             // DEGAT DE L'atterisage
             clone.GetComponent<D2dExplosion>().degat = 20;
-            Soin(20);
         }
     }
 }

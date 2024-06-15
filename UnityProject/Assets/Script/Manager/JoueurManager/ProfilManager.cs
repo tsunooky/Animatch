@@ -40,16 +40,16 @@ namespace Script.Manager
                     { "durian", "canon", "bat", "bombe",
                         "jump", "tomate", "knife", "heal"};
             }
-            if (CardManager.resSelectionPlayer2.Count == 0)
+           /* if (CardManager.resSelectionPlayer2.Count == 0)
             {
                 deckCartesPlayer2 = new[]
                     { "durian", "canon", "bat", "bombe",
                         "jump", "tomate", "knife", "heal"};
-            }
+            }*/
             else
             {
                 deckCartes =  CardManager.resSelection.ToArray();
-                deckCartesPlayer2 = CardManager.resSelectionPlayer2.ToArray();
+                /*deckCartesPlayer2 = CardManager.resSelectionPlayer2.ToArray();*/
             }
             
             /**/

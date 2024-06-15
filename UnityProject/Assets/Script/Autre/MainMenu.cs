@@ -34,6 +34,11 @@ public class MainMenu : MonoBehaviour
    {
       SceneManager.LoadScene("Settings");
    }
+   
+   public void OpenCards()
+   {
+      SceneManager.LoadScene("Cards");
+   }
    public void OpenOptionInGame()
    {
       Instance.joueur.enabled = false;

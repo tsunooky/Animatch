@@ -29,7 +29,7 @@ public class PlayerManager : MonoBehaviour
     {
         enAction = false;
         animalActif = null;
-        if (Instance is GameManager2J && this != Instance.joueur)
+        if (Instance is GameManager2J gameManager && this != Instance.joueur)
             mainManager = GameObject.FindGameObjectsWithTag("MainCarte2J");
         else
             mainManager = GameObject.FindGameObjectsWithTag("MainCarte");
@@ -101,10 +101,23 @@ public class PlayerManager : MonoBehaviour
     {
         
         // Méthode pour piocher la main initiale
-        for (int i = 0; i < 8; i++)
+        if (Instance is GameManager2J gameManager && this == gameManager.joueur2)
         {
-            main.Enqueue(DataDico.carteTypes[profil.deckCartes[i]]);
+            Debug.Log("on est dans le 2eme");
+            for (int i = 0; i < 8; i++)
+            {
+                main.Enqueue(DataDico.carteTypes[profil.deckCartesPlayer2[i]]);
+            }
         }
+        else
+        {
+            for (int i = 0; i < 8; i++)
+            {
+                main.Enqueue(DataDico.carteTypes[profil.deckCartes[i]]);
+            }
+            
+        }
+       
 
         foreach (var card in mainManager)
         {

@@ -55,7 +55,7 @@ public class BatBehaviour : CarteBehaviour
         float endAngle = targetAngle - 25f;    // angle entre start et current moins 25 degrés
 
         // Durée de l'animation en secondes
-        float duration = 0.1f;
+        float duration = 0.5f;
         float elapsedTime = 0.0f;
 
         // Animation de la rotation de la batte

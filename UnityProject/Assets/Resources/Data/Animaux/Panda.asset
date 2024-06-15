@@ -18,3 +18,4 @@ MonoBehaviour:
   Vitesse: 15
   Animax: {fileID: 21300000, guid: a0660e5282c722e4089afbc304b9b443, type: 3}
   Passif: {fileID: 21300000, guid: c54b3e4910fa3c249915789a5ed87b71, type: 3}
+  Clignement: {fileID: 21300000, guid: 4c14229e05b3c064492502c59875bfc5, type: 3}

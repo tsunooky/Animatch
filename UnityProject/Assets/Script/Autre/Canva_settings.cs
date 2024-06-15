@@ -1,7 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI; // Utilisation de UnityEngine.UI pour Button et Slider
 
 public class CanvasSettings : MonoBehaviour
@@ -13,14 +15,17 @@ public class CanvasSettings : MonoBehaviour
     public Slider musicSlider;     // Slider pour ajuster le volume
     public TextMeshProUGUI percentageText;
     public Button Menu;// TMP pour afficher le pourcentage du volume
-
+    public GameObject Selection; 
     private bool areSettingsOpen = false; // État des paramètres (ouverts ou fermés)
 
     void Start()
     {
         // Initialisation de l'état des éléments UI
         settingsButton.interactable = true;
+        Menu.interactable = false;
+        Menu.gameObject.SetActive(false);
         feuillage.SetActive(false);
+        Selection.SetActive(false);
         musicText.gameObject.SetActive(false);
         musicSlider.gameObject.SetActive(false);
         percentageText.gameObject.SetActive(false);
@@ -37,7 +42,10 @@ public class CanvasSettings : MonoBehaviour
         if (areSettingsOpen)
         {
             // Ouvrir les paramètres
+            Menu.interactable = true;
+            Menu.gameObject.SetActive(true);
             feuillage.SetActive(true);
+            Selection.SetActive(true);
             musicText.gameObject.SetActive(true);
             musicSlider.gameObject.SetActive(true);
             percentageText.gameObject.SetActive(true);
@@ -45,10 +53,18 @@ public class CanvasSettings : MonoBehaviour
         else
         {
             // Fermer les paramètres
+            Menu.interactable = false;
+            Menu.gameObject.SetActive(false);
             feuillage.SetActive(false);
+            Selection.SetActive(false);
             musicText.gameObject.SetActive(false);
             musicSlider.gameObject.SetActive(false);
             percentageText.gameObject.SetActive(false);
         }
+    }
+    
+    public void GoToMenu()
+    {
+        SceneManager.LoadScene("Menu");
     }
 }

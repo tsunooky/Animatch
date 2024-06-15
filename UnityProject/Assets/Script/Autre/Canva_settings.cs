@@ -11,7 +11,8 @@ public class CanvasSettings : MonoBehaviour
     public GameObject feuillage;   // Le fond des paramètres
     public TextMeshProUGUI musicText; // TMP pour afficher "Music"
     public Slider musicSlider;     // Slider pour ajuster le volume
-    public TextMeshProUGUI percentageText; // TMP pour afficher le pourcentage du volume
+    public TextMeshProUGUI percentageText;
+    public Button Menu;// TMP pour afficher le pourcentage du volume
 
     private bool areSettingsOpen = false; // État des paramètres (ouverts ou fermés)
 

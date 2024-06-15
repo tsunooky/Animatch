@@ -32,4 +32,26 @@ public class DogBehaviour : AnimalBehaviour, Tireur
         bulletBehaviour.Set((startPosition, currentMousePos), potentielleprojDataAnimax);
     }
     
+    void OnDestroy()
+    {
+        Destroy(healthBarInstance);
+        Destroy(healthBar);
+        Destroy(currentInstance);
+        for (int i = 0; i < player.animaux_vivant.Count; i++)
+        {
+            AnimalBehaviour animal = player.animaux_vivant.Dequeue();
+            if (animal != this)
+                player.animaux_vivant.Enqueue(animal);
+          
+        }
+        
+        if (player.animalActif == this)
+        {
+            GameManager.Instance.playerActif.enAction = false;
+            GameManager.Instance.tourActif = false;
+            Destroy(this.currentInstance);
+        }
+        //LE DU PASSIF ICI
+    }
+    
 }

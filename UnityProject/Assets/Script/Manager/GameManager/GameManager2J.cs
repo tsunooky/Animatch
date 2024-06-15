@@ -28,6 +28,7 @@ namespace Script.Manager
                 Debug.LogError("GameManager n'est plus un singleton car il viens d'être redéfinis une deuxième fois !");
                 return;
             }
+            settings.SetActive(false);
             animax.SetActive(false);
             passif.SetActive(false);
             drop_left.gameObject.SetActive(false);
@@ -71,6 +72,7 @@ namespace Script.Manager
                 if (joueur.deckAnimal.Count == 0 && joueur2.deckAnimal.Count == 0)
                 {
                     spawn = false;
+                    settings.SetActive(true);
                 }
                 else
                 {

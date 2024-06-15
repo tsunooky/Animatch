@@ -26,6 +26,7 @@ namespace Script.Manager
 
             Settings.interactable = false;
             Settings.enabled = false;
+            settings.SetActive(false);
             animax.SetActive(false);
             passif.SetActive(false);
             Instance = this;
@@ -53,6 +54,7 @@ namespace Script.Manager
             {
                 if (joueur.deckAnimal.Count == 0 && bot.deckAnimal.Count == 0)
                 {
+                    settings.SetActive(true);
                     Settings.interactable = true;
                     Settings.enabled = true;
                     spawn = false;

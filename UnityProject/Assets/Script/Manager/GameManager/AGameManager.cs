@@ -55,7 +55,7 @@ namespace Script.Manager
             var animalTypes = DataDico.animalTypes;
             if (animalTypes.ContainsKey(animal))
             {
-                // Création d'un GameObject
+                
                 GameObject newAnimal = new GameObject(animal + x);
                 Type typeAnimal = animalTypes[animal];
                 AnimalBehaviour animalBehaviour = (AnimalBehaviour)(newAnimal.AddComponent(typeAnimal));

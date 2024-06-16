@@ -3,11 +3,11 @@ using UnityEngine.SceneManagement;
 
 public class GameMusicController : MonoBehaviour
 {
-    public static GameMusicController instance; // Instance statique pour le singleton
-    public AudioSource audioSource2; // AudioSource pour jouer les musiques
-    public AudioClip[] gameMusicClips; // Tableau des musiques pour la scène de jeu
+    public static GameMusicController instance; 
+    public AudioSource audioSource2;
+    public AudioClip[] gameMusicClips;
 
-    private int lastClipIndex = -1; // Pour éviter de jouer la même musique deux fois de suite (optionnel)
+    private int lastClipIndex = -1; 
 
     void Awake()
     { 
@@ -19,7 +19,6 @@ public class GameMusicController : MonoBehaviour
         }
         else
         {
-            // Si une autre instance existe déjà, détruire celle-ci
             Destroy(gameObject);
         }
     }
@@ -41,7 +40,7 @@ public class GameMusicController : MonoBehaviour
         lastClipIndex = randomIndex;
 
         audioSource2.clip = gameMusicClips[randomIndex];
-        Debug.Log("Playing random music: " + audioSource2.clip.name); // Pour le débogage
+        Debug.Log("Playing random music: " + audioSource2.clip.name); 
         audioSource2.Play();
     }
 }

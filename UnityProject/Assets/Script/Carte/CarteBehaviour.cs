@@ -72,7 +72,7 @@ public abstract class CarteBehaviour : MonoBehaviour, Tireur
     }
     private static void CreateSharedCanvas()
     {
-        // Create and set up a Canvas for UI elements
+       
         GameObject canvasObj = new GameObject("CardCanvas");
         cardCanvas = canvasObj.AddComponent<Canvas>();
         cardCanvas.renderMode = RenderMode.ScreenSpaceOverlay;
@@ -81,12 +81,12 @@ public abstract class CarteBehaviour : MonoBehaviour, Tireur
         scaler2.referenceResolution = new Vector2(1920, 1080);
         canvasObj.AddComponent<GraphicRaycaster>();
 
-        // Create an Image UI element for the card image
+        
         GameObject imageObj = new GameObject("CardImage");
         imageObj.transform.SetParent(canvasObj.transform);
         cardImage = imageObj.AddComponent<Image>();
         RectTransform imageRect = imageObj.GetComponent<RectTransform>();
-        imageRect.sizeDelta = new Vector2(90, 150); // Adjust size to fit your card
+        imageRect.sizeDelta = new Vector2(90, 150); 
         imageRect.anchoredPosition = new Vector2(135, -463);
         cardImage.color = Color.gray;
        
@@ -99,7 +99,7 @@ public abstract class CarteBehaviour : MonoBehaviour, Tireur
         if (newSprite != null)
         {
             cardImage.sprite = newSprite;
-            cardImage.rectTransform.sizeDelta = new Vector2(90,150); // Adjust size to match image
+            cardImage.rectTransform.sizeDelta = new Vector2(90,150);
         }
         else
         {
@@ -254,12 +254,12 @@ public abstract class CarteBehaviour : MonoBehaviour, Tireur
                 var min = gr.transform.localPosition.x;
                 if (min > 8f && min < 21f)
                 {
-                    // Déplacement relatif de la carte actuellement en jeu
+                   
                     var vec = gr.transform.localPosition;
                     vec.x += (transform.localPosition.x - vec.x);
                     gr.transform.localPosition = vec;
 
-                    // Déplacement relatif du transform
+                   
                     var vector3 = transform.localPosition;
                     vector3.x = 28f ; 
                     transform.localPosition = vector3;

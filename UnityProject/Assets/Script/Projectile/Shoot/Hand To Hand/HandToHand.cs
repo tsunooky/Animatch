@@ -35,7 +35,7 @@ public class HandToHand : MonoBehaviour
         destructibleSprite.Shape = sprite;
         destructibleSprite.Rebuild();
         destructibleSprite.RebuildAlphaTex();
-        destructibleSprite.Indestructible = true; // L'animal n'est pas destructible
+        destructibleSprite.Indestructible = true; 
         destructibleSprite.CropSprite = false;
         affich.enabled = false;
     }
@@ -73,10 +73,10 @@ public class HandToHand : MonoBehaviour
     {
         if (!bot)
         {
-            // Récupérer les coordonnées de la souris en pixels
+            
             Vector2 mousePositionPixels = Mouse.current.position.ReadValue();
 
-            // Convertir les coordonnées de la souris de pixels à des coordonnées dans l'espace du monde
+            
             Vector2 mousePositionWorld = Camera.main.ScreenToWorldPoint(mousePositionPixels);
             direction = (mousePositionWorld - (Vector2)_affichage.transform.position).normalized;
             _affichage.transform.right = direction;
@@ -86,7 +86,7 @@ public class HandToHand : MonoBehaviour
 
     private void Shoot()
     {
-        // Récupérer les coordonnées de la souris en pixels
+        
         Vector2 mousePositionPixels = Mouse.current.position.ReadValue();
         TireurBehaviour.SpellAfterShoot(transform.position, mousePositionPixels);
         SetAim(false, false);

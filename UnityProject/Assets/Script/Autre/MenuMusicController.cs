@@ -4,8 +4,8 @@ using UnityEngine.SceneManagement;
 public class MenuMusicController : MonoBehaviour
 {
     public AudioSource audioSource;
-    public AudioSource audioSource2; // AudioSource pour jouer les musiques
-    public AudioClip[] gameMusicClips; // Tableau des musiques pour la scène de jeu
+    public AudioSource audioSource2; 
+    public AudioClip[] gameMusicClips; 
     public AudioClip MenuMusicClip;
     private int lastClipIndex = -1;
 
@@ -65,7 +65,7 @@ public class MenuMusicController : MonoBehaviour
         lastClipIndex = randomIndex;
 
         audioSource.clip = gameMusicClips[randomIndex];
-        Debug.Log("Playing random music: " + audioSource.clip.name); // Pour le débogage
+        Debug.Log("Playing random music: " + audioSource.clip.name); 
         audioSource.Play();
     }
 }

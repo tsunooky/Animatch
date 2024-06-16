@@ -40,7 +40,7 @@ namespace Script.Manager
             bot.IsBot = true;
             bot.CreateProfil();
             bot.IsBot = false;
-            // Evité bug au lancement
+            // Eviter bug au lancement
             playerActif = joueur;
             tour = 1;
             foreach (var cartes in joueur.mainManager)
@@ -231,7 +231,7 @@ namespace Script.Manager
                 Vector2 mousePosition = Vector2.one;
                 while (!posval)
                 {
-                    // Pour le joueur, attendre un clic de souris
+                    
                     while (!Input.GetMouseButtonDown(0))
                     {
                         yield return null;
@@ -250,7 +250,7 @@ namespace Script.Manager
                     yield return new WaitForSeconds(0.1f);
                 }
 
-                // Instanciez l'animal à la position du clic en x et y = hauteur
+               
                 AnimalBehaviour newAnimal = creerAnimal(mousePosition.x, mousePosition.y, joueur.deckAnimal.Dequeue(),player);
                 joueur.animaux_vivant.Enqueue(newAnimal);
                 newAnimal.player = joueur;
@@ -258,8 +258,8 @@ namespace Script.Manager
             }
             else
             {
-                // Pour le bot, attendre avant de placer l'animal
-                yield return new WaitForSeconds(1.5f); // Attendre 2 secondes
+               //le bot att avant de spawn
+                yield return new WaitForSeconds(1.5f); 
 
                 float randomX = UnityEngine.Random.Range(-6.5f, 7f);
                 AnimalBehaviour newAnimal = creerAnimal(randomX, 4.7f, bot.deckAnimal.Dequeue(),player);

@@ -85,7 +85,7 @@ public class AimBehviour : MonoBehaviour
         {
             float t = i * trajectoryTimeStep;
             Vector3 pos = transform.position + (Vector3)velocity * t +
-                          (Vector3)(Physics2D.gravity * (1.2f * lauchForce * mass * t * t));// le 1.2f a changer pour la forme de la trajectoire
+                          (Vector3)(Physics2D.gravity * (1.2f * lauchForce * mass * t * t));
             positions[i] = pos;
             pointilles[i] = Instantiate(pointilleVisee, positions[i], Quaternion.identity);
             pointilles[i].transform.localScale = new Vector3(scale, scale, 1);
@@ -106,10 +106,10 @@ public class AimBehviour : MonoBehaviour
 
     private void Aim()
     {
-        // Récupérer les coordonnées de la souris en pixels
+        
         Vector2 mousePositionPixels = Mouse.current.position.ReadValue();
 
-        // Convertir les coordonnées de la souris de pixels à des coordonnées dans l'espace du monde
+        
         Vector2 mousePositionWorld = Camera.main.ScreenToWorldPoint(mousePositionPixels);
         direction = (mousePositionWorld - (Vector2)transform.position).normalized;
     }

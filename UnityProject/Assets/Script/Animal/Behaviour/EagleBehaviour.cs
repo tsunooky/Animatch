@@ -45,7 +45,7 @@ public class EagleBehaviour : AnimalBehaviour, Tireur
     
     void OnCollisionEnter2D(Collision2D collison2D)
     {
-        // Vérifiez si la collision concerne un animal
+        
         if (collison2D.gameObject.CompareTag("Explosion") && !ListDegat.Contains((collison2D,collison2D.gameObject.transform.position)))
         {
             D2dExplosion explosion = collison2D.gameObject.GetComponent<D2dExplosion>();

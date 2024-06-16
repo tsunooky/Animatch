@@ -83,7 +83,7 @@ public class BoutonAnimax : MonoBehaviour
     private IEnumerator OnMouseEnter2()
     {
         yield return new WaitForSeconds(0.5f);
-        AffichText.SetActive(true); // Affiche le texte lorsque la souris entre    
+        AffichText.SetActive(true); 
     }
     private void OnMouseExit()
     {
@@ -92,6 +92,6 @@ public class BoutonAnimax : MonoBehaviour
     private IEnumerator OnMouseExit2()
     {
         yield return new WaitForSeconds(0.5f);
-        AffichText.SetActive(false); // Affiche le texte lorsque la souris entre    
+        AffichText.SetActive(false);   
     }
 }

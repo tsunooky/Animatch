@@ -4,15 +4,15 @@ using TMPro;
 
 public class MusicVolumeManager : MonoBehaviour
 {
-    public Slider musicSlider; // Référence au Slider
-    public TMP_Text volumePercentageText; // Référence au texte qui affiche le pourcentage
+    public Slider musicSlider; 
+    public TMP_Text volumePercentageText; 
 
     private AudioSource menuMusicSource;
     private AudioSource gameMenuSource;
 
     private void Start()
     {
-        // Trouver l'objet MenuMusic qui n'a pas été détruit lors du changement de scène
+        
         GameObject menuMusic = GameObject.Find("MenuMusic");
         if (menuMusic != null)
         {
@@ -41,7 +41,7 @@ public class MusicVolumeManager : MonoBehaviour
     {
         if (volumePercentageText != null)
         {
-            int percentage = Mathf.RoundToInt(volume * 100); // Convertit le volume en pourcentage
+            int percentage = Mathf.RoundToInt(volume * 100); 
             volumePercentageText.text = percentage.ToString() + "%";
         }
     }

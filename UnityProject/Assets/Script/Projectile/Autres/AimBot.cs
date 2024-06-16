@@ -8,7 +8,6 @@ public class AimBot : MonoBehaviour
 
     void Start()
     {
-        // Assurez-vous que le projectile n'entre pas en collision avec le bot au départ
         Collider2D botCollider = transform.root.GetComponent<Collider2D>();
         Collider2D projectileCollider = GetComponent<Collider2D>();
 
@@ -41,7 +40,7 @@ public class AimBot : MonoBehaviour
         Debug.Log("tirer dans une direction droite");
         var pro = Resources.Load<ProjectileData>("Data/Projectile/Tomate");
 
-        // Décalage initial pour éviter les collisions immédiates
+        
         Vector2 initialOffset = new Vector2(0.5f, 0.5f);
         Vector2 initialPosition = (Vector2)transform.position + initialOffset;
 
@@ -51,7 +50,7 @@ public class AimBot : MonoBehaviour
         Vector2 botPosition = transform.position;
         Vector2 relativePosition = cible - botPosition;
 
-        // Vérifier si la cible est en dessous
+        
         if (relativePosition.y < -1.5f)
         {
             Debug.Log("Il tire pas dans les pieds");
@@ -61,11 +60,11 @@ public class AimBot : MonoBehaviour
         Vector2 direction = new Vector2(relativePosition.x, relativePosition.y);
         Vector2 targetPosition = botPosition + direction;
 
-        // Vérifier si la cible est loin et ajuster la vélocité
+        
         float distance = relativePosition.magnitude;
-        if (distance > 3.0f) // Seuil de distance pour augmenter la vélocité
+        if (distance > 3.0f)
         {
-            float velocityMultiplier = distance / 3f; // Ajuster ce facteur pour contrôler la vélocité
+            float velocityMultiplier = distance / 3f; 
             bulletBehaviour.SetDirection(targetPosition, pro, velocityMultiplier);
         }
         else
@@ -79,7 +78,7 @@ public class AimBot : MonoBehaviour
         Debug.Log("tirer dans une direction gauche");
         var pro = Resources.Load<ProjectileData>("Data/Projectile/Tomate");
 
-        // Décalage initial pour éviter les collisions immédiates
+        
         Vector2 initialOffset = new Vector2(-0.5f, 0.5f);
         Vector2 initialPosition = (Vector2)transform.position + initialOffset;
 
@@ -89,7 +88,7 @@ public class AimBot : MonoBehaviour
         Vector2 botPosition = transform.position;
         Vector2 relativePosition = cible - botPosition;
 
-        // Vérifier si la cible est en dessous
+        
         if (relativePosition.y < -1.5f)
         {
             Debug.Log("Il tire pas dans les pieds");
@@ -99,11 +98,11 @@ public class AimBot : MonoBehaviour
         Vector2 direction = new Vector2(relativePosition.x, relativePosition.y);
         Vector2 targetPosition = botPosition + direction;
 
-        // Vérifier si la cible est loin et ajuster la vélocité
+       
         float distance = relativePosition.magnitude;
-        if (distance > 3f) // Seuil de distance pour augmenter la vélocité
+        if (distance > 3f) 
         {
-            float velocityMultiplier = distance / 3f; // Ajuster ce facteur pour contrôler la vélocité
+            float velocityMultiplier = distance / 3f; 
             bulletBehaviour.SetDirection(targetPosition, pro, velocityMultiplier);
         }
         else

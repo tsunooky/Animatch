@@ -8,19 +8,19 @@ using UnityEngine.UI; // Utilisation de UnityEngine.UI pour Button et Slider
 
 public class CanvasSettings : MonoBehaviour
 {
-    // Assure-toi que ces variables sont assignées dans l'Inspecteur
-    public Button settingsButton;  // Bouton pour ouvrir/fermer les paramètres
-    public GameObject feuillage;   // Le fond des paramètres
-    public TextMeshProUGUI musicText; // TMP pour afficher "Music"
-    public Slider musicSlider;     // Slider pour ajuster le volume
+    
+    public Button settingsButton;  
+    public GameObject feuillage;   
+    public TextMeshProUGUI musicText; 
+    public Slider musicSlider;    
     public TextMeshProUGUI percentageText;
-    public Button Menu;// TMP pour afficher le pourcentage du volume
+    public Button Menu;
     public GameObject Selection; 
-    private bool areSettingsOpen = false; // État des paramètres (ouverts ou fermés)
+    private bool areSettingsOpen = false; 
 
     void Start()
     {
-        // Initialisation de l'état des éléments UI
+        
         settingsButton.interactable = true;
         Menu.interactable = false;
         Menu.gameObject.SetActive(false);
@@ -30,15 +30,14 @@ public class CanvasSettings : MonoBehaviour
         musicSlider.gameObject.SetActive(false);
         percentageText.gameObject.SetActive(false);
 
-        // Ajout du listener pour le bouton settings
+       
         settingsButton.onClick.AddListener(ToggleSettings);
     }
 
     // Méthode pour ouvrir ou fermer les paramètres
     public void ToggleSettings()
     {
-        areSettingsOpen = !areSettingsOpen; // Bascule l'état des paramètres
-
+        areSettingsOpen = !areSettingsOpen; 
         if (areSettingsOpen)
         {
             // Ouvrir les paramètres

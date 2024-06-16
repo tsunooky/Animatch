@@ -96,8 +96,8 @@ public abstract class AnimalBehaviour : MonoBehaviour
         destructibleSprite.Shape = animalData.sprite;
         destructibleSprite.Rebuild();
         destructibleSprite.RebuildAlphaTex();
-        destructibleSprite.Indestructible = true; // L'animal n'est pas destructible
-        destructibleSprite.Optimize(); // Optimiser le rendu pour les performances (3 fois)
+        destructibleSprite.Indestructible = true; 
+        destructibleSprite.Optimize();
         destructibleSprite.Optimize();
         destructibleSprite.Optimize();
         destructibleSprite.RebuildAlphaTex();
@@ -138,10 +138,10 @@ public abstract class AnimalBehaviour : MonoBehaviour
         healthBar.SetHealth(pv);
     }
     
-    // Méthode appelée lorsqu'un autre objet entre en collision avec l'explosion
+  
     void OnCollisionEnter2D(Collision2D collison2D)
     {
-        // Vérifiez si la collision concerne un animal
+        
         if (collison2D.gameObject.CompareTag("Explosion") && !ListDegat.Contains((collison2D,collison2D.gameObject.transform.position)))
         {
             D2dExplosion explosion = collison2D.gameObject.GetComponent<D2dExplosion>();
@@ -192,7 +192,7 @@ public abstract class AnimalBehaviour : MonoBehaviour
         if (healthBarInstance != null)
         {
             Vector3 screenPosition = Camera.main.WorldToScreenPoint(transform.position);
-            screenPosition.y += 50; // Adjust this value as needed
+            screenPosition.y += 50; 
             healthBarInstance.transform.position = screenPosition;
         }
 
@@ -213,7 +213,7 @@ public abstract class AnimalBehaviour : MonoBehaviour
     {
         while (currentInstance != null)
         {
-            // Move the object upwards over 2 seconds
+            
             for (float t = 0; t <= 0.1f; t += Time.deltaTime / 5f)
             {
                 if(currentInstance != null)
@@ -221,7 +221,7 @@ public abstract class AnimalBehaviour : MonoBehaviour
                 yield return null;
             }
 
-            // Move the object downwards over 2 seconds
+          
             for (float t = 0; t <= 0.1f; t += Time.deltaTime / 5f)
             {
                 if (currentInstance != null)

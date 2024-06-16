@@ -133,7 +133,6 @@ public class PlayerManager : MonoBehaviour
     public void SetAura(bool aura){}
     public void MiseAjourAffichageDrops()
     {
-        //Mise a jour de l'affichage des drops
         GameManager.Instance.affichage_mana.text = $"{drops}";
     }
 }

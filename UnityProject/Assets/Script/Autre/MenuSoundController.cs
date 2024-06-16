@@ -31,14 +31,13 @@ public class MenuSoundController : MonoBehaviour
 
         if (scene.name == "Main")
         {
-            // Arrêter et détruire le MenuMusicController quand on entre dans la scène de jeu
+            
             if (audioSource != null && audioSource.isPlaying)
             {
                 audioSource.Stop();
                 
             }
 
-            // Détruire cet objet pour permettre au GameMusicController de gérer la musique
             Destroy(gameObject);
         }
         else

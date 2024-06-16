@@ -12,16 +12,16 @@ public class TouchToBump : MonoBehaviour
         bool invinsible = cible == AnimalActif;
         if (!invinsible)
         {
-            // Coordonnées de départ (animal actif)
+            
             Vector2 startPosition = AnimalActif.transform.position;
 
-            // Coordonnées de la cible
+           
             Vector2 ciblePosition = cible.transform.position;
-            // Direction de rejet (de la cible vers l'animal actif, inversée)
+            
             Vector2 bumpDirection = (ciblePosition - startPosition);
 
-            // Appliquer la force de rejet à la cible
-            float bumpForce = 150000; // Ajuster cette valeur si nécessaire
+            
+            float bumpForce = 150000; 
             cible.GetComponent<Rigidbody2D>().AddForce(bumpDirection * bumpForce);
         }
     }

@@ -65,8 +65,8 @@ public class BatBehaviour : CarteBehaviour
         Destroy(bat);
         Destroy(pivot);
 
-        FinAction();
         PiocherMain();
+        FinAction();
     }
 
 

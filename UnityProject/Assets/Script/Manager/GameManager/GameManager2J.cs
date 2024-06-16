@@ -92,10 +92,14 @@ namespace Script.Manager
                 }
                 if (!tourActif)
                 {
-                    animax.SetActive(true);
-                    passif.SetActive(true);
                     tourActif = true;
                     Turn.text = $"Turn {tour}.";
+                    if (Instance.playerActif.animalActif.currentInstance != null)
+                    {
+                        Destroy(Instance.playerActif.animalActif.currentInstance);
+                    }
+                    animax.SetActive(true);
+                    passif.SetActive(true);
                     if (tour % 2 != 0)
                     {
                         Debug.Log("It's your turn");

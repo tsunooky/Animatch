@@ -102,6 +102,10 @@ namespace Script.Manager
                 {
                     tourActif = true;
                     Turn.text = $"Turn n°{tour}.";
+                    if (Instance.playerActif.animalActif.currentInstance != null)
+                    {
+                        Destroy(Instance.playerActif.animalActif.currentInstance);
+                    }
                     if (tour % 2 != 0)
                     {
                         if (joueur.enabled)

@@ -18,8 +18,12 @@ public class DespawnManager : MonoBehaviour
             }
             else
             {
-                gameObject.GetComponent<AnimalBehaviour>().Degat(10000);
-                Destroy(gameObject.GetComponent<AnimalBehaviour>().currentInstance);
+                var animalBehaviour = gameObject.GetComponent<AnimalBehaviour>();
+                if (animalBehaviour.currentInstance != null)
+                {
+                    Destroy(animalBehaviour.currentInstance);
+                }
+                animalBehaviour.Degat(10000);
             }
         }
     }
@@ -51,8 +55,8 @@ public class DespawnManager : MonoBehaviour
 
         transform.localScale = targetScale;
         transform.rotation = Quaternion.Euler(new Vector3(0, 0, targetRotation));
-
-        Destroy(gameObject);
+        
         Destroy(gameObject.GetComponent<AnimalBehaviour>().currentInstance);
+        Destroy(gameObject);
     }
 }

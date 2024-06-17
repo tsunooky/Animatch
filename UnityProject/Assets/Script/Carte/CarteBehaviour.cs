@@ -282,7 +282,7 @@ public abstract class CarteBehaviour : MonoBehaviour, Tireur
                 var x = next_card.transform.localPosition.x;
                 if (x > 8f && x < 21f)
                 {
-                    LoadCardImage(next_card.GetComponents<CarteBehaviour>()[0].carteData.Sprite.name);
+                    LoadCardImage(next_card.GetComponent<CarteBehaviour>().carteData.Sprite.name);
                     break;
                 }
             }

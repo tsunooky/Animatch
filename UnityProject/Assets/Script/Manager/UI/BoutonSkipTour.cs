@@ -14,7 +14,15 @@ public class BoutonSkipTour : MonoBehaviour
         {
             animalActif.Soin(10);
         }
-        
+
+        foreach (var cartes in Instance.playerActif.mainManager)
+        {
+            var carte = cartes.GetComponent<CarteBehaviour>();
+            if (carte.carte_actuel)
+            {
+                carte.DeselectCard();
+            }
+        }
         Instance.FinDuTour();
     }
 }

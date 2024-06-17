@@ -109,7 +109,7 @@ namespace Script.Manager
                             var x = next_card.transform.localPosition.x;
                             if (x > 8f && x < 21f)
                             {
-                                CarteBehaviour.LoadCardImage(next_card.GetComponents<CarteBehaviour>()[0].carteData.Sprite.name);
+                                CarteBehaviour.LoadCardImage(next_card.GetComponent<CarteBehaviour>().carteData.Sprite.name);
                                 break;
                             }
                         }
@@ -140,7 +140,7 @@ namespace Script.Manager
                             var x = next_card.transform.localPosition.x;
                             if (x > 8f && x < 21f)
                             {
-                                CarteBehaviour.LoadCardImage(next_card.GetComponents<CarteBehaviour>()[0].carteData.Sprite.name);
+                                CarteBehaviour.LoadCardImage(next_card.GetComponent<CarteBehaviour>().carteData.Sprite.name);
                                 break;
                             }
                         }

@@ -18,7 +18,6 @@ public class AimBehviour : MonoBehaviour
     private float lauchForce;
     [SerializeField] private float trajectoryTimeStep = 0.0125f;
     [SerializeField] private int trajectoryStepCount = 7;
-    private float delayBeforeShootBOT = 0.1f;
     private Tireur TireurBehaviour;
 
     public void Initialize(ProjectileData ProjectileData, Tireur tireurBehaviour)

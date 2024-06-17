@@ -236,7 +236,7 @@ public abstract class AnimalBehaviour : MonoBehaviour
         StartCoroutine(gameObject.GetComponent<DespawnManager>().Death());
     }
     
-    private IEnumerator Clignement()
+    protected IEnumerator Clignement()
     {
         SpriteRenderer spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
         while (true)

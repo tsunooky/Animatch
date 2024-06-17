@@ -12,8 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 550f39e17185d66468f4c092c1f53a29, type: 3}
   m_Name: Knife
   m_EditorClassIdentifier: 
-  Expulsion: 1
-  Force: 10
+  Force: 20
   Degat: 12
   Projectile: {fileID: 4483138828243176656, guid: 00a9a9de5cd2c8a45b998f1078c5e8a4, type: 3}
   Explosion: {fileID: 3444104134686280408, guid: 33ecd53b4e5f9904eadb66be99a7bd04, type: 3}

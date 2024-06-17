@@ -12,8 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 550f39e17185d66468f4c092c1f53a29, type: 3}
   m_Name: Canon
   m_EditorClassIdentifier: 
-  Expulsion: 0
-  Force: 16
+  Force: 25
   Degat: 50
   Projectile: {fileID: 2154227914766436729, guid: 87f01f149d1059c4ebe8d5b462566a26, type: 3}
   Explosion: {fileID: 100000, guid: 318bc4f2f48896d44ac7a165c7400043, type: 3}

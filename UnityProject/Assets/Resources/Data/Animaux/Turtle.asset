@@ -12,10 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a76443a93176304999bd127bc6c3676, type: 3}
   m_Name: Turtle
   m_EditorClassIdentifier: 
-  nom: turtle
   sprite: {fileID: 21300000, guid: 827e3e7ae15c401428a46b28abbf3d3a, type: 3}
-  Pv: 85
-  Vitesse: 5
+  Pv: 90
   Animax: {fileID: 21300000, guid: 53cd0719a8b0a1240a0b8e36c12cab43, type: 3}
   Passif: {fileID: 21300000, guid: d84d692cc9d5ee34ebda0ac9d0131e96, type: 3}
   Clignement: {fileID: 21300000, guid: e04142c38125ce44797cc39e53ffac8a, type: 3}

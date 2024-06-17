@@ -12,10 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a76443a93176304999bd127bc6c3676, type: 3}
   m_Name: Rat
   m_EditorClassIdentifier: 
-  nom: Rat
   sprite: {fileID: 21300000, guid: c7ee47e39ff64484ba97cad49bb85174, type: 3}
-  Pv: 60
-  Vitesse: 35
+  Pv: 75
   Animax: {fileID: 21300000, guid: 49774481bfdacbc4fb290341f64b1de4, type: 3}
   Passif: {fileID: 21300000, guid: 1c7dbe8d15a8e9945a38ac8207ea1a41, type: 3}
   Clignement: {fileID: 21300000, guid: 8c7c1c39bd5a1f9468e563b794119b15, type: 3}

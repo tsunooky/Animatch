@@ -9,7 +9,7 @@ public class JumpBehaviour : CarteBehaviour
     protected override void Awake()
     {
         // TEMPORAIRE OU DEFINITIF EN FONCTION (Bump)
-        Bump = 10;
+        Bump = 20;
         
         carteData = Resources.Load<CarteData>("Data/Carte/Jump");
     }
@@ -26,7 +26,7 @@ public class JumpBehaviour : CarteBehaviour
 
     public override void SpellAfterShoot(Vector2 startPosition,Vector2 currentMousePos)
     {
-        GameManager.Instance.playerActif.animalActif.gameObject.GetComponent<Rigidbody2D>().velocity = (startPosition - currentMousePos) * (Bump * 0.075f);
+        GameManager.Instance.playerActif.animalActif.gameObject.GetComponent<Rigidbody2D>().velocity = (startPosition - currentMousePos) * (Bump * 0.15f);
         CarteBehaviour.alreadylifted = false;
         FinAction();
     }

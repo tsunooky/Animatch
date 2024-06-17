@@ -54,7 +54,7 @@ public class AimBot : MonoBehaviour
         if (relativePosition.y < -1.5f)
         {
             Debug.Log("Il tire pas dans les pieds");
-            relativePosition = new Vector2(5, 0.1f);
+            relativePosition = new Vector2(0.2f, 3f);
         }
 
         Vector2 direction = new Vector2(relativePosition.x, relativePosition.y);
@@ -64,7 +64,7 @@ public class AimBot : MonoBehaviour
         float distance = relativePosition.magnitude;
         if (distance > 3.0f)
         {
-            float velocityMultiplier = distance / 3f; 
+            float velocityMultiplier = distance / 5f; 
             bulletBehaviour.SetDirection(targetPosition, pro, velocityMultiplier);
         }
         else
@@ -92,7 +92,7 @@ public class AimBot : MonoBehaviour
         if (relativePosition.y < -1.5f)
         {
             Debug.Log("Il tire pas dans les pieds");
-            relativePosition = new Vector2(-5, 0.1f);
+            relativePosition = new Vector2(-0.2f, 3f);
         }
 
         Vector2 direction = new Vector2(relativePosition.x, relativePosition.y);
@@ -102,7 +102,7 @@ public class AimBot : MonoBehaviour
         float distance = relativePosition.magnitude;
         if (distance > 3f) 
         {
-            float velocityMultiplier = distance / 3f; 
+            float velocityMultiplier = distance / 5f; 
             bulletBehaviour.SetDirection(targetPosition, pro, velocityMultiplier);
         }
         else

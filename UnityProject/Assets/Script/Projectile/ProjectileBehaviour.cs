@@ -50,7 +50,7 @@ public abstract class ProjectileBehaviour : MonoBehaviour
         Vector2 direction = targetPosition - (Vector2)transform.position;
         direction.Normalize();
         
-        rb.velocity = direction * (proj.Force * 0.75f * velocityMultiplier);
+        rb.velocity = direction * (proj.Force * 0.5f * velocityMultiplier);
         
         Debug.Log("Projectile direction: " + direction + " with velocity: " + rb.velocity + " (multiplier: " + velocityMultiplier + ")");
     }

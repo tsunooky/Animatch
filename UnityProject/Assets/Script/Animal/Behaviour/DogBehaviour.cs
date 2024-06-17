@@ -12,6 +12,7 @@ public class DogBehaviour : AnimalBehaviour, Tireur
         potentielleprojDataAnimax = Resources.Load<ProjectileData>("Data/Projectile/Os");
         DefAnimax += "Throws a bone and teleports where it lands.";
         DefPassive += "Uppon death, bites in front of him.";
+        CoupBat(gameObject.transform.position);
     }
 
     public override void Animax()
@@ -32,26 +33,47 @@ public class DogBehaviour : AnimalBehaviour, Tireur
         bulletBehaviour.Set((startPosition, currentMousePos), potentielleprojDataAnimax);
     }
     
-    void OnDestroy()
+    private IEnumerator CoupBat(Vector2 startPosition)
     {
-        Destroy(healthBarInstance);
-        Destroy(healthBar);
-        Destroy(currentInstance);
-        for (int i = 0; i < player.animaux_vivant.Count; i++)
-        {
-            AnimalBehaviour animal = player.animaux_vivant.Dequeue();
-            if (animal != this)
-                player.animaux_vivant.Enqueue(animal);
-          
-        }
         
-        if (player.animalActif == this)
+        GameObject pivot = new GameObject("BatPivot");
+        pivot.transform.position = startPosition;
+
+        
+        GameObject bat = Instantiate(potentielleprojDataAnimax.Projectile, pivot.transform.position, Quaternion.identity);
+        bat.AddComponent<TouchToBump>();
+
+        
+        SpriteRenderer batSpriteRenderer = bat.GetComponent<SpriteRenderer>();
+        Vector2 batSize = batSpriteRenderer.bounds.size;
+
+        
+        bat.transform.SetParent(pivot.transform);
+        bat.transform.localPosition = new Vector3(0, batSize.y / 2, 0); 
+
+        
+        float duration = 0.2f;
+        float elapsedTime = 0.0f;
+
+        
+        while (elapsedTime < duration)
         {
-            GameManager.Instance.playerActif.enAction = false;
-            GameManager.Instance.tourActif = false;
-            Destroy(this.currentInstance);
+            elapsedTime += Time.deltaTime;
+            float t = elapsedTime / duration;
+
+            
+            float currentAngle = Mathf.Lerp(0, 360, t);
+
+           
+            pivot.transform.rotation = Quaternion.Euler(0, 0, currentAngle);
+
+            yield return null;
         }
-        //LE DU PASSIF ICI
+
+        
+        Destroy(bat);
+        Destroy(pivot);
+        
     }
     
 }

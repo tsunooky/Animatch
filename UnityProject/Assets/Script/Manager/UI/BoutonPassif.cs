@@ -33,7 +33,7 @@ public class BoutonPassif : MonoBehaviour
 
     private IEnumerator OnMouseEnter2()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.1f);
         AffichText.SetActive(true);  
     }
     private void OnMouseExit()
@@ -42,7 +42,7 @@ public class BoutonPassif : MonoBehaviour
     }
     private IEnumerator OnMouseExit2()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.1f);
         AffichText.SetActive(false);  
     }
 }

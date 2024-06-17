@@ -9,16 +9,15 @@ public class LionBehaviour : AnimalBehaviour
     public void Awake()
     {
         LoadData("Lion");
-        DefAnimax += "Heal All his Team up to 20hp max each.";
-        DefPassive += "When receiving a heal, the heal is up to 150%.";
+        DefAnimax += "Heals all his team up to 15hp max each.";
+        DefPassive += "When receiving a heal, the heal is 150%.";
     }
     
     public override void Animax()
     {
         foreach (AnimalBehaviour animal in player.animaux_vivant)
         {
-            //soigne de 20 toutes son équipe
-            animal.Soin(20);
+            animal.Soin(15);
             animal.healthBar.SetHealth(animal.pv);
         }
         player.enAction = false;

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Dog
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 098e81769365d234487e793cee078e19, type: 3}
-  Pv: 95
+  Pv: 90
   Animax: {fileID: 21300000, guid: 3b73ba5a9f2728c42b06a649b4df45a7, type: 3}
   Passif: {fileID: 21300000, guid: 8779e6818a3b8484ebf71b50bcdf7b6b, type: 3}
   Clignement: {fileID: 21300000, guid: 25a88fdcfd62e4c45ad16f81160fe9a2, type: 3}

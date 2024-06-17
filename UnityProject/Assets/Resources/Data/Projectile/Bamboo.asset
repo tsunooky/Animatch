@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 550f39e17185d66468f4c092c1f53a29, type: 3}
   m_Name: Bamboo
   m_EditorClassIdentifier: 
-  Force: 14
+  Force: 22
   Degat: 0
   Projectile: {fileID: 4483138828243176656, guid: 11ddcb0a4ba01d547a34b68b62f6c860, type: 3}
   Explosion: {fileID: 0}

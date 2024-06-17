@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 550f39e17185d66468f4c092c1f53a29, type: 3}
   m_Name: Os
   m_EditorClassIdentifier: 
-  Force: 20
+  Force: 22
   Degat: 10
   Projectile: {fileID: 7126155697539418869, guid: cca9c348f71f67444ae089d0ce5344b1, type: 3}
   Explosion: {fileID: 0}

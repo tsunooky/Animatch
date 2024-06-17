@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 550f39e17185d66468f4c092c1f53a29, type: 3}
   m_Name: Tomate
   m_EditorClassIdentifier: 
-  Force: 20
+  Force: 22
   Degat: 25
   Projectile: {fileID: 4483138828243176656, guid: 980e0c82de73e074580368a8205cfd50, type: 3}
   Explosion: {fileID: 100000, guid: d577b80a09a9d4e43b7f3ab84d2db974, type: 3}

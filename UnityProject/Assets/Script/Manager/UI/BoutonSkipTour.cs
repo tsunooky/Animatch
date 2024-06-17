@@ -9,7 +9,7 @@ public class BoutonSkipTour : MonoBehaviour
     private void OnMouseDown()
     {
         
-        AnimalBehaviour animalActif = GameManager.Instance.playerActif.animalActif;
+        AnimalBehaviour animalActif = Instance.playerActif.animalActif;
         if (animalActif is PandaBehaviour)
         {
             animalActif.Soin(10);

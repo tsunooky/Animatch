@@ -5,142 +5,147 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-
-    <title>Sources</title>
+    <title>Ressources</title>
+    <link rel="icon" type="image/png" href="assets/icon.png" />
     <link rel="stylesheet" href="styles.css">
+
+    <style>
+        .disp {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+        .card {
+            flex: 1 1 calc(20% - 20px);
+            box-sizing: border-box;
+            text-align: center;
+        }
+        .card img {
+            width: 100px;
+            height: 100px;
+            transition: width 0.3s, height 0.3s;
+        }
+        .card h4 {
+            transition: font-size 0.3s;
+        }
+        .download-report-button {
+            display: block;
+            width: 200px;
+            margin: 20px auto;
+            padding: 10px;
+            text-align: center;
+            background-color: #544ff0;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .download-report-button:hover {
+            background-color: #ffa500;
+        }
+    </style>
+
 </head>
 
-<body style="background-image: url('fichiers_a_telecharger/Fond.png'); background-size: cover; background-position: center;">
+<body>
     <header>
-    <div class="container">
-        <nav>
-            <div class="logo-container">
-            <a href="index.html"><img src="fichiers_a_telecharger/logo.png" ></a>
-            </div>
-
-            
+        <div class="falling-leaves"></div>
+        <div class="container">
+            <nav>
+                <div class="logo-container">
+                    <a href="index.html"><img src="assets/logo.png" alt="Animatch Logo"></a>
+                </div>
                 <ul>
-                    
                     <li><a href="index.html">Accueil</a></li>
+                    <li><a href="gameplay.html">Tutoriel</a></li>
                     <li><a href="animaux.html">Animaux</a></li>
                     <li><a href="cards.html">Cartes</a></li>
-                    <li><a href="gameplay.html">Gameplay</a></li>
-                    <li><a href="sources.html"><b><u>Sources</u></b></a></li>
-
+                    <li><a href="membres.html">Membres</a></li>
+                    <li><a href="sources.html">Ressources</a></li>
                 </ul>
-                <a href="fichiers_a_telecharger/CDT.zip" download="CDT.zip" class="download-button">Download</a>
+                <a href="assets/animatch_installer.exe" download="Animatch.zip" class="download-button">Télécharger</a>
             </nav>
         </div>
-    
     </header>
-<section>
+    <section>
         <div class="pad">
-            <section id="textalign">
-        <h2>Voici la liste de chaque outil que les membres d'Animatch utilisent :</h2>
-        <p>(cliquez pour accéder aux sites)</p>
-    </section>
+            <br><br>
+            <p>Outils que les membres d'Animatch utilisent</p>
+            <div class="disp">
+                <div class="card">
+                    <h5>GitHub Desktop</h5>
+                    <a href="https://desktop.github.com/"><img src="assets/git.png"></a>
+                </div>
+
+                <div class="card">
+                    <h5>Unity</h5>
+                    <a href="https://unity.com/fr"><img src="assets/unity.png"></a>
+                </div>
+
+                <div class="card">
+                    <h5>Notion</h5>
+                    <a href="https://www.notion.so/fr-fr"><img src="assets/notion.png"></a>
+                </div>
+
+                <div class="card">
+                    <h5>Sublime Text</h5>
+                    <a href="https://www.sublimetext.com/index2"><img src="assets/sublime.png"></a>
+                </div>
+
+                <div class="card">
+                    <h5>Overleaf</h5>
+                    <a href="https://fr.overleaf.com/"><img src="assets/overleaf.png"></a>
+                </div>
+
+                <div class="card">
+                    <h5>Clip Studio Paint</h5>
+                    <a href="https://www.clipstudio.net/fr/"><img src="assets/clip.png"></a>
+                </div>
+
+                <div class="card">
+                    <h5>Inkscape</h5>
+                    <a href="https://inkscape.org/fr/"><img src="assets/ink.png"></a>
+                </div>
+
+                <div class="card">
+                    <h5>FL Studio</h5>
+                    <a href="https://www.image-line.com/"><img src="assets/FL.png"></a>
+                </div>
+            </div>
+
+            <a href="assets/rapport_de_projet.pdf" download="rapport_de_projet.pdf" class="download-report-button">Télécharger le rapport de projet</a>
+
             <br>
-        <div class="disp">
-            <div class="card">
-                <h4>GitHub Desktop :</h4>
-                <a href="https://desktop.github.com/"><img src="fichiers_a_telecharger/git.png"></a>
-            </div>
-
-        <div class="card">
-            <h4>Unity :</h4>
-            <a href="https://unity.com/fr"><img src="fichiers_a_telecharger/unity.png"></a>
+            <br>
+            <br>
         </div>
-        
-        <div class="card">
-        <h4>Notion :</h4>
-        <a href="https://www.notion.so/fr-fr"><img src="fichiers_a_telecharger/notion.png"></a>
-    </div>
-
-    <div class="card">
-            <h4>Sublime Text :</h4>
-            <a href="https://www.sublimetext.com/index2"><img src="fichiers_a_telecharger/sublime.png"></a>
-        </div>
-
-    
-            <div class="card">
-                <h4>Overleaf :</h4>
-                <a href="https://fr.overleaf.com/"><img src="fichiers_a_telecharger/overleaf.png"></a>
-            </div>
-
-        <div class="card">
-            <h4>Clip Studio Paint :</h4>
-            <a href="https://www.clipstudio.net/fr/"><img src="fichiers_a_telecharger/clip.png"></a>
-        </div>
-        
-        <div class="card">
-        <h4>Inkscape :</h4>
-        <a href="https://inkscape.org/fr/"><img src="fichiers_a_telecharger/ink.png"></a>
-    </div>
-
-    <div class="card">
-            <h4>FL Studio :</h4>
-            <a href="https://www.image-line.com/"><img src="fichiers_a_telecharger/FL.png"></a>
-        </div>
-
-        <div class="card">
-        <h4>Photon :</h4>
-        <a href="https://www.photonengine.com/pun"><img src="fichiers_a_telecharger/photon.png"></a>
-    </div>
-
-    <div class="card">
-            <h4>Canva :</h4>
-            <a href="https://www.canva.com/fr_fr/"><img src="fichiers_a_telecharger/canva.png"></a>
-        </div>
-
-
-</div>
-
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    </div>
     </section>
     <footer>
-        <p>&copy; 2024 AniMatch. Tous droits réservés.</p>
+        <p>&copy; 2024 Animatch. Tous droits réservés.</p>
     </footer>
-    <!-- ... Autres contenus de la page ... -->
-
-<script>
+    <script>
         $(document).ready(function () {
-        // Animation de la taille au survol de chaque carte
-        $('.card').hover(function () {
-            $(this).find('img').animate({ width: '+=20px', height: '+=20px' }, 'fast');
-            $(this).find('h4').animate({ fontSize: '+=4px' }, 'fast');
-        }, function () {
-            $(this).find('img').animate({ width: '-=20px', height: '-=20px' }, 'fast');
-            $(this).find('h4').animate({ fontSize: '-=4px' }, 'fast');
-        });
-    });
-    // Code jQuery pour animer les boutons
-    $(document).ready(function () {
-        // Animation au survol des liens dans la barre de navigation
-        $('nav a').hover(function () {
-            $(this).animate({ fontSize: '1.2em' }, 'fast');
-        }, function () {
-            $(this).animate({ fontSize: '1em' }, 'fast');
-        });
+            $('.card').hover(function () {
+                $(this).find('img').animate({ width: '+=20px', height: '+=20px' }, 'fast');
+                $(this).find('h4').animate({ fontSize: '+=4px' }, 'fast');
+            }, function () {
+                $(this).find('img').animate({ width: '-=20px', height: '-=20px' }, 'fast');
+                $(this).find('h4').animate({ fontSize: '-=4px' }, 'fast');
+            });
 
-        // Animation au clic sur les boutons
-        $('button').click(function () {
-            $(this).animate({ opacity: 0.5 }, 200, function () {
-                $(this).animate({ opacity: 1 }, 200);
+            $('nav a').hover(function () {
+                $(this).animate({ fontSize: '1.2em' }, 'fast');
+            }, function () {
+                $(this).animate({ fontSize: '1em' }, 'fast');
+            });
+
+            $('button').click(function () {
+                $(this).animate({ opacity: 0.5 }, 200, function () {
+                    $(this).animate({ opacity: 1 }, 200);
+                });
             });
         });
-    });
-</script>
-</body>
-
+    </script>
 </body>
 
 </html>

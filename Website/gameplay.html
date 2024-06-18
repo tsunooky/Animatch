@@ -5,111 +5,77 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-
-    <title>Gameplay</title>
+    <title>Animatch</title>
+    <link rel="icon" type="image/png" href="assets/icon.png" />
     <link rel="stylesheet" href="styles.css">
-    <style>
-        @font-face {
-            font-family: 'Spash'; /* Nom que vous allez utiliser pour la police */
-            src: url('front/Splatch.ttf') format('truetype'); /* Chemin vers votre fichier de police */
-        }
-        /* Appliquez la police aux éléments souhaités */
-        h1, h2,h3 {
-            font-family: 'Spash', sans-serif; /* Utilisation de la police personnalisée avec une police de secours sans-serif */
-        }
-        .t {
-            font-family:  sans-serif; /* Utilisation de la police personnalisée */
-            font-size: 24px; /* Taille de la police */
-            max-width: 900px; /* Largeur maximale du texte */
-            margin: 0 auto; /* Pour centrer le texte */
-            padding: 20px;
-
-        }
-        
-    </style>
 </head>
 
-<body style="background-image: url('fichiers_a_telecharger/Fond.png'); background-size: cover; background-position: center;">
+<body>
     <header>
-    <div class="container">
-        <nav>
-            <div class="logo-container">
-            <a href="index.html"><img src="fichiers_a_telecharger/logo.png" ></a>
-            </div>
-
-            
+        <div class="falling-leaves"></div>
+        <div class="container">
+            <nav>
+                <div class="logo-container">
+                    <a href="index.html"><img src="assets/logo.png" alt="Animatch Logo"></a>
+                </div>
                 <ul>
-                    
                     <li><a href="index.html">Accueil</a></li>
+                    <li><a href="gameplay.html">Tutoriel</a></li>
                     <li><a href="animaux.html">Animaux</a></li>
                     <li><a href="cards.html">Cartes</a></li>
-                    <li><a href="gameplay.html"><b><u>Gameplay</u></b></a></li>
-                    <li><a href="sources.html">Sources</a></li>
-
+                    <li><a href="membres.html">Membres</a></li>
+                    <li><a href="sources.html">Ressources</a></li>
                 </ul>
-                <a href="fichiers_a_telecharger/CDT.zip" download="CDT.zip" class="download-button">Download</a> 
+                <a href="assets/animatch_installer.exe" download="Animatch.zip" class="download-button">Télécharger</a>
             </nav>
         </div>
-    
     </header>
-    <div class="pad">
+
     <section>
-        <section id="textalign">
-        
-        <p><h2>Déroulement d’une partie :</h2>
-            <br>
-<h3>Placement</h3>
-  <p class="t">Les 6 animaux (chaque joueur en place 3) sont placés dans l’ordre décroissant de leur statistique de vitesse n’importe où sur une zone vide de l’écran. L’animal tombe ensuite jusqu’à toucher du terrain ou un autre animal.</p>
+        <br><br>
+        <div class="pad">
 
+            <h3>Comment jouer ?</h3>
 
-<br>
-<h3>Tirage des cartes</h3>
-  <p class="t">Un joueur commence la partie avec 4 cartes choisies aléatoirement parmi les 8 cartes de son deck. 
-  Au début de son tour, le joueur pioche jusqu'à une limite de 4 cartes jouables.
-  Le joueur voit la prochaine carte qu’il va piocher à gauche de ses cartes actuelles pour qu’il puisse adapter son style de jeu par rapport à la prochaine carte qu’il va piocher.</p>
+            <h4>Préparation</h4>
+            <p class="t">Depuis l'écran du menu, sélectionnez "MY TEAM" pour modifier votre équipe de 3 animaux, et "MY DECK" pour modifier votre deck de 8 cartes. Vous pouvez ensuite séléctionner SOLO pour jouer une partie contre un bot ou 2 PLAYERS pour jouer une partie en multijoueur à deux sur le même périphérique.</p>
 
+            <h4>Placement</h4>
+            <p class="t">Les 6 animaux sont ensuite placés dans l'ordre de leur sélection dans le menu en cliquant n'importe où dans une zone vide de l'écran. L’animal tombe ensuite jusqu’à toucher du terrain ou un autre animal.</p>
 
-<br>
-<h3>Économie des drops</h3>
-  <p class="t">Le joueur ayant la carte la plus rapide commence et joue ainsi son personnage le plus rapide. Il commencera avec 1 drop (un drop étant le mana/coût pour jouer une carte). Puis ce sera au seconde joueur de jouer avec son animal le plus rapide, il aura 2 drops. Puis c’est au tour du premier joueur de jouer avec son deuxième personnage le plus rapide il aura 3 drops. Ainsi de suite !</p>
+            <h4>Tirage des cartes</h4>
+            <p class="t">Un joueur commence la partie avec 4 cartes choisies aléatoirement parmi les 8 cartes de son deck. Il en repioche une à chaque fois qu'une carte est jouée. La carte grisée à gauche est la prochaine carte qu'il va piocher. Chaque carte a un coût en drops et un effet unique éxpliqué en détail dans l'onglet <a href="cards.html">Cartes</a></p>
 
+            <h4>Les animaux</h4>
+            <p class="t">Chaque joueur possède une équipe de 3 animaux possédant chacun un nombre de points de vie prédéfini, ainsi qu'un Animax, un sort utilisable une seule fois par partie et par animal, puis enfin un passif, un effet actif pendant l'intégralité du jeu. Toutes les informations relatives au animaux peuvent se trouver ici : <a href="animaux.html">Animaux</a></p>
 
-<br>
-<h3>Fin d’une partie</h3>
-  <p class="t">Une partie se finit lorsque l’un des deux joueurs (ou les deux) n’a plus d’animal en vie. Dans ce cas, l’adversaire gagne la partie (ou les deux)</p></p>
-  <br>
-  <br>
-  <br>
-  <br>
-</section>
-</div>
+            <h4>Jeu</h4>
+            <p class="t">Les joueurs jouent à tour de rôle et peuvent déplacer la caméra en maintenant le clic droit. Ils commencent avec 1 drop (un drop étant le mana/coût pour jouer une carte). Une fois que les deux joueurs ont joué en sélectionnant une ou plusieurs cartes et en glissant la souris avec un clic du personnage à la direction opposée au tir, ils ont un drop de plus au tour suivant, et ainsi de suite ! Le nombre de drops est limité à 6.</p>
+
+            <h4>Fin d’une partie</h4>
+            <p class="t">Une partie se termine lorsque l’un des deux joueurs n’a plus d’animal en vie. Dans ce cas, l’adversaire gagne la partie !</p>
+        </div>
     </section>
 
     <footer>
-        <p>&copy; 2024 AniMatch. Tous droits réservés.</p>
+        <p>&copy; 2024 Animatch. Tous droits réservés.</p>
     </footer>
-    <!-- ... Autres contenus de la page ... -->
 
-<script>
-    // Code jQuery pour animer les boutons
-    $(document).ready(function () {
-        // Animation au survol des liens dans la barre de navigation
-        $('nav a').hover(function () {
-            $(this).animate({ fontSize: '1.2em' }, 'fast');
-        }, function () {
-            $(this).animate({ fontSize: '1em' }, 'fast');
-        });
+    <script>
+        $(document).ready(function () {
+            $('nav a').hover(function () {
+                $(this).animate({ fontSize: '1.2em' }, 'fast');
+            }, function () {
+                $(this).animate({ fontSize: '1em' }, 'fast');
+            });
 
-        // Animation au clic sur les boutons
-        $('button').click(function () {
-            $(this).animate({ opacity: 0.5 }, 200, function () {
-                $(this).animate({ opacity: 1 }, 200);
+            $('button').click(function () {
+                $(this).animate({ opacity: 0.5 }, 200, function () {
+                    $(this).animate({ opacity: 1 }, 200);
+                });
             });
         });
-    });
-</script>
-</body>
-
+    </script>
 </body>
 
 </html>

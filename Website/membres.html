@@ -1,133 +1,98 @@
 <!DOCTYPE html>
 <html lang="fr">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-
-    <title>Equipe</title>
+    <title>Cartes</title>
+    <link rel="icon" type="image/png" href="assets/icon.png" />
     <link rel="stylesheet" href="styles.css">
+    <style>
+        .container {
+            display: flex;
+        }
+        .member {
+            box-sizing: border-box;
+            text-align: right;
+        }
+        .member img {
+            max-width: 150%;
+            height: auto;
+        }
+    </style>
 </head>
-
-<body style="background-image: url('fichiers_a_telecharger/Fond.png'); background-size: cover; background-position: center;">
-       <header>
-    <div class="container">
-        <nav>
-            <div class="logo-container">
-            <a href="index.html"><img src="fichiers_a_telecharger/logo.png" ></a>
-            </div>
-
-            
+<body style="background-image: url('assets/Fond.png'); background-size: cover; background-position: center;">
+    <header>
+        <div class="falling-leaves"></div>
+        <div class="container">
+            <nav>
+                <div class="logo-container">
+                    <a href="index.html"><img src="assets/logo.png" alt="Animatch Logo"></a>
+                </div>
                 <ul>
-                    
                     <li><a href="index.html">Accueil</a></li>
+                    <li><a href="gameplay.html">Tutoriel</a></li>
                     <li><a href="animaux.html">Animaux</a></li>
                     <li><a href="cards.html">Cartes</a></li>
-                    <li><a href="gameplay.html">Gameplay</a></li>
-                    <li><a href="sources.html">Sources</a></li>
-
+                    <li><a href="membres.html">Membres</a></li>
+                    <li><a href="sources.html">Ressources</a></li>
                 </ul>
-                <a href="fichiers_a_telecharger/CDT.zip" download="CDT.zip" class="download-button">Download</a> 
+                <a href="assets/animatch_installer.exe" download="Animatch.zip" class="download-button">Télécharger</a>
             </nav>
         </div>
-    
     </header>
     <section>
-        <div class="pad">
-            <a href="index.html"><img src="fichiers_a_telecharger/fleche.png"height=5% width=5%></a>
-        
-        <section id="textalignmembre">
-            <h2>Découvrez les membres d'Animatch</h2>
-
-                <section id="content">
-
-                    <h1>En savoir plus</h1>
-
-                    <div class="contributor-box">
-                        <h2>Adrien Coureau</h2>
-                        <p> adrien.coureau@epita.fr</p>
-
-                    <div class="tete">
-                        <img src="tete/adrien.png" height=10% width=10%></img>
-
-        
-                        
-                    </div>
+        <br>
+            <div class="container2">
+                <div class="member">
+                    <h4>Adrien</h4>
+                    <img src="tete/adrien.png">
                 </div>
-             
-
-
-
-
-            <div class="contributor-box">
-                <h2>Josselin Priet</h2>
-                <p> josselin.priet@epita.fr</p>
-                <div class="tete">
-                    <img src="tete/joss.png" height=10% width=10%></img>
-                    
-                    
+                <div class="member">
+                    <h4>Josselin</h4>
+                    <img src="tete/joss.png">
                 </div>
-            </div>
-
-            <div class="contributor-box">
-                <h2>Hector Thubert</h2>
-                <p> hector.thubert@epita.fr</p>
-                
-                <div class="tete">
-                    <img src="tete/hector.png" height=10% width=10%></img>
-                    
+                <div class="member">
+                    <h4>Guillaume</h4>
+                    <img src="tete/guillaume.png">
                 </div>
-            </div>
-
-
-            <div class="contributor-box">
-                <h2>Guilhem Dardonville</h2>
-                <p> guilhem.Dardonville@epita.fr</p>
-                
-                <div class="tete">
-                    <img src="tete/guilhem.png" height=10% width=10%></img>
-                    
+                <div class="member">
+                    <h4>Hector</h4>
+                    <img src="tete/hector.png">
                 </div>
-            </div>
-            <div class="contributor-box">
-                <h2>Guillaume Rat</h2>
-                <p> guillaume.rat@epita.fr</p>
-                <div class="tete">
-                    <img src="tete/guillaume.png" height=10% width=10%></img>
-                    
+                <div class="member">
+                    <h4>Guilhem</h4>
+                    <img src="tete/guilhem.png">
                 </div>
-            </div>
-        
         </div>
     </section>
-    </section>
-
     <footer>
-        <p>&copy; 2024 AniMatch. Tous droits réservés.</p>
+        <p>&copy; 2024 Animatch. Tous droits réservés.</p>
     </footer>
-    <!-- ... Autres contenus de la page ... -->
-
-<script>
-    // Code jQuery pour animer les boutons
-    $(document).ready(function () {
-        // Animation au survol des liens dans la barre de navigation
-        $('nav a').hover(function () {
-            $(this).animate({ fontSize: '1.2em' }, 'fast');
-        }, function () {
-            $(this).animate({ fontSize: '1em' }, 'fast');
-        });
-
-        // Animation au clic sur les boutons
-        $('button').click(function () {
-            $(this).animate({ opacity: 0.5 }, 200, function () {
-                $(this).animate({ opacity: 1 }, 200);
+    <script>
+        $(document).ready(function () {
+            $('.member').hover(function () {
+                $(this).find('h4').animate({ fontSize: '+=4px' }, 'fast');
+            }, function () {
+                $(this).find('h4').animate({ fontSize: '-=4px' }, 'fast');
             });
         });
-    });
-</script>
-</body>
 
-</body>
 
+
+        $(document).ready(function () {
+            $('nav a').hover(function () {
+                $(this).animate({ fontSize: '1.2em' }, 'fast');
+            }, function () {
+                $(this).animate({ fontSize: '1em' }, 'fast');
+            });
+
+            $('button').click(function () {
+                $(this).animate({ opacity: 0.5 }, 200, function () {
+                    $(this).animate({ opacity: 1 }, 200);
+                });
+            });
+        });
+    </script>
+</body>
 </html>

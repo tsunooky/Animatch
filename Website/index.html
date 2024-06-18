@@ -5,113 +5,94 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-
     <title>Animatch</title>
+    <link rel="icon" type="image/png" href="assets/icon.png" />
     <link rel="stylesheet" href="styles.css">
-     <style>
-        @font-face {
-            font-family: 'Spash'; /* Nom que vous allez utiliser pour la police */
-            src: url('front/Splatch.ttf') format('truetype'); /* Chemin vers votre fichier de police */
-        }
-        /* Appliquez la police aux éléments souhaités */
-        h2 {
-            font-family: 'Spash', sans-serif; /* Utilisation de la police personnalisée avec une police de secours sans-serif */
-        }
-    </style>
-    
 </head>
 
-<body style="background-image: url('fichiers_a_telecharger/Fond.png'); background-size: cover; background-position: center;">
-   <header>
-    <div class="container">
-        <nav>
-            <div class="logo-container">
-            <a href="index.html"><img src="fichiers_a_telecharger/logo.png" ></a>
-            </div>
-
-            
+<body>
+    <header>
+        <div class="falling-leaves"></div>
+        <div class="container">
+            <nav>
+                <div class="logo-container">
+                    <a href="index.html"><img src="assets/logo.png" alt="Animatch Logo"></a>
+                </div>
                 <ul>
-                    
-                    <li><a href="index.html"><b><u>Accueil</u></b></a></li>
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="gameplay.html">Tutoriel</a></li>
                     <li><a href="animaux.html">Animaux</a></li>
                     <li><a href="cards.html">Cartes</a></li>
-                    <li><a href="gameplay.html">Gameplay</a></li>
-                    <li><a href="sources.html">Sources</a></li>
-
+                    <li><a href="membres.html">Membres</a></li>
+                    <li><a href="sources.html">Ressources</a></li>
                 </ul>
-                 <a href="fichiers_a_telecharger/CDT.zip" download="CDT.zip" class="download-button">Download</a>
+                <a href="assets/animatch_installer.exe" download="Animatch.zip" class="download-button">Télécharger</a>
             </nav>
         </div>
-    
     </header>
     <section>
-        <section class id="textalign">
-        <div class="centerindex">
-        <section id="content">
-        <div class="pad">
-        <h2>Bienvenue sur AniMatch !</h2>
-        <br>
-        <br>
-        <h4>Ici vous pourrez visualiser tous les aspects du développement de notre jeu</h4>
-        <br>
-        <p>Voici une liste exhaustive de tous <span class="highlight"><span class="clickable" onclick="window.location.href='membres.html';"><b>les développeurs d'Illusion.</b></span></span></p>
-        <br>
-
-        <p> Voici une représentation de notre jeu :</p>
-        <img id="carteSans" src="fichiers_a_telecharger/demo_v2.png" alt="Carte sans"height=50% width=50%>
-        <img id="carteAvec" src="fichiers_a_telecharger/demo_v2.png" alt="Carte avec" style="display:none"height=50% width=50%>
-        <br>
-        <br>
-        <p><span class="highlight"><span class="clickable" onclick="window.location.href='chronologie.html';"><b>La chronologie de réalisation</b></span></span></h7></p>
-        
-    
+        <section id="textalign">
+            <div class="centerindex">
+                <section id="content">
+                    <div class="pad">
+                        <div id="container"></div>
+                        <h3>Bienvenue sur Animatch !</h3>
+                        <div class="image-gallery">
+                            <button class="prev">&#10094;</button>
+                            <img src="assets/menu.png" alt="Image 1" class="gallery-image active">
+                            <img src="assets/deckcarte.png" alt="Image 3" class="gallery-image">
+                            <img src="assets/deckani.png" alt="Image 2" class="gallery-image">
+                            <img src="assets/demo6.png" alt="Image 1" class="gallery-image">
+                            <img src="assets/demo3.png" alt="Image 4" class="gallery-image">
+                            <img src="assets/demo4.png" alt="Image 5" class="gallery-image">
+                            <img src="assets/demo5.png" alt="Image 6" class="gallery-image">
+                            <button class="next">&#10095;</button>
+                        </div>
+                    
+                    </div>
+                </section>
+            </div>
+        </section>
     </section>
-    </div>
-
-    </section>
-    </section>
-</div>
-
 
     <footer>
-        <p>&copy; 2024 AniMatch. Tous droits réservés.</p>
+        <p>&copy; 2024 Animatch. Tous droits réservés.</p>
     </footer>
-    <!-- ... Autres contenus de la page ... -->
 
-<script>
-    // Code jQuery pour animer les boutons
-    $(document).ready(function () {
-        // Animation au survol des liens dans la barre de navigation
-        $('nav a').hover(function () {
-            $(this).animate({ fontSize: '1.2em' }, 'fast');
-        }, function () {
-            $(this).animate({ fontSize: '1em' }, 'fast');
-        });
-        $('span p').hover(function () {
-            $(this).animate({ fontSize: '1.2em' }, 'fast');
-        }, function () {
-            $(this).animate({ fontSize: '1em' }, 'fast');
-        });
-
-        // Animation au clic sur les boutons
-        $('button').click(function () {
-            $(this).animate({ opacity: 0.5 }, 200, function () {
-                $(this).animate({ opacity: 1 }, 200);
+    <script>
+        $(document).ready(function () {
+            $('nav a').hover(function () {
+                $(this).animate({ fontSize: '1.2em' }, 'fast');
+            }, function () {
+                $(this).animate({ fontSize: '1em' }, 'fast');
             });
-        });
-    });
-            document.getElementById("carteSans").addEventListener("click", function() {
-            document.getElementById("carteSans").style.display = "none";
-            document.getElementById("carteAvec").style.display = "inline";
-        });
 
-        document.getElementById("carteAvec").addEventListener("click", function() {
-            document.getElementById("carteSans").style.display = "inline";
-            document.getElementById("carteAvec").style.display = "none";
-        });
-</script>
-</body>
+            $('button').click(function () {
+                $(this).animate({ opacity: 0.5 }, 200, function () {
+                    $(this).animate({ opacity: 1 }, 200);
+                });
+            });
 
+            var currentIndex = 0;
+            var images = $('.gallery-image');
+            var totalImages = images.length;
+
+            function showImage(index) {
+                images.removeClass('active').eq(index).addClass('active');
+            }
+
+            $('.next').click(function () {
+                currentIndex = (currentIndex + 1) % totalImages;
+                showImage(currentIndex);
+            });
+
+            $('.prev').click(function () {
+                currentIndex = (currentIndex - 1 + totalImages) % totalImages;
+                showImage(currentIndex);
+            });
+            showImage(currentIndex);
+        });
+    </script>
 </body>
 
 </html>

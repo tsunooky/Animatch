@@ -1,143 +1,168 @@
 <!DOCTYPE html>
 <html lang="fr">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-
     <title>Animaux</title>
-   <link rel="stylesheet" href="styles.css">
-   <style>
-       .mid
-       {
-        text-align: center;
-       }
-           .imgmid  {
-  display: flex; /* Utilisation de Flexbox */
-            justify-content: center; /* Centrer horizontalement */
-            align-items: center; /* Centrer verticalement */
-            height: 100vh; /* Hauteur égale à la hauteur de la fenêtre */
-                max-width: 100%; /* Pour s'assurer que l'image ne dépasse pas de son conteneur */
-            height: auto; /* Pour conserver les proportions de l'image */
+    <link rel="icon" type="image/png" href="assets/icon.png" />
+    <link rel="stylesheet" href="styles.css">
+    <style>
         }
-
-   </style>
+        .mid {
+            text-align: center;
+        }
+        .imgmid {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            max-width: 100%;
+            height: auto;
+        }
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+        .card {
+            flex: 0 1 calc(33.33% - 20px);
+            margin: 10px;
+            box-sizing: border-box;
+            text-align: center;
+        }
+        .card img {
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
 </head>
-
-<body style="background-image: url('fichiers_a_telecharger/Fond.png'); background-size: cover; background-position: center;">
-      <header>
-    <div class="container">
-        <nav>
-            <div class="logo-container">
-            <a href="index.html"><img src="fichiers_a_telecharger/logo.png" ></a>
-            </div>
-
-            
+<body style="background-image: url('assets/Fond.png'); background-size: cover; background-position: center;">
+    <header>
+        <div class="falling-leaves"></div>
+        <div class="container">
+            <nav>
+                <div class="logo-container">
+                    <a href="index.html"><img src="assets/logo.png" alt="Animatch Logo"></a>
+                </div>
                 <ul>
-                    
                     <li><a href="index.html">Accueil</a></li>
-                    <li><a href="animaux.html"><b><u>Animaux</u></b></a></li>
+                    <li><a href="gameplay.html">Tutoriel</a></li>
+                    <li><a href="animaux.html">Animaux</a></li>
                     <li><a href="cards.html">Cartes</a></li>
-                    <li><a href="gameplay.html">Gameplay</a></li>
-                    <li><a href="sources.html">Sources</a></li>
-
+                    <li><a href="membres.html">Membres</a></li>
+                    <li><a href="sources.html">Ressources</a></li>
                 </ul>
-                <a href="fichiers_a_telecharger/CDT.zip" download="CDT.zip" class="download-button">Download</a> 
+                <a href="assets/animatch_installer.exe" download="Animatch.zip" class="download-button">Télécharger</a>
             </nav>
         </div>
-    
     </header>
-
     <section>
         <div class="pad">
-            <section id="textalign">
-        <h2>Voici la liste de chaque animaux :</h2>
-        <h3>Chaque animal possède un Animax et un passif</h3>
-        <p>(cliquez pour accéder aux différentes caractéristiques)</p>
-    </section>
-            <br>
-        <div class="disp">
-            <div class="card">
-                <h4>Le Panda :</h4>
-                <a href="Panda.html" id="pandaLink"><img src="fichiers_a_telecharger/Panda/panda.png" id="pandaImage"></a>
-            </div>
-
-            <div class="card">
-                <h4>Le Chien :</h4>
-                <a href="Chien.html" id="chienLink"><img src="fichiers_a_telecharger/chien/chien.png" id="chienImage"></a>
-            </div>
-        
-            <div class="card">
-                <h4>La Tortue :</h4>
-                <a href="Tortue.html" id="tortueLink"><img src="fichiers_a_telecharger/tortue/tortue.png" id="tortueImage"></a>
+                <br>
+            <div class="container">
+                <div class="card">
+                    <h4>Le Panda</h4>
+                    <a href="panda.html" id="pandaLink"><img src="assets/Panda/panda.png" id="pandaImage" alt="Panda"></a>
+                </div>
+                <div class="card">
+                    <h4>Le Chien</h4>
+                    <a href="chien.html" id="chienLink"><img src="assets/chien/dog.png" id="chienImage" alt="Chien"></a>
+                </div>
+                <div class="card">
+                    <h4>La Tortue</h4>
+                    <a href="turtle.html" id="tortueLink"><img src="assets/tortue/turtle.png" id="tortueImage" alt="Tortue"></a>
+                </div>
+                <div class="card">
+                    <h4>Le Chat</h4>
+                    <a href="chat.html" id="lionLink"><img src="assets/lion/lion.png" id="lionImage" alt="Lion"></a>
+                </div>
+                <div class="card">
+                    <h4>Le Rat</h4>
+                    <a href="rat.html" id="ratLink"><img src="assets/rat/rat.png" id="ratImage" alt="Rat"></a>
+                </div>
+                <div class="card">
+                    <h4>L'Aigle</h4>
+                    <a href="aigle.html" id="aigleLink"><img src="assets/aigle/eagle.png" id="aigleImage" alt="Aigle"></a>
+                </div>
             </div>
         </div>
-    </div>
     </section>
-    <br>
-    <br>
-    <h3 class="mid">Voici tous les autres animaux du jeu, qui le seront présents à la sortie d'Animatch</h3>
-    <br>
-    <div class="imgmid">
-    <img src="fichiers_a_telecharger/animaux.png" height=5% width=5%>
-    <br>
-    <br>
-   <br>
-   <br>
-    <br>
     <footer>
-        <p>&copy; 2024 AniMatch. Tous droits réservés.</p>
+        <p>&copy; 2024 Animatch. Tous droits réservés.</p>
     </footer>
-    <!-- ... Autres contenus de la page ... -->
+    <script>
+        $(document).ready(function () {
+            $('nav a').hover(function () {
+                $(this).animate({ fontSize: '1.2em' }, 'fast');
+            }, function () {
+                $(this).animate({ fontSize: '1em' }, 'fast');
+            });
 
-<script>
-    $(document).ready(function () {
-        // Animation de la taille au survol de chaque carte
-        $('.card').hover(function () {
-            $(this).find('img').animate({ width: '+=20px', height: '+=20px' }, 'fast');
-            $(this).find('h4').animate({ fontSize: '+=4px' }, 'fast');
-        }, function () {
-            $(this).find('img').animate({ width: '-=20px', height: '-=20px' }, 'fast');
-            $(this).find('h4').animate({ fontSize: '-=4px' }, 'fast');
+            $('button').click(function () {
+                $(this).animate({ opacity: 0.5 }, 200, function () {
+                    $(this).animate({ opacity: 1 }, 200);
+                });
+            });
+
+            $('.card').hover(function () {
+                $(this).find('img').animate({ width: '+=20px', height: '+=20px' }, 'fast');
+                $(this).find('h4').animate({ fontSize: '+=4px' }, 'fast');
+            }, function () {
+                $(this).find('img').animate({ width: '-=20px', height: '-=20px' }, 'fast');
+                $(this).find('h4').animate({ fontSize: '-=4px' }, 'fast');
+            });
+
+            var pandaImages = ["assets/Panda/panda.png", "assets/Panda/panda_2.png"];
+            var chienImages = ["assets/chien/dog.png", "assets/chien/dog_2.png"];
+            var tortueImages = ["assets/tortue/turtle.png", "assets/tortue/turtle_2.png"];
+            var lionImages = ["assets/lion/lion.png", "assets/lion/lion_2.png"];
+            var aigleImages = ["assets/aigle/eagle.png", "assets/aigle/eagle_2.png"];
+            var ratImages = ["assets/rat/rat.png", "assets/rat/rat_2.png"];
+            var pandaIndex = 0;
+            var chienIndex = 0;
+            var tortueIndex = 0;
+            var lionIndex = 0;
+            var aigleIndex = 0;
+            var ratIndex = 0;
+
+            function changerImagePanda() {
+                $('#pandaImage').attr('src', pandaImages[pandaIndex]);
+                pandaIndex = (pandaIndex + 1) % pandaImages.length;
+            }
+
+            function changerImageChien() {
+                $('#chienImage').attr('src', chienImages[chienIndex]);
+                chienIndex = (chienIndex + 1) % chienImages.length;
+            }
+
+            function changerImageTortue() {
+                $('#tortueImage').attr('src', tortueImages[tortueIndex]);
+                tortueIndex = (tortueIndex + 1) % tortueImages.length;
+            }
+
+            function changerImagelion() {
+                $('#lionImage').attr('src', lionImages[lionIndex]);
+                lionIndex = (lionIndex + 1) % lionImages.length;
+            }
+
+            function changerImagerat() {
+                $('#ratImage').attr('src', ratImages[ratIndex]);
+                ratIndex = (ratIndex + 1) % ratImages.length; 
+            }
+
+            function changerImageaigle() {
+                $('#aigleImage').attr('src', aigleImages[aigleIndex]);
+                aigleIndex = (aigleIndex + 1) % aigleImages.length;
+            }
+
+            setInterval(changerImagePanda, 1000); 
+            setInterval(changerImageChien, 970);
+            setInterval(changerImageTortue, 1030);
+            setInterval(changerImagelion, 940);
+            setInterval(changerImagerat, 1060);
+            setInterval(changerImageaigle, 10000);
         });
-    });
-
-    // Liste des chemins d'accès aux images
-    var pandaImages = ["fichiers_a_telecharger/Panda/panda.png", "fichiers_a_telecharger/Panda/panda_2.png"];
-    var chienImages = ["fichiers_a_telecharger/chien/dog.png", "fichiers_a_telecharger/chien/dog_2.png"];
-    var tortueImages = ["fichiers_a_telecharger/tortue/turtle.png", "fichiers_a_telecharger/tortue/turtle_2.png"];
-    var pandaIndex = 0; // Index de l'image actuelle pour le panda
-    var chienIndex = 0; // Index de l'image actuelle pour le chien
-    var tortueIndex = 0; // Index de l'image actuelle pour la tortue
-
-    // Fonction pour changer l'image du panda
-    function changerImagePanda() {
-        $('#pandaImage').attr('src', pandaImages[pandaIndex]);
-        pandaIndex = (pandaIndex + 1) % pandaImages.length; // Incrémenter l'index et s'assurer qu'il reste dans les limites du tableau
-    }
-
-    // Fonction pour changer l'image du chien
-    function changerImageChien() {
-        $('#chienImage').attr('src', chienImages[chienIndex]);
-        chienIndex = (chienIndex + 1) % chienImages.length; // Incrémenter l'index et s'assurer qu'il reste dans les limites du tableau
-    }
-
-    // Fonction pour changer l'image de la tortue
-    function changerImageTortue() {
-        $('#tortueImage').attr('src', tortueImages[tortueIndex]);
-        tortueIndex = (tortueIndex + 1) % tortueImages.length; // Incrémenter l'index et s'assurer qu'il reste dans les limites du tableau
-    }
-
-    // Appeler la fonction changerImagePanda toutes les secondes pour le panda
-    setInterval(changerImagePanda, 1000); // 1000 millisecondes = 1 seconde
-
-    // Appeler la fonction changerImageChien toutes les secondes pour le chien
-    setInterval(changerImageChien, 970); // 1000 millisecondes = 1 seconde
-
-    // Appeler la fonction changerImageTortue toutes les secondes pour la tortue
-    setInterval(changerImageTortue, 1030); // 1000 millisecondes = 1 seconde
-</script>
+    </script>
 </body>
-
 </html>

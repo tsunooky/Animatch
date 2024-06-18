@@ -9,7 +9,7 @@ public class JumpBehaviour : CarteBehaviour
     protected override void Awake()
     {
         // TEMPORAIRE OU DEFINITIF EN FONCTION (Bump)
-        Bump = 24;
+        Bump = 22;
         carteData = Resources.Load<CarteData>("Data/Carte/Jump");
     }
 

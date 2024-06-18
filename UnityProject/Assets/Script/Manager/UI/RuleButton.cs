@@ -6,7 +6,7 @@ public class RuleButton : MonoBehaviour
 {
     public void OpenURL()
     {
-        Application.OpenURL("https://animatch.site/");
+        Application.OpenURL("https://animatch.site/gameplay/");
     }
 }
 

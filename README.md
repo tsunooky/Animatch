@@ -1,7 +1,5 @@
 # Animatch
 
-![Logo Animatch](ArtAssets/icon.png)
-
 **Animatch** est un jeu de duel stratégique et de création de deck avec destruction de terrain développé sous **Unity**.
 
 ---
